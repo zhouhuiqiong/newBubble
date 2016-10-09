@@ -82,7 +82,6 @@ module.exports = function(router){
 
 	window.routeList=[];
 	router.beforeEach(function(transition){
-		console.log('before---------------');
 		//可以通过在路由中的自定义字段来验证用户是否需要登陆
 		// if(transition.to.auth){
 		// 	console.log('通过配置路由中自定义的字段验证是否需要登陆');
@@ -122,7 +121,6 @@ module.exports = function(router){
 
 	//可以记录访问路径
 	router.afterEach(function(transition){
-		console.log('-----------------after');
 		for (var i = 0; i < routeList.length; i++) {
 			console.log(routeList[i].name);
 		};
