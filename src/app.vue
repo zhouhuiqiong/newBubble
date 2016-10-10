@@ -178,7 +178,8 @@ module.exports = {
       
     },
     ready:function(){
-      //this.$set('as',new AwesomeSheet({ touchDismiss: false }));
+      this.cookies = '123123';
+      //this.$broadcast('cookie','232424');
     }
 }
 </script>

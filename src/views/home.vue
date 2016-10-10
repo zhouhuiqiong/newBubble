@@ -36,8 +36,13 @@ module.exports = {
 	route: {
 
 	},
+	events: {
+		'cookies': function(msg){
+			console.log(msg);
+		}
+	},
 	ready: function(){
-		
+		console.log(this.$parent.cookies);
 		for (var  i = 0; i < 15; i++) {
 	      this.items.push({
 	        id: i,
