@@ -7,9 +7,15 @@ var VueTouch = require('./vtouch');
 var VueRouter = require('vue-router');
 var fastclick = require('fastclick');
 fastclick.attach(document.body);
-
+// Directive
+var directive =  require('./directives');
 // register filters 自定义过滤器  金额格式化，
 var filters = require('./filters');
+//Vue.filter('filters', filters)
+
+Object.keys(directive).forEach(function(k) {
+  Vue.directive(k, directive[k]);
+});
 
 Object.keys(filters).forEach(function(k) {
   Vue.filter(k, filters[k]);

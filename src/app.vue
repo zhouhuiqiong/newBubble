@@ -4,16 +4,9 @@
 }
 .view {
   transition: all .3s ease;
-  border:2px solid #000;
-  margin-top:20px;
-  padding:1em;
+ 
+  padding:1em 0px;
 }
-
-
-/*.fade-enter, .fade-leave {
-  opacity: 0;
-  transform: translate3d(0, -5px, 0);
-}*/
 .fade-enter{
   opacity: 1;
   transform: translate3d(100%, 0, 0);
@@ -38,8 +31,6 @@
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
 }
-
-
 .v-link-active {
   color: red;
 }
@@ -75,7 +66,7 @@ nav{
 </style>
 
 <template>
-  <div class="app page page-current">
+  <div class="app">
     <router-view class="view" id="view" keep-alive :transition="effect" transition-mode="out-in"></router-view>
       <bar v-if="isIndex">
         <baritem path="/home" label="首页" icon="home"></baritem>
