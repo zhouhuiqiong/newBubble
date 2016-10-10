@@ -1,9 +1,14 @@
 <template>
   <div class="container">
     <nav class="bar bar-nav">
-      <h1 class="title">滚动加载更多</h1>
+      <h1 class="title">
+      	<a v-link="{name:'seach'}">东京</a>
+      	<a v-link="{name:'news'}">消息</a>
+      </h1>
     </nav>
-    <div class="content list" v-infinite-scroll="loadMore">
+    <div class="content list infinite-scroll" v-infinite-scroll="loadMore">
+    	<uiswiper></uiswiper>
+
       <div class="list-block infinite-list">
         <ul>
           <li class="item-content" v-for="item in items" track-by="$index">
@@ -21,7 +26,9 @@
       </div>
      
     </div>
+  	<uigoback target-scroll="infinite-scroll"></uigoback>
   </div>
+
 </template>
 <script>
 module.exports = {
@@ -37,27 +44,6 @@ module.exports = {
 	        name: 'demo' +  i
 	      })
 	    };
-		// $('.content').on('scroll', function() {
-		//   var  el = $(this);
-	 //      var height = parseFloat(el.height());
-	 //      var scrollTop = parseFloat(el.scrollTop());
-	 //      var totalHeight = height + scrollTop;
-	 //      that.loading = false;
-	 //      if (el[0].scrollHeight - totalHeight <= 3) {
-	 //      		setTimeout(function() {
-		//       		if (that.loading) return;
-		//         	that.loading = true;
-		//         	for (var  i = 0; i < 15; i++) {
-		// 		      that.items.push({
-		// 		        id: i,
-		// 		        name: 'demo' +  i+length
-		// 		      })
-		// 		    };
-		// 		    var scrollTop = scroller[0].scrollHeight - scroller.height() - 20;
-  //       			scroller.scrollTop(scrollTop)
-		// 		}, 1000);
-	 //       };
-	 //    })
 	},
 	data:function(){
 		return {
@@ -96,9 +82,12 @@ module.exports = {
 				scroller.scrollTop(scrollTop)
 			}, 1000);
 		}
-	}
+	},
+	components:{
+      uiswiper: require('../components/swiper.vue'),
+      uigoback: require('../components/goback.vue')
+    }
 };
-
 </script>
 <style type="text/css">
 	.content{

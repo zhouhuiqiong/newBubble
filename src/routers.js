@@ -4,11 +4,13 @@ module.exports = function(router){
 			name:'home',
 			component: require('./views/home.vue')
 		},
-		'/about':{
-			name:'about',
-			component: function(reslove){
-				return require(['./views/about.vue'],reslove)
-			}
+		'/seach':{
+			name:'seach',
+			component: require('./views/seach.vue')
+		},
+		'/news':{
+			name:'news',
+			component: require('./views/news.vue')
 		},
 		'/my_views': {
 			name:'my_views',
@@ -97,13 +99,19 @@ module.exports = function(router){
 				transition.abort();
 			},1500);
 		}
-
-		if(routeList.length > 1 && transition.to.name==routeList[routeList.length-2]['name']){
+		var result = transition.to.name;
+		if(result == 'seach'){
+			router.app.effect='bottom';
+		}else if(result == 'news'){
+			router.app.effect='left';
+		}else{
 			router.app.effect='back';
+		}
+		if(routeList.length > 1 && transition.to.name==routeList[routeList.length-2]['name']){
+			//router.app.effect='back';
 			routeList.splice(routeList.length-1,1);
-			console.log(routeList);
 		} else {
-			router.app.effect='fade';
+			//router.app.effect='fade';
 			routeList.push({
 				name : transition.to.name,
 				path : transition.to.path,

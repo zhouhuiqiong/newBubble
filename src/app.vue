@@ -19,6 +19,28 @@
 
 }
 
+.bottom-enter{
+  opacity: 1;
+  transform: translate3d(0,100%, 0);
+}
+
+.bottom-leave {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+
+}
+.left-enter{
+  opacity: 1;
+  transform: translate3d(100%,0, 0);
+}
+
+.left-leave {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+
+}
 .back-enter {
   opacity: 1;
   -webkit-transform: translate3d(-110%, 0, 0);
@@ -87,15 +109,19 @@ module.exports = {
           '/':{
             name:'home'
           },
+          '/seach':{
+            name:'seach'
+          },
+          '/news':{
+            name:'news'
+          },
           '/my_views': {
             name:'my_views'
           },
           '/my_views/:viewId': {
             name:'my_views_detail'
           },
-          '/about':{
-            name:'about'
-          },
+
           '/forbidden':{
             name:'forbidden'
           },
@@ -139,13 +165,14 @@ module.exports = {
     components:{
       bar: require('./components/bar.vue'),
       baritem: require('./components/baritem.vue')
-      //modal:require('./components/modal.vue'),
     },
     created:function(){
 
     },
     events:{
-      
+      'isIndex': function(isIndex){
+          this.isIndex = isIndex;
+      }
     },
     methods:{
       
