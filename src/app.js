@@ -23,7 +23,6 @@ Object.keys(filters).forEach(function(k) {
 
 var App = Vue.extend(require('./app.vue'));
 
-
 /*
     如果还想声明一个vue实例
 	要放在 Vue.use(VueRouter); 之前

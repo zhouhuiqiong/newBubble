@@ -4,80 +4,86 @@ module.exports = function(router){
 			name:'home',
 			component: require('./views/home.vue')
 		},
-		'/about':{
-			name:'about',
-			component: function(reslove){
-				return require(['./views/about.vue'],reslove)
-			}
+		'/seach':{
+			name:'seach',
+			component: require('./views/seach.vue')
 		},
-		'/my_views': {
-			name:'my_views',
-			component: require('./views/my_views.vue')
+		'/news':{
+			name:'news',
+			component: require('./views/news.vue')
 		},
-		'/my_views/:viewId': {
-			name:'my_views_detail',
-			component: require('./views/my_views_detail.vue'),
-			auth: true // 此页面需要用户登录
+		'/huelist': {
+			name:'huelist',
+			component: require('./views/huelist.vue')
 		},
-		'/modal_view': {
-			name:'modal_view',
-			component: require('./views/modal_view.vue')
-		},
-		'/select_view': {
-			name:'select_view',
-			component: require('./views/select_view.vue')
-		},
-		'/radio_view': {
-			name:'radio_view',
-			component: require('./views/radio_view.vue')
-		},
-		'/tab_view': {
-			name:'tab_view',
-			component: require('./views/tab_view.vue')
-		},
-		'/slider_view': {
-			name:'slider_view',
-			component: require('./views/slider_view.vue')
-		},
-		'/forbidden':{
-			name:'forbidden',
-			component: require('./views/forbidden.vue')
-		},
-		'/test':{
-			name:'test_view',
-			component: require('./views/test.vue')
-		},
-		'async':{
-			//http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
-			//http://vuejs.github.io/vue-router/zh-cn/lazy.html
-			name:'async',
-			component: function(reslove){
-				//异步加载，
-				//例子
-				return require(['./views/async.vue'],reslove)
-			}
-		},
-		'async_loading':{
-			//http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
-			name:'async_loading',
-			component: function(reslove){
-				//异步加载，
-				//例子
-				return require(['./views/async_loading.vue'],reslove)
-			}
-		},
+		'/details': {
+			name:'details',
+			component: require('./views/details.vue')
+		}
+		// '/my_views/:viewId': {
+		// 	name:'my_views_detail',
+		// 	component: require('./views/my_views_detail.vue'),
+		// 	auth: true // 此页面需要用户登录
+		// },
+		// '/modal_view': {
+		// 	name:'modal_view',
+		// 	component: require('./views/modal_view.vue')
+		// },
+		// '/select_view': {
+		// 	name:'select_view',
+		// 	component: require('./views/select_view.vue')
+		// },
+		// '/radio_view': {
+		// 	name:'radio_view',
+		// 	component: require('./views/radio_view.vue')
+		// },
+		// '/tab_view': {
+		// 	name:'tab_view',
+		// 	component: require('./views/tab_view.vue')
+		// },
+		// '/slider_view': {
+		// 	name:'slider_view',
+		// 	component: require('./views/slider_view.vue')
+		// },
+		// '/forbidden':{
+		// 	name:'forbidden',
+		// 	component: require('./views/forbidden.vue')
+		// },
+		// '/test':{
+		// 	name:'test_view',
+		// 	component: require('./views/test.vue')
+		// },
+		// 'async':{
+		// 	//http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
+		// 	//http://vuejs.github.io/vue-router/zh-cn/lazy.html
+		// 	name:'async',
+		// 	component: function(reslove){
+		// 		//异步加载，
+		// 		//例子
+		// 		return require(['./views/async.vue'],reslove)
+		// 	}
+		// },
+		// 'async_loading':{
+		// 	//http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
+		// 	name:'async_loading',
+		// 	component: function(reslove){
+		// 		//异步加载，
+		// 		//例子
+		// 		return require(['./views/async_loading.vue'],reslove)
+		// 	}
+		// },
 
-		//触摸事件
-		'touch':{
-			name:'touch',
-			component:function(reslove){
-				return require(['./views/touch.vue'],reslove)
-			}
-		},
-		// not found handler
-	    '*': {
-	      component: require('./views/not_found.vue')
-	    }
+		// //触摸事件
+		// 'touch':{
+		// 	name:'touch',
+		// 	component:function(reslove){
+		// 		return require(['./views/touch.vue'],reslove)
+		// 	}
+		// },
+		// // not found handler
+	 //    '*': {
+	 //      component: require('./views/not_found.vue')
+	 //    }
 	});
 
 	window.routeList=[];
@@ -97,13 +103,24 @@ module.exports = function(router){
 				transition.abort();
 			},1500);
 		}
-
-		if(routeList.length > 1 && transition.to.name==routeList[routeList.length-2]['name']){
+		var result = transition.to.name;
+		if(result == 'seach'){
+			router.app.effect='bottom';
+		}else if(result == 'news' || result == 'details'){
+			router.app.effect='left';
+		}else{
 			router.app.effect='back';
+		}
+		if(result == 'news' || result== 'seach' || result == 'details'){
+			$('.barNav').hide();
+		}else{
+			$('.barNav').css('display','inline-block');
+		}
+		if(routeList.length > 1 && transition.to.name==routeList[routeList.length-2]['name']){
+			//router.app.effect='back';
 			routeList.splice(routeList.length-1,1);
-			
 		} else {
-			router.app.effect='fade';
+			//router.app.effect='fade';
 			routeList.push({
 				name : transition.to.name,
 				path : transition.to.path,

@@ -19,6 +19,28 @@
 
 }
 
+.bottom-enter{
+  opacity: 1;
+  transform: translate3d(0,100%, 0);
+}
+
+.bottom-leave {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+
+}
+.left-enter{
+  opacity: 1;
+  transform: translate3d(100%,0, 0);
+}
+
+.left-leave {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+
+}
 .back-enter {
   opacity: 1;
   -webkit-transform: translate3d(-110%, 0, 0);
@@ -68,10 +90,10 @@ nav{
 <template>
   <div class="app">
     <router-view class="view" id="view" keep-alive :transition="effect" transition-mode="out-in"></router-view>
-      <bar v-if="isIndex">
-        <baritem path="/home" label="首页" icon="home"></baritem>
-        <baritem path="/tasks" label="任务" icon="tasks"></baritem>
-        <baritem path="/list" label="列表" icon="mytask"></baritem>
+      <bar class="barNav">
+        <baritem path="/home" label="首页" icon="browser"></baritem>
+        <baritem path="/list" label="色相" icon="picture"></baritem>
+        <baritem path="/list" label="我的" icon="home"></baritem>
       </bar>
     </template>
   </div>
@@ -87,48 +109,55 @@ module.exports = {
           '/':{
             name:'home'
           },
-          '/my_views': {
-            name:'my_views'
+          '/seach':{
+            name:'seach'
           },
-          '/my_views/:viewId': {
-            name:'my_views_detail'
+          '/news':{
+            name:'news'
           },
-          '/about':{
-            name:'about'
+          '/huelist': {
+            name:'huelist'
           },
-          '/forbidden':{
-            name:'forbidden'
-          },
-          '/modal_view': {
-            name:'modal_view'
-          },
-          '/select_view': {
-            name:'select_view'
-          },
-          '/radio_view': {
-            name:'radio_view'
-          },
-          '/tab_view': {
-            name:'tab_view'
-          },
-          '/slider_view': {
-            name:'slider_view'
-          },
-          '/test':{
-            name:'test_view'
-          },
-          'async':{
-            //http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
-            name:'async'
-          },
-          'async_loading':{
-            //http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
-            name:'async_loading'
-          },
-          //触摸事件
-          'touch':{
-            name:'touch'
+          '/details': {
+            name:'details'
           }
+          // '/my_views/:viewId': {
+          //   name:'my_views_detail'
+          // },
+
+          // '/forbidden':{
+          //   name:'forbidden'
+          // },
+          // '/modal_view': {
+          //   name:'modal_view'
+          // },
+          // '/select_view': {
+          //   name:'select_view'
+          // },
+          // '/radio_view': {
+          //   name:'radio_view'
+          // },
+          // '/tab_view': {
+          //   name:'tab_view'
+          // },
+          // '/slider_view': {
+          //   name:'slider_view'
+          // },
+          // '/test':{
+          //   name:'test_view'
+          // },
+          // 'async':{
+          //   //http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
+          //   name:'async'
+          // },
+          // 'async_loading':{
+          //   //http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
+          //   name:'async_loading'
+          // },
+          // //触摸事件
+          // 'touch':{
+          //   name:'touch'
+          // }
         },
         effect          : 'fade',
         header          : '首页',
@@ -139,19 +168,21 @@ module.exports = {
     components:{
       bar: require('./components/bar.vue'),
       baritem: require('./components/baritem.vue')
-      //modal:require('./components/modal.vue'),
     },
     created:function(){
 
     },
     events:{
-      
+      'isIndex': function(isIndex){
+          this.isIndex = isIndex;
+      }
     },
     methods:{
       
     },
     ready:function(){
-      //this.$set('as',new AwesomeSheet({ touchDismiss: false }));
+      this.cookies = '123123';
+      //this.$broadcast('cookie','232424');
     }
 }
 </script>

@@ -1,7 +1,7 @@
 var infiniteScroll = {
  	bind: function(){
  		var that = this,
- 			el = $(that.el);
+ 			el = $(that.el);	
  		el.on('scroll', function(){
  			var h = parseFloat(el.height()),
  			scrollTop = parseFloat(el.scrollTop()),
