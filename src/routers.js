@@ -101,7 +101,7 @@ module.exports = function(router){
 		if(routeList.length > 1 && transition.to.name==routeList[routeList.length-2]['name']){
 			router.app.effect='back';
 			routeList.splice(routeList.length-1,1);
-			console.log(routeList);
+			
 		} else {
 			router.app.effect='fade';
 			routeList.push({
