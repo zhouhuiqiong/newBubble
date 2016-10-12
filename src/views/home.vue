@@ -76,6 +76,7 @@ module.exports = {
 			title:'home',
 			items: [],
 			loading: false
+			
 		}
 	},
 	computed: {

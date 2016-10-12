@@ -1,8 +1,7 @@
 var infiniteScroll = {
  	bind: function(){
  		var that = this,
- 			el = $(that.el);
- 			
+ 			el = $(that.el);	
  		el.on('scroll', function(){
  			var h = parseFloat(el.height()),
  			scrollTop = parseFloat(el.scrollTop()),
@@ -11,9 +10,7 @@ var infiniteScroll = {
 	 			that.vm[that.expression]();
 	 		};
  		});
- 	},
- 	update: function(value){
- 		console.log(value);	
+ 		
  	}
 }
 exports.infiniteScroll = infiniteScroll;
