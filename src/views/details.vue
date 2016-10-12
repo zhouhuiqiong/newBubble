@@ -37,7 +37,7 @@
 				<div class="tabs">
 					<div id="tab1" class="tab active">
 						<div class="content-block">
-							<p  v-for="item in dataList" track-by="$index">This is tab 1 content</p>
+							<p  v-for="item in dataList" track-by="$index">This is tab {{$index}}content</p>
 						</div>
 					</div>
 					<div id="tab2" class="tab">

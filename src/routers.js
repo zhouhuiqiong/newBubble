@@ -19,6 +19,10 @@ module.exports = function(router){
 		'/details': {
 			name:'details',
 			component: require('./views/details.vue')
+		},
+		'/login': {
+			name:'login',
+			component: require('./views/login.vue')
 		}
 		// '/my_views/:viewId': {
 		// 	name:'my_views_detail',

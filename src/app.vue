@@ -120,6 +120,9 @@ module.exports = {
           },
           '/details': {
             name:'details'
+          },
+          '/login': {
+            name:'login'
           }
           // '/my_views/:viewId': {
           //   name:'my_views_detail'

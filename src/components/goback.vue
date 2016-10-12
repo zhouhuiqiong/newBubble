@@ -22,7 +22,7 @@
 		},
 		methods: {
 			goBack: function(event){
-				$('.' + this.targetScroll ).scrollTop(0);
+				$('.' + this.targetScroll ).scrollTo(0);
 				this.isGoback = false;
 			}
 		}
