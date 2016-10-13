@@ -23,6 +23,18 @@ module.exports = function(router){
 		'/login': {
 			name:'login',
 			component: require('./views/login.vue')
+		},
+		'/userlist': {
+			name:'userlist',
+			component: require('./views/userlist.vue')
+		},
+		'/indentlist': {
+			name: 'indentlist',
+			component: require('./views/indentlist.vue')
+		},
+		'/help': {
+			name: 'help',
+			component: require('./views/help.vue')
 		}
 		// '/my_views/:viewId': {
 		// 	name:'my_views_detail',
@@ -115,7 +127,7 @@ module.exports = function(router){
 		}else{
 			router.app.effect='back';
 		}
-		if(result == 'news' || result== 'seach' || result == 'details'){
+		if(result == 'news' || result== 'seach' || result == 'details' || result == 'login' || result == 'userlist'){
 			$('.barNav').hide();
 		}else{
 			$('.barNav').css('display','inline-block');

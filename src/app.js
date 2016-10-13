@@ -6,6 +6,7 @@ var Vue = require('vue');
 var VueTouch = require('./vtouch');
 var VueRouter = require('vue-router');
 var fastclick = require('fastclick');
+var VueVallidator = require('vue-validator');
 fastclick.attach(document.body);
 // Directive
 var directive =  require('./directives');
@@ -32,6 +33,7 @@ var App = Vue.extend(require('./app.vue'));
 
 Vue.use(VueTouch);
 Vue.use(VueRouter);
+Vue.use(VueVallidator);
 
 var router = new VueRouter(
 	{

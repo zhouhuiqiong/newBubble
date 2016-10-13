@@ -1,30 +1,36 @@
 <template>
-  <input type="number" name="" v-model="phone">
-  <button @click="getServerCode">获取验证码</button>
+  <button @click="getServerCode">{{btntext}}</button>
 </template>
 
 <script>
 module.exports = {
-  props: ['time'],
+  props: ['time','userPhone'],
   data: function(){
     return {
       phone: '',
+      btntext: '获取验证码',
+      result: true
     }
   },
-
   methods: {
     getServerCode: function(){
-      if(this.verifyPhone){
+      var that = this;
+      var time = that.time;
+      if(util.string.isMobile(that.userPhone) &&  that.result){
+        that.result = false;
+        that.btntext = '重新发送('+time+')';
+        var timer = setInterval(function(){
+            time--;
+          that.btntext = '重新发送('+time+')';
+          if(time == 0){
+            clearInterval(timer);
+            that.btntext = '发送验证码';
+            that.result = true;
+          };
+        }, 1000);
+        //获取验证码
 
       };
-    },
-    verifyPhone: function(){
-      var phoneReg = /^(((13[0-9]{1})|(17[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
-      if(!phoneReg.test(this.phone)){
-        $.toast("输入确证的手机号");
-        return false;
-      };
-        return true;
     }
   }
 }

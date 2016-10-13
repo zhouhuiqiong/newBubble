@@ -82,9 +82,9 @@
 nav{
   background-color: #000;
 }
-::-webkit-scrollbar {
+/*::-webkit-scrollbar {
   display: none;
-}
+}*/
 </style>
 
 <template>
@@ -123,6 +123,15 @@ module.exports = {
           },
           '/login': {
             name:'login'
+          },
+          '/userlist': {
+            name:'userlist'
+          },
+          '/indentlist': {
+            name:'indentlist'
+          },
+          '/help': {
+            name:'help'
           }
           // '/my_views/:viewId': {
           //   name:'my_views_detail'

@@ -3,6 +3,26 @@ var util = {
     window.history.go(-1);
   }
 };
+/*
+**字符串操作
+*/
+(function(){
+  function _String(){};
+  /**
+   * 手机号验证
+   * @param  {[type]}  val [description]
+   * @return {Boolean}     [description]
+   */
+  _String.isMobile = function(val) {
+     var phoneReg = /^(((13[0-9]{1})|(17[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+      if(!phoneReg.test(val)){
+        $.toast("输入确证的手机号");
+        return false;
+      };
+      return true;
+  };
+  util.string = _String;
+})();
 (function(){
   function scrollList(){
   };
@@ -103,7 +123,7 @@ $.fn.scrollTo =function(options){
     }, opts.delay);
     return _this;
 };
-//倒计时短信获取验证码
+      
 
 
 
