@@ -132,6 +132,12 @@ module.exports = {
           },
           '/help': {
             name:'help'
+          },
+          '/shopimg': {
+            name: 'shopimg'
+          },
+          '/orderdetails':{
+            name: 'orderdetails'
           }
           // '/my_views/:viewId': {
           //   name:'my_views_detail'

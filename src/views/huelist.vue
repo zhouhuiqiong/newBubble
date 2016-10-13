@@ -39,7 +39,6 @@ module.exports = {
 
 	},
 	ready: function(){
-		this.$dispatch('isIndex', false);	
 	},
 	data:function(){
 		return {

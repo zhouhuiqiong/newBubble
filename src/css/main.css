@@ -7,4 +7,13 @@ body {
 .seach-content {
   bottom: 0px; }
 
+.item-content1 {
+  margin: 0px 0.75rem; }
+
+.item-btn-row {
+  text-align: right;
+  padding: 0px 0.75rem; }
+  .item-btn-row .button {
+    display: inline-block; }
+
 /*# sourceMappingURL=main.css.map */

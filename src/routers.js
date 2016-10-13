@@ -28,13 +28,17 @@ module.exports = function(router){
 			name:'userlist',
 			component: require('./views/userlist.vue')
 		},
-		'/indentlist': {
+		'/indentlist': {//订单列表
 			name: 'indentlist',
 			component: require('./views/indentlist.vue')
 		},
-		'/help': {
-			name: 'help',
-			component: require('./views/help.vue')
+		'/shopimg': {//帮助中心
+			name: 'shopimg',
+			component: require('./views/shopimg.vue')
+		},
+		'/orderdetails': {//预约详情
+			name: 'orderdetails',
+			component: require('./views/orderdetails.vue')
 		}
 		// '/my_views/:viewId': {
 		// 	name:'my_views_detail',
@@ -127,7 +131,7 @@ module.exports = function(router){
 		}else{
 			router.app.effect='back';
 		}
-		if(result == 'news' || result== 'seach' || result == 'details' || result == 'login' || result == 'userlist'){
+		if(result == 'news' || result== 'seach' || result == 'details' || result == 'login' || result == 'userlist' || result == 'indentlist'){
 			$('.barNav').hide();
 		}else{
 			$('.barNav').css('display','inline-block');

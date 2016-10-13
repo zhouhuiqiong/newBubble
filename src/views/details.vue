@@ -62,7 +62,6 @@ module.exports = {
 
 	},
 	ready: function(){
-		this.$dispatch('isIndex', false);
 		this.changeType();
 	},
 	data:function(){
