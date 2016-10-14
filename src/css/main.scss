@@ -1,5 +1,8 @@
+@import 'mixin';
 body{
 	background: #fff;
+	position: static;
+	overflow-y: auto;
 }
 .home-content{
 	bottom: 2.5rem;
@@ -15,5 +18,66 @@ body{
 	padding:0px 0.75rem;
 	.button{
 		display: inline-block;
+	}
+}
+.swiper-slide-explain{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	background:rgba(0,0,0,.4);
+	font-size: 14px;
+	text-align: left;
+	padding:0px 0.25rem;
+	line-height: 16px;
+	color:#fff;
+}
+.swipertxt {
+	margin:0px auto !important;
+	.swiper-slide{
+		img{
+			width: 100%;
+			height: 100%;
+		}
+	}
+	.swiper-pagination{
+		top: 0px;
+		height: 1.5rem;
+		// background: #f00;
+		// width: auto;
+		// left: 50%;
+		// width: 150px;
+		// margin-left: -75px;
+	}
+
+}
+.maxswiperlist{
+	img{	
+		width: 100%;
+	}
+}
+.max-img-box{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	background: #f00;
+	z-index: 1000;
+	@include boxZC;
+}
+.animatebox{
+	-webkit-animation:animateTop .5s  ease  both;
+}
+@keyframes animateTop {
+	0%{
+		opacity: 0;
+  		-webkit-transform: translate3d(0,100%,0);
+        transform: translate3d(0, 100%, 0);
+	}
+	100%{
+		opacity: 1;
+  		-webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
 	}
 }

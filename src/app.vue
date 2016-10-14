@@ -4,8 +4,6 @@
 }
 .view {
   transition: all .3s ease;
- 
-  padding:1em 0px;
 }
 .fade-enter{
   opacity: 1;
@@ -90,7 +88,7 @@ nav{
 <template>
   <div class="app">
     <router-view class="view" id="view" keep-alive :transition="effect" transition-mode="out-in"></router-view>
-      <bar class="barNav">
+      <bar class="barNav" style="display:none">
         <baritem path="/home" label="首页" icon="browser"></baritem>
         <baritem path="/list" label="色相" icon="picture"></baritem>
         <baritem path="/list" label="我的" icon="home"></baritem>

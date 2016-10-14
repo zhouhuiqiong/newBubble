@@ -1,5 +1,6 @@
 <template>
-	<div class="swiper-container" v-el:swper>
+    <!--v-el:swper-->
+	<div class="swiper-container swper" >
 	    <div class="swiper-wrapper">
 	        <div class="swiper-slide">Slide 1</div>
 	        <div class="swiper-slide">Slide 2</div>
@@ -14,7 +15,7 @@
 	var Swiper = require('swiper');
 	module.exports = {
 		ready:function(){
-			new Swiper(this.$el, {
+			new Swiper('.swper', {
 				direction: 'vertical',
     			loop: true,
     			pagination: '.swiper-pagination',
@@ -29,12 +30,12 @@
 </script>
 
 <style>
-	.swiper-container {
+	.swper {
         width: 100%;
         height: 300px;
         margin: 20px auto;
     }
-    .swiper-slide {
+    .swper .swiper-slide {
         text-align: center;
         font-size: 18px;
         background: #fff;

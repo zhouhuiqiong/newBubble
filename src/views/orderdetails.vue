@@ -1,16 +1,8 @@
 <template>
 	<div class="container">
-		<header class="bar bar-nav">
-		  <a class="icon icon-left pull-left" @click="gohistory"></a>
-		  <h1 class="title">商家相册</h1>
-		</header>
-		<div class="content list infinite-scroll home-content" >
-			<div class="content-padded grid-demo">
-			    <div class="row">
-			      <div class="col-50">50%</div>
-			      <div class="col-50">50%</div>
-			    </div>
-			</div>
+		<div class="content">
+			<uiswipertxt></uiswipertxt>
+			
 		</div>
 	</div>
 </template>
@@ -20,7 +12,9 @@ module.exports = {
 
 	},
 	ready: function(){
-		this.$dispatch('isIndex', false);	
+	
+ 
+
 	},
 	data:function(){
 		return {
@@ -37,7 +31,10 @@ module.exports = {
 			this.$root.$set('header',this.title);
 			transition.next();
 		}
-	}
+	},
+	components:{
+      uiswipertxt: require('../components/swipertxt.vue')
+    }
 };
 
 </script>

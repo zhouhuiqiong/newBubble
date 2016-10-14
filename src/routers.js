@@ -36,7 +36,7 @@ module.exports = function(router){
 			name: 'shopimg',
 			component: require('./views/shopimg.vue')
 		},
-		'/orderdetails': {//预约详情
+		'/orderdetails': {//服务详情页
 			name: 'orderdetails',
 			component: require('./views/orderdetails.vue')
 		}
@@ -131,10 +131,10 @@ module.exports = function(router){
 		}else{
 			router.app.effect='back';
 		}
-		if(result == 'news' || result== 'seach' || result == 'details' || result == 'login' || result == 'userlist' || result == 'indentlist'){
-			$('.barNav').hide();
-		}else{
+		if(result == 'home'){
 			$('.barNav').css('display','inline-block');
+		}else{
+			$('.barNav').hide();
 		}
 		if(routeList.length > 1 && transition.to.name==routeList[routeList.length-2]['name']){
 			//router.app.effect='back';
