@@ -136,6 +136,12 @@ module.exports = {
           },
           '/orderdetails':{
             name: 'orderdetails'
+          },
+          '/judgelist':{
+            name: 'judgelist'
+          },
+          '/ordersubmit':{
+            name: 'ordersubmit'
           }
           // '/my_views/:viewId': {
           //   name:'my_views_detail'

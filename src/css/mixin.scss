@@ -116,9 +116,6 @@ input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {
 	text-overflow: ellipsis;
 	white-space: nowrap
 }
-/**
- * 抖动效果
- */
 @-webkit-keyframes shake {
 	0%,100% {
 		-webkit-transform: translate3d(0,0,0);
@@ -155,9 +152,7 @@ input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {
 		transform: translate3d(10px,0,0)
 	}
 }
-/**
- * 红色空心按钮
- */
+
 @mixin btn{
     border: 1px solid #ff4945;
     border-radius: 3px;

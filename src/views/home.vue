@@ -61,6 +61,8 @@ module.exports = {
 		}
 	},
 	ready: function(){
+		$.toast("操作失败");
+
 		console.log(this.$parent.cookies);
 		//this.$dispatch('isIndex', true);
 		for (var  i = 0; i < 15; i++) {

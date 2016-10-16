@@ -1,7 +1,26 @@
 var util = {
   goBack: function() {
     window.history.go(-1);
+  },
+  domeTime: function(data){
+      var that = this;
+      var opts = $.extend({
+        time: 10,
+        target : '.btn-box button'
+      },data);
+      var $obj = $(opts.target).find('i');
+      $obj.text('('+opts.time+')');
+      var timer = setInterval(function(){
+        opts.time --;
+        $obj.text('('+opts.time+')');
+        if(opts.time == 0){
+            $obj.text(null);
+            clearInterval(timer);
+            return true;
+        };
+      },1000);
   }
+
 };
 /*
 **字符串操作

@@ -1,10 +1,6 @@
-@charset "UTF-8";
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   color: #ccc; }
 
-/**
- * 鎶栧姩鏁堟灉
- */
 @-webkit-keyframes shake {
   0%,100% {
     -webkit-transform: translate3d(0, 0, 0);
@@ -28,9 +24,6 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     -webkit-transform: translate3d(10px, 0, 0);
     -ms-transform: translate3d(10px, 0, 0);
     transform: translate3d(10px, 0, 0); } }
-/**
- * 绾㈣壊绌哄績鎸夐挳
- */
 @keyframes top1 {
   0% {
     top: 50%;
@@ -144,7 +137,7 @@ body {
   left: 0px;
   right: 0px;
   bottom: 0px;
-  background: #f00;
+  background: #ccc;
   z-index: 1000;
   display: -webkit-box;
   display: -webkit-flex;
@@ -168,5 +161,58 @@ body {
     opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0); } }
+.foot-bar {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  padding: 0px 0.5rem; }
+
+.dialog-wrap {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center; }
+  .dialog-wrap .dialog-main {
+    width: 95%;
+    background: #fff; }
+
+.orderdialog h3 {
+  padding: 0px 0.5rem; }
+.orderdialog .content-padded {
+  border: 1px solid #ccc;
+  height: 10.0rem;
+  overflow-y: auto; }
+
+.btn-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center; }
+  .btn-box .disabled {
+    background: #999; }
 
 /*# sourceMappingURL=main.css.map */

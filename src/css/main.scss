@@ -62,7 +62,7 @@ body{
 	left: 0px;
 	right: 0px;
 	bottom: 0px;
-	background: #f00;
+	background: #ccc;
 	z-index: 1000;
 	@include boxZC;
 }
@@ -79,5 +79,39 @@ body{
 		opacity: 1;
   		-webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
+	}
+}
+.foot-bar{
+	@include boxJC;
+	padding: 0px 0.5rem;
+}
+.dialog-wrap{
+	position: fixed;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	background: rgba(0,0,0,.8);
+	z-index: 1000;
+	@include boxZC;
+	.dialog-main{
+		width: 95%;
+		background: #fff;
+	}
+}
+.orderdialog {
+	h3{
+		padding: 0px 0.5rem;
+	}
+	.content-padded{
+		border:1px solid #ccc;
+		height: 10.0rem;
+		overflow-y: auto;
+	}
+}
+.btn-box{
+	@include boxZC;
+	.disabled{
+		background: #999;
 	}
 }

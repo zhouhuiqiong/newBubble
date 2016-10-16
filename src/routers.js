@@ -39,7 +39,15 @@ module.exports = function(router){
 		'/orderdetails': {//服务详情页
 			name: 'orderdetails',
 			component: require('./views/orderdetails.vue')
-		}
+		},
+		'/judgelist': {//用户评价列表
+			name: 'judgelist',
+			component: require('./views/judgelist.vue')
+		},
+		'/ordersubmit': {//提交订单
+			name: 'ordersubmit',
+			component: require('./views/ordersubmit.vue')
+		},
 		// '/my_views/:viewId': {
 		// 	name:'my_views_detail',
 		// 	component: require('./views/my_views_detail.vue'),
