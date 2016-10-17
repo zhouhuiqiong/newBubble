@@ -48,6 +48,10 @@ module.exports = function(router){
 			name: 'ordersubmit',
 			component: require('./views/ordersubmit.vue')
 		},
+		'/pay': {//支付页面
+			name: 'pay',
+			component: require('./views/pay.vue')
+		},
 		// '/my_views/:viewId': {
 		// 	name:'my_views_detail',
 		// 	component: require('./views/my_views_detail.vue'),

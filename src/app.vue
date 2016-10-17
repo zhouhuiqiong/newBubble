@@ -142,6 +142,9 @@ module.exports = {
           },
           '/ordersubmit':{
             name: 'ordersubmit'
+          },
+          '/pay':{
+            name: 'pay'
           }
           // '/my_views/:viewId': {
           //   name:'my_views_detail'
