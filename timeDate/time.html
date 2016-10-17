@@ -36,24 +36,36 @@
 			},
 			nowTime: function(){
 				var that = this,opts = that.opts;
-				that.nowDate = new Date();
-				var y = that.nowYear = that.nowDate.getFullYear();
-				var m = that.nowMonth = that.nowDate.getMonth();
-				var d = that.nowDay = that.nowDate.getDate();
-				that.nowHour = that.nowDate.getHours();
-				that.nowMinutes = that.nowDate.getMinutes();
-				that.startYingTime = that.jointTime(y,m,d);
+				var nowD = that.nowDate = that.getDateAry();
+				that.startYingTime = that.jointTime(nowD.y,nowD.m,nowD.d);
 				//15天后
-				that.endDate = new Date();
-				that.endDate.setDate(that.nowDay + opts.gap);
-				var ey = that.endYear = that.endDate.getFullYear();
-				var em = that.endMonth = that.endDate.getMonth();
-				var ed = that.endDate = that.endDate.getDate();
-				that.endYingTime =  that.jointTime(ey,em,ed);
+				var endD = that.endDate = that.getDateAry(opts.gap);
+				that.endYingTime =  that.jointTime(endD.y,endD.m,endD.d);
 			},
-			jointTime: function(y,m,d){//拼接时间格式
+			getDateAry: function(gap){//获取时间
+				var date = new Date();
+				if(gap){
+					var endDate = new Date();
+					endDate.setDate(date.getDate() + 15);
+					date = endDate;
+				};
+				var y = date.getFullYear();
+				var m = date.getMonth();
+				var d = date.getDate();
+				var h = date.getHours();
+				var mi =date.getMinutes();
+				return {
+					y:y,
+					m:m,
+					d:d,
+					h:h,
+					mi: mi
+				}
+			},
+			jointTime: function(y,m,d,joint){//拼接时间格式
 				var that = this,opts = that.opts;
-				var str = y + opts.joint + that.initStr(m+1) + opts.joint + that.initStr(d);
+				var joint = joint ? joint : opts.joint;
+				var str = y + joint + that.initStr(m+1) + joint + that.initStr(d);
 				return str;
 			},
 			initStr: function(str){
@@ -78,32 +90,91 @@
 			},
 			initHour: function(val){
 				var that = this,opts = that.opts;
-				var time = new Date(val);
-				var changeDate = time.getDate();
-				that.isnowData = false;//是不是当前天
-				if(changeDate == that.nowDay){//选中的是当天
-					that.isnowData = true;
-					that.yuStartObj = that.splitTime(opts.yuStartTime);
-					if(that.yuStartObj.h <= that.nowHour){//预约时间大于系统时间
-						if(that.nowMinutes == 0 ){
-							that.yuStartH = that.nowHour;
-						}else{
-							that.yuStartH = that.nowHour + opts.endAheadTime;
+				var time = new Date(val);//选中的时间
+				var start = that.splitTime(opts.yuStartTime),
+					end = that.splitTime(opts.yuEndTime),
+					changed = time.getDate();
+				that.nowTo = that.getDateAry();//获取当前时间
+				if(changed == that.nowTo.d){//判断是不是当天
+					if(start.h < end.h){//取中间
+						if(start.h > that.nowTo.h){//当前时间小于预约时间，以预约时间为准
+							that.yuStartObj = that.splitTime(opts.yuStartTime);
+						}else{//以系统时间为准，上面加半小时
+							that.yuStartObj = that.systemTime();
 						};
-					}else{
-						that.yuStartH = that.yuStartObj.h;
+						that.yuEndObj = that.splitTime(opts.yuEndTime);
+						setTimeout(function(){
+							that.calculate1();
+						},100);
+					}else{//取两头
+						that.yuEndObj = that.splitTime(opts.yuStartTime);
+						that.yuStartTime = that.splitTime(opts.yuEndTime);
+						//获取系统当前时间
+						that.systemTimeAry = that.systemTime();
+						if(that.systemTimeAry.h < (that.yuStartTime.h - 1)){
+							that.yuStartTime = that.systemTimeAry;
+						};
+						if(that.systemTimeAry.h > that.yuEndObj.h){
+							that.yuStartObj = that.systemTimeAry;
+						};
+						setTimeout(function(){
+							that.calculate();
+						},100);
 					};
-					setTimeout(function(){
-						that.hourStyleHandle();
-					},100);
-				}else if(changeDate > that.nowDay){//选中的不是当天
-					that.yuEndObj = that.splitTime(opts.yuStartTime);
-					that.yuStartTime = that.splitTime(opts.yuEndTime);
-					setTimeout(function(){
-						that.calculate();
-					},100);
-
+				}else{
+					if(start.h < end.h){
+						that.yuStartObj = that.splitTime(opts.yuStartTime);
+						that.yuEndObj = that.splitTime(opts.yuEndTime);
+						setTimeout(function(){
+							that.calculate1();
+						},100);
+					}else{
+						that.yuEndObj = that.splitTime(opts.yuStartTime);
+						that.yuStartTime = that.splitTime(opts.yuEndTime);
+						setTimeout(function(){
+							that.calculate();
+						},100);
+					}
 				};
+			},
+			systemTime: function(){
+				var that = this;
+					nowTime = that.nowTo;
+				var h = nowTime.h,
+						m = nowTime.m,
+						nh,nm;
+					if(m == 0){
+						nh = h;
+						nm = 30;
+					}else if(m > 0 && m <= 30){
+						nh = h + 1;
+						nm = 0;
+					}else{
+						nh = h + 1;
+						nm = 30;
+					};
+					return {
+						h: nh,
+						m: nm
+					};
+			},
+			calculate1: function(){//取中间
+				var that = this;
+				var $obj = $('.xdsoft_time_variant>div'),
+					opts = that.opts;
+					var end = that.yuEndObj.h - opts.endAheadTime;//可预约的时间范围
+ 					$obj.each(function(){
+ 						var h = $(this).attr('data-hour');
+						if(h > end || h < that.yuStartObj.h){
+							$(this).addClass('xdsoft_disabled');
+						};
+						if(h == end && that.yuEndObj.m){
+							$(this).removeClass('xdsoft_disabled');
+						};
+						if(h == that.yuStartObj.h && that.yuStartObj.m){
+							$(this).removeClass('xdsoft_disabled');
+						};
+					});
 			},
 			calculate: function(){
 				var that = this;
