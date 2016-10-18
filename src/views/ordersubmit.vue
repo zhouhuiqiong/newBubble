@@ -87,11 +87,11 @@ module.exports = {
 		goback: function(){
 			$.confirm('订单未提交，要返回吗？',
 				function () {
+					util.goBack();
 				},
 				function () {
-					util.goBack();
-				}
-			);
+					
+				},'返回');
 
 
 		},

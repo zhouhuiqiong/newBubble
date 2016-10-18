@@ -1,52 +1,59 @@
 <template>
   <div class="container">
-    <nav class="bar bar-nav">
-      <h1 class="title">
-      	<a v-link="{name:'seach'}">东京</a>
-      	<a v-link="{name:'news'}">消息</a>
-      </h1>
-    </nav>
-    <div class="content list infinite-scroll home-content" v-infinite-scroll="loadMore">
-    	<uiswiper></uiswiper>
+	<div class="content list infinite-scroll home-content">
+		<nav class="bar bar-nav bar-nav-static">
+			<h1 class="title">
+				<span class="open-about" @click="showAdr">地址</span>
+				<a v-link="{name:'seach'}"><input type="search" id='search' placeholder='输入商家,服务名称'/></a>
+				<a v-link="{name:'news'}">消息</a>
+			</h1>
+		</nav>
+		<uiswiper></uiswiper>
+		<div class="seach-select-list" >搜索区域</div>
 		<div class="list-block infinite-list  media-list">
-		 <ul>
-		  <li v-for="item in items" track-by="$index">
-		    <a href="#" class="item-content">
-		      <div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 4rem;'></div>
-		      <div class="item-inner">
-		        <div class="item-title-row">
-		          <div class="item-title">标题</div>
-		          <div class="item-after">$15</div>
-		        </div>
-		        <div class="item-title-row">
-		        	<div>
-		        		<span>一級棒</span>
-		        		<span>一級棒</span>
-		        	</div>
-		        	<div>
-		        		泡泡域
-		        	</div>
-		        </div>
-		        <div class="item-title-row">
-		        	<div>
-		        		<span>一級棒</span>
-		        		<span>一級棒</span>
-		        	</div>
-		        	<div>
-		        		泡泡域
-		        	</div>
-		        </div>
-		      </div>
-		    </a>
-		  </li>
-		</ul>
-		<!-- 加载提示符 -->
-		 <div v-show="!loading">
-			<uiload></uiload>
-		 </div>
+			<ul>
+				<li v-for="item in dataList" track-by="$index">
+					<a href="#" class="item-content">
+						<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 4rem;'></div>
+						<div class="item-inner">
+							<div class="item-title-row">
+								<div class="item-title">标题</div>
+								<div class="item-after">$15</div>
+							</div>
+							<div class="item-title-row">
+								<span>一級棒</span>
+								<span>一級棒</span>
+							</div>
+							<div class="item-title-row">
+								<span>一級棒</span>
+								<span>一級棒</span>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<!-- 加载提示符 -->
+			 <div v-show="!loading">
+				<uiload></uiload>
+			 </div>
 		</div>
-		</div>
+	</div>
 		<uigoback target-scroll="infinite-scroll"></uigoback>
+		<!-- address Popup -->
+		<div class="popup popup-about">
+			<div class="content-block">
+				<header class="bar bar-nav">
+					<a href="javascript:void(0)" class="close-popup">关闭</a>
+				  	<div class="searchbar">
+					    <div class="search-input">
+					      <label class="icon icon-search" for="search"></label>
+					      <input type="search" id='search' placeholder='输入关键字...'/>
+					    </div>
+					</div>
+				</header>
+			</div>
+		</div>
+		<!--address-->
 	</div>
 </template>
 <script>
@@ -61,22 +68,21 @@ module.exports = {
 		}
 	},
 	ready: function(){
-		$.toast("操作失败");
-
-		console.log(this.$parent.cookies);
-		//this.$dispatch('isIndex', true);
-		for (var  i = 0; i < 15; i++) {
-	      this.items.push({
-	        id: i,
-	        name: 'demo' +  i
-	      })
-	    };
+		var that = this;
+	    that.fixedbox();
+	    //加载数据
+		var dataObj = new util.scrollList();
+		dataObj.init(this,{
+			le: '.media-list',//承载列表的数据
+			scrollObj: '.content'
+		});
+		dataObj.getListData();
 	},
 	data:function(){
 		return {
 			msg:'aboutMessage',
 			title:'home',
-			items: [],
+			dataList: [],
 			loading: false
 			
 		}
@@ -93,22 +99,11 @@ module.exports = {
 		}
 	},
 	methods: {
-		loadMore: function(){
-			var that = this;
-			var scroller = $('.list');
-			that.loading = false;
-			setTimeout(function() {
-	      		if (that.loading) return;
-	        	that.loading = true;
-	        	for (var  i = 0; i < 15; i++) {
-			      that.items.push({
-			        id: i,
-			        name: 'demo' +  i+length
-			      })
-			    };
-			    var scrollTop = scroller[0].scrollHeight - scroller.height() - 20;
-				scroller.scrollTop(scrollTop)
-			}, 1000);
+		showAdr: function(){
+			$.popup('.popup-about');
+		},
+		fixedbox: function(){
+			util.fixedbox();
 		}
 	},
 	components:{

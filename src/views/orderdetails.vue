@@ -47,9 +47,9 @@
  		    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,
  		    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,
  		    		</div>
- 		    		<div class="ordercheck"><input type="checkbox" name="" v-model="checked" ><label>我已阅读以上规则并同意遵守</label></div>
+ 		    		<div class="ordercheck"><input type="checkbox" name="" v-model="checked" disabled="disabled"><label>我已阅读以上规则并同意遵守</label><span>阅读完毕才能勾选</span></div>
  		    		<div class="btn-box">
- 		    			<button class="button-success" v-bind:class="{ 'disabled': isDisabled}"  @click="referorder">我知道了<i></i></button>
+ 		    			<button class="button-success" v-bind:class="{ 'disabled': isDisabled}"  @click="referorder">我知道了<i class="dome-time"></i></button>
  		    		</div>
  		    	</div>
  		    </div>
@@ -72,23 +72,44 @@ module.exports = {
 	},
 	methods: {
 		orderdialog: function(){
-			this.$root.cookies ? (this.isOrderDialog = true) : (window.location.href = '#/login');
+			this.$root.cookies ? (this.isOrderDialog = true,this.orderHandle()) : (window.location.href = '#/login');
+		},
+		orderHandle: function(){
+			var that = this;
+			util.domeTime({
+				callback: function(){
+					if(that.isBase && that.checked) that.isDisabled = false;
+				}
+			});
+			that.isBase = false;
+			$('.content-padded').on('scroll', function(){
+				var h = $(this).scrollTop()  + $(this)[0].clientHeight,
+					hContent = $(this)[0].scrollHeight;
+					if(h == hContent){
+						$('.ordercheck input').removeAttr('disabled');
+						that.isBase = true;
+					};
+			});
+			
+
 		},
 		referorder: function(){//预约
 			var that = this;
-			//that.result = util.domeTime();//停留时间
-			if(!that.checked){
+			that.time = $('.dome-time').text();
+			if(!that.isBase){
+				$.toast("请阅读完！");
+			}else if(!that.checked){
 				$.toast("请选中已经阅读！");
-				return false;
-			}else{
-				that.isDisabled = false;
+			}else if(!that.time){//时间到了
+				that.isOrderDialog = that.isDisabled = false;
+				window.location.href = '#/ordersubmit';
 			};
-			window.location.href = '#/'
 		}
 	},
 	route:{
 		activate:function(transition){
-			this.$root.$set('header',this.title);
+
+			//this.$root.$set('header','123132132132');
 			transition.next();
 		}
 	},

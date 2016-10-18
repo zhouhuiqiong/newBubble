@@ -115,3 +115,23 @@ body{
 		background: #999;
 	}
 }
+.seach-select-list{
+	height: 1.5rem;
+	background: #ccc;
+}
+.fiex-select{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	z-index: 1000;
+}
+.bar-nav-static{
+	position: relative;
+	.title{
+		position: relative;
+	}
+}
+.txt-box{
+	@include ellipsisL($link:3);
+}

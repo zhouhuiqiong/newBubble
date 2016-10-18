@@ -16,11 +16,34 @@ var util = {
         if(opts.time == 0){
             $obj.text(null);
             clearInterval(timer);
+            if(typeof opts.callback == 'function') opts.callback();
             return true;
         };
       },1000);
+  },
+  fixedbox: function(opts){//拉动滚动条浮动菜单栏
+    var that = this;
+    var opts = $.extend({
+      scollParent: '.infinite-scroll',//监听滚动对象
+      fixedbox: '.seach-select-list'//需要浮动的对象
+    }, opts);
+    var $scroll = $(opts.scollParent),
+        $obj = $(opts.fixedbox);
+    var top = $obj[0].offsetTop;
+    $obj.on('click', function(){
+      if(!$(this).hasClass('fiex-select')){
+          $(this).addClass('fiex-select');
+          $scroll.scrollTop(top);
+      };
+    });
+    $scroll.on('scroll', function(){
+      if($(this).scrollTop() < top){
+        $obj.removeClass('fiex-select')
+      }else{
+        $obj.addClass('fiex-select')
+      }
+    }); 
   }
-
 };
 /*
 **字符串操作

@@ -52,6 +52,10 @@ module.exports = function(router){
 			name: 'pay',
 			component: require('./views/pay.vue')
 		},
+		'/map': {//地图
+			name: 'map',
+			component: require('./views/map.vue')
+		}
 		// '/my_views/:viewId': {
 		// 	name:'my_views_detail',
 		// 	component: require('./views/my_views_detail.vue'),

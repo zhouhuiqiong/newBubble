@@ -29,20 +29,50 @@
 				</ul>
 			</div>
 			<div class="buttons-tab fixed-tab" data-offset="44">
-				<a href="#tab1" class="tab-link active button" @click="changeType('all')">全部</a>
-				<a href="#tab2" class="tab-link button" @click="changeType('all')">待付款</a>
+				<a href="#tab1" class="tab-link active button" @click="changeType('all')">商家服务</a>
+				<a href="#tab2" class="tab-link button" @click="changeType('all')">客户评价</a>
 			</div>
 			<!--tab list-->
 			<div class="content-block">
 				<div class="tabs">
 					<div id="tab1" class="tab active">
+						<!---->
+						<div class="list-block">
+							<a class="item-content item-link" >
+								<div class="item-inner">
+									商品名称
+								</div>
+							</a>
+						</div>
+						<!---->
 						<div class="content-block">
 							<p  v-for="item in dataList" track-by="$index">This is tab {{$index}}content</p>
 						</div>
 					</div>
 					<div id="tab2" class="tab">
 						<div class="content-block">
-							<p  v-for="item in dataList" track-by="$index">This is tab 1 content</p>
+							<div class="list-block media-list">
+								<ul>
+									<li v-for="item in dataList" track-by="$index">
+										<a href="#" class="item-content">
+											<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 4rem;'></div>
+											<div class="item-inner">
+												<div class="item-title-row">
+													<div class="item-title">标题</div>
+													<div class="item-after">2015-23-23</div>
+												</div>
+												<div>
+													<span>一级棒</span>
+													<span>二级棒</span>
+												</div>
+												<div class="txt-box">
+													评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>

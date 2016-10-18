@@ -145,6 +145,9 @@ module.exports = {
           },
           '/pay':{
             name: 'pay'
+          },
+          '/map':{
+            name: 'map'
           }
           // '/my_views/:viewId': {
           //   name:'my_views_detail'
