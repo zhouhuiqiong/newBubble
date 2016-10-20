@@ -1,12 +1,10 @@
 <template>
   <div class="container">
 	<div class="content list infinite-scroll home-content">
-		<nav class="bar bar-nav bar-nav-static">
-			<h1 class="title">
-				<span class="open-about" @click="showAdr">地址</span>
-				<a v-link="{name:'seach'}"><input type="search" id='search' placeholder='输入商家,服务名称'/></a>
-				<a v-link="{name:'news'}">消息</a>
-			</h1>
+		<nav class="bar bar-nav bar-nav-static search-nav">
+			<span class="open-adr-btn " @click="showAdr">地址<i class="icon icon-down"></i></span>
+			<a v-link="{name:'seach'}"><input type="search" id='search' placeholder='输入商家,服务名称'/></a>
+			<a v-link="{name:'news'}">消息</a>
 		</nav>
 		<uiswiper></uiswiper>
 		<div class="seach-select-list" >搜索区域</div>
@@ -100,7 +98,7 @@ module.exports = {
 	},
 	methods: {
 		showAdr: function(){
-			$.popup('.popup-about');
+			$.popup('.open-adr-btn');
 		},
 		fixedbox: function(){
 			util.fixedbox();

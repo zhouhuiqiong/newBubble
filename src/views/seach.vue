@@ -7,7 +7,7 @@
 		      <label class="icon icon-search" for="search"></label>
 		      <input type="search" id='search' placeholder='输入关键字...'/>
 		    </div>
-		  </div>
+		</div>
 	</header>
 	<div class="content infinite-scroll seach-content" v-infinite-scroll="loadMore">
 		<div class="content-block-title">曲目</div>

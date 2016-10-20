@@ -4,7 +4,8 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 body {
   background: #fff;
   position: static;
-  overflow-y: auto; }
+  overflow-y: auto;
+  color: #828282; }
 
 .home-content {
   bottom: 2.5rem; }
@@ -151,5 +152,10 @@ body {
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical; }
+
+.search-nav {
+  background: #fff;
+  height: 2.0rem;
+  padding: 0px 0.75rem 0px 1.0rem; }
 
 /*# sourceMappingURL=main.css.map */

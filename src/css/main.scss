@@ -3,6 +3,7 @@ body{
 	background: #fff;
 	position: static;
 	overflow-y: auto;
+	color:#828282;
 }
 .home-content{
 	bottom: 2.5rem;
@@ -134,4 +135,9 @@ body{
 }
 .txt-box{
 	@include ellipsisL($link:3);
+}
+.search-nav{
+	background: #fff;
+	height: 2.0rem;
+	padding: 0px 0.75rem 0px 1.0rem;
 }

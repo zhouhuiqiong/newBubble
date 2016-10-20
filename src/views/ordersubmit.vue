@@ -67,6 +67,7 @@ module.exports = {
 		    value: ['2016', '11', '04', '9', '00'],
 		    onOpen: function(){
 		    	that.isDisabled = false;
+		    	$('.picker-item')
 		    }
 		 });
 		if($('.datetime-picker').val() != '预约时间'){
