@@ -1,5 +1,5 @@
 input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {
-	color: #ccc
+	color: #d0d0d0
 }
 @mixin flex($index:1){
 	-webkit-flex: $index;
@@ -92,15 +92,13 @@ input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {
 	top: 0;
 	-webkit-transform: scaleY(.5);
 }
-@mixin numRound($size: 0.28rem, $bc: #ff4949, $color: #fff){
+@mixin numRound($size: 0.28rem, $bc: #ff6b68, $color: #fff){
 	width: $size;
 	height: $size;
 	border-radius: 50%;
 	background-color: $bc;
 	color: $color;
-	text-align: center;
-	line-height: 14px;
-	display:inline-block;
+	@include boxZC;
 }
 @mixin palce($color:#c7b977){
 	::-webkit-input-placeholder {color:$color !important; font-weight:normal;}
@@ -131,3 +129,14 @@ input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {
     height: 0.52rem;
     line-height: 0.52rem;
 }
+
+@font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_1477018510_524726.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1477018510_524726.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1477018510_524726.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1477018510_524726.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1477018510_524726.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont{font-family:"iconfont";font-size:16px;font-style:normal;}
+.icon-home_news:before { content: "\e600"; }

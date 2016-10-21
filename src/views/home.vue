@@ -3,8 +3,15 @@
 	<div class="content list infinite-scroll home-content">
 		<nav class="bar bar-nav bar-nav-static search-nav">
 			<span class="open-adr-btn " @click="showAdr">地址<i class="icon icon-down"></i></span>
-			<a v-link="{name:'seach'}"><input type="search" id='search' placeholder='输入商家,服务名称'/></a>
-			<a v-link="{name:'news'}">消息</a>
+			<a v-link="{name:'seach'}" class="search-input-box">
+				<div class="search-input">
+					<label class="icon icon-search" for="search"></label>
+					<input type="search" id="search" placeholder="输入商家,服务名称...">
+				</div>
+			</a>
+			<a v-link="{name:'news'}" class="iconfont icon-home_news">
+				<i class="news-tags">10</i>
+			</a>
 		</nav>
 		<uiswiper></uiswiper>
 		<div class="seach-select-list" >搜索区域</div>
