@@ -483,4 +483,28 @@ body {
       background: #ff6b68;
       color: #fff; }
 
+.now-address-box {
+  line-height: 1.75rem;
+  padding: 0px 0.75rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center; }
+  .now-address-box .now-address {
+    font-size: 10px;
+    color: #888; }
+    .now-address-box .now-address label {
+      color: #ff6b68;
+      margin-right: 0.4rem;
+      font-size: 14px; }
+  .now-address-box .icon-duigou {
+    font-size: 16px;
+    color: #ff6b68; }
+
 /*# sourceMappingURL=main.css.map */

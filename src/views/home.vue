@@ -88,7 +88,12 @@
 					      <label class="icon icon-search" for="search"></label>
 					      <input type="search" id='search' placeholder='输入关键字...'/>
 					    </div>
+					   	
 					</div>
+					<div class="now-address-box">
+				   		<div class="now-address"><label>京东</label>当前gps定位城市</div>
+				   		<i class="iconfont icon-duigou"></i>
+				   	</div>
 				</header>
 			</div>
 		</div>
@@ -134,8 +139,8 @@ module.exports = {
 		that.$screen.on('click', function(){
 			var t = $(this);
 			util.clickActive(t);
-			
 		});
+		$.popup('.popup-about');
 	},
 	data:function(){
 		return {
@@ -160,7 +165,7 @@ module.exports = {
 	},
 	methods: {
 		showAdr: function(){
-			$.popup('.open-adr-btn');
+			$.popup('.popup-about');
 		},
 		fixedbox: function(){
 			util.fixedbox({

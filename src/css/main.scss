@@ -365,4 +365,21 @@ body{
 	margin: 3.0rem -1rem 0px;
 }
 
-
+.now-address-box{
+	line-height: 1.75rem;
+	padding:0px 0.75rem;
+	@include boxJC;
+	.now-address{
+		font-size: 10px;
+		color:#888;
+		label{
+			color:#ff6b68;
+			margin-right: 0.4rem;
+			font-size: 14px;
+		}
+	}
+	.icon-duigou{
+		font-size: 16px;
+		color: #ff6b68;
+	}
+}
