@@ -25,7 +25,7 @@ var util = {
     var that = this;
     var opts = $.extend({
       scollParent: '.infinite-scroll',//监听滚动对象
-      fixedbox: '.seach-select-list'//需要浮动的对象
+      fixedbox: '.select-wrap'//需要浮动的对象
     }, opts);
     var $scroll = $(opts.scollParent),
         $obj = $(opts.fixedbox);
@@ -43,6 +43,10 @@ var util = {
         $obj.addClass('fiex-select')
       }
     }); 
+  },
+  clickActive: function(obj){
+    obj.addClass('active').siblings().removeClass('active');
+   
   }
 };
 /*

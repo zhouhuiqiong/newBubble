@@ -88,12 +88,11 @@ nav{
 <template>
   <div class="app">
     <router-view class="view" id="view" keep-alive :transition="effect" transition-mode="out-in"></router-view>
-      <bar class="barNav" style="display:none">
-        <baritem path="/home" label="首页" icon="browser"></baritem>
+      <bar class="bar-foot-nav" style="display:none" id="barNav">
+        <baritem path="/" label="大楽" icon="browser" class="active"></baritem>
         <baritem path="/list" label="色相" icon="picture"></baritem>
         <baritem path="/list" label="我的" icon="home"></baritem>
       </bar>
-    </template>
   </div>
 </template>
 <script>

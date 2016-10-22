@@ -1,0 +1,71 @@
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #d0d0d0; }
+
+i {
+  font-style: normal; }
+
+li {
+  list-style: none; }
+
+h1, h2, h3, h4, h5, h6, p, figure, form, blockquote {
+  margin: 0; }
+
+ul, ol, li, dl, dd {
+  margin: 0;
+  padding: 0; }
+
+ul, ol {
+  list-style: none outside none; }
+
+button {
+  background: none;
+  border: none; }
+
+@font-face {
+  font-family: 'iconfont';
+  src: url("//at.alicdn.com/t/font_1477125870_8609107.eot");
+  /* IE9*/
+  src: url("//at.alicdn.com/t/font_1477125870_8609107.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1477125870_8609107.woff") format("woff"), url("//at.alicdn.com/t/font_1477125870_8609107.ttf") format("truetype"), url("//at.alicdn.com/t/font_1477125870_8609107.svg#iconfont") format("svg");
+  /* iOS 4.1- */ }
+.iconfont {
+  font-family: "iconfont";
+  font-size: 16px;
+  font-style: normal; }
+
+.icon-duigou:before {
+  content: "\e601"; }
+
+.icon-home_news:before {
+  content: "\e600"; }
+
+.shop-tag, .shop-tag1 {
+  border: 1px solid #d6d6d6;
+  color: #888;
+  text-align: center;
+  display: inline-block; }
+
+.shop-tag {
+  padding: 0.1rem 0;
+  font-size: 11px;
+  border-radius: 0.15rem;
+  min-width: 2.5rem; }
+
+.shop-tag1 {
+  line-height: 1.5rem;
+  width: 3.9rem;
+  font-size: 12px; }
+
+.shop-tag-active, .shop-tag1-active {
+  border-color: #ff6b68; }
+
+.shop-tag-active {
+  background: #ff6b68;
+  color: #fff; }
+
+.shop-tag1-active {
+  color: #ff6b68; }
+
+.hide {
+  display: none; }
+
+/*# sourceMappingURL=mixin.css.map */

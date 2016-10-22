@@ -13,25 +13,59 @@
 				<i class="news-tags">10</i>
 			</a>
 		</nav>
-		<uiswiper></uiswiper>
-		<div class="seach-select-list" >搜索区域</div>
+		<div class="home-swiper">
+			<uiswiper></uiswiper>
+		</div>
+		<div class="select-wrap">
+			<ul class="seach-select-list">
+				<li @click="changeType($event,1)"><span>附近</span><i class="icon icon-down"></i></li>
+				<li @click="changeType($event,1)"><span>全部风俗</span><i class="icon icon-down"></i></li>
+				<li @click="changeType($event,1)"><span>智能排序</span><i class="icon icon-down"></i></li>
+				<li @click="changeType($event,2)"><span>筛选</span><i class="icon icon-down"></i></li>
+			</ul>
+			<!--list-->
+			<div class="select-box">
+				<ul class="change-list hide item">
+					<li><span>新宿</span><i class="iconfont icon-duigou"></i></li>
+					<li class="active"><span>新宿</span><i class="iconfont icon-duigou"></i></li>
+				</ul>
+				<!---->
+				<div class="screen-list hide item">
+					<dl class="screen-item ">
+						<dt>评价</dt>
+						<dd><span class="shop-tag1 shop-tag1-active">服务好</span><span class="shop-tag1 ">一级棒</span><span class="shop-tag1">性价比高</span><span class="shop-tag1">安全</span>
+						</dd>
+					</dl>
+					<dl class="screen-item">
+						<dt>价格</dt>
+						<dd><span class="shop-tag1 shop-tag1-active">服务好</span><span class="shop-tag1">一级棒</span><span class="shop-tag1">性价比高</span><span class="shop-tag1">安全</span></dd>
+					</dl>
+					<div class="screen-btn-box">
+						<button class="screen-btn">重置</button>
+						<button class="screen-btn-active">确认</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		
 		<div class="list-block infinite-list  media-list">
 			<ul>
-				<li v-for="item in dataList" track-by="$index">
+				<li v-for="item in dataList" track-by="$index" class="itme-style">
 					<a href="#" class="item-content">
-						<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 4rem;'></div>
+						<div class="item-media"><img src=""></div>
 						<div class="item-inner">
 							<div class="item-title-row">
-								<div class="item-title">标题</div>
-								<div class="item-after">$15</div>
+								<div class="item-title">浜松町駅ビル店</div>
+								<div class="item-after">1.9km</div>
 							</div>
-							<div class="item-title-row">
-								<span>一級棒</span>
-								<span>一級棒</span>
+							<div class="shop-tag-box">
+								<span class="shop-tag shop-tag-active">一級棒</span>
+								<span class="shop-tag ">安全</span>
 							</div>
-							<div class="item-title-row">
-								<span>一級棒</span>
-								<span>一級棒</span>
+							<div class="item-title-row server-money-box">
+								<label class="server-money">¥5,000~¥5,000000</label>
+								<div class="item-after">1113人去过</div>
 							</div>
 						</div>
 					</a>
@@ -59,6 +93,7 @@
 			</div>
 		</div>
 		<!--address-->
+		<div class="select-shade" v-show="isSelectShade" @click="selectShade"></div>
 	</div>
 </template>
 <script>
@@ -82,13 +117,23 @@ module.exports = {
 			scrollObj: '.content'
 		});
 		dataObj.getListData();
+		//附近
+		that.$nearby = $('.change-list>li');
+		that.$nearby.on('click', function(){
+			var t = $(this);
+			util.clickActive(t);
+			that.isSelectShade = false;
+			t.parent().addClass('hide');
+		});
+		
 	},
 	data:function(){
 		return {
 			msg:'aboutMessage',
 			title:'home',
 			dataList: [],
-			loading: false
+			loading: false,
+			isSelectShade: false,
 			
 		}
 	},
@@ -108,7 +153,19 @@ module.exports = {
 			$.popup('.open-adr-btn');
 		},
 		fixedbox: function(){
-			util.fixedbox();
+			util.fixedbox({
+				fixedbox:'.select-wrap'
+			});
+		},
+		changeType: function(e,num){
+			var that = this;
+			that.isSelectShade = true;
+			$(e.currentTarget).addClass('active').siblings('li').removeClass('active');
+			$('.select-box .item ').addClass('hide').eq(num).removeClass('hide');
+
+		},
+		selectShade: function(){
+			this.isSelectShade = false;
 		}
 	},
 	components:{

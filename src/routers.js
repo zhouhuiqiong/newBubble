@@ -148,9 +148,9 @@ module.exports = function(router){
 			router.app.effect='back';
 		}
 		if(result == 'home'){
-			$('.barNav').css('display','inline-block');
+			$('#barNav').css('display','inline-block');
 		}else{
-			$('.barNav').hide();
+			$('#barNav').hide();
 		}
 		if(routeList.length > 1 && transition.to.name==routeList[routeList.length-2]['name']){
 			//router.app.effect='back';
