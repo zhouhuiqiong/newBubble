@@ -55,14 +55,14 @@ button {
   width: 3.9rem;
   font-size: 12px; }
 
-.shop-tag-active, .shop-tag1-active {
+.shop-tag-active, .shop-tag1.active {
   border-color: #ff6b68; }
 
 .shop-tag-active {
   background: #ff6b68;
   color: #fff; }
 
-.shop-tag1-active {
+.shop-tag1.active {
   color: #ff6b68; }
 
 .hide {
@@ -476,7 +476,9 @@ body {
     -o-flex: 1;
     -ms-flex: 1;
     color: #ff6b68;
-    height: 2.0rem; }
+    height: 2.0rem;
+    font-weight: 500;
+    font-weight: 14px; }
     .screen-btn-box button.screen-btn-active {
       background: #ff6b68;
       color: #fff; }

@@ -354,9 +354,12 @@ body{
 		@include flex;
 		color:#ff6b68;
 		height: 2.0rem;
+		font-weight: 500;
+		font-weight: 14px;
 		&.screen-btn-active{
 			background:#ff6b68;
 			color:#fff;
+
 		}
 	}
 	margin: 3.0rem -1rem 0px;

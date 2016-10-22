@@ -55,14 +55,14 @@ button {
   width: 3.9rem;
   font-size: 12px; }
 
-.shop-tag-active, .shop-tag1-active {
+.shop-tag-active, .shop-tag1.active {
   border-color: #ff6b68; }
 
 .shop-tag-active {
   background: #ff6b68;
   color: #fff; }
 
-.shop-tag1-active {
+.shop-tag1.active {
   color: #ff6b68; }
 
 .hide {

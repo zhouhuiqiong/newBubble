@@ -18,10 +18,10 @@
 		</div>
 		<div class="select-wrap">
 			<ul class="seach-select-list">
-				<li @click="changeType($event,1)"><span>附近</span><i class="icon icon-down"></i></li>
-				<li @click="changeType($event,1)"><span>全部风俗</span><i class="icon icon-down"></i></li>
-				<li @click="changeType($event,1)"><span>智能排序</span><i class="icon icon-down"></i></li>
-				<li @click="changeType($event,2)"><span>筛选</span><i class="icon icon-down"></i></li>
+				<li @click="changeType($event,0)"><span>附近</span><i class="icon icon-down"></i></li>
+				<li @click="changeType($event,0)"><span>全部风俗</span><i class="icon icon-down"></i></li>
+				<li @click="changeType($event,0)"><span>智能排序</span><i class="icon icon-down"></i></li>
+				<li @click="changeType($event,1)"><span>筛选</span><i class="icon icon-down"></i></li>
 			</ul>
 			<!--list-->
 			<div class="select-box">
@@ -33,16 +33,16 @@
 				<div class="screen-list hide item">
 					<dl class="screen-item ">
 						<dt>评价</dt>
-						<dd><span class="shop-tag1 shop-tag1-active">服务好</span><span class="shop-tag1 ">一级棒</span><span class="shop-tag1">性价比高</span><span class="shop-tag1">安全</span>
+						<dd><span class="shop-tag1 active">服务好</span><span class="shop-tag1 ">一级棒</span><span class="shop-tag1">性价比高</span><span class="shop-tag1">安全</span>
 						</dd>
 					</dl>
 					<dl class="screen-item">
 						<dt>价格</dt>
-						<dd><span class="shop-tag1 shop-tag1-active">服务好</span><span class="shop-tag1">一级棒</span><span class="shop-tag1">性价比高</span><span class="shop-tag1">安全</span></dd>
+						<dd><span class="shop-tag1 active">服务好</span><span class="shop-tag1">一级棒</span><span class="shop-tag1">性价比高</span><span class="shop-tag1">安全</span></dd>
 					</dl>
 					<div class="screen-btn-box">
 						<button class="screen-btn">重置</button>
-						<button class="screen-btn-active">确认</button>
+						<button class="screen-btn-active" @click="submitScreen">确认</button>
 					</div>
 				</div>
 
@@ -110,6 +110,7 @@ module.exports = {
 	ready: function(){
 		var that = this;
 	    that.fixedbox();
+	    that.$nav = $('.seach-select-list li')
 	    //加载数据
 		var dataObj = new util.scrollList();
 		dataObj.init(this,{
@@ -122,10 +123,19 @@ module.exports = {
 		that.$nearby.on('click', function(){
 			var t = $(this);
 			util.clickActive(t);
-			that.isSelectShade = false;
-			t.parent().addClass('hide');
+			setTimeout(function(){
+				t.parent().addClass('hide');
+				that.isSelectShade = false;
+				that.$nav.removeClass('active');
+			},300);
 		});
-		
+		//筛选
+		that.$screen = $('.screen-item dd span');
+		that.$screen.on('click', function(){
+			var t = $(this);
+			util.clickActive(t);
+			
+		});
 	},
 	data:function(){
 		return {
@@ -161,11 +171,20 @@ module.exports = {
 			var that = this;
 			that.isSelectShade = true;
 			$(e.currentTarget).addClass('active').siblings('li').removeClass('active');
-			$('.select-box .item ').addClass('hide').eq(num).removeClass('hide');
+			$('.select-box .item ').eq(num).removeClass('hide');
+			
 
 		},
 		selectShade: function(){
 			this.isSelectShade = false;
+		},
+		submitScreen: function(){
+			var that = this;
+			setTimeout(function(){
+				$('.screen-list').addClass('hide');
+				that.isSelectShade = false;
+				that.$nav.removeClass('active');
+			},300);
 		}
 	},
 	components:{
