@@ -159,7 +159,8 @@ body{
 	top: 0px;
 	left: 0px;
 	right: 0px;
-	z-index: 1000;
+	z-index: 100000000;
+	background: #fff;
 	.seach-select-list{
 		margin-top: 0rem;
 	}
@@ -207,13 +208,20 @@ body{
 .search-input{
 	input{
 		border:1px solid #d6d6d6;
-		height: 1.2rem !important;
 		line-height: 1.2rem;
 		border-radius: 0.6rem;
 	}
 	margin: 0px 0.4rem;
 	.icon-search{
 		font-size: 14px;
+	}
+	.icon-shanchu{
+		position: absolute;
+		font-size: 14px;
+		right: 0.4rem;
+		top: 50%;
+		transform: translate3D(0, -50%, 0);
+		color:#abafae;
 	}
 }
 .home-swiper{
@@ -238,14 +246,7 @@ body{
 	.item-content{
 		padding: 1rem;
 		position: relative;
-		.item-media{
-			padding: 0rem;
-			background:#000;
-			img{
-				width: 4.5rem;
-				height: 4.5rem;
-			}
-		}
+		
 		.item-inner{
 			padding: 0rem;
 			&:after{
@@ -268,6 +269,15 @@ body{
 		&:after{
 			position: absolute;
 			@include bt;
+		}
+
+	}
+	.item-media{
+		padding: 0rem;
+		background:#000;
+		img{
+			width: 4.5rem;
+			height: 4.5rem;
 		}
 	}
 }
@@ -333,6 +343,7 @@ body{
 	right: 0px;
 	bottom: 0px;
 	background:rgba(0,0,0,0.5);
+	//background: #f00;
 	z-index: 20;
 }
 .screen-item{
@@ -364,7 +375,10 @@ body{
 	}
 	margin: 3.0rem -1rem 0px;
 }
-
+.icon-duigou{
+	font-size: 16px;
+	color: #ff6b68;
+}
 .now-address-box{
 	line-height: 1.75rem;
 	padding:0px 0.75rem;
@@ -378,8 +392,115 @@ body{
 			font-size: 14px;
 		}
 	}
-	.icon-duigou{
-		font-size: 16px;
-		color: #ff6b68;
+
+}
+.adr-main{padding:0px;}
+.hot-adr-item{
+	dt{
+		padding:0px 0.75rem;
+		line-height: 1.5rem;
+		font-size: 12px;
+		color:#000;
+		background: #f6f6f6;
+	}
+	dd{
+		line-height: 1.75rem;
+		padding:0px 0.75rem;
+		font-size: 13px;
+		color:#888;
+		position: relative;
+		@include boxJ;
+		&:after{
+			@include bt($color:#e5e5e5);
+		}
+		&:last-of-type{
+			&:after{
+				@include bt($color:#f6f6f6);
+			}
+		}
 	}
 }
+.bar-header-secondary{
+	padding:0px 0.75rem;
+	border-bottom:1px solid #e5e5e5;
+	.searchbar-cancel{
+		font-size: 14px;
+		color:#68bdff;
+	}
+	.search-input{
+		margin:0px;
+	}
+}
+
+.input-adr-list{
+	@include ding($top:2.3rem);	
+}
+.title-bar{
+	font-size: 15px;
+	color:#000;
+	background: #fff;
+	.title{
+		height: 1.9rem;
+		&:after{
+			background-color: #e5e5e5;
+		}
+	}
+	.icon{
+		color:#000;
+	}
+}
+.content1{background:#f6f6f6;}
+.map-box{
+	line-height: 1.75rem;
+	padding: 0px 1rem;
+	font-size: 12px;
+	color:#888;
+	@include boxJC;
+	background: #fff;
+	.adr-specific{
+		.icon{
+			
+			color:#000;
+			margin-right: 0.2rem;
+		}
+	}
+}
+.details-tab{
+	margin-top: 0.4rem;
+}
+.min-itme-style{
+	.item-media{
+		img{
+			height: 3.3rem;
+		}
+	}
+	.sale{
+		text-align: right;
+		margin-top: 0.75rem;
+		.icon{margin-left: 0.5rem;}
+	}
+	.sale-money{
+		margin-top: 0.75rem;
+		.server-money{
+			//font-size: 16px;
+		}
+		i{
+			text-decoration: line-through;
+			margin-left: 0.25rem;
+		}
+	}
+
+}
+.sale-txt{
+	font-size: 10px;
+	color: #888;
+}
+
+
+
+
+
+
+
+
+

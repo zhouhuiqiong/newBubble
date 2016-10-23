@@ -147,6 +147,9 @@ module.exports = {
           },
           '/map':{
             name: 'map'
+          },
+          '/address':{
+            name: 'address'
           }
           // '/my_views/:viewId': {
           //   name:'my_views_detail'

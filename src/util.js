@@ -46,7 +46,16 @@ var util = {
   },
   clickActive: function(obj){
     obj.addClass('active').siblings().removeClass('active');
-   
+  },
+
+
+  /*
+  ** 获取url地址栏的参数
+  */
+  getParsm: function(name){
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+    var r = window.location.search.substr(1).match(reg); 
+    if (r != null) return unescape(r[2]); return null; 
   }
 };
 /*
@@ -169,6 +178,36 @@ $.fn.scrollTo =function(options){
     }, opts.delay);
     return _this;
 };
+/*
+**cookie 增删减
+*/
+(function(){
+  var Cookie = {
+    set: function(key, val, time){
+      var str = key + '=' + escape(val);
+      if(time > 0){
+        var date = new Date();
+        date.setTime(time * 3600 * 100);
+        str += '; expires=' + date.toUTCString();
+      };
+      document.cookie = str;
+    },
+    get: function(key){
+
+      for (var i = document.cookie.split("; "), n = 0; n < i.length; n++) {
+        var t = i[n].split("=");
+        console.log(t[0] == key);
+        if (t[0] == key) return unescape(t[1])
+      }
+    },
+    del: function(){
+      var i = new Date;
+      i.setTime(i.getTime() - 1e4),
+      document.cookie = e + "=a; expires=" + i.toGMTString()
+    }
+  }
+  util.cookie =  Cookie;
+})();
       
 
 

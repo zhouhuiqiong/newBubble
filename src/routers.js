@@ -55,6 +55,10 @@ module.exports = function(router){
 		'/map': {//地图
 			name: 'map',
 			component: require('./views/map.vue')
+		},
+		'/address': {//定位
+			name: 'address',
+			component: require('./views/address.vue')
 		}
 		// '/my_views/:viewId': {
 		// 	name:'my_views_detail',

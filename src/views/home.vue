@@ -2,7 +2,7 @@
   <div class="container">
 	<div class="content list infinite-scroll home-content">
 		<nav class="bar bar-nav bar-nav-static search-nav">
-			<span class="open-adr-btn " @click="showAdr">地址<i class="icon icon-down"></i></span>
+			<a class="open-adr-btn" v-link="{name:'address'}">{{address}}<i class="icon icon-down"></i></a>
 			<a v-link="{name:'seach'}" class="search-input-box">
 				<div class="search-input">
 					<label class="icon icon-search" for="search"></label>
@@ -26,8 +26,8 @@
 			<!--list-->
 			<div class="select-box">
 				<ul class="change-list hide item">
-					<li><span>新宿</span><i class="iconfont icon-duigou"></i></li>
-					<li class="active"><span>新宿</span><i class="iconfont icon-duigou"></i></li>
+					<li class="active"><span >新宿</span><i class="iconfont icon-duigou"></i></li>
+					<li ><span>新宿</span</li>
 				</ul>
 				<!---->
 				<div class="screen-list hide item">
@@ -76,30 +76,9 @@
 				<uiload></uiload>
 			 </div>
 		</div>
-	</div>
-		<uigoback target-scroll="infinite-scroll"></uigoback>
-		<!-- address Popup -->
-		<div class="popup popup-about">
-			<div class="content-block">
-				<header class="bar bar-nav">
-					<a href="javascript:void(0)" class="close-popup">关闭</a>
-				  	<div class="searchbar">
-					    <div class="search-input">
-					      <label class="icon icon-search" for="search"></label>
-					      <input type="search" id='search' placeholder='输入关键字...'/>
-					    </div>
-					   	
-					</div>
-					<div class="now-address-box">
-				   		<div class="now-address"><label>京东</label>当前gps定位城市</div>
-				   		<i class="iconfont icon-duigou"></i>
-				   	</div>
-				</header>
-			</div>
-		</div>
-		<!--address-->
 		<div class="select-shade" v-show="isSelectShade" @click="selectShade"></div>
 	</div>
+	<uigoback target-scroll="infinite-scroll"></uigoback>
 </template>
 <script>
 module.exports = {
@@ -115,7 +94,8 @@ module.exports = {
 	ready: function(){
 		var that = this;
 	    that.fixedbox();
-	    that.$nav = $('.seach-select-list li')
+	    that.$nav = $('.seach-select-list li');
+	    that.$item = $('.select-box .item ');
 	    //加载数据
 		var dataObj = new util.scrollList();
 		dataObj.init(this,{
@@ -127,6 +107,8 @@ module.exports = {
 		that.$nearby = $('.change-list>li');
 		that.$nearby.on('click', function(){
 			var t = $(this);
+			$('.icon-duigou').remove();
+			t.append('<i class="iconfont icon-duigou"></i>');
 			util.clickActive(t);
 			setTimeout(function(){
 				t.parent().addClass('hide');
@@ -140,7 +122,7 @@ module.exports = {
 			var t = $(this);
 			util.clickActive(t);
 		});
-		$.popup('.popup-about');
+		
 	},
 	data:function(){
 		return {
@@ -149,6 +131,7 @@ module.exports = {
 			dataList: [],
 			loading: false,
 			isSelectShade: false,
+			address: '东京'
 			
 		}
 	},
@@ -159,14 +142,17 @@ module.exports = {
 	},
 	route:{
 		activate:function(transition){
-			this.$root.$set('header',this.title);
+			var t = this;
+			t.$root.$set('header',t.title);
 			transition.next();
+			var adr = util.cookie.get('address');
+			t.address = adr ? adr : '东京';
 		}
 	},
 	methods: {
-		showAdr: function(){
-			$.popup('.popup-about');
-		},
+		// showAdr: function(){
+		// 	$.popup('.popup-about');
+		// },
 		fixedbox: function(){
 			util.fixedbox({
 				fixedbox:'.select-wrap'
@@ -174,14 +160,13 @@ module.exports = {
 		},
 		changeType: function(e,num){
 			var that = this;
-			that.isSelectShade = true;
+			console.log(num);
+			that.isSelectShade = num != undefined ? true : false;
 			$(e.currentTarget).addClass('active').siblings('li').removeClass('active');
-			$('.select-box .item ').eq(num).removeClass('hide');
-			
-
+			that.$item.addClass('hide').eq(num).removeClass('hide');
 		},
-		selectShade: function(){
-			this.isSelectShade = false;
+		selectShade: function(e){
+			this.changeType(e);
 		},
 		submitScreen: function(){
 			var that = this;
