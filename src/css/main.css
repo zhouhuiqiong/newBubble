@@ -68,8 +68,15 @@ button {
 .shop-tag1.active {
   color: #ff6b68; }
 
+.min-shop-tag {
+  padding: 0; }
+
 .hide {
   display: none; }
+
+.buttons-tab .button.active {
+  color: #ff6b68;
+  border-color: #ff6b68; }
 
 body {
   background: #fff;
@@ -632,5 +639,48 @@ body {
 .sale-txt {
   font-size: 10px;
   color: #888; }
+
+.evaluate-list .item-inner {
+  padding: 0.85rem 0.75rem 0.75rem 0px;
+  margin-left: 2.1rem !important; }
+  .evaluate-list .item-inner:after {
+    background: #fff; }
+
+.evaluate-content {
+  font-size: 12px;
+  position: relative; }
+  .evaluate-content .item-after {
+    color: #888;
+    font-size: 10px; }
+  .evaluate-content:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0px;
+    height: 1px;
+    background: #f6f6f6;
+    top: 0;
+    -webkit-transform: scaleY(0.5); }
+  .evaluate-content .item-title {
+    font-weight: 500;
+    color: #ff6b68; }
+  .evaluate-content img {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 0.6rem; }
+  .evaluate-content .txt-box {
+    color: #000; }
+  .evaluate-content .all-essay {
+    font-size: 10px;
+    color: #68dbff;
+    margin: 0.3rem 0px 0rem; }
+
+.evaluate-tag-box {
+  margin: 0.3rem 0px 0.5rem; }
+  .evaluate-tag-box .shop-tag {
+    margin-right: 0.4rem; }
 
 /*# sourceMappingURL=main.css.map */

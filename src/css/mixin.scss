@@ -173,5 +173,12 @@ button{background:none; border:none;}
 .shop-tag-active,.shop-tag1.active{border-color:#ff6b68; }
 .shop-tag-active{background:#ff6b68; color:#fff;}
 .shop-tag1.active{color:#ff6b68;}
+.min-shop-tag{padding:0;}
 
 .hide{display:none;}
+
+.buttons-tab .button.active{
+	color: #ff6b68;
+ 	border-color: #ff6b68;
+
+}

@@ -70,31 +70,33 @@
 						<!--end 商家服务-->
 					</div>
 				<!--tab2-->
-				<div id="tab2" class="tab">
-						
-							<div class="list-block media-list">
-								<ul>
-									<li v-for="item in dataList" track-by="$index">
-										<a href="#" class="item-content">
-											<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 4rem;'></div>
-											<div class="item-inner">
-												<div class="item-title-row">
-													<div class="item-title">标题</div>
-													<div class="item-after">2015-23-23</div>
-												</div>
-												<div>
-													<span>一级棒</span>
-													<span>二级棒</span>
-												</div>
-												<div class="txt-box">
-													评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
-												</div>
-											</div>
-										</a>
-									</li>
-								</ul>
-							</div>
+				<div id="tab2" class="tab ">
+					<div class="list-block media-list evaluate-list">
+						<ul>
+							<li v-for="item in dataList" track-by="$index">
+								<a href="#" class="item-content evaluate-content">
+									<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" ></div>
+									<div class="item-inner">
+										<div class="item-title-row">
+											<div class="item-title">标题</div>
+											<div class="item-after">2015-23-23</div>
+										</div>
+										<div class="evaluate-tag-box">
+											<span class="shop-tag min-shop-tag">安全</span>
+											<span class="shop-tag min-shop-tag">一级棒</span>
+
+										</div>
+										<div class="txt-box">
+											评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
+										</div>
+										<div class="all-essay">全文</div>
+									</div>
+
+								</a>
+							</li>
+						</ul>
 					</div>
+				</div>
 				<!--end tab2-->
 			</div>
 			<!--end tab list-->
