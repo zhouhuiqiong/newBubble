@@ -4,10 +4,10 @@
     	    <div class="swiper-wrapper" >
     	        <div class="swiper-slide" v-for="item in aryimg"  @click="say($index)">
                     <img :src="item.img" >
-                    <div class="swiper-slide-explain" >
+<!--                     <div class="swiper-slide-explain" >
                         <h3>去问问我去饿我看起来就额</h3>
                         <p>{{$index}}</p>
-                    </div>
+                    </div> -->
                 </div>
                 
     	    </div>

@@ -21,6 +21,9 @@ button {
   background: none;
   border: none; }
 
+em {
+  font-style: normal; }
+
 @font-face {
   font-family: 'iconfont';
   src: url("//at.alicdn.com/t/font_1477216543_3955305.eot");
@@ -48,10 +51,9 @@ button {
   display: inline-block; }
 
 .shop-tag {
-  padding: 0.1rem 0;
+  padding: 0.1rem 0.5rem;
   font-size: 11px;
-  border-radius: 0.15rem;
-  min-width: 2.5rem; }
+  border-radius: 0.15rem; }
 
 .shop-tag1 {
   line-height: 1.5rem;
@@ -69,20 +71,39 @@ button {
   color: #ff6b68; }
 
 .min-shop-tag {
-  padding: 0; }
+  padding: 0 0.5rem; }
 
 .hide {
   display: none; }
+
+.btn1 {
+  background: #ff6b68;
+  color: #fff;
+  height: 100%;
+  padding: 0px 2.0rem; }
 
 .buttons-tab .button.active {
   color: #ff6b68;
   border-color: #ff6b68; }
 
+.list-block .item-inner:after {
+  background: #fff; }
+
+.list-block .item-after {
+  font-size: 10px;
+  color: #888; }
+
+.list-block .item-text {
+  height: auto; }
+
+.list-block {
+  margin: 0px; }
+
 body {
   background: #fff;
   position: static;
   overflow-y: auto;
-  color: #828282;
+  color: #888;
   font: Arial,Verdana,Sans-serif;
   font-size: 14px; }
 
@@ -166,7 +187,12 @@ body {
   -webkit-box-align: center;
   -webkit-align-items: center;
   align-items: center;
-  padding: 0px 0.5rem; }
+  padding-left: 0.75rem;
+  position: fixed;
+  height: 2.25rem;
+  background: #fff;
+  border-top: 1px solid #f6f6f6;
+  z-index: 1000; }
 
 .dialog-wrap {
   position: fixed;
@@ -353,8 +379,6 @@ body {
   position: relative; }
   .itme-style .item-content .item-inner {
     padding: 0rem; }
-    .itme-style .item-content .item-inner:after {
-      background: none; }
     .itme-style .item-content .item-inner .item-title-row:nth-of-type(1) .item-title {
       color: #000;
       padding-top: 0.2rem;
@@ -391,6 +415,9 @@ body {
 .server-money {
   font-size: 13px;
   color: #ff6b68; }
+
+.server-money1 em {
+  font-size: 1.2rem; }
 
 .bar-foot-nav {
   color: #c0c0c0;
@@ -597,7 +624,7 @@ body {
   .title-bar .icon {
     color: #000; }
 
-.content1 {
+.content1, .bg {
   background: #f6f6f6; }
 
 .map-box {
@@ -632,9 +659,10 @@ body {
     margin-left: 0.5rem; }
 .min-itme-style .sale-money {
   margin-top: 0.75rem; }
-  .min-itme-style .sale-money i {
-    text-decoration: line-through;
-    margin-left: 0.25rem; }
+
+.sale-money i {
+  text-decoration: line-through;
+  margin-left: 0.25rem; }
 
 .sale-txt {
   font-size: 10px;
@@ -643,8 +671,6 @@ body {
 .evaluate-list .item-inner {
   padding: 0.85rem 0.75rem 0.75rem 0px;
   margin-left: 2.1rem !important; }
-  .evaluate-list .item-inner:after {
-    background: #fff; }
 
 .evaluate-content {
   font-size: 12px;
@@ -682,5 +708,90 @@ body {
   margin: 0.3rem 0px 0.5rem; }
   .evaluate-tag-box .shop-tag {
     margin-right: 0.4rem; }
+
+.introduce {
+  padding: 0.75rem;
+  background: #fff; }
+  .introduce dt {
+    font-weight: 500;
+    color: #000; }
+  .introduce dd {
+    font-size: 12px;
+    color: #888;
+    line-height: 22px; }
+
+.estimate {
+  margin-top: 0.4rem;
+  background: #fff;
+  border-top: 1px solid #e5e5e5;
+  padding: 0 0.75rem;
+  margin-top: 0.5rem; }
+  .estimate .item-title {
+    color: #ff6b68;
+    font-weight: 500;
+    font-size: 14px; }
+  .estimate .item-content {
+    padding-left: 0px; }
+  .estimate .item-inner {
+    padding-right: 0px; }
+  .estimate .item-text {
+    margin: 0.3rem 0px; }
+    .estimate .item-text .shop-tag {
+      margin: 0px  0.25rem 0.25rem 0px; }
+
+.do-time {
+  margin-top: 0.4rem;
+  background: #fff;
+  border-top: 1px solid #e5e5e5;
+  padding: 0 0.75rem;
+  line-height: 35px;
+  color: #888; }
+
+.clause {
+  margin-top: 0.4rem;
+  background: #fff;
+  border-top: 1px solid #e5e5e5;
+  padding: 0 0.75rem;
+  padding: 0.5rem 0.75rem; }
+  .clause dt {
+    color: #000;
+    margin: 0rem 0px 0.5rem; }
+  .clause dd {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    margin-bottom: 0.2rem;
+    font-size: 12px;
+    color: #888;
+    line-height: 18px; }
+    .clause dd div {
+      position: relative;
+      margin-left: 0.5rem; }
+      .clause dd div:before {
+        position: absolute;
+        content: '';
+        top: 5px;
+        left: -0.5rem;
+        width: 0.2rem;
+        height: 0.2rem;
+        border-radius: 50%;
+        background-color: #ff6b68;
+        color: #fff;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center; }
 
 /*# sourceMappingURL=main.css.map */

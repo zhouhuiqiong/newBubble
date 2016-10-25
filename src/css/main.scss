@@ -3,7 +3,7 @@ body{
 	background: #fff;
 	position: static;
 	overflow-y: auto;
-	color:#828282;
+	color:#888;
 	font: Arial,Verdana,Sans-serif;
 	font-size: 14px;
 }
@@ -87,7 +87,15 @@ body{
 }
 .foot-bar{
 	@include boxJC;
-	padding: 0px 0.5rem;
+	padding-left: 0.75rem;
+	position: fixed;
+	height: 2.25rem;
+	background: #fff;
+	border-top:1px solid #f6f6f6;
+	z-index: 1000;
+}
+.btn1{
+
 }
 .dialog-wrap{
 	position: fixed;
@@ -249,9 +257,6 @@ body{
 		
 		.item-inner{
 			padding: 0rem;
-			&:after{
-				background: none;
-			}
 			.item-title-row:nth-of-type(1){
 				.item-title{
 					color:#000;
@@ -293,6 +298,11 @@ body{
 .server-money{
 	font-size: 13px;
 	color: #ff6b68;
+}
+.server-money1{
+	em{
+		font-size: 1.2rem;
+	}
 }
 .bar-foot-nav{
 	color: #c0c0c0;
@@ -449,7 +459,7 @@ body{
 		color:#000;
 	}
 }
-.content1{background:#f6f6f6;}
+.content1,.bg{background:#f6f6f6;}
 .map-box{
 	line-height: 1.75rem;
 	padding: 0px 1rem;
@@ -481,6 +491,10 @@ body{
 	}
 	.sale-money{
 		margin-top: 0.75rem;
+	}
+
+}
+	.sale-money{
 		.server-money{
 			//font-size: 16px;
 		}
@@ -489,8 +503,6 @@ body{
 			margin-left: 0.25rem;
 		}
 	}
-
-}
 .sale-txt{
 	font-size: 10px;
 	color: #888;
@@ -499,9 +511,6 @@ body{
 	.item-inner{
 		padding: 0.85rem 0.75rem 0.75rem 0px;
 		margin-left: 2.1rem !important;
-		&:after{
-			background: #fff;
-		}
 	}
 }
 .evaluate-content{
@@ -542,7 +551,73 @@ body{
 		margin-right: 0.4rem;
 	}
 }
+.introduce{
+	padding: 0.75rem;
+	background: #fff;
+	dt{
+		font-weight:  500;
+		color: #000;
+	}
+	dd{
+		font-size: 12px;
+		color:#888;
+		line-height: 22px;
+	}
+}
+.estimate{
+	@include boxStyle;
+	margin-top: 0.5rem;
+	.item-title{
+		color: #ff6b68;
+		font-weight: 500;
+		font-size: 14px;
+	}
+	.item-content{
+		padding-left: 0px;
+	}
+	.item-inner{
+		padding-right: 0px;
+	}
+	.item-text{
+		margin: 0.3rem 0px;
+		.shop-tag{
+			margin:0px  0.25rem 0.25rem 0px;
+		}
+	}
+}
+.do-time{
+	@include boxStyle;
+	line-height: 35px;
+	color:#888;
+}
+.clause{
+	@include boxStyle;
 
+	padding: 0.5rem 0.75rem;
+	dt{
+		color: #000;
+		margin:0rem 0px 0.5rem;
+	}
+	dd{
+		@include boxJC;
+		margin-bottom: 0.2rem;
+		div{
+			position: relative;
+			margin-left: 0.5rem;
+			&:before{
+				position: absolute;
+				content: '';
+				top: 5px;
+				left: -0.5rem;
+				@include numRound($size: 0.2rem, $bc: #ff6b68);
+			}
+		}
+		font-size: 12px;
+		color: #888;
+		line-height: 18px;
+	}
+
+}
 
 
 

@@ -184,8 +184,3 @@ module.exports = {
     }
 };
 </script>
-<style type="text/css">
-	.list-block{
-		margin:0px;
-	}
-</style>
