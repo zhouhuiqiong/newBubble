@@ -138,6 +138,12 @@ input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {
 	overflow-y: auto;
 	background: #fff;
 }
+@mixin boxStyle{
+	margin-top: 0.4rem;
+	background: #fff;
+	border-top:1px solid #e5e5e5;
+	padding:0 0.75rem;
+}
 i{
 	font-style:normal;
 }
@@ -148,7 +154,7 @@ h1, h2, h3, h4, h5, h6, p, figure, form, blockquote { margin: 0; }
 ul, ol, li, dl, dd { margin: 0; padding: 0; }
 ul, ol { list-style: none outside none; }
 button{background:none; border:none;}
-
+em{font-style: normal;}
 
 @font-face {
   font-family: 'iconfont';
@@ -167,11 +173,32 @@ button{background:none; border:none;}
 .icon-home_news:before { content: "\e600"; }
 
 .shop-tag,.shop-tag1{border:1px solid #d6d6d6; color:#888; text-align: center; display:inline-block;}
-.shop-tag{padding:0.1rem 0; font-size: 11px; border-radius: 0.15rem; min-width: 2.5rem; }
+.shop-tag{padding:0.1rem 0.5rem; font-size: 11px; border-radius: 0.15rem;  }
 .shop-tag1{line-height:1.5rem; width:3.9rem; font-size: 12px;}
 
 .shop-tag-active,.shop-tag1.active{border-color:#ff6b68; }
 .shop-tag-active{background:#ff6b68; color:#fff;}
 .shop-tag1.active{color:#ff6b68;}
+.min-shop-tag{padding:0 0.5rem;}
 
 .hide{display:none;}
+.btn1{background: #ff6b68; color: #fff; height:100%; padding:0px 2.0rem;}
+.buttons-tab .button.active{
+	color: #ff6b68;
+ 	border-color: #ff6b68;
+
+}
+.list-block .item-inner:after{
+	background: #fff;
+}
+.list-block .item-after{
+	font-size: 10px;
+	color:#888;
+}
+.list-block .item-text{
+	height: auto;
+}
+.list-block{
+	margin: 0px;
+}
+

@@ -1,43 +1,43 @@
 <template>
-	<div class="container">
-		<div class="content home-content">
-			<uiswipertxt></uiswipertxt>
+	<div class="container  ">
+		<div class="content home-content bg">
+			<div class="home-swiper">
+				<uiswipertxt></uiswipertxt>
+			</div>
+			<dl class="introduce">
+				<dt>大保健全套服务</dt>
+				<dd>俩人团购的118套餐，一小份虾，鱼豆腐，羊肉，蔬菜拼盘，火锅面足够了！虾特别大而且新鲜入味，香辣适中，保持了一贯的开背去线，</dd>
+			</dl>
 			<!--客户评价区域-->
-			<div class="list-block media-list">
+			<div class="list-block media-list estimate">
 				<a class="item-link item-content" v-link="{name:'judgelist'}">
 					<div class="item-inner">
 						<div class="item-title-row">
 							<div class="item-title">客户评价</div>
 							<div class="item-after">200人去过</div>
 						</div>
-						<div class="item-text"><span>很好</span></div>
+						<div class="item-text">
+							<span class="shop-tag min-shop-tag">漂亮(20)</span>
+							<span class="shop-tag min-shop-tag">姑凉好看(1000)</span>
+							<span class="shop-tag min-shop-tag">安全</span>
+														<span class="shop-tag min-shop-tag">漂亮(20)</span>
+							<span class="shop-tag min-shop-tag">姑凉好看(1000)</span>
+							<span class="shop-tag min-shop-tag">安全</span>
+						</div>
 					</div>
 				</a>
 			</div>
 			<!--营业时间-->
-			<div>
+			<div class="do-time">
 				营业时间:18:00 9:00
 			</div>
 			<!--预约须知-->
-			<div class="card">
-	            <div class="card-header">预约须知</div>
-	            <div class="card-content">
-	                <div class="card-content-inner">
-	                    <h3>滚动具有三种模式：</h3>
-	                    <ul>
-	                        <li>1. auto模式: scroller.js 根据系统版本号来决定什么时候使用js的滚动（默认）</li>
-	                        <li>2. js模式: 总是使用js滚动（即IScroll）</li>
-	                        <li>3. native模式： 总是使用原生滚动条</li>
-	                    </ul>
-	                </div>
-	            </div>
-	        </div>
-	        </div>
-	        <!--end 预约须知-->
-			<nav class="bar bar-tab foot-bar">
-				<span>5000日元</span>
-				<button @click="orderdialog">预约</button>
- 		    </nav>
+			<dl class="clause">
+				<dt>预定须知</dt>
+				<dd><i></i><div>以前没来过这样的洗浴中心，今天体验了感觉很好，女宾浴处三个池子(牛奶浴，人参浴，温水池)水温都很舒服，水比较干净，准备的用品也齐全，自己啥都不用带这儿全有，非常方便</div></dd>
+				<dd><i></i><div>以前没来过这样的洗浴中心，今天体验了感觉很好，女宾浴处三个池子(牛奶浴，人参浴，温水池)水温都很舒服，水比较干净，准备的用品也齐全，自己啥都不用带这儿全有，非常方便</div></dd>
+			</dl>
+
  		    <!--预约弹出框-->
  		    <div class="dialog-wrap orderdialog" v-show="isOrderDialog">
  		    	<div class="dialog-main">
@@ -53,6 +53,16 @@
  		    		</div>
  		    	</div>
  		    </div>
+ 		</div>
+ 		 		   <!--end 预约须知-->
+			<nav class="bar bar-tab foot-bar">
+				<div class="sale-money">
+					<label class="server-money server-money1 ">¥<em>5,000</em></label>
+					<i>¥5,0000000</i>
+				</div>
+				<button @click="orderdialog" class="btn1">立刻预约</button>
+ 		    </nav>
+ 	</div>
 </template>
 <script>
 module.exports = {
