@@ -1,12 +1,19 @@
 
 require('./css/common.css');//加载公共样式
 require('./css/animate.css');//加载公共样式
-
+require('./css/sm.css');//加载公共样式
+require('./css/main.css');//加载公共样式
+require('./js/zepto.min.js')
+require('./js/sm.js')
+require('./js/util.js')
 var Vue = require('vue');
 var VueTouch = require('./vtouch');
 var VueRouter = require('vue-router');
 var fastclick = require('fastclick');
 var VueVallidator = require('vue-validator');
+
+
+
 fastclick.attach(document.body);
 // Directive
 var directive =  require('./directives');
@@ -34,7 +41,6 @@ var App = Vue.extend(require('./app.vue'));
 Vue.use(VueTouch);
 Vue.use(VueRouter);
 Vue.use(VueVallidator);
-
 var router = new VueRouter(
 	{
 	  hashbang: false,  //为true的时候 example.com/#!/foo/bar ， false的时候 example.com/#/foo/bar

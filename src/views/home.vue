@@ -160,7 +160,7 @@ module.exports = {
 		},
 		changeType: function(e,num){
 			var that = this;
-			console.log(num);
+			
 			that.isSelectShade = num != undefined ? true : false;
 			$(e.currentTarget).addClass('active').siblings('li').removeClass('active');
 			that.$item.addClass('hide').eq(num).removeClass('hide');
@@ -180,7 +180,8 @@ module.exports = {
 	components:{
       uiswiper: require('../components/swiper.vue'),
       uigoback: require('../components/goback.vue'),
-      uiload: require('../components/load.vue')
+      uiload: require('../components/load.vue'),
+
     }
 };
 </script>

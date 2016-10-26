@@ -1,4 +1,4 @@
-var util = {
+window.util = {
   goBack: function() {
     window.history.go(-1);
   },
@@ -47,7 +47,7 @@ var util = {
   clickActive: function(obj){
     obj.addClass('active').siblings().removeClass('active');
   },
-
+  
 
   /*
   ** 获取url地址栏的参数
@@ -58,6 +58,7 @@ var util = {
     if (r != null) return unescape(r[2]); return null; 
   }
 };
+
 /*
 **字符串操作
 */
@@ -208,6 +209,7 @@ $.fn.scrollTo =function(options){
   }
   util.cookie =  Cookie;
 })();
+module.exports = util;
       
 
 

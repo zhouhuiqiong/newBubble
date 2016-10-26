@@ -96,12 +96,13 @@ nav{
   </div>
 </template>
 <script>
-
+//var util = require('./js/util.js');
 module.exports = {
     data: function() {
       return {
         renderLinks: false,
         isIndex: true,
+        //util: util,
         items:{
           '/':{
             name:'home'
@@ -151,43 +152,6 @@ module.exports = {
           '/address':{
             name: 'address'
           }
-          // '/my_views/:viewId': {
-          //   name:'my_views_detail'
-          // },
-
-          // '/forbidden':{
-          //   name:'forbidden'
-          // },
-          // '/modal_view': {
-          //   name:'modal_view'
-          // },
-          // '/select_view': {
-          //   name:'select_view'
-          // },
-          // '/radio_view': {
-          //   name:'radio_view'
-          // },
-          // '/tab_view': {
-          //   name:'tab_view'
-          // },
-          // '/slider_view': {
-          //   name:'slider_view'
-          // },
-          // '/test':{
-          //   name:'test_view'
-          // },
-          // 'async':{
-          //   //http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
-          //   name:'async'
-          // },
-          // 'async_loading':{
-          //   //http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
-          //   name:'async_loading'
-          // },
-          // //触摸事件
-          // 'touch':{
-          //   name:'touch'
-          // }
         },
         effect          : 'fade',
         header          : '首页',
@@ -212,7 +176,7 @@ module.exports = {
     },
     ready:function(){
       this.cookies = '123123';
-      //this.$broadcast('cookie','232424');
+
     }
 }
 </script>

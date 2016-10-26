@@ -1,7 +1,10 @@
 //先清空 n-build 文件夹下的文件
 var fs = require('fs'),buildPath='./build/';
 var folder_exists = fs.existsSync(buildPath);
-if(folder_exists == true)
+// 在命令行 输入  “PRODUCTION=1 webpack --progress” 就会打包压缩，并且注入md5戳 到 index.html里面
+var production = process.env.PRODUCTION;
+var grow = process.env.GROW;
+if(folder_exists == true && grow != 2)
 {
    var dirList = fs.readdirSync(buildPath);
    dirList.forEach(function(fileName)
@@ -18,8 +21,10 @@ fs.readFile("index.html",'utf-8',function(err,data){
         console.log("error");
     }else{
       //将index.html里面的hash值清除掉
-      var devhtml = data.replace(/((?:href|src)="[^"]+\.)(\w{20}\.)(js|css)/g, '$1$3');
-      fs.writeFileSync('index.html', devhtml);
+      if(grow != 2){
+        var devhtml = data.replace(/((?:href|src)="[^"]+\.)(\w{20}\.)(js|css)/g, '$1$3');
+        fs.writeFileSync('index.html', devhtml);
+      }
     }
 });
 
@@ -38,8 +43,6 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 
 
-// 在命令行 输入  “PRODUCTION=1 webpack --progress” 就会打包压缩，并且注入md5戳 到 index.html里面
-var production = process.env.PRODUCTION;
 
 var plugins = [
   //会将所有的样式文件打包成一个单独的style.css
@@ -111,6 +114,11 @@ module.exports = {
             {
               test: /\.vue$/,
               loader: 'vue'
+            },
+            {
+                test:   /\\.scss/,
+                loader: 'style!css!sass',
+                loaders: ['style', 'css', 'sass'],
             },
             {test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap!cssnext-loader")},
             {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'}, // 内联 base64 URLs, 限定 <=8k 的图片, 其他的用 URL
