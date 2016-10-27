@@ -8,7 +8,7 @@ if(folder_exists == true)
    {
        fs.unlinkSync(buildPath + fileName);
    });
-   console.log("clearing " + buildPath);
+   
 };
 
 //readfile
@@ -42,20 +42,20 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var production = process.env.PRODUCTION;
 
 var plugins = [
-  //会将所有的样式文件打包成一个单独的style.css
-  new ExtractTextPlugin( production ? "style.[hash].css" : "style.css" , {
+  //会将所有的样式文件打包成一个单独的style.css,style.[hash].css
+  new ExtractTextPlugin( production ? "style.css" : "style.css" , {
     disable: false//,
     //allChunks: true  //所有独立样式打包成一个css文件
   }),
   //new ExtractTextPlugin("[name].css" )
   //自动分析重用的模块并且打包成单独的文件
-  new CommonsChunkPlugin(production ? "vendor.[hash].js" : "vendor.js" ),
+  new CommonsChunkPlugin(production ? "vendor.js" : "vendor.js" ),
   function(){
       return this.plugin('done', function(stats) {
         var content;
         //这里可以拿到hash值   参考：http://webpack.github.io/docs/long-term-caching.html
         content = JSON.stringify(stats.toJson().assetsByChunkName, null, 2);
-        console.log('版本是：'+JSON.stringify(stats.toJson().hash));
+       
         //return fs.writeFileSync('build/assets.json', content);
       });
   }
@@ -91,11 +91,11 @@ module.exports = {
         /*
                 publicPath路径就是你发布之后的路径，
                 比如你想发布到你站点的/util/vue/build 目录下, 那么设置
-                publicPath: "/util/vue/build/",
+                publicPath: "/util/vue/build/",build.[hash].js
                 此字段配置如果不正确，发布后资源定位不对，比如：css里面的精灵图路径错误
          */
         publicPath: "/build/",
-        filename: production ? "build.[hash].js" : "build.js"//"build.[hash].js"//[hash]MD5戳   解决html的资源的定位可以使用 webpack提供的HtmlWebpackPlugin插件来解决这个问题  见：http://segmentfault.com/a/1190000003499526 资源路径切换
+        filename: production ? "build.js" : "build.js"//"build.[hash].js"//[hash]MD5戳   解决html的资源的定位可以使用 webpack提供的HtmlWebpackPlugin插件来解决这个问题  见：http://segmentfault.com/a/1190000003499526 资源路径切换
     },
     module: {
         preLoaders:[
