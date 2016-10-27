@@ -8,7 +8,7 @@
 			<!--商品详情-->
 			<div class="list-block media-list">
 				<ul>
-					<li class="itme-style">
+					<li class="itme-style itme-style1">
 						<a href="#" class="item-content">
 							<div class="item-media"><img src=""></div>
 							<div class="item-inner">

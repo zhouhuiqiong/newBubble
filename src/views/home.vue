@@ -48,7 +48,6 @@
 
 			</div>
 		</div>
-		
 		<div class="list-block infinite-list  media-list">
 			<ul>
 				<li v-for="item in dataList" track-by="$index" class="itme-style">
@@ -181,7 +180,6 @@ module.exports = {
       uiswiper: require('../components/swiper.vue'),
       uigoback: require('../components/goback.vue'),
       uiload: require('../components/load.vue'),
-
     }
 };
 </script>
