@@ -15,4 +15,5 @@ var infiniteScroll = {
  		
  	}
 }
+
 exports.infiniteScroll = infiniteScroll;

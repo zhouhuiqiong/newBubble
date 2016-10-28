@@ -40,15 +40,15 @@
 						<div class="server-t"><h3>特别随从：</h3>
 						<p><i class="iconfont icon-tanhao"></i>为您解读，帮您沟通，更多服务请点击查看</p></div>
 						<div class="radio-box ">
-							<span>{{especiallyMonye}}</span>
+							<span>{{especiallyMonye | price}}</span>
 							<i class="change-icon"></i>
 						</div>
 					</div>
-					<div class="server-item " :class="{'active' : isChangeZi}"  @click="changeType(2)">
+					<div class="server-item server-item1" :class="{'active' : isChangeZi}"  @click="changeType(2)">
 						<div class="server-t"><h3>自选服务人员</h3>
 						<p><i class="iconfont icon-tanhao"></i>为您解读，帮您沟通，更多服务请点击查看</p></div>
 						<div class="radio-box">
-							<span>{{especiallyMonye}}</span>
+							<span>{{especiallyMonye | price}}</span>
 							<i class="change-icon"></i>
 						</div>
 					</div>
@@ -123,7 +123,7 @@ module.exports = {
 
 				},
 				title: '商家名称',
-				total: that.serveMonye + that.especiallyMonye + that.subjoinMonye
+				total: Number(that.serveMonye) + Number(that.especiallyMonye) + Number(that.subjoinMonye)
 			};
 			sessionStorage.shopList = JSON.stringify(shopList);
 			window.location.href = '#pay'

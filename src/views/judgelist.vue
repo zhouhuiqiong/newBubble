@@ -1,33 +1,36 @@
 <template>
 	<div class="container">
-		<header class="bar bar-nav">
+		<header class="bar bar-nav title-bar">
 		  <a class="icon icon-left pull-left" @click="gohistory"></a>
-		  <h1 class="title">消息</h1>
+		  <h1 class="title">用户评价</h1>
 		</header>
 		<div class="content list infinite-scroll home-content" >
-			<div class="list-block infinite-list  media-list">
+			<!--item-->
+			<div class="list-block media-list evaluate-list">
 				<ul>
-					<li >
-						<a href="#" class="item-content">
-						  <div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 4rem;'></div>
-						  <div class="item-inner">
-						    <div class="item-title-row">
-						      <div class="item-title">标题</div>
-						      <div class="item-after">$15</div>
-						    </div>
-						    <div class="item-title-row">
-						    	<div>
-						    		一級棒
-						    	</div>
-						    	<div>
-						    		泡泡域
-						    	</div>
-						    </div>
-						  </div>
+					<li>
+						<a href="#" class="item-content evaluate-content">
+							<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" ></div>
+							<div class="item-inner">
+								<div class="item-title-row">
+									<div class="item-title">标题</div>
+									<div class="item-after">2015-23-23</div>
+								</div>
+								<div class="evaluate-tag-box">
+									<span class="shop-tag min-shop-tag">安全</span>
+									<span class="shop-tag min-shop-tag">一级棒</span>
+
+								</div>
+								<div class="txt-box">
+									评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
+								</div>
+								<div class="all-essay">全文</div>
+							</div>
 						</a>
 					</li>
 				</ul>
 			</div>
+			<!--item-->
 		</div>
 		
 	</div>

@@ -7,7 +7,7 @@ body{
 	font: Arial,Verdana,Sans-serif;
 	font-size: 14px;
 }
-
+$pa:0px 40px;
 .home-content{
 	bottom: 2.2rem;
 }
@@ -638,6 +638,9 @@ body{
 	padding:0px 1rem;
 	border-bottom: 2px solid #e5e5e5;
 }
+.sub-title1{
+	padding-top: 1.0rem;
+}
 .server-item{
 	height: 2.75rem;
 	background: #fff;
@@ -726,8 +729,11 @@ body{
 		padding: 0.25rem 0px;
 		li{
 		font-size: 12px;
-		line-height: 1.25rem;
+		line-height: 1.5rem;
 		padding-left: 0px;
+		.item-inner .item-after{
+			font-size: 12px;
+		}
 		// &:first-of-type{
 		// 	margin-top: 0.25rem
 		// }
@@ -763,10 +769,19 @@ body{
 	.total{
 		color: #ff6b68;
 		font-weight: 500;
+		margin-left: 0.1rem;
+		font-size: 15px;
 	}
 	.item-after{
 		font-size: 14px;
 	}	
+}
+
+.server-item2{
+	.server-t{
+		@include boxZC;
+	}
+	img{width: 1.2rem; height: 1.2rem; margin-right: 0.65rem;}
 }
 
 

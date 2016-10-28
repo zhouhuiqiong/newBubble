@@ -68,8 +68,9 @@ var digitsRE = /(\d{3})(?=\d)/g
   var _float = stringified.slice(-3)
   var sign = value < 0 ? '-' : ''
   return currency + sign + head +
-    _int.slice(i).replace(digitsRE, '$1,') +
-    _float
+    _int.slice(i).replace(digitsRE, '$1,')
+    //_float
+    
 }
 
 exports.imgUrl = imgUrl;

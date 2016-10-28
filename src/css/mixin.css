@@ -21,22 +21,43 @@ button {
   background: none;
   border: none; }
 
+em {
+  font-style: normal; }
+
 @font-face {
   font-family: 'iconfont';
-  src: url("//at.alicdn.com/t/font_1477125870_8609107.eot");
+  src: url("//at.alicdn.com/t/font_1477582281_9046795.eot");
   /* IE9*/
-  src: url("//at.alicdn.com/t/font_1477125870_8609107.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1477125870_8609107.woff") format("woff"), url("//at.alicdn.com/t/font_1477125870_8609107.ttf") format("truetype"), url("//at.alicdn.com/t/font_1477125870_8609107.svg#iconfont") format("svg");
+  src: url("//at.alicdn.com/t/font_1477582281_9046795.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1477582281_9046795.woff") format("woff"), url("//at.alicdn.com/t/font_1477582281_9046795.ttf") format("truetype"), url("//at.alicdn.com/t/font_1477582281_9046795.svg#iconfont") format("svg");
   /* iOS 4.1- */ }
 .iconfont {
   font-family: "iconfont";
   font-size: 16px;
   font-style: normal; }
 
+.icon-yuankongxin:before {
+  content: "\e603"; }
+
+.icon-jikediancanicon10:before {
+  content: "\e604"; }
+
+.icon-shanchu:before {
+  content: "\e602"; }
+
 .icon-duigou:before {
   content: "\e601"; }
 
+.icon-tanhao:before {
+  content: "\e605"; }
+
+.icon-kongxinyuanmini:before {
+  content: "\e607"; }
+
 .icon-home_news:before {
   content: "\e600"; }
+
+.icon-home-hollow:before {
+  content: "\e606"; }
 
 .shop-tag, .shop-tag1 {
   border: 1px solid #d6d6d6;
@@ -45,10 +66,9 @@ button {
   display: inline-block; }
 
 .shop-tag {
-  padding: 0.1rem 0;
+  padding: 0.1rem 0.5rem;
   font-size: 11px;
-  border-radius: 0.15rem;
-  min-width: 2.5rem; }
+  border-radius: 0.15rem; }
 
 .shop-tag1 {
   line-height: 1.5rem;
@@ -65,7 +85,33 @@ button {
 .shop-tag1.active {
   color: #ff6b68; }
 
+.min-shop-tag {
+  padding: 0 0.5rem; }
+
 .hide {
   display: none; }
+
+.btn1 {
+  background: #ff6b68;
+  color: #fff;
+  height: 100%;
+  padding: 0px 2.0rem; }
+
+.buttons-tab .button.active {
+  color: #ff6b68;
+  border-color: #ff6b68; }
+
+.list-block .item-inner:after {
+  background: #fff; }
+
+.list-block .item-after {
+  font-size: 10px;
+  color: #888; }
+
+.list-block .item-text {
+  height: auto; }
+
+.list-block {
+  margin: 0px; }
 
 /*# sourceMappingURL=mixin.css.map */
