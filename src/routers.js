@@ -24,13 +24,29 @@ module.exports = function(router){
 			name:'login',
 			component: require('./views/login.vue')
 		},
-		'/userlist': {
-			name:'userlist',
-			component: require('./views/userlist.vue')
+		'/personal': {//用户中心
+			name:'personal',
+			component: require('./views/personal.vue')
 		},
-		'/indentlist': {//订单列表
-			name: 'indentlist',
-			component: require('./views/indentlist.vue')
+		'/personal': {//用户中心
+			name:'personal',
+			component: require('./views/personal.vue')
+		},
+		'/editlist': {//编辑资料（用户中心）
+			name: 'editlist',
+			component: require('./views/editlist.vue')
+		},
+		'/editname': {//编辑昵称（用户中心）
+			name: 'editname',
+			component: require('./views/editname.vue')
+		},
+		'/editmail': {//编辑邮箱（用户中心）
+			name: 'editmail',
+			component: require('./views/editmail.vue')
+		},
+		'/editpassword': {//修改密码（用户中心）
+			name: 'editpassword',
+			component: require('./views/editpassword.vue')
 		},
 		'/shopimg': {//帮助中心
 			name: 'shopimg',
@@ -59,7 +75,11 @@ module.exports = function(router){
 		'/address': {//定位
 			name: 'address',
 			component: require('./views/address.vue')
-		}
+		},
+		'/sign': {//注册
+			name: 'sign',
+			component: require('./views/sign.vue')
+		},
 		// '/my_views/:viewId': {
 		// 	name:'my_views_detail',
 		// 	component: require('./views/my_views_detail.vue'),

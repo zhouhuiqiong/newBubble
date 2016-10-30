@@ -10,7 +10,9 @@
 				<ul>
 					<li class="itme-style itme-style1">
 						<a href="#" class="item-content">
-							<div class="item-media"><img src=""></div>
+							<div class="item-media rel"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3646051749,3801647591&fm=80&w=179&h=119&img.JPEG">
+								<span class="img-num">22</span>
+							</div>
 							<div class="item-inner">
 								<div class="item-title-row">
 									<div class="item-title">浜松町駅ビル店</div>

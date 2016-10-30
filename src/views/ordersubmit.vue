@@ -27,12 +27,11 @@
 				</ul>
 			</div>
 			<!--预约时间-->
-			<div class="yu-time">
+			<div class="yu-time" @click="changeOrderTime()">
 				<div class="item-title">预约时间</div>
-				<div class="item-after">请选择<span class="icon icon-right"></span></div>
+				<div class="item-after">{{ordertime}}<span class="icon icon-right"></span></div>
 			</div>
 			<!--特别随从-->
-
 			<div class="serve-type ">
 				<h3 class="sub-title">增值服务</h3>
 				<div class="bg1">
@@ -54,9 +53,15 @@
 					</div>
 				</div>
 			</div>
+			<!--预约时间ng-show="isShDate"-->
+			<div v-show="isShDate" class="uidate-wrap" :class="{'animatebox' : isShDate}">
+				<uidate></uidate>
+			</div>
 		</div>
 		<!--预约按钮-->
 		<a href="javascript:void(0)" class="max-btn" @click="submitform" :class="{ 'disabled': isDisabled}">确认预约</a>
+		<div class="select-shade" v-show="isSelectShade" @click="selectShade"></div>
+
 	</div>
 </template>
 <script>
@@ -65,27 +70,23 @@ module.exports = {
 
 	},
 	ready: function(){
-		var that = this;
-		$("#datetime-picker").datetimePicker({
-		    value: ['2016', '11', '04', '9', '00'],
-		    onOpen: function(){
-		    	that.isDisabled = false;
-		    	$('.picker-item')
-		    }
-		 });
-		if($('.datetime-picker').val() != '预约时间'){
+		var t = this;
+		if( t.ordertime != '请选择'){
 			that.isDisabled = false;
-		}
+		};
 	},
 	data:function(){
 		return {
-			ordertime: '预约时间',
-			isDisabled: true,
+			ordertime: '请选择',
+			isDisabled: true,//确认预约按钮
 			serveMonye: 500000,
 			especiallyMonye: 3000,//特别随从的价格
 			subjoinMonye: '2000',//附加人员的价格
 			isChangeTe: false,//特别随从
-			isChangeZi: false
+			isChangeZi: false,
+			isSelectShade: false,//遮罩
+			isShDate: false //预约时间弹出层
+
 		}
 	},
 	methods: {
@@ -97,6 +98,10 @@ module.exports = {
 				function () {
 					
 				},'返回');
+		},
+		changeOrderTime: function(){
+			var t = this;
+			t.isShDate = t.isSelectShade = true;
 
 		},
 		changeType: function(num){
@@ -127,6 +132,9 @@ module.exports = {
 			};
 			sessionStorage.shopList = JSON.stringify(shopList);
 			window.location.href = '#pay'
+		},
+		selectShade: function(){
+
 		}
 	},
 	route:{
@@ -134,7 +142,10 @@ module.exports = {
 			this.$root.$set('header',this.title);
 			transition.next();
 		}
-	}
+	},
+	components:{
+      uidate: require('../components/date.vue'),
+    }
 };
 
 </script>

@@ -122,8 +122,20 @@ module.exports = {
           '/login': {
             name:'login'
           },
-          '/userlist': {
-            name:'userlist'
+          '/personal': {
+            name:'personal'
+          },
+          '/editlist': {
+            name: 'editlist'
+          },
+          '/editname': {
+            name: 'editname'
+          },
+          '/editmail': {
+            name: 'editmail'
+          },
+          '/editpassword': {
+            name: 'editpassword'
           },
           '/indentlist': {
             name:'indentlist'
@@ -151,6 +163,9 @@ module.exports = {
           },
           '/address':{
             name: 'address'
+          },
+          '/sign':{
+            name: 'sign'
           }
         },
         effect          : 'fade',

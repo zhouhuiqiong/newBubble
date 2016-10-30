@@ -7,7 +7,7 @@ require('./js/zepto.min.js')
 require('./js/sm.js')
 require('./js/util.js')
 var Vue = require('vue');
-var VueTouch = require('./vtouch');
+var VueTouch = require('./js/vtouch');
 var VueRouter = require('vue-router');
 var fastclick = require('fastclick');
 var VueVallidator = require('vue-validator');
@@ -16,9 +16,9 @@ var VueVallidator = require('vue-validator');
 
 fastclick.attach(document.body);
 // Directive
-var directive =  require('./directives');
+var directive =  require('./js/directives');
 // register filters 自定义过滤器  金额格式化，
-var filters = require('./filters');
+var filters = require('./js/filters');
 //Vue.filter('filters', filters)
 
 Object.keys(directive).forEach(function(k) {

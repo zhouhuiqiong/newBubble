@@ -81,10 +81,7 @@
 </template>
 <script>
 module.exports = {
-	//每次切换路由，在渲染出页面前都会执行
-	route: {
-
-	},
+	//每次切换路由，在渲染出页面前都会执
 	events: {
 		'cookies': function(msg){
 			console.log(msg);
