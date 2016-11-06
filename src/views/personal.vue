@@ -4,13 +4,13 @@
 			<div class="user-inf-wap">
 				<div class="image-text">
 					<img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2995040420,4087761391&fm=96">
-					<p><a >去去就来<span class="icon icon-right ml"></span>
+					<p><a v-link="{name:'editlist'}">去去就来<span class="icon icon-right ml"></span>
 	</a ></p>
 				</div>
 			</div>
 			<div class="user-nav-list">
 				<a class="yu-time">
-					<div class="item-title"><i class="iconfont icon-home-hollow mr"></i>我的订单</div>
+					<div class="item-title"><i class="iconfont icon-cf-c78 mr"></i>我的订单</div>
 					<div class="item-after"><span class="icon icon-right "></span></div>
 				</a>
 				<!--订单信息-->
@@ -53,7 +53,7 @@
 				</div>
 				<!--订单信息-->
 				<a class="yu-time">
-					<div class="item-title"><i class="iconfont icon-home-hollow mr"></i>联系我们</div>
+					<div class="item-title"><i class="iconfont icon-icon mr"></i>联系我们</div>
 					<div class="item-after"><span class="icon icon-right"></span></div>
 				</a>
 			</div>

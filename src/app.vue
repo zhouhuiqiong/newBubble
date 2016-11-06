@@ -91,12 +91,11 @@ nav{
       <bar class="bar-foot-nav" style="display:none" id="barNav">
         <baritem path="/" label="大楽" icon="browser" class="active"></baritem>
         <baritem path="/list" label="色相" icon="picture"></baritem>
-        <baritem path="/list" label="我的" icon="home"></baritem>
+        <baritem path="/map" label="我的" icon="home"></baritem>
       </bar>
   </div>
 </template>
 <script>
-//var util = require('./js/util.js');
 module.exports = {
     data: function() {
       return {

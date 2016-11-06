@@ -102,7 +102,16 @@ module.exports = {
 		changeOrderTime: function(){
 			var t = this;
 			t.isShDate = t.isSelectShade = true;
-
+			setTimeout(function(){
+                new Swiper('.swper', {
+                    direction: 'vertical',
+                    slidesPerView: 4,
+                    slidesPerGroup: 4,
+                    paginationClickable :true,
+                    effect: 'slide',
+                    direction: 'horizontal'
+                });
+            },100);
 		},
 		changeType: function(num){
 			var t = this;
@@ -114,7 +123,7 @@ module.exports = {
 		},
 		submitform: function(){
 			var that = this;
-			if(that.isDisabled){
+			if(!that.ordertime){
 				$.toast('请选择预约时间');
 				return;
 			};

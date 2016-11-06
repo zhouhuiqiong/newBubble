@@ -45,16 +45,7 @@
             t.dateAry = t.$time.nowTime();
             t.hourAry = t.$time.initHour(t.changeDate);
             t.changeHour = t.hourAry[0];
-            setTimeout(function(){
-                    new Swiper('.swper', {
-                    direction: 'vertical',
-                    slidesPerView: 4,
-                    slidesPerGroup: 4,
-                    paginationClickable :true,
-                    effect: 'slide',
-                    direction: 'horizontal'
-                });
-            },2000);
+            
 		},
         data: function(){
             return {

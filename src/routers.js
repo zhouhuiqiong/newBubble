@@ -24,10 +24,10 @@ module.exports = function(router){
 			name:'login',
 			component: require('./views/login.vue')
 		},
-		'/personal': {//用户中心
-			name:'personal',
-			component: require('./views/personal.vue')
-		},
+		// '/personal': {//用户中心
+		// 	name:'personal',
+		// 	component: require('./views/personal.vue')
+		// },
 		'/personal': {//用户中心
 			name:'personal',
 			component: require('./views/personal.vue')
@@ -166,7 +166,7 @@ module.exports = function(router){
 		var result = transition.to.name;
 		if(result == 'seach'){
 			router.app.effect='bottom';
-		}else if(result == 'news' || result == 'details'){
+		}else if(result == 'news' || result == 'details'  || result == 'orderdetails'){
 			router.app.effect='left';
 		}else{
 			router.app.effect='back';

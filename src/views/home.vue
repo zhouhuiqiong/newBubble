@@ -33,15 +33,26 @@
 				<div class="screen-list hide item">
 					<dl class="screen-item ">
 						<dt>评价</dt>
-						<dd><span class="shop-tag1 active">服务好</span><span class="shop-tag1 ">一级棒</span><span class="shop-tag1">性价比高</span><span class="shop-tag1">安全</span>
+						<dd  class="screen-item-list clearfix">
+							<div><span class="shop-tag1 active">服务好</span></div>
+							<div><span class="shop-tag1 ">一级棒</span></div>
+							<div><span class="shop-tag1">性价比高</span></div>
+							<div><span class="shop-tag1">安全</span></div>
+							<div><span class="shop-tag1 ">服务好</span></div>
+							<div><span class="shop-tag1 ">一级棒</span></div>
+							<div><span class="shop-tag1">性价比高</span></div>
+							<div><span class="shop-tag1">安全</span></div>
 						</dd>
 					</dl>
-					<dl class="screen-item">
+					<dl class="screen-item clearfix">
 						<dt>价格</dt>
-						<dd><span class="shop-tag1 active">服务好</span><span class="shop-tag1">一级棒</span><span class="shop-tag1">性价比高</span><span class="shop-tag1">安全</span></dd>
+						<dd class="screen-item-list"><div><span class="shop-tag1 active">服务好</span></div>
+							<div><span class="shop-tag1 ">一级棒</span></div>
+							<div><span class="shop-tag1">性价比高</span></div>
+							<div><span class="shop-tag1">安全</span></div></dd>
 					</dl>
 					<div class="screen-btn-box">
-						<button class="screen-btn">重置</button>
+						<button class="screen-btn" @click="resetBtn">重置</button>
 						<button class="screen-btn-active" @click="submitScreen">确认</button>
 					</div>
 				</div>
@@ -51,7 +62,7 @@
 		<div class="list-block infinite-list  media-list">
 			<ul>
 				<li v-for="item in dataList" track-by="$index" class="itme-style">
-					<a href="#" class="item-content">
+					<a href="#/details" class="item-content">
 						<div class="item-media"><img src=""></div>
 						<div class="item-inner">
 							<div class="item-title-row">
@@ -116,8 +127,11 @@ module.exports = {
 		that.$screen = $('.screen-item dd span');
 		that.$screen.on('click', function(){
 			var t = $(this);
-			util.clickActive(t);
+			$(this).parents('dd').find('span').removeClass('active');
+			$(this).addClass('active');
 		});
+		//获取当前位置
+		that.getNowAdr();
 		
 	},
 	data:function(){
@@ -149,6 +163,9 @@ module.exports = {
 		// showAdr: function(){
 		// 	$.popup('.popup-about');
 		// },
+		getNowAdr: function(){
+
+		},
 		fixedbox: function(){
 			util.fixedbox({
 				fixedbox:'.select-wrap'
@@ -171,6 +188,10 @@ module.exports = {
 				that.isSelectShade = false;
 				that.$nav.removeClass('active');
 			},300);
+		},
+		resetBtn: function(){
+			var that = this;
+			$('.screen-item-list span').removeClass('active');
 		}
 	},
 	components:{
