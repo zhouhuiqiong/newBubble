@@ -33,30 +33,40 @@
 				<div class="screen-list hide item">
 					<dl class="screen-item ">
 						<dt>评价</dt>
-						<dd><span class="shop-tag1 active">服务好</span><span class="shop-tag1 ">一级棒</span><span class="shop-tag1">性价比高</span><span class="shop-tag1">安全</span>
+						<dd  class="screen-item-list clearfix">
+							<div><span class="shop-tag1 active">服务好</span></div>
+							<div><span class="shop-tag1 ">一级棒</span></div>
+							<div><span class="shop-tag1">性价比高</span></div>
+							<div><span class="shop-tag1">安全</span></div>
+							<div><span class="shop-tag1 ">服务好</span></div>
+							<div><span class="shop-tag1 ">一级棒</span></div>
+							<div><span class="shop-tag1">性价比高</span></div>
+							<div><span class="shop-tag1">安全</span></div>
 						</dd>
 					</dl>
-					<dl class="screen-item">
+					<dl class="screen-item clearfix">
 						<dt>价格</dt>
-						<dd><span class="shop-tag1 active">服务好</span><span class="shop-tag1">一级棒</span><span class="shop-tag1">性价比高</span><span class="shop-tag1">安全</span></dd>
+						<dd class="screen-item-list"><div><span class="shop-tag1 active">服务好</span></div>
+							<div><span class="shop-tag1 ">一级棒</span></div>
+							<div><span class="shop-tag1">性价比高</span></div>
+							<div><span class="shop-tag1">安全</span></div></dd>
 					</dl>
 					<div class="screen-btn-box">
-						<button class="screen-btn">重置</button>
+						<button class="screen-btn" @click="resetBtn">重置</button>
 						<button class="screen-btn-active" @click="submitScreen">确认</button>
 					</div>
 				</div>
 
 			</div>
 		</div>
-		
 		<div class="list-block infinite-list  media-list">
 			<ul>
 				<li v-for="item in dataList" track-by="$index" class="itme-style">
-					<a href="#" class="item-content">
+					<a href="#/details" class="item-content">
 						<div class="item-media"><img src=""></div>
 						<div class="item-inner">
 							<div class="item-title-row">
-								<div class="item-title">浜松町駅ビル店</div>
+								<div class="item-title">浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル店</div>
 								<div class="item-after">1.9km</div>
 							</div>
 							<div class="shop-tag-box">
@@ -82,10 +92,7 @@
 </template>
 <script>
 module.exports = {
-	//每次切换路由，在渲染出页面前都会执行
-	route: {
-
-	},
+	//每次切换路由，在渲染出页面前都会执
 	events: {
 		'cookies': function(msg){
 			console.log(msg);
@@ -120,8 +127,11 @@ module.exports = {
 		that.$screen = $('.screen-item dd span');
 		that.$screen.on('click', function(){
 			var t = $(this);
-			util.clickActive(t);
+			$(this).parents('dd').find('span').removeClass('active');
+			$(this).addClass('active');
 		});
+		//获取当前位置
+		that.getNowAdr();
 		
 	},
 	data:function(){
@@ -153,6 +163,9 @@ module.exports = {
 		// showAdr: function(){
 		// 	$.popup('.popup-about');
 		// },
+		getNowAdr: function(){
+
+		},
 		fixedbox: function(){
 			util.fixedbox({
 				fixedbox:'.select-wrap'
@@ -160,7 +173,7 @@ module.exports = {
 		},
 		changeType: function(e,num){
 			var that = this;
-			console.log(num);
+			
 			that.isSelectShade = num != undefined ? true : false;
 			$(e.currentTarget).addClass('active').siblings('li').removeClass('active');
 			that.$item.addClass('hide').eq(num).removeClass('hide');
@@ -175,12 +188,16 @@ module.exports = {
 				that.isSelectShade = false;
 				that.$nav.removeClass('active');
 			},300);
+		},
+		resetBtn: function(){
+			var that = this;
+			$('.screen-item-list span').removeClass('active');
 		}
 	},
 	components:{
       uiswiper: require('../components/swiper.vue'),
       uigoback: require('../components/goback.vue'),
-      uiload: require('../components/load.vue')
+      uiload: require('../components/load.vue'),
     }
 };
 </script>

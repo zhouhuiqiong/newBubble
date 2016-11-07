@@ -1,53 +1,65 @@
 <template>
 	<div class="container">
-		<header class="bar bar-nav">
+		<header class="bar bar-nav title-bar">
 		  <a class="icon icon-left pull-left" @click="goback"></a>
 		  <h1 class="title">支付订单</h1>
 		</header>
-		<div class="content list infinite-scroll home-content" >
-			<div class="content-padded">
-			  <p>商家会提前为您准备，请于预约时间准时到达商家使用服务。由于服务的特殊性，所有订单均不提供退款。</p>
+		<div class="content list infinite-scroll home-content bg" >
+			<div class="bg1 content-padded-wap">
+				<div class="content-padded1">
+				 	<h3><i class="iconfont icon-tanhao mr"></i>由于服务的特殊性，所有订单均不提供退款。</h3>
+				 	<p>商家会提前为您准备，请于预约时间准时到达商家使用服务。</p>
+				</div>
 			</div>
 			<!--订单信息-->
-			<h3>{{shopList.title}}</h3>
-			<ul  class="list-block">
-				<li class="item-content" v-for="(key,val) in shopList.type">
-					<div class="item-inner">
-						<div class="item-title">{{key}}</div>
-						<div class="item-after">{{val}}</div>
-					</div>
-				</li>
-				<li class="item-content">
-					<div class="item-inner">
-						<div class="item-title">订单合计:</div>
-						<div class="item-after">合计:{{shopList.total}}</div>
-					</div>
-				</li>
-			</ul>
-			<!-- 付款方式-->
-			<h3>付款方式</h3>
-			<ul>
-				<li>
-					<label class="label-checkbox item-content">
-						<input type="radio" name="my-radio">
-						<div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+			<div class="order-inf">
+				<h3 class="order-inf-t"><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg">{{shopList.title}}</h3>
+				<ul  class="list-block">
+					<li class="item-content" v-for="(key,val) in shopList.type">
 						<div class="item-inner">
-							<div class="item-title-row">
-								<div class="item-title">石头</div>
-								<div class="item-after">17:14</div>
-							</div>
-							<div class="item-subtitle">New messages from John Doe</div>
-							<div class="item-text">Lorem ipsum dolor sit amet...</div>
+							<div class="item-title">{{key}}</div>
+							<div class="item-after">{{val}}</div>
 						</div>
-					</label>
-				</li>
-			</ul>
+					</li>
+				</ul>
+				<div class="total-item">
+							<div class="item-title">订单合计:</div>
+							<div class="item-after">合计:<span class="total">
+							{{shopList.total | price}}</span></div>
+					</div>
+			</div>
+			<!-- 付款方式-->
+			<h3 class="sub-title sub-title1">付款方式</h3>
+			<div class="pay-type bg1">
+				<div class="server-item server-item2" :class="{'active' : isChange1}"  @click="changeType(1)">
+					<div class="server-t">
+						<img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg">
+						<div>
+							<h3>信用支付</h3>
+							<p>为您解读，帮您沟通，更多服务请点击查看</p>
+						</div>
+					</div>
+					<div class="radio-box">
+						<i class="change-icon"></i>
+					</div>
+				</div>
+				<div class="server-item server-item2" :class="{'active' : isChange2}"  @click="changeType(2)">
+					<div class="server-t">
+						<img src="http://www.renrenbuy.com/yungou/images/aibei.png">
+						<div>
+							<h3>信用支付</h3>
+							<p>为您解读，帮您沟通，更多服务请点击查看</p>
+						</div>
+					</div>
+					<div class="radio-box">
+						<i class="change-icon"></i>
+					</div>
+				</div>
+			</div>
 			<!---->
 		</div>
 		<!--预约按钮-->
-		<div class="bar bar-tab">
-			<a href="javascript:void(0)" class="button button-fill button-big button-dark " @click="submitPay">支付订单</a>
-		</div>
+		<a href="javascript:void(0)" class="max-btn" @click="submitPay">确认支付</a>
 	</div>
 </template>
 <script>
@@ -61,7 +73,9 @@ module.exports = {
 	},
 	data:function(){
 		return {
-			shopList: JSON.parse(sessionStorage.shopList)
+			shopList: JSON.parse(sessionStorage.shopList),
+			isChange1: true,
+			isChange2: false
 		}
 	},
 	methods: {
@@ -70,6 +84,11 @@ module.exports = {
 		},
 		submitPay: function(){
 			
+		},
+		changeType: function(num){
+			for(var i=1; i< 3; i++){
+				this['isChange' + i] = num == i  ? true : false;
+			};
 		}
 	},
 	computed: {

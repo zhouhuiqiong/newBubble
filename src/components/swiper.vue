@@ -11,7 +11,7 @@
 	</div>
 </template>
 <script>
-	require('../../node_modules/swiper/dist/css/swiper.min.css');
+	require('../css/swiper.min.css');
 	var Swiper = require('swiper');
 	module.exports = {
 		ready:function(){

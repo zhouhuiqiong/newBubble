@@ -89,19 +89,19 @@ nav{
   <div class="app">
     <router-view class="view" id="view" keep-alive :transition="effect" transition-mode="out-in"></router-view>
       <bar class="bar-foot-nav" style="display:none" id="barNav">
-        <baritem path="/" label="大楽" icon="browser" class="active"></baritem>
-        <baritem path="/list" label="色相" icon="picture"></baritem>
-        <baritem path="/list" label="我的" icon="home"></baritem>
+        <baritem path="/" label="大楽" icon="dairaku" class="active"></baritem>
+        <baritem path="/list" label="色相" icon="hue"></baritem>
+        <baritem path="/personal" label="我的" icon="user"></baritem>
       </bar>
   </div>
 </template>
 <script>
-
 module.exports = {
     data: function() {
       return {
         renderLinks: false,
         isIndex: true,
+        //util: util,
         items:{
           '/':{
             name:'home'
@@ -121,8 +121,20 @@ module.exports = {
           '/login': {
             name:'login'
           },
-          '/userlist': {
-            name:'userlist'
+          '/personal': {
+            name:'personal'
+          },
+          '/editlist': {
+            name: 'editlist'
+          },
+          '/editname': {
+            name: 'editname'
+          },
+          '/editmail': {
+            name: 'editmail'
+          },
+          '/editpassword': {
+            name: 'editpassword'
           },
           '/indentlist': {
             name:'indentlist'
@@ -150,44 +162,10 @@ module.exports = {
           },
           '/address':{
             name: 'address'
+          },
+          '/sign':{
+            name: 'sign'
           }
-          // '/my_views/:viewId': {
-          //   name:'my_views_detail'
-          // },
-
-          // '/forbidden':{
-          //   name:'forbidden'
-          // },
-          // '/modal_view': {
-          //   name:'modal_view'
-          // },
-          // '/select_view': {
-          //   name:'select_view'
-          // },
-          // '/radio_view': {
-          //   name:'radio_view'
-          // },
-          // '/tab_view': {
-          //   name:'tab_view'
-          // },
-          // '/slider_view': {
-          //   name:'slider_view'
-          // },
-          // '/test':{
-          //   name:'test_view'
-          // },
-          // 'async':{
-          //   //http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
-          //   name:'async'
-          // },
-          // 'async_loading':{
-          //   //http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
-          //   name:'async_loading'
-          // },
-          // //触摸事件
-          // 'touch':{
-          //   name:'touch'
-          // }
         },
         effect          : 'fade',
         header          : '首页',
@@ -212,7 +190,7 @@ module.exports = {
     },
     ready:function(){
       this.cookies = '123123';
-      //this.$broadcast('cookie','232424');
+
     }
 }
 </script>

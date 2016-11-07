@@ -118,8 +118,7 @@ module.exports = {
 	},
 	route:{
 		activate:function(transition){
-
-			//this.$root.$set('header','123132132132');
+			this.$root.$set('header',this.title);
 			transition.next();
 		}
 	},

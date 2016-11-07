@@ -8,9 +8,11 @@
 			<!--商品详情-->
 			<div class="list-block media-list">
 				<ul>
-					<li class="itme-style">
+					<li class="itme-style itme-style1">
 						<a href="#" class="item-content">
-							<div class="item-media"><img src=""></div>
+							<div class="item-media rel"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3646051749,3801647591&fm=80&w=179&h=119&img.JPEG">
+								<span class="img-num">22</span>
+							</div>
 							<div class="item-inner">
 								<div class="item-title-row">
 									<div class="item-title">浜松町駅ビル店</div>
@@ -30,26 +32,28 @@
 				</ul>
 			</div>
 			<div class="map-box">
-				<div class="adr-specific">
-					<span class="icon icon-browser"></span>
-					林奇葳哦亲我看呢全文
-				</div>
+				<!--target="_blank"-->
+				<a class="adr-specific"  href="https://www.google.com/maps/place/中国北京市昌平区水库路东侧北京随园公寓/@40.241267,116.267423,15z/">
+					<span class="iconfont icon-ditu"></span>
+					中国北京市昌平区水库路东侧北京随园公寓
+				</a>
 				<span class="icon icon-right"></span>
 			</div>
 			<!--商品详情-->
-			<div class="buttons-tab details-tab">
-				<a href="#tab1" class="tab-link active button" @click="changeType('all')">商家服务</a>
-				<a href="#tab2" class="tab-link button" @click="changeType('all')">客户评价</a>
-			</div>
-			<!--tab list-->
-			<div class="tabs">
-				<!--tab1-->
-					<div id="tab1" class="tab active">
+			<div class="swiper-container swper " id="tab-swiper">
+				<div class="swiper-pagination"></div>
+				<div class="buttons-tab details-tab">
+					<a href="javascript:void(0)" class="tab-link button" @click="changeType(1,'all')">商家服务</a>
+					<a href="javascript:void(0)" class="tab-link button" @click="changeType(2,'all')">客户评价</a>
+					<div class="activelink"></div>
+				</div>
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
 						<!--商家服务-->
 						<div class="list-block media-list">
 							<ul>
 								<li class="itme-style min-itme-style" v-for="item in dataList" track-by="$index">
-									<a href="#" class="item-content">
+									<a href="#/orderdetails" class="item-content">
 										<div class="item-media"><img src=""></div>
 										<div class="item-inner sale-txt">
 											<div class="item-title-row">
@@ -69,9 +73,8 @@
 						</div>
 						<!--end 商家服务-->
 					</div>
-				<!--tab2-->
-				<div id="tab2" class="tab ">
-					<div class="list-block media-list evaluate-list">
+					<div class="swiper-slide">
+						<div class="list-block media-list evaluate-list">
 						<ul>
 							<li v-for="item in dataList" track-by="$index">
 								<a href="#" class="item-content evaluate-content">
@@ -96,8 +99,8 @@
 							</li>
 						</ul>
 					</div>
+					</div>
 				</div>
-				<!--end tab2-->
 			</div>
 			<!--end tab list-->
 			<!-- 加载提示符 -->
@@ -109,12 +112,76 @@
 	</div>
 </template>
 <script>
+var Swiper = require('swiper');
 module.exports = {
 	route: {
 
 	},
 	ready: function(){
-		this.changeType();
+		var t = this;
+		t.mySwiper = new Swiper('.swper', {
+			direction: 'vertical',
+			pagination: '.swiper-pagination',
+			createPagination :false,
+			paginationClickable :true,
+			effect: 'slide',
+			direction: 'horizontal',
+			onTouchStart: function(swiper){
+				t.start = $(".swiper-wrapper").css('transform').replace('translate3d','').replace('(','').replace('）','').split(',')[0].replace('px','');
+				t.activeIndex = swiper.activeIndex;
+				t.clickFalse = false;
+
+			},
+			onTouchMove: function(swiper){
+				t.clickFalse = true;
+				//偏移的距离
+				var num = t.num = $(".swiper-wrapper").css('transform').replace('translate3d','').replace('(','').replace('）','').split(',')[0].replace('px','');
+				//计算,1区进入2区
+				if(num < 0 && num > (-414)){
+					if(swiper.activeIndex == 0){
+						t.l = t.site1 + num * (-1);
+						var nowL = t.l < t.site2 ? t.l : t.site2;
+
+					};
+					//2取进入1区
+					if(swiper.activeIndex == 1){
+						 t.l = t.site2 - (414 - (num * (-1)));
+						var nowL = (t.l > t.site1 ? t.l : t.site1);
+					};
+					t.$link.css({
+						left: nowL
+					});
+				};
+
+			},
+			onTouchEnd: function(swiper){
+				t.end = $(".swiper-wrapper").css('transform').replace('translate3d','').replace('(','').replace('）','').split(',')[0].replace('px','');
+				if(!t.clickFalse){//只点击了
+					return;
+				}else{
+					if(Math.abs(parseInt(t.end) - parseInt(t.start)) > t.w){
+						var num = t.activeIndex == 1 ? t.site1 : t.site2;
+					}else{
+						var num = t.activeIndex == 0 ? t.site1 : t.site2;
+					}
+				};
+				t.$link.css({
+						left: num
+					});
+			},
+			onInit: function(){
+				var $nav = $('.swiper-pagination .swiper-pagination-bullet');
+				$nav.click(function(){
+					var index = $nav.index($(this)) + 1;
+					//根据类型不同做出判断要加
+					t.changeType(index,'');
+				})
+
+			}	
+		});
+		t.$link = $('.activelink');
+		t.linkInit();
+		t.changeType();
 	},
 	data:function(){
 		return {
@@ -130,7 +197,16 @@ module.exports = {
 		gohistory: function(){
 			util.goBack();
 		},
-		changeType: function(){
+		changeType: function(num,type){
+			var t = this;
+			if(num){
+				var site =  num == 1 ? t.site1 : t.site2;
+				t.$link.css({
+					left: site
+				});
+			};
+
+			
 			//加载数据
 			var dataObj = new util.scrollList();
 			dataObj.init(this,{
@@ -138,6 +214,15 @@ module.exports = {
 				scrollObj: '.content'
 			});
 			dataObj.getListData();
+		},
+		linkInit: function(){//link 初始化位置计算
+			var t = this;
+			var w = t.w = $(window).width() * 0.5;
+			t.site1 = (w - 64)/2;
+			t.site2 = w + t.site1;
+			t.$link.css({
+				left: t.site1
+			});
 		}
 	},
 	route:{

@@ -1,6 +1,6 @@
 <template>
   <a class="tab-item" v-link="{path: path, activeClass: 'active', replace: true}">
-    <span class="icon" :class="iconClass"></span>
+    <span class="navicon" :class="iconClass"></span>
     <span class="tab-label" v-text="label"></span>
   </a>
 </template>
