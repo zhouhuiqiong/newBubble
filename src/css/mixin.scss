@@ -158,14 +158,17 @@ h1, h2, h3, h4, h5, h6, p, figure, form, blockquote { margin: 0; }
 ul, ol, li, dl, dd { margin: 0; padding: 0; }
 ul, ol { list-style: none outside none; }
 button{background:none; border:none;}
-em{font-style: normal;}@font-face {
+em{font-style: normal;}
+@font-face {
   font-family: 'iconfont';
-  src: url('//at.alicdn.com/t/font_1478443893_7401543.eot'); /* IE9*/
-  src: url('//at.alicdn.com/t/font_1478443893_7401543.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('//at.alicdn.com/t/font_1478443893_7401543.woff') format('woff'), 
-  url('//at.alicdn.com/t/font_1478443893_7401543.ttf') format('truetype'), 
-  url('//at.alicdn.com/t/font_1478443893_7401543.svg#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('//at.alicdn.com/t/font_1478529469_2955549.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1478529469_2955549.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1478529469_2955549.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1478529469_2955549.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1478529469_2955549.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
+                    
+
                                                
                     
 
@@ -176,18 +179,23 @@ em{font-style: normal;}@font-face {
 .icon-iconfontclosesmall:before { content: "\e66c"; }
 .icon-jikediancanicon10:before { content: "\e604"; }
 .icon-shanchu:before { content: "\e602"; }
+.icon-fanhuidingbu:before { content: "\e60f"; }
 .icon-icon:before { content: "\e608"; }
 .icon-duigou:before { content: "\e601"; }
 .icon-icon-down:before { content: "\e609"; }
 .icon-iconleft:before { content: "\e60a"; }
 .icon-iconright:before { content: "\e60b"; }
 .icon-tanhao:before { content: "\e605"; }
+.icon-icon1:before { content: "\e610"; }
+.icon-icon-copy:before { content: "\e611"; }
+.icon-icon-copy-copy:before { content: "\e612"; }
 .icon-cf-c78:before { content: "\e60c"; }
 .icon-ditu:before { content: "\e60d"; }
 .icon-kongxinyuanmini:before { content: "\e607"; }
 .icon-home_news:before { content: "\e600"; }
+.icon-fanhuidingbu1:before { content: "\e613"; }
 .icon-home-hollow:before { content: "\e606"; }
-
+.icon-chaxun:before { content: "\e60e"; }
 
 
 .shop-tag,.shop-tag1{border:1px solid #d6d6d6; color:#888; text-align: center; display:inline-block;}
@@ -200,7 +208,7 @@ em{font-style: normal;}@font-face {
 .min-shop-tag{padding:0 0.5rem;}
 .rel{position: relative;}
 .hide{display:none;}
-.btn1{background: #ff6b68; color: #fff; height:100%; padding:0px 2.0rem;}
+.btn1{background: #ff6b68; color: #fff; height:2.25rem; padding:0px 2.0rem;}
 .btn2{padding:0px 1.0rem; border:1px solid #000; line-height: 1.15rem; font-size: 12px; color:#000;}
 .btn21{padding:0px; margin-left:0.25rem; width: 4.5rem; text-align: center; background:#fff; margin-bottom: -1px;}
 .btn21.disabled{border:1px solid #d9d9d9; color:#d9d9d9;}

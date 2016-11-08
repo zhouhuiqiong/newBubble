@@ -1,5 +1,5 @@
 <template>
-	<div class="go-back" v-show="isGoback" @click="goBack">
+	<div class="go-back iconfont icon-fanhuidingbu" v-show="isGoback" @click="goBack">
 	</div>
 </template>
 <script type="text/javascript">
@@ -30,13 +30,17 @@
 </script>
 <style>
 	.go-back{
-		width: 2rem;
-		height: 2rem;
-		background-color: #f00;
+		font-size: 30px;
 		position: fixed;
 		bottom: 2.7rem;
 		right: 1rem;
 		border-radius: 50%;
 		z-index: 100;
+		text-align: center;
+		color: #b8b8b8;
+	}
+	.icon-fanhuidingbu{
+		
+
 	}
 </style>

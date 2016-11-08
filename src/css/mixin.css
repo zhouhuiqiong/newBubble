@@ -26,9 +26,9 @@ em {
 
 @font-face {
   font-family: 'iconfont';
-  src: url("//at.alicdn.com/t/font_1478443893_7401543.eot");
+  src: url("//at.alicdn.com/t/font_1478529469_2955549.eot");
   /* IE9*/
-  src: url("//at.alicdn.com/t/font_1478443893_7401543.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1478443893_7401543.woff") format("woff"), url("//at.alicdn.com/t/font_1478443893_7401543.ttf") format("truetype"), url("//at.alicdn.com/t/font_1478443893_7401543.svg#iconfont") format("svg");
+  src: url("//at.alicdn.com/t/font_1478529469_2955549.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1478529469_2955549.woff") format("woff"), url("//at.alicdn.com/t/font_1478529469_2955549.ttf") format("truetype"), url("//at.alicdn.com/t/font_1478529469_2955549.svg#iconfont") format("svg");
   /* iOS 4.1- */ }
 .iconfont {
   font-family: "iconfont";
@@ -46,6 +46,9 @@ em {
 
 .icon-shanchu:before {
   content: "\e602"; }
+
+.icon-fanhuidingbu:before {
+  content: "\e60f"; }
 
 .icon-icon:before {
   content: "\e608"; }
@@ -65,6 +68,15 @@ em {
 .icon-tanhao:before {
   content: "\e605"; }
 
+.icon-icon1:before {
+  content: "\e610"; }
+
+.icon-icon-copy:before {
+  content: "\e611"; }
+
+.icon-icon-copy-copy:before {
+  content: "\e612"; }
+
 .icon-cf-c78:before {
   content: "\e60c"; }
 
@@ -77,8 +89,14 @@ em {
 .icon-home_news:before {
   content: "\e600"; }
 
+.icon-fanhuidingbu1:before {
+  content: "\e613"; }
+
 .icon-home-hollow:before {
   content: "\e606"; }
+
+.icon-chaxun:before {
+  content: "\e60e"; }
 
 .shop-tag, .shop-tag1 {
   border: 1px solid #d6d6d6;
@@ -118,7 +136,7 @@ em {
 .btn1 {
   background: #ff6b68;
   color: #fff;
-  height: 100%;
+  height: 2.25rem;
   padding: 0px 2.0rem; }
 
 .btn2 {

@@ -32,6 +32,10 @@ module.exports = function(router){
 			name:'personal',
 			component: require('./views/personal.vue')
 		},
+		'/editph': {//编辑资料（用户中心）
+			name: 'editph',
+			component: require('./views/editph.vue')
+		},
 		'/editlist': {//编辑资料（用户中心）
 			name: 'editlist',
 			component: require('./views/editlist.vue')

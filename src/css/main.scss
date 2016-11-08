@@ -92,6 +92,7 @@ $pa:0px 40px;
 	background: #fff;
 	border-top:1px solid #f6f6f6;
 	z-index: 100;
+	overflow: hidden;
 }
 .btn1{
 
@@ -713,6 +714,8 @@ $pa:0px 40px;
 .max-btn{
 	background: #ff6b68;
 	line-height: 2.2rem;
+	height: 2.2rem;
+	overflow: hidden;
 	color: #fff;
 	display: inline-block;
 	text-align: center;

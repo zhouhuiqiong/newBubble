@@ -41,7 +41,7 @@
     "hot": "webpack-dev-server --progress --colors --inline --hot",
     "cp": "cp -r index.html ./build/ d:/wamp/www/vue",
     "grow": "export GROW=2 && webpack-dev-server  --hot --host=192.168.199.109  --port 9000",
-    "ip": "webpack-dev-server  --progress --colors --hot --host=192.168.3.156  --port 9000"
+    "ip": "webpack-dev-server  --progress --colors --hot --host=192.168.199.109  --port 9000"
   },
   "author": "",
   "license": "ISC"

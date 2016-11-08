@@ -53,14 +53,16 @@
 					</div>
 				</div>
 			</div>
-			<!--预约时间ng-show="isShDate"-->
-			<div v-show="isShDate" class="uidate-wrap" :class="{'animatebox' : isShDate}">
-				<uidate></uidate>
-			</div>
+
+
 		</div>
+		<!--预约时间ng-show="isShDate"-->
+		<div v-show="isShDate" class="uidate-wrap" :class="{'animatebox' : isShDate}">
+			<uidate></uidate>
+		</div>
+		<div class="select-shade" v-show="isSelectShade" @click="selectShade"></div>
 		<!--预约按钮-->
 		<a href="javascript:void(0)" class="max-btn" @click="submitform" :class="{ 'disabled': isDisabled}">确认预约</a>
-		<div class="select-shade" v-show="isSelectShade" @click="selectShade"></div>
 
 	</div>
 </template>
@@ -123,7 +125,7 @@ module.exports = {
 		},
 		submitform: function(){
 			var that = this;
-			if(!that.ordertime){
+			if(that.ordertime == '请选择'){
 				$.toast('请选择预约时间');
 				return;
 			};

@@ -127,6 +127,9 @@ module.exports = {
           '/editlist': {
             name: 'editlist'
           },
+          '/editph': {
+            name: 'editph'
+          },
           '/editname': {
             name: 'editname'
           },
