@@ -5,7 +5,7 @@
 				<div class="searchbar">
 					<a class="searchbar-cancel" >取消</a>
 					<div class="search-input">
-						<label class="icon icon-search" for="search"></label>
+						<label class="iconfont icon-chaxun" for="search"></label>
 						<input type="search" id='search' placeholder='输入商家,服务名称...' v-model="searchAdr"/>
 						<i class="iconfont icon-shanchu" v-show="isDel" @click="delVal"></i>
 					</div>

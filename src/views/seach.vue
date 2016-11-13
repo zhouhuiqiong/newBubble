@@ -4,7 +4,7 @@
 	  	<div class="searchbar">
 		    <a class="searchbar-cancel" v-link="{name:'home'}">取消</a>
 		    <div class="search-input">
-		      <label class="icon icon-search" for="search"></label>
+		      <label class="iconfont icon-chaxun" for="search"></label>
 		      <input type="search" id='search' placeholder='输入关键字...'/>
 		    </div>
 		</div>

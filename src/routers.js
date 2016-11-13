@@ -1,6 +1,6 @@
 module.exports = function(router){
 	router.map({
-		'/':{
+		'/home':{
 			name:'home',
 			component: require('./views/home.vue')
 		},
@@ -24,10 +24,6 @@ module.exports = function(router){
 			name:'login',
 			component: require('./views/login.vue')
 		},
-		// '/personal': {//用户中心
-		// 	name:'personal',
-		// 	component: require('./views/personal.vue')
-		// },
 		'/personal': {//用户中心
 			name:'personal',
 			component: require('./views/personal.vue')
@@ -84,38 +80,26 @@ module.exports = function(router){
 			name: 'sign',
 			component: require('./views/sign.vue')
 		},
+		'/forget': {//忘记密码
+			name: 'forget',
+			component: require('./views/forget.vue')
+		},
+		'/myorder': {//我的订单
+			name: 'myorder',
+			component: require('./views/myorder.vue')
+		},
+		'/myorderdetails': {//我的订单详情
+			name: 'myorderdetails',
+			component: require('./views/myorderdetails.vue')
+		},
+		'*': {
+	      component: require('./views/login.vue')
+	    }
+	    
 		// '/my_views/:viewId': {
 		// 	name:'my_views_detail',
 		// 	component: require('./views/my_views_detail.vue'),
 		// 	auth: true // 此页面需要用户登录
-		// },
-		// '/modal_view': {
-		// 	name:'modal_view',
-		// 	component: require('./views/modal_view.vue')
-		// },
-		// '/select_view': {
-		// 	name:'select_view',
-		// 	component: require('./views/select_view.vue')
-		// },
-		// '/radio_view': {
-		// 	name:'radio_view',
-		// 	component: require('./views/radio_view.vue')
-		// },
-		// '/tab_view': {
-		// 	name:'tab_view',
-		// 	component: require('./views/tab_view.vue')
-		// },
-		// '/slider_view': {
-		// 	name:'slider_view',
-		// 	component: require('./views/slider_view.vue')
-		// },
-		// '/forbidden':{
-		// 	name:'forbidden',
-		// 	component: require('./views/forbidden.vue')
-		// },
-		// '/test':{
-		// 	name:'test_view',
-		// 	component: require('./views/test.vue')
 		// },
 		// 'async':{
 		// 	//http://forum.vuejs.org/topic/114/vue-router-异步加载的例子
@@ -172,10 +156,12 @@ module.exports = function(router){
 			router.app.effect='bottom';
 		}else if(result == 'news' || result == 'details'  || result == 'orderdetails'){
 			router.app.effect='left';
+		}else if(result == 'home'){
+			router.app.effect='fade';
 		}else{
 			router.app.effect='back';
 		}
-		if(result == 'home'){
+		if(result == 'home' || result == 'personal'){
 			$('#barNav').css('display','inline-block');
 		}else{
 			$('#barNav').hide();
@@ -192,18 +178,17 @@ module.exports = function(router){
 				params : transition.to.params,
 				timer: +new Date
 			});
-		}
 
-		//setTimeout(function(){
-			transition.next();
-		//},1000);
+		}
+		transition.next();
+
 	});
 
 
 	//可以记录访问路径
 	router.afterEach(function(transition){
 		for (var i = 0; i < routeList.length; i++) {
-			console.log(routeList[i].name);
+			//console.log(routeList[i].name);
 		};
 	});
 }

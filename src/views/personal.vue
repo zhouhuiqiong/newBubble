@@ -1,20 +1,29 @@
 <template>
 	<div class="container ">
-		<div class="content bg">
+		<div class="content bg home-content">
 			<div class="user-inf-wap">
 				<div class="image-text">
-					<img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2995040420,4087761391&fm=96">
-					<p><a v-link="{name:'editlist'}">去去就来<span class="icon icon-right ml"></span>
+					<img v-if="userId" :src="userPh">
+					<img v-else="userId" src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2995040420,4087761391&fm=96">
+
+
+					<p v-if="userId"><a v-link="{name:'editlist'}">去去就来<span class="iconfont icon-iconright ml"></span>
+	</a ></p>
+					<p v-else><a v-link="{name:'login'}">点击登录<span class="iconfont icon-iconright ml"></span>
 	</a ></p>
 				</div>
 			</div>
-			<div class="user-nav-list">
-				<a class="yu-time">
+			<div class="user-nav-list" >
+				<a class="yu-time" v-if="userId">
 					<div class="item-title"><i class="iconfont icon-cf-c78 mr"></i>我的订单</div>
-					<div class="item-after"><span class="icon icon-right "></span></div>
+					<div class="item-after"><span class="iconfont icon-iconright "></span></div>
+				</a>
+				<a class="yu-time" v-else v-link="{name:'login'}">
+					<div class="item-title" v-link="{name: 'myorder'}"><i class="iconfont icon-cf-c78 mr"></i>我的订单</div>
+					<div class="item-after"><span class="iconfont icon-iconright "></span></div>
 				</a>
 				<!--订单信息-->
-				<div class="order-inf order-inf1">
+				<div class="order-inf order-inf1" v-if="userId">
 					<h3 class="o-title active">
 						<span class="item-t">订单确认</span>
 						<span class="item-a">2012-12-12 10:80</span>
@@ -66,15 +75,18 @@ module.exports = {
 	},
 	data:function(){
 		return {
-			
+			userId: '',
+			userPh: 'https://ss0.baidu.com/73F1bjeh1BF3odCf/it/u=3829429095,3803476155&fm=85&s=92D415CEDFE1B9725445C007000030C1'
 		}
 	},
 	route:{
 		activate:function(transition){
 			this.$root.$set('header',this.title);
 			transition.next();
+			this.userId = util.cookie.get('userId');
 		}
 	}
+
 };
 
 </script>

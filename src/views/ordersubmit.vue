@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
 		<header class="bar bar-nav title-bar">
-		  <a class="icon icon-left pull-left" @click="goback"></a>
+		  <a class="iconfont icon-iconleft pull-left" @click="goback"></a>
 		  <h1 class="title">提交订单</h1>
 		</header>
 		<div class="content list infinite-scroll home-content bg" >

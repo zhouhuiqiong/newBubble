@@ -1,7 +1,7 @@
 <template>
 	<div class="container container1">
 		<header class="bar bar-nav title-bar">
-		  <a class="icon icon-left pull-left" @click="gohistory"></a>
+		  <a class="iconfont icon-icon1 pull-left" v-go-history></a>
 		  <h1 class="title">商家详情</h1>
 		</header>
 		<div class="content list infinite-scroll list-content content1">
@@ -52,7 +52,7 @@
 						<!--商家服务-->
 						<div class="list-block media-list">
 							<ul>
-								<li class="itme-style min-itme-style" v-for="item in dataList" track-by="$index">
+								<li class="itme-style min-itme-style" v-for="item in dataList1" track-by="$index">
 									<a href="#/orderdetails" class="item-content">
 										<div class="item-media"><img src=""></div>
 										<div class="item-inner sale-txt">
@@ -62,10 +62,12 @@
 											<div class="sale">
 												已售 99999<span class="icon icon-right"></span>
 											</div>
+
 											<div class="sale-money">
 												<label class="server-money ">¥5,000</label>
 												<i>¥5,0000000</i>
 											</div>
+											
 										</div>
 									</a>
 								</li>
@@ -74,9 +76,9 @@
 						<!--end 商家服务-->
 					</div>
 					<div class="swiper-slide">
-						<div class="list-block media-list evaluate-list">
+						<div class="list-block media-list evaluate-list" >
 						<ul>
-							<li v-for="item in dataList" track-by="$index">
+							<li v-for="item in dataList2" track-by="$index">
 								<a href="#" class="item-content evaluate-content">
 									<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" ></div>
 									<div class="item-inner">
@@ -181,7 +183,7 @@ module.exports = {
 		});
 		t.$link = $('.activelink');
 		t.linkInit();
-		t.changeType();
+		t.changeType(1);
 	},
 	data:function(){
 		return {
@@ -190,13 +192,11 @@ module.exports = {
 				type: 'all',
 				items: []
 			},
-			dataList: []
+			dataList2: [],
+			dataList1: []
 		}
 	},
 	methods: {
-		gohistory: function(){
-			util.goBack();
-		},
 		changeType: function(num,type){
 			var t = this;
 			if(num){
@@ -205,13 +205,12 @@ module.exports = {
 					left: site
 				});
 			};
-
-			
 			//加载数据
 			var dataObj = new util.scrollList();
 			dataObj.init(this,{
-				le: '.active .content-block',//承载列表的数据
-				scrollObj: '.content'
+				le: '.swiper-slide-active .content-block',//承载列表的数据
+				scrollObj: '.content',
+				vessel: num
 			});
 			dataObj.getListData();
 		},

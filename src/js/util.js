@@ -129,9 +129,10 @@ window.util = {
       that.data = $.extend({
         page: 1,
         size: 10,
+        vessel: '',//组装数据的容器
         noData: false//false 有数据，ture 没数据
       },data);
-      that.obj.dataList = [];
+      that.obj['dataList' + that.data.vessel] =  [];
     },
     getServerDate: function(url,data){//获取远程数据
       return $.ajax({
@@ -145,13 +146,13 @@ window.util = {
       if(that.data.page == 1) that.initIScroll();
       //数据
       var ary = [];
-      for (var  i = 0; i < 15; i++) {
-        that.obj.dataList.push({
+      for (var  i = 0; i < 5; i++) {
+        that.obj['dataList' + that.data.vessel].push({
           id: i,
           name: 'demo' +  i
         });
       };
-      // that.obj.dataList.concat(ary);
+      that.obj['dataList' + that.data.vessel].concat(ary);
       
       that.data.page++;
       // that.getServerDate('http://www.renrenbuy.com/index.php/yungouapi/goods/get_shaidan_list',{
@@ -234,17 +235,15 @@ $.fn.scrollTo =function(options){
       document.cookie = str;
     },
     get: function(key){
-
       for (var i = document.cookie.split("; "), n = 0; n < i.length; n++) {
         var t = i[n].split("=");
-        console.log(t[0] == key);
         if (t[0] == key) return unescape(t[1])
       }
     },
-    del: function(){
+    del: function(key){
       var i = new Date;
       i.setTime(i.getTime() - 1e4),
-      document.cookie = e + "=a; expires=" + i.toGMTString()
+      document.cookie = key + "=a; expires=" + i.toGMTString()
     }
   }
   util.cookie =  Cookie;

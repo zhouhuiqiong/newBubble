@@ -213,6 +213,16 @@ body {
   background: #eeeeee;
   overflow: hidden;
 }
+.content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 a,
 input,
 textarea,
@@ -239,15 +249,6 @@ a:active {
   left: 0;
   background: #eeeeee;
   z-index: 2000;
-}
-.content {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
 }
 .bar-nav ~ .content {
   top: 2.2rem;
@@ -1056,7 +1057,7 @@ a:active {
 .bar .button-nav.pull-right .icon-right-nav {
   margin-left: -0.15rem;
 }
-.bar .icon {
+.bar .iconfont {
   position: relative;
   z-index: 20;
   padding: .5rem .1rem;
@@ -2050,7 +2051,7 @@ label.label-checkbox.active-state .item-inner:after {
   color: #cccccc;
   opacity: 1;
 }
-.search-input .icon {
+.search-input .iconfont {
   position: absolute;
   font-size: 0.9rem;
   color: #b4b4b4;

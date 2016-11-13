@@ -2,10 +2,10 @@
   <div class="container">
 	<div class="content list infinite-scroll home-content">
 		<nav class="bar bar-nav bar-nav-static search-nav">
-			<a class="open-adr-btn" v-link="{name:'address'}">{{address}}<i class="icon icon-down"></i></a>
+			<a class="open-adr-btn" v-link="{name:'address'}">{{address}}<i class="iconfont icon-icon-copy-copy"></i></a>
 			<a v-link="{name:'seach'}" class="search-input-box">
 				<div class="search-input">
-					<label class="icon icon-search" for="search"></label>
+					<label class="iconfont icon-chaxun" for="search"></label>
 					<input type="search" id="search" placeholder="输入商家,服务名称...">
 				</div>
 			</a>
@@ -18,10 +18,10 @@
 		</div>
 		<div class="select-wrap">
 			<ul class="seach-select-list">
-				<li @click="changeType($event,0)"><span>附近</span><i class="icon icon-down"></i></li>
-				<li @click="changeType($event,0)"><span>全部风俗</span><i class="icon icon-down"></i></li>
-				<li @click="changeType($event,0)"><span>智能排序</span><i class="icon icon-down"></i></li>
-				<li @click="changeType($event,1)"><span>筛选</span><i class="icon icon-down"></i></li>
+				<li @click="changeType($event,0)"><span>附近</span><i class="iconfont icon-icon-copy-copy"></i></li>
+				<li @click="changeType($event,0)"><span>全部风俗</span><i class="iconfont icon-icon-copy-copy"></i></li>
+				<li @click="changeType($event,0)"><span>智能排序</span><i class=" iconfont icon-icon-copy-copy"></i></li>
+				<li @click="changeType($event,1)"><span>筛选</span><i class=" iconfont icon-icon-copy-copy"></i></li>
 			</ul>
 			<!--list-->
 			<div class="select-box">
@@ -197,7 +197,7 @@ module.exports = {
 	components:{
       uiswiper: require('../components/swiper.vue'),
       uigoback: require('../components/goback.vue'),
-      uiload: require('../components/load.vue'),
+      uiload: require('../components/load.vue')
     }
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
 		<header class="bar bar-nav">
-		  <a class="icon icon-left pull-left" @click="gohistory"></a>
+		  <a class="iconfont icon-iconleft pull-left" v-go-history></a>
 		  <h1 class="title">商家相册</h1>
 		</header>
 		<div class="content list infinite-scroll home-content" >
@@ -28,9 +28,7 @@ module.exports = {
 		}
 	},
 	methods: {
-		gohistory: function(){
-			window.history.go(-1);
-		}
+		
 	},
 	route:{
 		activate:function(transition){

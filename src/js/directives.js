@@ -71,6 +71,28 @@ var showPlaceholder =  {
 		
 	}
 }
+//返回顶部
+var goHistory = {
+	bind: function(){
+		$(this.el).bind('click', function(){
+			window.history.go(-1);
+		});
+	}
+}
+//输入字段截取
+var sliceStr = {
+	bind: function(){
+		var t = this;
+		$(this.el).on('input', function(){
+			var str = $(this).val();
+			if(str.length > t.expression){
+				$(this).val(str.slice(0,t.expression));
+			};	
+		});
+	}
+}
 exports.infiniteScroll = infiniteScroll;
+exports.goHistory = goHistory;
+exports.sliceStr = sliceStr;
 // exports.delVal = delVal;
 // exports.showPlaceholder = showPlaceholder;

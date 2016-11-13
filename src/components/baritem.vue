@@ -12,10 +12,15 @@ module.exports = {
     icon: '',
     label: ''
   },
+  ready: function(){
+    
+
+  },
   computed: {
     iconClass () {
       return `icon-${this.icon}`
     }
+    
   }
 }
 </script>

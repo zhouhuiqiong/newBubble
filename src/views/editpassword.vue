@@ -2,7 +2,7 @@
 	<div class="container">
 		<header class="bar bar-nav title-bar">
 		  <a class="pull-right save-btn">保存</a>
-		  <a class="icon icon-left pull-left" @click="gohistory"></a>
+		  <a class="iconfont icon-iconleft pull-left" v-go-history></a>
 		  <h1 class="title">修改密码</h1>
 		</header>
 		<div class="content" >
@@ -38,9 +38,7 @@ module.exports = {
 		}
 	},
 	methods: {
-		gohistory: function(){
-			util.goBack();
-		}
+		
 	},
 	route:{
 		activate:function(transition){

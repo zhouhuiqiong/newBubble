@@ -2,7 +2,7 @@
 	<div class="container">
 		<header class="bar bar-nav title-bar">
 		  <a class="iconfont icon-iconleft pull-left" v-go-history></a>
-		  <h1 class="title">新用户快捷注册</h1>
+		  <h1 class="title">忘记密码</h1>
 		</header>
 
 		<div class="content login-box" >
@@ -29,7 +29,7 @@
 					<i class="iconfont icon-shanchu"></i>
 				</div>
 			</div>
-		  	<a class="change-btn change-btn1 quit" @click="signSubmit">注册</a>
+		  	<a class="change-btn change-btn1 quit" @click="signSubmit">登录</a>
 			<p class="min-news">验证码将在30分钟内发送至您的邮箱，请<em>查收邮件</em></p>
 		</div>
 

@@ -57,14 +57,14 @@
  		    	</div>
  		    </div>
  		</div>
- 		 		   <!--end 预约须知-->
-			<nav class="bar bar-tab foot-bar">
-				<div class="sale-money">
-					<label class="server-money server-money1 ">¥<em>5,000</em></label>
-					<i>¥5,0000000</i>
-				</div>
-				<button @click="orderdialog" class="btn1">立刻预约</button>
- 		    </nav>
+ 		<!--end 预约须知-->
+		<nav class="bar bar-tab foot-bar">
+			<div class="sale-money">
+				<label class="server-money server-money1 ">¥<em>5,000</em></label>
+				<i>¥5,0000000</i>
+			</div>
+			<button @click="orderdialog" class="btn1">立刻预约</button>
+		</nav>
  	</div>
 </template>
 <script>
@@ -85,7 +85,7 @@ module.exports = {
 	},
 	methods: {
 		orderdialog: function(){
-			this.$root.cookies ? (this.isOrderDialog = true,this.orderHandle()) : (window.location.href = '#/login');
+			this.$root.userId ? (this.isOrderDialog = true,this.orderHandle()) : (this.$router.go({path:'/login'}));
 		},
 		orderHandle: function(){
 			var that = this;
@@ -115,7 +115,7 @@ module.exports = {
 				$.toast("请选中已经阅读！");
 			}else if(!that.time){//时间到了
 				that.isOrderDialog = that.isDisabled = false;
-				window.location.href = '#/ordersubmit';
+				that.$router.go({path:'/ordersubmit'});
 			};
 		}
 	},

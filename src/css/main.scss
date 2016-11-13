@@ -70,7 +70,7 @@ $pa:0px 40px;
 	@include boxZC;
 }
 .animatebox{
-	-webkit-animation:animateTop .5s  ease  both;
+	-webkit-animation:animateTop 1s  ease  both;
 }
 @keyframes animateTop {
 	0%{
@@ -147,14 +147,13 @@ $pa:0px 40px;
 			border-right: none;
 		};
 		position:relative;
-		.icon{
+		.iconfont{
 			margin-left: 0.35rem;
-			font-size: 12px;
 			transition:all .3s ease-in;
 		}
 		&.active{
 			color:#000;
-			.icon{
+			.iconfont,.icon{
 				transform:rotate(180deg);
 			}
 			
@@ -194,7 +193,7 @@ $pa:0px 40px;
 		.news-tags{
 			position: absolute;
 			@include numRound($size:0.75rem);
-			top: 2px;
+			top: 8px;
 			right: -3px;
 			font-size: 9px;
 			border:1px solid #fff;
@@ -207,7 +206,7 @@ $pa:0px 40px;
 .open-adr-btn {
 	color:#000;
 	font-size: 16px;
-	.icon-down{
+	.icon-icon-copy-copy{
 		color:#d6d6d6;
 		font-size: 14px;
 	}
@@ -220,7 +219,7 @@ $pa:0px 40px;
 		border-radius: 0.6rem;
 	}
 	margin: 0px 0.4rem;
-	.icon-search{
+	.icon-chaxun{
 		font-size: 14px;
 	}
 	.icon-shanchu{
@@ -457,8 +456,10 @@ $pa:0px 40px;
 			background-color: #e5e5e5;
 		}
 	}
-	.icon{
+	.iconfont{
 		color:#000;
+		font-size: 30px;
+		margin-top: 0.15rem;
 	}
 }
 .content1,.bg{background:#f6f6f6;}
@@ -779,15 +780,18 @@ $pa:0px 40px;
 	}
 	@include title;
 }
-.total-item{
+.total-item,.total-item1{
 	height: 2.5rem !important;
 	position: relative;
-	@include boxJC;
+
 	font-size: 14px;
 	&:after{
 		@include bh;
 	}
 	color: #000;
+}
+.total-item{
+	@include boxJC;
 	.total{
 		color: #ff6b68;
 		font-weight: 500;
@@ -798,7 +802,15 @@ $pa:0px 40px;
 		font-size: 14px;
 	}	
 }
-
+.total-item1{
+	text-align: right;
+	.btn2{
+		margin-top: 0.6rem;
+		&:nth-of-type(1){
+			margin-right: 0.5rem;
+		}
+	}
+}
 .server-item2{
 	.server-t{
 		@include boxZC;
@@ -970,6 +982,11 @@ $pa:0px 40px;
 .order-inf1 {
 	.total,.btn2{
 		color:#000;
+	}
+}
+.order-inf2{
+	.itme-style{
+		margin:0px -1rem;
 	}
 }
 
@@ -1183,11 +1200,24 @@ $pa:0px 40px;
 		}
 	}
 }
-// .itme-style .item-title-row:nth-of-type(1){
-// 	line-height: 14px;
-// 	// .item-title{
-// 	// 	overflow: hidden;
-// 	// 	text-overflow: ellipsis;
-// 	// 	white-space:nowrap; 
-// 	// }
-// }
+.app,.container{
+ 	width: 100%;
+ 	height: 100%;
+}
+.bar-foot-nav .tab-item{
+	background: #fff;
+}
+.dome-time-box{
+	background:#fff; 
+	padding:0.1rem 0px 0px  0.25rem; 
+	margin-bottom: -2px; 
+}
+.myorder-list{
+	.order-inf:nth-of-type(1){
+		margin-top: -1px;
+	}
+}
+
+
+
+

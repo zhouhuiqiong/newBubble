@@ -1,7 +1,7 @@
 <template>
 	<div class="container container1">
 		<header class="bar bar-nav title-bar">
-		  <a class="icon icon-left pull-left" @click="gohistory"></a>
+		  <a class="iconfont icon-iconleft pull-left" @click="gohistory"></a>
 		  <h1 class="title">商家详情</h1>
 		</header>
 		<div class="content list infinite-scroll list-content content1">
