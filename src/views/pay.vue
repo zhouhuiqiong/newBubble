@@ -59,7 +59,7 @@
 			<!---->
 		</div>
 		<!--预约按钮-->
-		<a href="javascript:void(0)" class="max-btn" @click="submitPay">确认支付</a>
+		<button class="max-btn" @click="submitPay">确认支付</button>
 	</div>
 </template>
 <script>

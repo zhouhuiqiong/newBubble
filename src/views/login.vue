@@ -28,6 +28,7 @@ module.exports = {
 		var t = this;
 		new util.inputAnmition().init();
 		t.v = util.string;
+
 	},
 	data:function(){
 		return {
@@ -49,7 +50,11 @@ module.exports = {
 			}else{//开始登录，cookie
 				t.$dispatch('userId','666');
 				util.cookie.set('userId', '666');
-				t.$router.go({path:'/home'});
+				if(t.$route.query.back == 1){
+					util.goBack();
+				}else{
+					t.$router.go({path:'/home'});
+				};
 			}
 		}
 	},

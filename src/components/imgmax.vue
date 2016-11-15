@@ -1,6 +1,6 @@
 <template>
     <div class="max-img-box " v-show="maxbox" :class="{'animatebox': maxbox}">
-        <header class="bar bar-nav">
+        <header class="bar bar-nav title-bar">
             <a class="iconfont icon-iconleft pull-left" @click='closeImgBox'></a>
             <h1 class="title">{{activeimg}}/{{imgnum}}</h1>
         </header>
@@ -45,6 +45,7 @@
         methods: {
             closeImgBox: function(){
                 this.maxbox = false;
+                //this.$parent.$parent.isFootBar = true;
             },
             loadImg: function(){
                 var that = this;

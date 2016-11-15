@@ -62,7 +62,7 @@
 		</div>
 		<div class="select-shade" v-show="isSelectShade" @click="selectShade"></div>
 		<!--预约按钮-->
-		<a href="javascript:void(0)" class="max-btn" @click="submitform" :class="{ 'disabled': isDisabled}">确认预约</a>
+		<button class="max-btn" @click="submitform" :class="{ 'disabled': isDisabled}">确认预约</button>
 
 	</div>
 </template>

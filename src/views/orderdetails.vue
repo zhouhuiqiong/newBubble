@@ -58,12 +58,12 @@
  		    </div>
  		</div>
  		<!--end 预约须知-->
-		<nav class="bar bar-tab foot-bar">
+		<nav class="bar bar-tab foot-bar" >
 			<div class="sale-money">
 				<label class="server-money server-money1 ">¥<em>5,000</em></label>
 				<i>¥5,0000000</i>
 			</div>
-			<button @click="orderdialog" class="btn1">立刻预约</button>
+			<button @click="orderdialog" class="btn1" >立刻预约</button>
 		</nav>
  	</div>
 </template>
@@ -81,11 +81,12 @@ module.exports = {
 			checked: false,
 			isDisabled: true,
 			isOrderDialog: false
+			
 		}
 	},
 	methods: {
 		orderdialog: function(){
-			this.$root.userId ? (this.isOrderDialog = true,this.orderHandle()) : (this.$router.go({path:'/login'}));
+			this.$root.userId ? (this.isOrderDialog = true,this.orderHandle()) : (this.$router.go({path:'/login',query: {back:1}}));
 		},
 		orderHandle: function(){
 			var that = this;

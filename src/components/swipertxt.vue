@@ -15,8 +15,8 @@
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
     	</div> 
-        <uiimgmax :maxbox='maxbox' :aryimg='aryimg' :index='index'></uiimgmax>
     </div>
+    <uiimgmax :maxbox='maxbox' :aryimg='aryimg' :index='index'></uiimgmax>
 </template>
 <script>
 	require('../css/swiper.min.css');
@@ -58,6 +58,7 @@
                     maxbox: true,
                     index: index
                 });
+                //this.$parent.isFootBar = false;
             }
         },
         events: {

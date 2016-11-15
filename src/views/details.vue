@@ -143,7 +143,9 @@ module.exports = {
 					if(swiper.activeIndex == 0){
 						t.l = t.site1 + num * (-1);
 						var nowL = t.l < t.site2 ? t.l : t.site2;
-
+						if(t.dataList2.length == 0){
+							t.changeType(2);//加载数据
+						};
 					};
 					//2取进入1区
 					if(swiper.activeIndex == 1){
@@ -168,9 +170,15 @@ module.exports = {
 					}
 				};
 				t.$link.css({
-						left: num
-					});
+					left: num
+				});
+
+
 			},
+			onSlideChangeEnd: function(swiper){//切换结束时，告诉我现在是第几个slide,变化了走这个方法
+				console.log(t.activeIndex);
+
+		    },
 			onInit: function(){
 				var $nav = $('.swiper-pagination .swiper-pagination-bullet');
 				$nav.click(function(){

@@ -458,8 +458,8 @@ $pa:0px 40px;
 	}
 	.iconfont{
 		color:#000;
-		font-size: 30px;
-		margin-top: 0.15rem;
+		font-size: 22px;
+		margin-top: 0.1rem;
 	}
 }
 .content1,.bg{background:#f6f6f6;}
@@ -475,9 +475,9 @@ $pa:0px 40px;
 	.adr-specific{
 		color:#888;
 		@include boxZC;
-		.icon{
+		.iconfont{
 			color:#000;
-			margin-right: 0.2rem;
+			margin:0.2rem 0.2rem 0px 0px;
 
 		}
 	}
@@ -726,6 +726,7 @@ $pa:0px 40px;
 	right: 0px;
 	z-index: 1000;
 	font-size: 15px;
+	width: 100%;
 }
 
 .content-padded-wap{padding: 0.75rem;}
