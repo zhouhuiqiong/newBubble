@@ -179,6 +179,12 @@ module.exports = {
 				console.log(t.activeIndex);
 
 		    },
+		    onSlideNextEnd: function(){//向后
+
+		    },
+		    onSlidePrevEnd: function(){//向前
+
+		    },
 			onInit: function(){
 				var $nav = $('.swiper-pagination .swiper-pagination-bullet');
 				$nav.click(function(){
