@@ -158,7 +158,7 @@ module.exports = {
 				};
 
 			},
-			onTouchEnd: function(swiper){
+			onTouchEnd: function(swiper,event){
 				t.end = $(".swiper-wrapper").css('transform').replace('translate3d','').replace('(','').replace('）','').split(',')[0].replace('px','');
 				if(!t.clickFalse){//只点击了
 					return;
@@ -172,18 +172,19 @@ module.exports = {
 				t.$link.css({
 					left: num
 				});
-
-
 			},
 			onSlideChangeEnd: function(swiper){//切换结束时，告诉我现在是第几个slide,变化了走这个方法
-				console.log(t.activeIndex);
 
 		    },
-		    onSlideNextEnd: function(){//向后
-
+		    onSlideNextEnd: function(swiper){//2向后，这个方法走在onTouchEnd后面
+		    	t.$link.css({
+					left: t.site2
+				});
 		    },
-		    onSlidePrevEnd: function(){//向前
-
+		    onSlidePrevEnd: function(swiper){//1向前
+		    	t.$link.css({
+					left: t.site1
+				});
 		    },
 			onInit: function(){
 				var $nav = $('.swiper-pagination .swiper-pagination-bullet');

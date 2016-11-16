@@ -93,7 +93,7 @@ module.exports = function(router){
 			component: require('./views/myorderdetails.vue')
 		},
 		'*': {
-	      component: require('./views/login.vue')
+	      component: require('./views/home.vue')
 	    }
 	    
 		// '/my_views/:viewId': {
@@ -161,11 +161,12 @@ module.exports = function(router){
 		}else{
 			router.app.effect='back';
 		}
-		if(result == 'home' || result == 'personal'){
+		if(result == 'home' || result == 'personal' || !result){
 			$('#barNav').css('display','inline-block');
 		}else{
 			$('#barNav').hide();
-		}
+		};
+		
 		if(routeList.length > 1 && transition.to.name==routeList[routeList.length-2]['name']){
 			//router.app.effect='back';
 			routeList.splice(routeList.length-1,1);

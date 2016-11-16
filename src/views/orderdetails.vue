@@ -1,7 +1,7 @@
 <template>
 	<div class="container  ">
-		<div class="content home-content bg">
-			<div class="home-swiper">
+		<div class="content home-content bg"  style="z-index:200;">
+			<div class="home-swiper"  style="z-index:300;">
 				<uiswipertxt></uiswipertxt>
 			</div>
 			<dl class="introduce">

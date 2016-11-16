@@ -133,6 +133,8 @@ module.exports = {
 		//获取当前位置
 		that.getNowAdr();
 		
+		$('.icon-dairaku').parent('.tab-item').addClass('active');
+
 	},
 	data:function(){
 		return {
