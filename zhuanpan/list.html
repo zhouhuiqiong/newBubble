@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no, email=no">
+</head>
+<link rel="stylesheet" type="text/css" href="css/main.css" id="layerHref">
+<body id="app">
+	<header class="title"><i @click="return()"></i>获奖记录</header>
+	<div class="content">
+		<!--显示地址区域-->
+		<div class="adr-box">
+			<div class="sub-title">
+				<div>大转盘奖品收货地址：</div>
+				<div class="handle" v-show="!isAdr" @click="setAdr()">立即设置</div>
+				<div class="handle1" v-show="isAdr" @click="changeAdr()">更换地址</div>
+			</div>
+			<div class="handle-box">
+				<span class="no-data" v-show="!isAdr">未编辑收货地址</span>
+				<div class="my-user-adr" v-show="isAdr">
+					<div class="adr-t">
+						<span>张三</span>
+						<span>18601921357</span>
+					</div>
+					<div class="adr-d">北京市北京市丰台区诺德中心3号楼2102</div>
+				</div>
+			</div>
+		</div>
+		<!--获奖记录-->
+		<div class="sub-title">
+			<div>获奖记录：</div>
+		</div>
+		<table class="zhong-list">
+			<thead>
+				<tr>
+					<th>中奖时间</th>
+					<th>获得奖品</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>2016-11-17 09:00</td>
+					<td>200元京东E卡</td>
+				</tr>
+				<tr>
+					<td>2016-11-17 09:00</td>
+					<td>200元京东E卡</td>
+				</tr>
+				<tr>
+					<td>2016-11-17 09:00</td>
+					<td>200元京东E卡</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="js/resize.min.js"></script>
+<script type="text/javascript" src="js/layer.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/list.js"></script>
