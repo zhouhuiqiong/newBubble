@@ -166,7 +166,6 @@ module.exports = function(router){
 		}else{
 			$('#barNav').hide();
 		};
-		
 		if(routeList.length > 1 && transition.to.name==routeList[routeList.length-2]['name']){
 			//router.app.effect='back';
 			routeList.splice(routeList.length-1,1);

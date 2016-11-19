@@ -204,6 +204,10 @@ body {
 .home-content {
   bottom: 2.2rem; }
 
+.home-content1 {
+  z-index: 200;
+  bottom: 0; }
+
 .seach-content {
   bottom: 0px; }
 

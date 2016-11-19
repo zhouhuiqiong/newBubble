@@ -45,7 +45,7 @@
         methods: {
             closeImgBox: function(){
                 this.maxbox = false;
-                //this.$parent.$parent.isFootBar = true;
+                this.$parent.$parent.isFootBar = false;
             },
             loadImg: function(){
                 var that = this;

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-	<div class="content list infinite-scroll home-content">
+	<div class="content list infinite-scroll home-content" :class="{'home-content1': isSelectShade}">
 		<nav class="bar bar-nav bar-nav-static search-nav">
 			<a class="open-adr-btn" v-link="{name:'address'}">{{address}}<i class="iconfont icon-icon-copy-copy"></i></a>
 			<a v-link="{name:'seach'}" class="search-input-box">
@@ -133,7 +133,6 @@ module.exports = {
 		//获取当前位置
 		that.getNowAdr();
 		
-		$('.icon-dairaku').parent('.tab-item').addClass('active');
 
 	},
 	data:function(){
@@ -143,7 +142,8 @@ module.exports = {
 			dataList: [],
 			loading: false,
 			isSelectShade: false,
-			address: '东京'
+			address: '东京',
+			isIndex: false
 			
 		}
 	},
@@ -159,6 +159,8 @@ module.exports = {
 			transition.next();
 			var adr = util.cookie.get('address');
 			t.address = adr ? adr : '东京';
+			$('.icon-dairaku').parent('.tab-item').addClass('active');
+
 		}
 	},
 	methods: {
@@ -182,6 +184,7 @@ module.exports = {
 		},
 		selectShade: function(e){
 			this.changeType(e);
+			$('.seach-select-list li').removeClass('active');
 		},
 		submitScreen: function(){
 			var that = this;

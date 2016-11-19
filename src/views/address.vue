@@ -85,7 +85,7 @@ module.exports = {
 				util.cookie.set('address', txt);
 				t.isInput = false;
 				setTimeout(function(){
-					t.$router.go({path:'/'});
+					t.$router.go({path:'/home'});
 				},200)
 			});
 			t.$search.on('focus', function(){
