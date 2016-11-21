@@ -59,11 +59,11 @@
 
 			</div>
 		</div>
-		<div class="list-block infinite-list  media-list">
+		<div class="list-block infinite-list  media-list home-media-list">
 			<ul>
 				<li v-for="item in dataList" track-by="$index" class="itme-style">
 					<a href="#/details" class="item-content">
-						<div class="item-media"><img src=""></div>
+						<div class="item-media"><img src="https://ss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/864063689.png"></div>
 						<div class="item-inner">
 							<div class="item-title-row">
 								<div class="item-title">浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル店</div>
@@ -74,7 +74,7 @@
 								<span class="shop-tag ">安全</span>
 							</div>
 							<div class="item-title-row server-money-box">
-								<label class="server-money">¥5,000~¥5,000000</label>
+								<label class="server-money">¥5,00~¥5,0000</label>
 								<div class="item-after">1113人去过</div>
 							</div>
 						</div>
@@ -159,8 +159,9 @@ module.exports = {
 			transition.next();
 			var adr = util.cookie.get('address');
 			t.address = adr ? adr : '东京';
-			$('.icon-dairaku').parent('.tab-item').addClass('active');
-
+			setTimeout(function(){
+				$('.icon-dairaku').parent('.tab-item').addClass('active');
+			},10);
 		}
 	},
 	methods: {

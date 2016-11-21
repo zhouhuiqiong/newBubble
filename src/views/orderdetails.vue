@@ -1,6 +1,7 @@
 <template>
 	<div class="container  ">
 		<div class="content home-content bg" :class="{'home-content1': isFootBar}">
+			<a class="iconfont icon-icon1 order-details-back" v-go-history></a>
 			<div class="home-swiper">
 				<uiswipertxt></uiswipertxt>
 			</div>

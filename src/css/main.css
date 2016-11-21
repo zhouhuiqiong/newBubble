@@ -262,7 +262,8 @@ body {
   align-items: center; }
 
 .animatebox {
-  -webkit-animation: animateTop 1s  ease  both; }
+  animation: animateTop 0.5s ease both;
+  -webkit-animation: animateTop 0.5s ease both; }
 
 @keyframes animateTop {
   0% {
@@ -473,7 +474,8 @@ body {
 
 .itme-style .item-content {
   padding: 1rem;
-  position: relative; }
+  position: relative;
+  border-bottom: 1px solid #e3e3e3; }
   .itme-style .item-content .item-inner {
     padding: 0rem; }
     .itme-style .item-content .item-inner .item-title-row:nth-of-type(1) {
@@ -486,16 +488,7 @@ body {
       color: #888;
       font-size: 12px; }
   .itme-style .item-content:after {
-    position: absolute;
-    content: '';
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0px;
-    height: 1px;
-    background: #e3e3e3;
-    bottom: 0;
-    -webkit-transform: scaleY(0.5); }
+    background: transparent; }
 .itme-style .item-media {
   padding: 0rem !important;
   background: #000; }
@@ -947,9 +940,10 @@ body {
   padding-top: 1.0rem; }
 
 .server-item {
-  height: 2.75rem;
+  height: auto;
   background: #fff;
   margin: 0px 1rem;
+  padding: 0.15rem 0px;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -1390,10 +1384,12 @@ body {
     color: #abafae; }
 
 .place-tag-top {
+  animation: placeTop .2s  ease  both;
   -webkit-animation: placeTop .2s  ease  both;
   font-size: 10px; }
 
 .place-tag-bottom {
+  animation: placebottom .2s  ease  both;
   -webkit-animation: placebottom .2s  ease  both; }
 
 @keyframes placeTop {
@@ -1462,7 +1458,8 @@ body {
       width: 50%;
       height: 100%;
       border-radius: 0px;
-      background: transparent; }
+      background: transparent;
+      display: block; }
   #tab-swiper .swiper-slide {
     text-align: left; }
   #tab-swiper .list-block {
@@ -1517,5 +1514,30 @@ body {
 
 .myorder-list .order-inf:nth-of-type(1) {
   margin-top: -1px; }
+
+.order-details-back {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 800;
+  color: #fff; }
+
+.home-media-list ul:before {
+  background: transparent; }
+
+.edit-box img {
+  width: 5.0rem;
+  height: 5rem;
+  margin: 1rem auto 0px;
+  display: block; }
+
+@media (max-width: 320px) {
+  .seach-select-list > li {
+    font-size: 12px; }
+    .seach-select-list > li .iconfont {
+      font-size: 14px; }
+
+  .shop-tag1 {
+    width: 3.5rem; } }
 
 /*# sourceMappingURL=main.css.map */

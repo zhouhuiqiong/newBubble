@@ -9,17 +9,50 @@ var html = '<form class="delivery">'+
 new Vue({
 	el: '#app',
 	data: {
-		isAdr: false//是否有地址 
+		isAdr: false,//是否有地址
+		recordAry: [],//我的中奖记录
+		defaultAdr: {},
+		allAdr: []//获取全部地址
 	},
 	ready: function(){
 		var that = this;
-		that.uid = that.getQueryString('id');
-
-		that.changeAdr();
+		that.uid = that.getQueryString('uid');
+		that.id = that.getQueryString('id');
+		that.myRecord();
+		that.getAllAdr();
 	},
 	computed: {
 	},
 	methods: {
+		myRecord: function(){//获取个人中奖记录
+			var that = this;
+			that.getServerDate({
+				data: {
+					uid: that.uid,
+					id: that.id
+				},
+				url: 'get_member_prizes',
+				success: function(data){
+					that.recordAry = data.list;
+				}
+			})
+		},
+		getAllAdr: function(){//获取全部地址
+			var that = this;
+			that.getServerDate({
+				data: {
+					uid: that.uid
+				},
+				url: 'get_all_address',
+				success: function(data){
+					that.allAdr = data.data;
+					if(that.allAdr.length > 0) {
+						that.isAdr = true;
+						that.defaultAdr = that.allAdr[0];
+					}
+				}
+			});
+		},
 		returnFn: function(){
 			window.history.go(-1);
 		},
@@ -31,8 +64,8 @@ new Vue({
     	getServerDate: function(data){//远程获取数据
 		    $.ajax({
 				data: data.data,
-				url: data.url,
-				type: 'get',
+				url: 'http://test1.lianyingdai.com/yungouapi/activity/' + data.url,
+				type: 'post',
 				success: function(msg){
 					if(msg.status == 0){//最后修改
 						data.success(msg);
@@ -89,7 +122,7 @@ new Vue({
 						//请求添加接口
 						that.getServerDate({
 							data: userData,
-							url: '/index.php/yungouapi/activity/add_member_address',
+							url: 'add_member_address',
 							success: function(data){
 								that.msg('地址添加成功!');
 								that.isAdr = true;
@@ -105,38 +138,30 @@ new Vue({
 		},
 		changeAdr: function(){//编辑地址弹出框
 			var that = this;
-			that.getServerDate({
-				data: {
-					uid: that.uid
+			var html = '<ul class="change-adr-list">';
+			var list = that.allAdr;
+			for(var i=0; i<list.length; i++){
+				var check = i == 0 ? 'checked' : '';
+				html += '<li><p class="boxJ"><label><input name="address" curcheck='+i+' type="radio" '+check+' value='+list[i].id+'>'+list[i].shouhuoren+'</label><span>'+list[i].mobile+'</span></p><div class="change-adr-inft">'+list[i].jiedao+'</div></li>';
+			};
+			html += '</ul>';
+			layer.open({
+				title: '添加新地址',
+				btn: ['确认','取消'],
+				type: 1,
+				content: html,
+				yes: function(){
+				  that.setAddress();
+				  layer.closeAll();
 				},
-				url: 'index.php/yungouapi/activity/get_all_address',
-				success: function(){
-					var html = '<ul class="change-adr-list">';
-					var list = that.adrList = data.data;
-					for(var i=0; i<list.length; i++){
-						var check = i == 0 ? 'checked' : '';
-						html += '<li><p class="boxJ"><label><input name="address" curcheck='+i+' type="radio" '+check+' value='+list[i].id+'>'+list[i].shouhuoren+'</label><span>'+list[i].mobile+'</span></p><div class="change-adr-inft">'+list[i].jiedao+'</div></li>';
-					};
-					html += '</ul>';
-					layer.open({
-						title: '添加新地址',
-						btn: ['确认','取消'],
-						type: 1,
-						content: html,
-						yes: function(){
-						  that.setAddress();
-						  layer.closeAll();
-						},
-						no: function(){
+				no: function(){
 
-						}
-					});
-					$('.layermbox h3').addClass('add-adress-title').on('click', function(){
-						layer.closeAll();
-						that.addAdr();
-					});
 				}
-	        });   
+			});
+			$('.layermbox h3').addClass('add-adress-title').on('click', function(){
+				layer.closeAll();
+				that.addAdr();
+			});
 		},
 		setAddress: function(){//编辑地址
 	      var $curObj = $('.change-adr-list li input:checked');
@@ -144,16 +169,13 @@ new Vue({
 	      that.curIndex = $curObj.attr('curcheck');
 	      //加入修改地址的接口
 	      that.getServerDate({
-	        data:{uid: that.uid,did: that.curAdrId},
-	        url: '/index.php/yungouapi/activity/get_member_address',
+	        data:{	
+	        	uid: that.uid, 
+	        	did: that.curAdrId
+	        },
+	        url: 'get_member_address',
 	        success: function(data){
-	            var userData = that.adrList[that.curIndex];
-	            that.firstAdr = {
-	              name: userData.shouhuoren,
-	              mobile: userData.mobile,
-	              jiedao: userData.jiedao
-	            };
-	            that.isAdrList = true;
+	            that.defaultAdr = that.adrList[that.curIndex];
 	            that.msg('地址修改成功!');
 	        }
 	      });

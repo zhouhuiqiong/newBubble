@@ -156,10 +156,10 @@ module.exports = function(router){
 			router.app.effect='bottom';
 		}else if(result == 'news' || result == 'details'  || result == 'orderdetails'){
 			router.app.effect='left';
-		}else if(result == 'home'){
+		}else if(result == 'home' ||  !result){
 			router.app.effect='fade';
 		}else{
-			router.app.effect='back';
+			router.app.effect='fade';
 		}
 		if(result == 'home' || result == 'personal' || !result){
 			$('#barNav').css('display','inline-block');

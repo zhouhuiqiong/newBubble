@@ -62,7 +62,7 @@ body{
 			border-right:6px solid transparent;
 			border-bottom:12px solid #faca00;
 			position: absolute;
-			bottom: -16px;
+			bottom: -18px;
 			left: 50%;
 			margin-left: -6px;
 		}
@@ -115,7 +115,6 @@ body{
 		top: 50%;
 		left: 50%;
 		margin: -1rem 0px 0px -0.88rem;
-
 	}
 }
 .wheelcanvas0{
@@ -336,3 +335,18 @@ body{
 	padding: 20px 20px 20px 0px;
 }
 .layermbtn{overflow:hidden;}
+#record{
+	position: absolute;
+	bottom: 20px;
+	right: 0px;
+	font-size: 12px;
+	color:#faca00;
+}
+.change-adr-list{
+    width: 320px;
+    padding: 15px;
+
+}
+.change-adr-list li{
+    margin-bottom: 5px;
+}
