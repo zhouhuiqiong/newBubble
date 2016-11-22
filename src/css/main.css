@@ -1540,5 +1540,8 @@ body {
 
   .shop-tag1 {
     width: 3.5rem; } }
+#tab-swiper .swiper-slide-prev .list-block, #tab-swiper .swiper-slide-next .list-block {
+  position: absolute;
+  top: 0px; }
 
 /*# sourceMappingURL=main.css.map */

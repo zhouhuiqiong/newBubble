@@ -1252,3 +1252,9 @@ $pa:0px 40px;
     width: 3.5rem;
   }
 }
+#tab-swiper{
+	.swiper-slide-prev .list-block,.swiper-slide-next .list-block{
+		position: absolute;
+		top: 0px;
+	}
+}

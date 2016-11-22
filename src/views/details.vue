@@ -132,7 +132,6 @@ module.exports = {
 				t.start = $(".swiper-wrapper").css('transform').replace('translate3d','').replace('(','').replace('）','').split(',')[0].replace('px','');
 				t.activeIndex = swiper.activeIndex;
 				t.clickFalse = false;
-
 			},
 			onTouchMove: function(swiper){
 				t.clickFalse = true;
@@ -148,7 +147,6 @@ module.exports = {
 					if(swiper.activeIndex == 1){
 						 t.l = t.site2 - (414 - (num * (-1)));
 						var nowL = (t.l > t.site1 ? t.l : t.site1);
-						
 					};
 					t.$link.css({
 						left: nowL
@@ -217,16 +215,16 @@ module.exports = {
 			if(item){
 				if(item == 1){
 					var site =  t.site1;
-					t.dataList2 = [];
+					//t.dataList2 = [];
 				}else {
 					var site =  t.site2;
-					t.dataList1 = [];
+					//t.dataList1 = [];
 				}
 				t.$link.css({
 					left: site
 				});
 			};
-
+			
 			//加载数据
 			t.item = item;
 			var dataObj = new util.scrollList();
