@@ -1,5 +1,116 @@
 $(function(){
 	var that = this;
+	var turnplate = {
+		awards: 8,//多少个奖品
+		bRotate: false				//false:停止;ture:旋转
+	};
+	turnplate.defAward = {
+		'155': {
+			name: '15元红包',
+			img: '1.png',
+			index: 1
+		},
+		'156': {
+			name: '5夺宝币',
+			img: '6.png',
+			index: 2
+		},
+		'157': {
+			name: '200元京东E卡',
+			img: '9.png',
+			index: 3
+		},
+		'158': {
+			name: '3元红包',
+			img: '1.png',
+			index: 4
+
+		},
+		'159': {
+			name: '3夺宝币',
+			img: '6.png',
+			index: 5
+		},
+		'160': {
+			name: '50元的充值卡',
+			img: '8.png',
+			index: 6
+		},
+		'161': {
+			name: '小米手环2',
+			img: '7.png',
+			index: 7
+		},
+		'162': {
+			name: '1夺宝币',
+			img: '6.png',
+			index: 8
+		}
+	};
+	turnplate.vipAward = {
+		'153': {
+			name: '30元红包',
+			img: '1.png',
+			index: 1
+		},
+		'154': {
+			name: 'ipad Air2',
+			img: '2.png',
+			index: 2
+		},
+		'157': {
+			name: '500元京东E卡',
+			img: '11.png',
+			index: 3
+		},
+		'164': {
+			name: '10元红包',
+			img: '1.png',
+			index: 4
+		},
+		'165': {
+			name: '3元现金券',
+			img: '4.png',
+			index: 5
+		},
+		'166': {
+			name: '小米 Note2',
+			img: '10.png',
+			index: 6
+		},
+		'167': {
+			name: '7元现金券',
+			img: '5.png',
+			index: 7
+		},
+		'168': {
+			name: 'iPhone 7',
+			img: '3.png',
+			index: 7
+		}
+	};
+	that.msg = function(msg){
+		layer.open({
+		    content: msg,
+		    style: 'background:rgba(0,0,0,0.5);  color:#fff;  border:none;',
+		    time: 1,
+		    type: 0,
+		    shade: false
+		});
+    };
+	//远程获取数据
+	that.getServerDate = function(data){//远程获取数据
+	    $.ajax({
+			data: data.data,
+			url: 'http://test1.lianyingdai.com/index.php/yungouapi/activity/' + data.url,
+			type: 'post',
+			success: function(msg){
+				if(msg.status == 1){//最后修改
+					data.success(msg);
+				}
+			}
+		})
+    };
 	//信息滚动
     that.rollInf = function(){
       that.$roll = $('.win-use-news'),
@@ -25,19 +136,6 @@ $(function(){
     };
     //转盘操作
     that.turnplateFun = function(){
-    	var turnplate = {
-			restaraunts:[],				//大转盘奖品名称
-			colors:[],					//大转盘奖品区块对应背景颜色
-			outsideRadius:192,			//大转盘外圆的半径
-			textRadius:155,				//大转盘奖品位置距离圆心的距离
-			insideRadius:68,			//大转盘内圆的半径
-			startAngle:0,				//开始角度
-			bRotate:false				//false:停止;ture:旋转
-		};
-		turnplate.defText = ["15元红包", "5夺金币", "200元京东E卡", "3元红包", "3夺金币", "50元的充值卡", "小米手环2 ", "1夺金币"];//VIP
-		turnplate.vipText = ["30元红包", "ipad Air2", "500元京东E卡", "10元红包", "3元现金券", "小米 Note2", "7元现金券 ", "iPhone 7"];//VIP
-		turnplate.vipPh = ['1.png', '2.png', '11.png', '1.png', '4.png','10.png','5.png','3.png'];
-		turnplate.defPh = ['1.png','6.png','9.png','1.png','6.png','8.png','7.png','6.png'];
 		var rotateTimeOut = function (){
 			$('#wheelcanvas').rotate({
 				angle:0,
@@ -50,7 +148,7 @@ $(function(){
 		};
 		//旋转转盘 item:奖品位置; txt：提示语;
 		var rotateFn = function (item, txt){
-				var angles = item * (360 / turnplate.defText.length) - (360 / (turnplate.defText.length*2));
+				var angles = item * (360 / turnplate.awards) - (360 / (turnplate.awards*2));
 				if(angles<270){
 					angles = 270 - angles; 
 				}else{
@@ -68,54 +166,106 @@ $(function(){
 				});
 			};
 			$('#jiantou').click(function (){
-				if(turnplate.bRotate)return;
+				if(turnplate.bRotate) return;
 				turnplate.bRotate = !turnplate.bRotate;
-				//获取随机数(奖品个数范围内)
-				var item = rnd(1,turnplate.defText.length);
-				//奖品数量等于10,指针落在对应奖品区域的中心角度[252, 216, 180, 144, 108, 72, 36, 360, 324, 288]
-				var index = item - 1;
-
-				if(that.index == 0){//普通
-					that.text = turnplate.defText[index];
-					that.ph = turnplate.defPh[index];
-				}else{
-					that.text = turnplate.vipText[index];
-					that.ph = turnplate.vipPh[index];
-				};
-				$('.zhong-ph').css('background-image', 'url("images/jiang/'+that.ph+'")');
-				console.log(that.text);
-				$('.zhong-t').text(that.text);
-				rotateFn(item);
-
+				that.getServerDate({
+					data:{
+						id: that.gameType,
+						uid: that.uid
+					},
+					url: 'get_game_prizes',
+					success: function(data){
+						//获取随机数(奖品个数范围内)
+						var gameId = data.data.id;
+						that.aryData = that.index == 0 ? turnplate.defAward : turnplate.vipAward;
+						that.text = that.aryData[gameId].name;
+						that.ph = that.aryData[gameId].img;
+						$('.zhong-ph').css('background-image', 'url("images/jiang/'+that.ph+'")');
+						$('.zhong-t').text(that.text);
+						rotateFn(parseInt(that.aryData[gameId].index));
+						that.getGameNum();//游戏次数
+					}
+				});
 			});
-			function rnd(n, m){
-				var random = Math.floor(Math.random()*(m-n+1)+n);
-				return random;
+			
+	};
+	//获取游戏次数
+	that.getGameNum = function(){
+		that.getServerDate({
+			data: {
+				id: that.gameType,
+				uid: that.uid
+			},
+			url: 'get_game_count',
+			success: function(data){
+				if(data.data){
+					var num = data.data.count ? data.data.count : 0;
+				}else{
+					var num = 0;
+				};
+				$('.getGame' + that.index).text(num);    
 			}
+		});
 	};
 	that.action = function(){
 		var that = this;
 		that.$btn = $('.change-type-t .btn');
 		that.$btn.on('click', function(){
 			var index = that.index = that.$btn.index($(this));
-			
 			that.$btn.removeClass('active');
 			$(this).addClass('active');
 			//文本
 			$('.change-txt:eq('+index+')').show().siblings('.change-txt').hide();
 			//转盘图片
+			$('#wheelcanvas').removeClass('wheelcanvas0').removeClass('wheelcanvas1');
 			$('#wheelcanvas').addClass('wheelcanvas' + index);
-			//
+			//选择的游戏类型
+			that.gameType = index == 0 ? that.id : that.vid;
+			that.setHref();//中奖记录地址设置
+			that.getGameNum();//游戏次数
 		});
 		$('.close-dialog').on('click', function(){
 			$('#zhong-dialog').hide();
 		});
 	};
+	that.getQueryString = function(name){
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+		var r = window.location.search.substr(1).match(reg);
+		if (r != null) return unescape(r[2]); return null;
+	};
+	that.getAwardList = function(){//全部中奖记录
+		that.$rollObj = $('.win-use-news');
+		that.getServerDate({
+			data: {
+				id: that.id
+			},
+			url: 'get_prizes_recent',
+			success: function(data){
+				var ary = data.data;
+				var html = '';
+				for(var i=0; i<ary.length; i++){
+					var name = ary[i].mobile ? ary[i].mobile : ary[i].username;
+					html += '<li>'+name+'刚刚抽中<em>'+ary[i].name+'！</em></li>';
+				};
+				that.$rollObj.empty().append(html);
+				that.rollInf();
+			}
+		});
+	};
+	that.setHref = function(){
+		$('#record').attr('href','list.html?uid=' + that.uid + '&id='+ that.id + '&gameType=' + that.gameType  + '&vid=' + that.vid);
+	};
     that.init = function(){
     	that.index = 0;
-		that.rollInf();
+		that.gameType = that.id = that.getQueryString('id');
+		that.uid = that.getQueryString('uid');
+		that.vid = that.getQueryString('vid');
 		that.turnplateFun();
 		that.action();
+		that.getAwardList();//摇一摇中奖纪录轮播
+		that.getGameNum();//游戏次数
+		that.setHref();
 	};
+
 	that.init();
 });

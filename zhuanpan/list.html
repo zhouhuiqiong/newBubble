@@ -8,23 +8,23 @@
 </head>
 <link rel="stylesheet" type="text/css" href="css/main.css" id="layerHref">
 <body id="app">
-	<header class="title"><i @click="return()"></i>获奖记录</header>
+	<header class="title"><i @click="returnFn()"></i>获奖记录</header>
 	<div class="content">
 		<!--显示地址区域-->
 		<div class="adr-box">
 			<div class="sub-title">
 				<div>大转盘奖品收货地址：</div>
-				<div class="handle" v-show="!isAdr" @click="setAdr()">立即设置</div>
-				<div class="handle1" v-show="isAdr" @click="changeAdr()">更换地址</div>
+				<div class="handle" v-if="!isAdr" @click="setAdr()">立即设置</div>
+				<div class="handle1" v-else  @click="changeAdr()">更换地址</div>
 			</div>
 			<div class="handle-box">
-				<span class="no-data" v-show="!isAdr">未编辑收货地址</span>
-				<div class="my-user-adr" v-show="isAdr">
+				<span class="no-data" v-if="!isAdr">未编辑收货地址</span>
+				<div class="my-user-adr" v-else>
 					<div class="adr-t">
-						<span>张三</span>
-						<span>18601921357</span>
+						<span>{{defaultAdr.shouhuoren}}</span>
+						<span>{{defaultAdr.mobile}}</span>
 					</div>
-					<div class="adr-d">北京市北京市丰台区诺德中心3号楼2102</div>
+					<div class="adr-d">{{defaultAdr.jiedao}}</div>
 				</div>
 			</div>
 		</div>
@@ -40,17 +40,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>2016-11-17 09:00</td>
-					<td>200元京东E卡</td>
-				</tr>
-				<tr>
-					<td>2016-11-17 09:00</td>
-					<td>200元京东E卡</td>
-				</tr>
-				<tr>
-					<td>2016-11-17 09:00</td>
-					<td>200元京东E卡</td>
+				<tr v-for="item in recordAry">
+					<td>{{item.add_time | time}}</td>
+					<td>{{item.name}}</td>
 				</tr>
 			</tbody>
 		</table>

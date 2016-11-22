@@ -74,8 +74,9 @@ var showPlaceholder =  {
 //返回顶部
 var goHistory = {
 	bind: function(){
-		$(this.el).bind('click', function(){
-			window.history.go(-1);
+		$(this.el).bind('click', function(event){
+			window.history.back(-1);
+			event.stopPropagation();
 		});
 	}
 }

@@ -58,7 +58,7 @@
                     maxbox: true,
                     index: index
                 });
-                //this.$parent.isFootBar = false;
+                this.$parent.isFootBar = true;
             }
         },
         events: {

@@ -11,6 +11,10 @@ $pa:0px 40px;
 .home-content{
 	bottom: 2.2rem;
 }
+.home-content1{
+	z-index: 200;
+	bottom: 0;
+}
 .seach-content{
 	bottom: 0px;
 }
@@ -46,11 +50,6 @@ $pa:0px 40px;
 	}
 	.swiper-pagination{
 		height: 1.5rem;
-		// background: #f00;
-		// width: auto;
-		// left: 50%;
-		// width: 150px;
-		// margin-left: -75px;
 	}
 
 }
@@ -70,7 +69,8 @@ $pa:0px 40px;
 	@include boxZC;
 }
 .animatebox{
-	-webkit-animation:animateTop 1s  ease  both;
+	animation: animateTop 0.5s ease both;
+	-webkit-animation: animateTop 0.5s ease both;
 }
 @keyframes animateTop {
 	0%{
@@ -271,9 +271,9 @@ $pa:0px 40px;
 			}
 		}
 		&:after{
-			position: absolute;
-			@include bt;
+			background: transparent;
 		}
+		border-bottom: 1px solid #e3e3e3;
 
 	}
 	.item-media{
@@ -352,7 +352,6 @@ $pa:0px 40px;
 	right: 0px;
 	bottom: 0px;
 	background:rgba(0,0,0,0.5);
-	//background: #f00;
 	z-index: 20;
 }
 .screen-item{
@@ -663,10 +662,10 @@ $pa:0px 40px;
 	padding-top: 1.0rem;
 }
 .server-item{
-	height: 2.75rem;
+	height: auto;
 	background: #fff;
 	margin:0px 1rem;
-
+	padding: 0.15rem 0px ;
 	@include boxJC;
 	position: relative;
 	&:after{
@@ -1052,10 +1051,12 @@ $pa:0px 40px;
 	}
 }
 .place-tag-top{
+	animation:placeTop .2s  ease  both;
 	-webkit-animation:placeTop .2s  ease  both;
 	font-size: 10px;
 }
 .place-tag-bottom{
+	animation:placebottom .2s  ease  both;
 	-webkit-animation:placebottom .2s  ease  both;
 }
 @keyframes placeTop {
@@ -1144,6 +1145,7 @@ $pa:0px 40px;
 			height: 100%;
 			border-radius: 0px;
 			background: transparent;
+			display: block;
 		}
 	}
 	.swiper-slide{
@@ -1218,7 +1220,34 @@ $pa:0px 40px;
 		margin-top: -1px;
 	}
 }
+.order-details-back{
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+	z-index: 800;
+	color:#fff;
+}
 
-
-
-
+.home-media-list  ul{
+	&:before{
+		background: transparent;
+		
+	}
+}
+.edit-box img{
+	width: 5.0rem;
+	height: 5rem;
+	margin: 1rem auto 0px;
+	display: block;
+}
+@media(max-width: 320px){
+  .seach-select-list > li{
+    font-size: 12px;
+    .iconfont{
+      font-size: 14px;
+    }
+  }
+  .shop-tag1{
+    width: 3.5rem;
+  }
+}

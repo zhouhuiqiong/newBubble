@@ -23,7 +23,7 @@
 									<span class="shop-tag ">安全</span>
 								</div>
 								<div class="item-title-row server-money-box">
-									<label class="server-money">¥5,000~¥5,000000</label>
+									<label class="server-money">¥5,00~¥5,000</label>
 									<div class="item-after">1113人去过</div>
 								</div>
 							</div>
@@ -54,7 +54,7 @@
 							<ul>
 								<li class="itme-style min-itme-style" v-for="item in dataList1" track-by="$index">
 									<a href="#/orderdetails" class="item-content">
-										<div class="item-media"><img src=""></div>
+										<div class="item-media"><img src="https://ss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/864063689.png"></div>
 										<div class="item-inner sale-txt">
 											<div class="item-title-row">
 												<div class="item-title">浜松町駅ビル店</div>
@@ -143,14 +143,12 @@ module.exports = {
 					if(swiper.activeIndex == 0){
 						t.l = t.site1 + num * (-1);
 						var nowL = t.l < t.site2 ? t.l : t.site2;
-						if(t.dataList2.length == 0){
-							t.changeType(2);//加载数据
-						};
 					};
 					//2取进入1区
 					if(swiper.activeIndex == 1){
 						 t.l = t.site2 - (414 - (num * (-1)));
 						var nowL = (t.l > t.site1 ? t.l : t.site1);
+						
 					};
 					t.$link.css({
 						left: nowL
@@ -180,11 +178,13 @@ module.exports = {
 		    	t.$link.css({
 					left: t.site2
 				});
+				t.changeType(2);//加载数据
 		    },
 		    onSlidePrevEnd: function(swiper){//1向前
 		    	t.$link.css({
 					left: t.site1
 				});
+				t.changeType(1);//加载数据
 		    },
 			onInit: function(){
 				var $nav = $('.swiper-pagination .swiper-pagination-bullet');
@@ -215,19 +215,27 @@ module.exports = {
 		changeType: function(num,type){
 			var t = this;
 			if(num){
-				var site =  num == 1 ? t.site1 : t.site2;
+				if(num == 1){
+					var site =  t.site1;
+					t.dataList2 = [];
+				}else {
+					var site =  t.site2;
+					t.dataList1 = [];
+				}
 				t.$link.css({
 					left: site
 				});
 			};
+
 			//加载数据
+			t.num = num;
 			var dataObj = new util.scrollList();
 			dataObj.init(this,{
 				le: '.swiper-slide-active .content-block',//承载列表的数据
 				scrollObj: '.content',
 				vessel: num
 			});
-			dataObj.getListData();
+			dataObj.getListData(num);
 		},
 		linkInit: function(){//link 初始化位置计算
 			var t = this;

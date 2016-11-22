@@ -156,17 +156,16 @@ module.exports = function(router){
 			router.app.effect='bottom';
 		}else if(result == 'news' || result == 'details'  || result == 'orderdetails'){
 			router.app.effect='left';
-		}else if(result == 'home'){
+		}else if(result == 'home' ||  !result){
 			router.app.effect='fade';
 		}else{
-			router.app.effect='back';
+			router.app.effect='fade';
 		}
 		if(result == 'home' || result == 'personal' || !result){
 			$('#barNav').css('display','inline-block');
 		}else{
 			$('#barNav').hide();
 		};
-		
 		if(routeList.length > 1 && transition.to.name==routeList[routeList.length-2]['name']){
 			//router.app.effect='back';
 			routeList.splice(routeList.length-1,1);

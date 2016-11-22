@@ -1,7 +1,8 @@
 <template>
 	<div class="container  ">
-		<div class="content home-content bg"  style="z-index:200;">
-			<div class="home-swiper"  style="z-index:300;">
+		<div class="content home-content bg" :class="{'home-content1': isFootBar}">
+			<a class="iconfont icon-icon1 order-details-back" v-go-history></a>
+			<div class="home-swiper">
 				<uiswipertxt></uiswipertxt>
 			</div>
 			<dl class="introduce">
@@ -38,25 +39,26 @@
 				<dd><i></i><div>以前没来过这样的洗浴中心，今天体验了感觉很好，女宾浴处三个池子(牛奶浴，人参浴，温水池)水温都很舒服，水比较干净，准备的用品也齐全，自己啥都不用带这儿全有，非常方便</div></dd>
 			</dl>
 
- 		    <!--预约弹出框-->
- 		    <div class="dialog-wrap orderdialog" v-show="isOrderDialog">
- 		    	<div class="dialog-main">
- 		    		<h3>预约前必读</h3>
- 		    		<div class="content-padded">
- 		    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,
- 		    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,
- 		    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,
- 		    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,
- 		    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,
- 		    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白
- 		    		</div>
- 		    		<div class="ordercheck"><input type="checkbox" name="" v-model="checked" disabled="disabled"><label>我已阅读以上规则并同意遵守</label><span>阅读完毕才能勾选</span></div>
- 		    		<div class="btn-box">
- 		    			<button class="button-success" v-bind:class="{ 'disabled': isDisabled}"  @click="referorder">我知道了<i class="dome-time"></i></button>
- 		    		</div>
- 		    	</div>
- 		    </div>
+
  		</div>
+ 		<!--预约弹出框-->
+	    <div class="dialog-wrap orderdialog" v-show="isOrderDialog">
+	    	<div class="dialog-main">
+	    		<h3>预约前必读</h3>
+	    		<div class="content-padded">
+	    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,
+	    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,
+	    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,
+	    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,
+	    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,
+	    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白
+	    		</div>
+	    		<div class="ordercheck"><input type="checkbox" name="" v-model="checked" disabled="disabled"><label>我已阅读以上规则并同意遵守</label><span>阅读完毕才能勾选</span></div>
+	    		<div class="btn-box">
+	    			<button class="button-success" v-bind:class="{ 'disabled': isDisabled}"  @click="referorder">我知道了<i class="dome-time"></i></button>
+	    		</div>
+	    	</div>
+	    </div>
  		<!--end 预约须知-->
 		<nav class="bar bar-tab foot-bar" >
 			<div class="sale-money">
@@ -80,8 +82,8 @@ module.exports = {
 		return {
 			checked: false,
 			isDisabled: true,
-			isOrderDialog: false
-			
+			isOrderDialog: false,
+			isFootBar: false
 		}
 	},
 	methods: {
