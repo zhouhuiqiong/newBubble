@@ -966,7 +966,7 @@ $pa:0px 40px;
 	margin:0px -1rem;
 	padding:0px 1rem;
 	font-weight: normal;
-	font-size: 0.6rem;
+	font-size: 14px;
 	&:after{
 		@include bt;
 	}
@@ -979,6 +979,13 @@ $pa:0px 40px;
 		}
 	}
 }
+.o-title1{
+	.item-t{
+		color:#000;
+		
+	}
+}
+
 .order-inf1 {
 	.total,.btn2{
 		color:#000;
@@ -989,7 +996,9 @@ $pa:0px 40px;
 		margin:0px -1rem;
 	}
 }
-
+.order-inf3:nth-of-type(1){
+	margin-top: 0px;
+}
 .user-center-item{
 	@include boxJC;
 	height: 2.1rem;
@@ -1006,6 +1015,15 @@ $pa:0px 40px;
 	height: 3.6rem;
 	.item-after{
 		@include boxZC;
+	}
+}
+.user-center-item2{
+	.item-title{
+		width: 5.0rem;
+		margin-right: 0.5rem;
+	}
+	.item-after{
+
 	}
 }
 .user-center-list{
@@ -1258,3 +1276,43 @@ $pa:0px 40px;
 		top: 0px;
 	}
 }
+.order-inf3{
+	.order-inf-t{
+		@include boxJ;
+		.icon{
+			color:#9ab9d6;
+		}
+		img{
+			vertical-align: -0.2rem;
+		}
+	}
+	.o-title{
+		.order-del-ic{
+			color:#020202;
+			margin-left: 0.25rem;
+			vertical-align:0.05rem;
+		}
+	}
+}
+.shop-txt{
+	.shop-sub-t{
+		font-size: 12px;
+		color:#888;
+		margin-top: 0.3rem;
+		@include boxJ;
+		span:nth-of-type(1){
+			@include flex;
+			@include ellipsisL($link: 1);
+		}
+	}
+	.shop-yu-time{
+		margin-top: 0.5rem;
+
+	}
+
+}
+.shop-yu-time{font-size: 10px; color:#888;}
+.clr1{color:#68bdff !important}/*lan*/
+.clr2{color:#1d1a1a !important;}/*hei*/
+.clr3{color:#ff6b68}/*hong*/
+.ver{vertical-align: -2px; margin-right: 0.4rem;}
