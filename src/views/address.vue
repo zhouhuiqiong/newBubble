@@ -3,7 +3,7 @@
 		<div class="adr-main">
 			<div class="bar-header-secondary">
 				<div class="searchbar">
-					<a class="searchbar-cancel" >取消</a>
+					<a class="searchbar-cancel" v-link="{name:'home'}">取消</a>
 					<div class="search-input">
 						<label class="iconfont icon-chaxun" for="search"></label>
 						<input type="search" id='search' placeholder='输入商家,服务名称...' v-model="searchAdr"/>

@@ -132,8 +132,9 @@ window.util = {
         vessel: '',//组装数据的容器
         noData: false//false 有数据，ture 没数据
       },data);
-      that.obj.num = that.obj.num ? that.obj.num : '';
-      that.obj['dataList' + that.obj.num] =  [];
+      that.obj.item = parseInt(that.obj.item) ? that.obj.item : '';
+      that.obj['dataList' + that.obj.item] =  [];
+
     },
     getServerDate: function(url,data){//获取远程数据
       return $.ajax({
@@ -147,13 +148,13 @@ window.util = {
       if(that.data.page == 1) that.initIScroll();
       //数据
       var ary = [];
-      for (var  i = 0; i < 5; i++) {
-        that.obj['dataList' + that.obj.num].push({
+      for (var  i = 0; i < 10; i++) {
+        that.obj['dataList' + that.obj.item].push({
           id: i,
           name: 'demo' +  i
         });
       };
-      that.obj['dataList' + that.obj.num].concat(ary);
+      that.obj['dataList' + that.obj.item].concat(ary);
       that.data.page++;
       // that.getServerDate('http://www.renrenbuy.com/index.php/yungouapi/goods/get_shaidan_list',{
       // }).success(function(data){

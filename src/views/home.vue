@@ -63,7 +63,7 @@
 			<ul>
 				<li v-for="item in dataList" track-by="$index" class="itme-style">
 					<a href="#/details" class="item-content">
-						<div class="item-media"><img src="https://ss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/864063689.png"></div>
+						<div class="item-media"><img src="../images/1.jpg"></div>
 						<div class="item-inner">
 							<div class="item-title-row">
 								<div class="item-title">浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル店</div>

@@ -212,10 +212,10 @@ module.exports = {
 		}
 	},
 	methods: {
-		changeType: function(num,type){
+		changeType: function(item,type){
 			var t = this;
-			if(num){
-				if(num == 1){
+			if(item){
+				if(item == 1){
 					var site =  t.site1;
 					t.dataList2 = [];
 				}else {
@@ -228,14 +228,13 @@ module.exports = {
 			};
 
 			//加载数据
-			t.num = num;
+			t.item = item;
 			var dataObj = new util.scrollList();
 			dataObj.init(this,{
 				le: '.swiper-slide-active .content-block',//承载列表的数据
-				scrollObj: '.content',
-				vessel: num
+				scrollObj: '.content'
 			});
-			dataObj.getListData(num);
+			dataObj.getListData();
 		},
 		linkInit: function(){//link 初始化位置计算
 			var t = this;
