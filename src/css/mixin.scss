@@ -228,7 +228,12 @@ em{font-style: normal;}
 .save-btn{color:#000; line-height: 2.2rem;}
 .buttons-tab .button.active{
 	color: #ff6b68;
- 	border-color: #ff6b68;
+ 	border-color: transparent;
+ 	span{
+ 		display: inline-block;
+ 		border-bottom: 1px solid #ff6b68;
+ 		padding: 0px 0.25rem;
+ 	}
 
 }
 .list-block .item-inner:after{

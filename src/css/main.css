@@ -175,7 +175,11 @@ em {
 
 .buttons-tab .button.active {
   color: #ff6b68;
-  border-color: #ff6b68; }
+  border-color: transparent; }
+  .buttons-tab .button.active span {
+    display: inline-block;
+    border-bottom: 1px solid #ff6b68;
+    padding: 0px 0.25rem; }
 
 .list-block .item-inner:after {
   background: transparent !important; }
@@ -712,6 +716,13 @@ body {
     font-size: 22px;
     margin-top: 0.1rem; }
 
+.title-bar1 {
+  background: #000; }
+  .title-bar1 .title {
+    color: #fff; }
+  .title-bar1 .iconfont {
+    color: #888; }
+
 .content1, .bg {
   background: #f6f6f6; }
 
@@ -755,6 +766,21 @@ body {
 .details-tab {
   margin-top: 0.4rem; }
   .details-tab .tab-link:nth-of-type(1):after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 1px;
+    -webkit-transform: scaleX(0.5);
+    background: #e5e5e5;
+    top: 0;
+    top: 0.5rem;
+    bottom: 0.25rem; }
+
+.details-tab1 {
+  margin-top: 0rem; }
+  .details-tab1 .tab-link:nth-of-type(2):after {
     content: '';
     display: block;
     position: absolute;
@@ -1234,6 +1260,9 @@ body {
 .change-btn1 {
   background: #000; }
 
+.change-btn2 {
+  border-radius: 0px; }
+
 .user-inf-wap {
   height: 9.0rem;
   background: #000;
@@ -1301,6 +1330,10 @@ body {
 
 .o-title1 .item-t {
   color: #000; }
+
+.o-title2 {
+  background: #ff6b68;
+  color: #fff; }
 
 .order-inf1 .total, .order-inf1 .btn2 {
   color: #000; }
@@ -1599,6 +1632,10 @@ body {
     -webkit-box-orient: vertical; }
 .shop-txt .shop-yu-time {
   margin-top: 0.5rem; }
+
+.logbg {
+  width: 100%;
+  display: block; }
 
 .shop-yu-time {
   font-size: 10px;

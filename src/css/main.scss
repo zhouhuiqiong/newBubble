@@ -461,6 +461,15 @@ $pa:0px 40px;
 		margin-top: 0.1rem;
 	}
 }
+.title-bar1{
+	background: #000;
+	.title{
+		color:#fff;
+	}
+	.iconfont{
+		color:#888;
+	}
+}
 .content1,.bg{background:#f6f6f6;}
 .bg1{background:#fff;}
 .content2{padding-top: 0rem;}
@@ -497,6 +506,18 @@ $pa:0px 40px;
 		// }
 	}
 	
+}
+.details-tab1{
+	margin-top: 0rem;
+	.tab-link{
+		&:nth-of-type(2){
+			&:after{
+				@include br;
+				top: 0.5rem;
+				bottom: 0.25rem;
+			}
+		}
+	}
 }
 .min-itme-style{
 	.item-media{
@@ -924,6 +945,9 @@ $pa:0px 40px;
 .change-btn1{
 	background:#000;
 }
+.change-btn2{
+	border-radius: 0px;
+}
 .user-inf-wap{
 	height: 9.0rem;
 	background: #000;
@@ -985,7 +1009,10 @@ $pa:0px 40px;
 		
 	}
 }
-
+.o-title2{
+	background: #ff6b68;
+	color: #fff;
+}
 .order-inf1 {
 	.total,.btn2{
 		color:#000;
@@ -1023,7 +1050,7 @@ $pa:0px 40px;
 		margin-right: 0.5rem;
 	}
 	.item-after{
-
+		
 	}
 }
 .user-center-list{
@@ -1311,6 +1338,8 @@ $pa:0px 40px;
 	}
 
 }
+.logbg{width: 100%; display: block;}
+
 .shop-yu-time{font-size: 10px; color:#888;}
 .clr1{color:#68bdff !important}/*lan*/
 .clr2{color:#1d1a1a !important;}/*hei*/

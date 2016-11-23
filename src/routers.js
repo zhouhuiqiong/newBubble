@@ -92,6 +92,14 @@ module.exports = function(router){
 			name: 'myorderdetails',
 			component: require('./views/myorderdetails.vue')
 		},
+		'/suitelogin': {//随从登录
+			name: 'suitelogin',
+			component: require('./views/suitelogin.vue')
+		},
+		'/suiteorder': {//随从订单
+			name: 'suiteorder',
+			component: require('./views/suiteorder.vue')
+		},
 		'*': {
 	      component: require('./views/home.vue')
 	    }

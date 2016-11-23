@@ -150,15 +150,20 @@ module.exports = {
             name: 'sign'
           },
           '/forget': {
-            name: 'forget',
+            name: 'forget'
           },
           '/myorder': {
-            name: 'myorder',
+            name: 'myorder'
           },
           '/myorderdetails': {
-            name: 'myorderdetails',
-          }
-          
+            name: 'myorderdetails'
+          },
+          '/suitelogin': {
+            name: 'suitelogin'
+          },
+          '/suiteorder': {
+            name: 'suiteorder'
+          }         
         },
         effect          : 'fade',
         header          : '首页',

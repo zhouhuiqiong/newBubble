@@ -175,7 +175,11 @@ em {
 
 .buttons-tab .button.active {
   color: #ff6b68;
-  border-color: #ff6b68; }
+  border-color: transparent; }
+  .buttons-tab .button.active span {
+    display: inline-block;
+    border-bottom: 1px solid #ff6b68;
+    padding: 0px 0.25rem; }
 
 .list-block .item-inner:after {
   background: transparent !important; }
