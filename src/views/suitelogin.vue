@@ -50,7 +50,7 @@ module.exports = {
 				if(t.$route.query.back == 1){
 					util.goBack();
 				}else{
-					t.$router.go({path:'/home'});
+					t.$router.go({path:'/suitepersonal'});
 				};
 			}
 		}

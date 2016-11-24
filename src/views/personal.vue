@@ -7,14 +7,14 @@
 					<img v-else="userId" src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2995040420,4087761391&fm=96">
 
 
-					<p v-if="userId"><a v-link="{name:'editlist'}">去去就来<span class="iconfont icon-iconright ml"></span>
+					<p v-if="userId" class="user-name"><a v-link="{name:'editlist'}">去去就来<span class="iconfont icon-iconright ml"></span>
 	</a ></p>
-					<p v-else><a v-link="{name:'login'}">点击登录<span class="iconfont icon-iconright ml"></span>
+					<p v-else class="user-name"><a v-link="{name:'login'}">点击登录<span class="iconfont icon-iconright ml"></span>
 	</a ></p>
 				</div>
 			</div>
 			<div class="user-nav-list" >
-				<a class="yu-time" v-if="userId">
+				<a class="yu-time" v-if="userId" v-link="{name:'myorder'}">
 					<div class="item-title"><i class="iconfont icon-cf-c78 mr"></i>我的订单</div>
 					<div class="item-after"><span class="iconfont icon-iconright "></span></div>
 				</a>

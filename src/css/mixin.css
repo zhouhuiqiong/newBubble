@@ -26,10 +26,8 @@ em {
 
 @font-face {
   font-family: 'iconfont';
-  src: url("//at.alicdn.com/t/font_1478529469_2955549.eot");
-  /* IE9*/
-  src: url("//at.alicdn.com/t/font_1478529469_2955549.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1478529469_2955549.woff") format("woff"), url("//at.alicdn.com/t/font_1478529469_2955549.ttf") format("truetype"), url("//at.alicdn.com/t/font_1478529469_2955549.svg#iconfont") format("svg");
-  /* iOS 4.1- */ }
+  src: url("//at.alicdn.com/t/font_aaqlwhx2i46xbt9.eot");
+  src: url("//at.alicdn.com/t/font_aaqlwhx2i46xbt9.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_aaqlwhx2i46xbt9.woff") format("woff"), url("//at.alicdn.com/t/font_aaqlwhx2i46xbt9.ttf") format("truetype"), url("//at.alicdn.com/t/font_aaqlwhx2i46xbt9.svg#iconfont") format("svg"); }
 .iconfont {
   font-family: "iconfont";
   font-size: 16px;
@@ -105,6 +103,12 @@ em {
 .icon-chaxun:before {
   content: "\e60e"; }
 
+.icon-mingpianxuanzhong01:before {
+  content: "\e616"; }
+
+.icon-yxj-auth:before {
+  content: "\e645"; }
+
 .shop-tag, .shop-tag1 {
   border: 1px solid #d6d6d6;
   color: #888;
@@ -169,6 +173,12 @@ em {
   border: 1px solid #68bdff;
   color: #68bdff !important; }
 
+/*lan*/
+.btn23 {
+  border: 1px solid #ff6b68;
+  color: #ff6b68 !important; }
+
+/*ju*/
 .save-btn {
   color: #000;
   line-height: 2.2rem; }

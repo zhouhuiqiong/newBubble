@@ -100,6 +100,14 @@ module.exports = function(router){
 			name: 'suiteorder',
 			component: require('./views/suiteorder.vue')
 		},
+		'/suitepersonal': {//随从个人中心
+			name: 'suitepersonal',
+			component: require('./views/suitepersonal.vue')
+		},
+		'/suitenews': {//随从个人中心
+			name: 'suitenews',
+			component: require('./views/suitenews.vue')
+		},
 		'*': {
 	      component: require('./views/home.vue')
 	    }
@@ -171,8 +179,11 @@ module.exports = function(router){
 		}
 		if(result == 'home' || result == 'personal' || !result){
 			$('#barNav').css('display','inline-block');
+		}else if(result == 'suiteorder' || result == 'suitepersonal' || result == 'suitenews'){
+			$('#suiteNav').css('display','inline-block');
 		}else{
-			$('#barNav').hide();
+			$('#barNav,#suiteNav').hide();
+
 		};
 		if(routeList.length > 1 && transition.to.name==routeList[routeList.length-2]['name']){
 			//router.app.effect='back';

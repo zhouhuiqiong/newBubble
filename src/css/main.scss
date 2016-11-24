@@ -190,14 +190,7 @@ $pa:0px 40px;
 		color:#000;
 		font-size: 1.0rem;
 		position: relative;
-		.news-tags{
-			position: absolute;
-			@include numRound($size:0.75rem);
-			top: 8px;
-			right: -3px;
-			font-size: 9px;
-			border:1px solid #fff;
-		}
+
 	}
 	.search-input-box{
 		@include flex;
@@ -211,7 +204,14 @@ $pa:0px 40px;
 		font-size: 14px;
 	}
 }
-
+.news-tags{
+	position: absolute;
+	@include numRound($size:0.75rem);
+	top: 8px;
+	right: -3px;
+	font-size: 9px;
+	border:1px solid #fff;
+}
 .search-input{
 	input{
 		border:1px solid #d6d6d6;
@@ -955,13 +955,14 @@ $pa:0px 40px;
 }
 .image-text{
 	color:#fff;
+	text-align: center;
 	img{
 		width: 2.75rem;
 		height: 2.75rem;
 		background: #fff;
 		border-radius: 50%;		
 	}
-	p{
+	.user-name{
 		a{
 			color:#fff;
 		}
@@ -1050,9 +1051,37 @@ $pa:0px 40px;
 		margin-right: 0.5rem;
 	}
 	.item-after{
-		
+		@include boxJC;
+	}
+	position: relative;
+	&:after{
+		@include bt;
+
 	}
 }
+.user-center-item3{
+	@include boxJ;
+	.item-title{
+		width: 5.0rem;
+		margin-right: 0.5rem;
+		color:#000;
+	}
+	.txt-style{
+		@include boxJC;
+		.sub-txt{
+			text-align: right;
+			@include flex;
+			margin: 0px 0.5rem;
+		}
+	}
+	position: relative;
+	&:after{
+		@include bt;
+
+	}
+	padding: 0.25rem 0px ;
+}
+
 .user-center-list{
 	@include boxStyle;
 
@@ -1233,6 +1262,15 @@ $pa:0px 40px;
 		background: url('../images/u.jpg') no-repeat center;
 		background-size: contain;
 	}
+	.icon-order{
+		background: url('../images/oh.png') no-repeat center;
+		background-size: contain;
+		width: 1.5rem;
+	}
+	.icon-news{
+		background: url('../images/nh.png') no-repeat center;
+		background-size: contain;
+	}
 	&.active{
 		.icon-dairaku{
 			background: url('../images/ha.jpg') no-repeat center;
@@ -1307,7 +1345,7 @@ $pa:0px 40px;
 	.order-inf-t{
 		@include boxJ;
 		.icon{
-			color:#9ab9d6;
+			color:#888;
 		}
 		img{
 			vertical-align: -0.2rem;
@@ -1338,10 +1376,67 @@ $pa:0px 40px;
 	}
 
 }
-.logbg{width: 100%; display: block;}
+.icon-news{
+	position: relative;
+	.news-tags{
+		top: -3px;
+	}
+}
+.title-bar2{
+	&:after{
+		background: transparent;
+	}
+}
+.suite-inf{
+	font-size: 12px;
+	color: #b0b0b0;
+	margin: 0.75rem 0px ;
+}
+.order-num{
+	background: #ff6b68;
+	font-size: 12px;
+	@include box;
+	color:#fff;
+	text-align: center;
+	padding: 0.75rem 0px ;
+	>div{
+		@include flex;
+		h3{
+			font-size: 24px;
+			font-weight: bold;
+		}
+	}
+}
+.news-list{
+	color:#888;
+	li{
+		position: relative;
+		&:after{
+			@include bt;
+		}
+	}
+	.item-title-row {
+		.item-title{
+			color:#000;
+		}
+		.item-after{
+			font-size: 10px;
+		}
 
+	}
+	.news-number{
+		font-size: 12px;
+	}
+	.item-media img{
+		width: 2.0rem;
+		height: 2.0rem;
+		border-radius: 50%;
+	}
+}
+.logbg{width: 100%; display: block;}
 .shop-yu-time{font-size: 10px; color:#888;}
 .clr1{color:#68bdff !important}/*lan*/
 .clr2{color:#1d1a1a !important;}/*hei*/
 .clr3{color:#ff6b68}/*hong*/
 .ver{vertical-align: -2px; margin-right: 0.4rem;}
+.tr{text-align: right;}

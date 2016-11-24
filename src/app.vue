@@ -74,6 +74,11 @@
         <baritem path="/details" label="色相" icon="hue"></baritem>
         <baritem path="/personal" label="我的" icon="user"></baritem>
       </bar>
+
+      <suitebar class="bar-foot-nav"  id="suiteNav" style="display:none" id="suiteNav">
+        <suitebaritem path="/suiteorder" label="订单" icon="order " class="active"></suitebaritem>
+        <suitebaritem path="/suitenews" label="消息" icon="news"></suitebaritem>
+      </suitebar>
   </div>
 </template>
 <script>
@@ -163,7 +168,13 @@ module.exports = {
           },
           '/suiteorder': {
             name: 'suiteorder'
-          }         
+          },
+          '/suitepersonal': {
+            name: 'suitepersonal'
+          },
+          '/suitenews': {
+            name: 'suitenews'
+          }          
         },
         effect          : 'fade',
         header          : '首页',
@@ -174,7 +185,9 @@ module.exports = {
     },
     components:{
       bar: require('./components/bar.vue'),
-      baritem: require('./components/baritem.vue')
+      baritem: require('./components/baritem.vue'),
+      suitebar: require('./components/suitebar.vue'),
+      suitebaritem: require('./components/suitebaritem.vue')
     },
     created:function(){
 
