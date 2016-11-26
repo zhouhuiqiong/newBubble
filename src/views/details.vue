@@ -60,7 +60,7 @@
 												<div class="item-title">浜松町駅ビル店</div>
 											</div>
 											<div class="sale">
-												已售 99999<span class="icon icon-right"></span>
+												已售 99999<span class="iconfont icon-iconright"></span>
 											</div>
 
 											<div class="sale-money">

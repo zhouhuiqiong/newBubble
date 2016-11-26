@@ -71,7 +71,7 @@
     <router-view class="view" id="view" keep-alive :transition="effect" transition-mode="out-in"></router-view>
       <bar class="bar-foot-nav" style="display:none" id="barNav">
         <baritem path="/home" label="大楽" icon="dairaku" class="active"></baritem>
-        <baritem path="/details" label="色相" icon="hue"></baritem>
+        <baritem path="/huelist" label="色相" icon="hue"></baritem>
         <baritem path="/personal" label="我的" icon="user"></baritem>
       </bar>
 
@@ -174,6 +174,9 @@ module.exports = {
           },
           '/suitenews': {
             name: 'suitenews'
+          },
+          '/huedertails': {
+            name: 'huedertails'
           }          
         },
         effect          : 'fade',

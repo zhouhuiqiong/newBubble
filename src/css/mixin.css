@@ -135,6 +135,11 @@ em {
 .shop-tag1.active {
   color: #ff6b68; }
 
+.shop-tag2 {
+  color: #ff6b68;
+  padding: 0 0.75rem;
+  border-color: #ff6b68; }
+
 .min-shop-tag {
   padding: 0 0.5rem; }
 

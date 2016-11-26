@@ -2014,6 +2014,8 @@ label.label-checkbox.active-state .item-inner:after {
   margin-right: 0;
   -webkit-transition: all .3s;
           transition: all .3s;
+  border:1px solid #e7e7e7;
+  border-radius: 0.8rem;
 }
 .searchbar .search-input input {
   margin: 0;
@@ -2061,12 +2063,13 @@ label.label-checkbox.active-state .item-inner:after {
           transform: translate3D(0, -50%, 0);
 }
 .search-input label + input {
-  padding-left: 1.4rem;
+  padding-left: 1.5rem;
+  font-size: 12px;
 }
 .bar .searchbar {
   margin: 0 -0.5rem;
   padding: 0.4rem 0.5rem;
-  background: rgba(0, 0, 0, 0.1);
+
 }
 .bar .searchbar .search-input input {
   border: 0;

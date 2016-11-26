@@ -41,9 +41,9 @@
 
 
  		</div>
- 		<!--预约弹出框-->
+ 		<!--预约弹出框 -->
 	    <div class="dialog-wrap orderdialog" v-show="isOrderDialog">
-	    	<div class="dialog-main">
+	    	<div class="dialog-main yu-treaty">
 	    		<h3>预约前必读</h3>
 	    		<div class="content-padded">
 	    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,
@@ -53,9 +53,13 @@
 	    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,
 	    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白
 	    		</div>
-	    		<div class="ordercheck"><input type="checkbox" name="" v-model="checked" disabled="disabled"><label>我已阅读以上规则并同意遵守</label><span>阅读完毕才能勾选</span></div>
+	    		<div class="ordercheck">
+	    			<input type="checkbox" name="" v-model="checked" disabled="disabled"  class="mr">
+	    			<label>我已阅读以上规则并同意遵守</label>
+	    			<span class="clr3">({{news}})</span>
+	    		</div>
 	    		<div class="btn-box">
-	    			<button class="button-success" v-bind:class="{ 'disabled': isDisabled}"  @click="referorder">我知道了<i class="dome-time"></i></button>
+	    			<button class="btn2" v-bind:class="{ 'disabled': isDisabled}"  @click="referorder">我知道了<i class="dome-time"></i></button>
 	    		</div>
 	    	</div>
 	    </div>
@@ -83,7 +87,8 @@ module.exports = {
 			checked: false,
 			isDisabled: true,
 			isOrderDialog: false,
-			isFootBar: false
+			isFootBar: false,
+			news: '阅读完毕才能勾选'
 		}
 	},
 	methods: {
@@ -102,7 +107,8 @@ module.exports = {
 				var h = $(this).scrollTop()  + $(this)[0].clientHeight,
 					hContent = $(this)[0].scrollHeight;
 					if(h == hContent){
-						$('.ordercheck input').removeAttr('disabled');
+						$('.ordercheck input').prop('disabled', false);
+						that.news = '可以勾选';
 						that.isBase = true;
 					};
 			});
