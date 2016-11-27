@@ -112,6 +112,10 @@ module.exports = function(router){
 			name: 'huedertails',
 			component: require('./views/huedertails.vue')
 		},
+		'/chat': {//聊天
+			name: 'chat',
+			component: require('./views/chat.vue')
+		},
 		'*': {
 	      component: require('./views/home.vue')
 	    }
@@ -183,8 +187,10 @@ module.exports = function(router){
 		}
 		if(result == 'home' || result == 'personal' || !result || result == 'huelist'){
 			$('#barNav').css('display','inline-block');
+			$('#suiteNav').hide();
 		}else if(result == 'suiteorder' || result == 'suitepersonal' || result == 'suitenews'){
 			$('#suiteNav').css('display','inline-block');
+			$('#barNav').hide();
 		}else{
 			$('#barNav,#suiteNav').hide();
 

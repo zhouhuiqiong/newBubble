@@ -177,7 +177,11 @@ module.exports = {
           },
           '/huedertails': {
             name: 'huedertails'
-          }          
+          },
+          '/chat': {
+            name: 'chat'
+          }
+
         },
         effect          : 'fade',
         header          : '首页',

@@ -10,9 +10,10 @@
                 <div class="swiper-slide" v-for="item in aryimg">
                     <img :src="item.img" >
                 </div> 
-                <div class="swiper-pagination"></div>
-
             </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
         <!--大图幻灯片-->
     </div>
@@ -55,6 +56,8 @@
                     autoplay: 5000,
                     autoplay: 0,
                     direction: 'horizontal',
+                    prevButton:'.swiper-button-prev',
+                    nextButton:'.swiper-button-next',
                     initialSlide: that.index,
                     onInit: function(swiper){
                         that.imgnum = swiper.imagesToLoad.length;

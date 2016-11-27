@@ -68,10 +68,6 @@ $pa:0px 40px;
 	z-index: 1000;
 	@include boxZC;
 }
-.animatebox{
-	animation: animateTop 0.5s ease both;
-	-webkit-animation: animateTop 0.5s ease both;
-}
 @keyframes animateTop {
 	0%{
 		opacity: 0;
@@ -368,7 +364,7 @@ $pa:0px 40px;
 	right: 0px;
 	bottom: 0px;
 	background:rgba(0,0,0,0.5);
-	z-index: 20;
+	z-index: 100;
 }
 .select-shade1{
 	top: 2.2rem;
@@ -1600,6 +1596,96 @@ $pa:0px 40px;
 		.btn2{
 			background: #fff;
 		}
+	}
+}
+
+.chat-input-box{
+	height: 2.2rem;
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	padding: 0px 0.5rem;
+	border-top: 1px solid #fafafa;
+	@include boxZC;
+	input{
+		@include flex;
+		line-height: 1.5rem;
+		border: none;
+		border-radius: 0.5rem;
+		padding: 0px 0.5rem;
+		color: #000;
+		border: 1px solid #e5e5e5;
+
+	}
+	.btn231{
+		margin-left: 0.5rem;
+	}
+}
+/*chat*/
+.msg-list{
+	margin-top: 0.75rem;
+	padding: 0px 0.5rem;
+	p{
+		@include flex;
+		text-align: left;
+	    color:#404040;
+	    font-size: 12px;
+	    word-spacing: normal;
+   		word-break: break-all;
+		span{
+			display: inline-block;
+	    	padding: 0.5rem;
+			position: relative;
+	   		border-radius: 0.5rem;
+		}
+		em{
+
+		}
+	}
+}
+.uword{
+	@include box;
+	position: relative;
+	.offline{
+		width: 1.5rem;
+		height: 1.5rem;
+		border-radius: 50%;
+		position: absolute;
+		bottom: -0.1rem;
+	}
+	p span{
+	   background: #e5e5e5;
+	   margin-left: 2rem;
+	}
+	.u-jian{
+		position: absolute;
+		bottom: 0rem;
+		left: -0.4rem;
+		width: 0.65rem;
+		height: 0.45rem;
+		background: url('../images/un.png') no-repeat center;
+		background-size: contain; 
+	}
+}
+.iword{
+	@include box;
+	position: relative;
+	p{
+		text-align: right;
+		span{
+	   		background: #ff6b69;
+	   		margin-right: 1rem;
+	   		color:#fff;
+		}
+	}
+	.u-jian{
+		position: absolute;
+		bottom: -0.25rem;
+		right: -0.2rem;
+		width: 0.65rem;
+		height: 0.75rem;
+		background: url('../images/hn.png') no-repeat center;
+		background-size: contain; 
 	}
 }
 .logbg{width: 100%; display: block;}

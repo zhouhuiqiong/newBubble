@@ -1263,7 +1263,7 @@ a:active {
   width: 100%;
   background-color: #e7e7e7;
   display: block;
-  z-index: 15;
+  z-index: 1;
   -webkit-transform-origin: 50% 100%;
           transform-origin: 50% 100%;
 }
