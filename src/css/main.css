@@ -291,10 +291,6 @@ body {
   -webkit-align-items: center;
   align-items: center; }
 
-.animatebox {
-  animation: animateTop 0.5s ease both;
-  -webkit-animation: animateTop 0.5s ease both; }
-
 @keyframes animateTop {
   0% {
     opacity: 0;
@@ -620,7 +616,7 @@ body {
   right: 0px;
   bottom: 0px;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 20; }
+  z-index: 100; }
 
 .select-shade1 {
   top: 2.2rem; }
@@ -1423,6 +1419,8 @@ body {
     align-items: center; }
 
 .user-center-item2 {
+  height: auto;
+  padding: 0.25rem 0px;
   position: relative; }
   .user-center-item2 .item-title {
     width: 5.0rem;
@@ -1448,6 +1446,8 @@ body {
     background: #e3e3e3;
     bottom: 0;
     -webkit-transform: scaleY(0.5); }
+  .user-center-item2 .btn22 {
+    margin-right: 0.25rem; }
 
 .user-center-item3 {
   display: -webkit-box;

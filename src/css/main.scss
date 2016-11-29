@@ -1061,6 +1061,8 @@ $pa:0px 40px;
 	}
 }
 .user-center-item2{
+	height: auto;
+	padding: 0.25rem 0px ;
 	.item-title{
 		width: 5.0rem;
 		margin-right: 0.5rem;
@@ -1072,6 +1074,10 @@ $pa:0px 40px;
 	&:after{
 		@include bt;
 
+	}
+	.btn22{
+		margin-right: 0.25rem;
+		
 	}
 }
 .user-center-item3{

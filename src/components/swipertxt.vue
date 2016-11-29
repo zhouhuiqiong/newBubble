@@ -54,8 +54,9 @@
         },
         methods: {
             say: function(index){
+                this.maxbox = true;
                 this.$dispatch('img-dispatch',{
-                    maxbox: true,
+                    maxbox: this.maxbox,
                     index: index
                 });
                 this.$parent.isFootBar = true;

@@ -54,7 +54,8 @@
 	    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白
 	    		</div>
 	    		<div class="ordercheck">
-	    			<input type="checkbox" name="" v-model="checked" disabled="disabled"  class="mr">
+	    			<input type="checkbox" name="" v-model="checked" 
+	    			:disabled="isDisabled"  class="mr">
 	    			<label>我已阅读以上规则并同意遵守</label>
 	    			<span class="clr3">({{news}})</span>
 	    		</div>
@@ -85,10 +86,11 @@ module.exports = {
 	data:function(){
 		return {
 			checked: false,
-			isDisabled: true,
 			isOrderDialog: false,
 			isFootBar: false,
-			news: '阅读完毕才能勾选'
+			news: '阅读完毕才能勾选',
+			isReadFinish: false,
+			isDisabled: true
 		}
 	},
 	methods: {
@@ -107,7 +109,7 @@ module.exports = {
 				var h = $(this).scrollTop()  + $(this)[0].clientHeight,
 					hContent = $(this)[0].scrollHeight;
 					if(h == hContent){
-						$('.ordercheck input').prop('disabled', false);
+						that.isDisabled = false;
 						that.news = '可以勾选';
 						that.isBase = true;
 					};
@@ -130,6 +132,14 @@ module.exports = {
 	},
 	route:{
 		activate:function(transition){
+			//阅读初始化
+			this.news = '阅读完毕才能勾选';
+			this.checked = false;
+			this.isDisabled = true;
+			//大图
+			this.$children[0].maxbox = false;
+			this.isFootBar = false;
+
 			this.$root.$set('header',this.title);
 			transition.next();
 		}
