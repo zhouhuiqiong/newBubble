@@ -112,6 +112,9 @@ em {
 .icon-gerenzhongxin:before {
   content: "\e630"; }
 
+.icon-1:before {
+  content: "\e615"; }
+
 .shop-tag, .shop-tag1 {
   border: 1px solid #d6d6d6;
   color: #888;

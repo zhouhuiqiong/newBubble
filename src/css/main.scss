@@ -64,7 +64,7 @@ $pa:0px 40px;
 	left: 0px;
 	right: 0px;
 	bottom: 0px;
-	background: #ccc;
+	background: #000;
 	z-index: 1000;
 	@include boxZC;
 }
@@ -966,7 +966,16 @@ $pa:0px 40px;
 	height: 9.0rem;
 	background: #000;
 	@include boxZC;
+	position: relative;
+	.user-inf-news{
+		position: absolute;
+		top: 0.3rem;
+		right: 0.3rem;
+		font-size: 24px;
+		color: #fff;
+	}
 }
+
 .image-text{
 	color:#fff;
 	text-align: center;
@@ -981,6 +990,9 @@ $pa:0px 40px;
 			color:#fff;
 		}
 		margin-top: 0.5rem;
+		.icon-iconright{
+			vertical-align: -1px;
+		}
 	}
 }
 .user-nav-list{
@@ -993,8 +1005,11 @@ $pa:0px 40px;
 			vertical-align: -2px;
 		}
 	}
-		.yu-time:nth-of-type(1){
+	.yu-time:nth-of-type(1){
 		margin-top: 0px;
+	}
+	.order-inf{
+		margin-top: 0.4rem !important;
 	}
 }
 //title
@@ -1604,7 +1619,11 @@ $pa:0px 40px;
 	}
 	.ordercheck{
 		margin: 0.5rem;
-
+		input{
+			width: 20px;
+			height: 20px;
+			vertical-align: -5px;
+		}
 	}
 	.btn-box{
 		margin: 0.5rem 0px;
@@ -1708,5 +1727,6 @@ $pa:0px 40px;
 .clr1{color:#68bdff !important}/*lan*/
 .clr2{color:#1d1a1a !important;}/*hei*/
 .clr3{color:#ff6b68}/*hong*/
+.clr4{color:#000}/*hei*/
 .ver{vertical-align: -2px; margin-right: 0.4rem;}
 .tr{text-align: right;}

@@ -112,6 +112,9 @@ em {
 .icon-gerenzhongxin:before {
   content: "\e630"; }
 
+.icon-1:before {
+  content: "\e615"; }
+
 .shop-tag, .shop-tag1 {
   border: 1px solid #d6d6d6;
   color: #888;
@@ -282,7 +285,7 @@ body {
   left: 0px;
   right: 0px;
   bottom: 0px;
-  background: #ccc;
+  background: #000;
   z-index: 1000;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1309,7 +1312,14 @@ body {
   justify-content: center;
   -webkit-box-align: center;
   -webkit-align-items: center;
-  align-items: center; }
+  align-items: center;
+  position: relative; }
+  .user-inf-wap .user-inf-news {
+    position: absolute;
+    top: 0.3rem;
+    right: 0.3rem;
+    font-size: 24px;
+    color: #fff; }
 
 .image-text {
   color: #fff;
@@ -1323,6 +1333,8 @@ body {
     margin-top: 0.5rem; }
     .image-text .user-name a {
       color: #fff; }
+    .image-text .user-name .icon-iconright {
+      vertical-align: -1px; }
 
 .user-nav-list a {
   color: #888; }
@@ -1331,6 +1343,8 @@ body {
   vertical-align: -2px; }
 .user-nav-list .yu-time:nth-of-type(1) {
   margin-top: 0px; }
+.user-nav-list .order-inf {
+  margin-top: 0.4rem !important; }
 
 .o-title {
   height: 1.5rem;
@@ -1983,6 +1997,10 @@ body {
   margin-top: 0px; }
 .yu-treaty .ordercheck {
   margin: 0.5rem; }
+  .yu-treaty .ordercheck input {
+    width: 20px;
+    height: 20px;
+    vertical-align: -5px; }
 .yu-treaty .btn-box {
   margin: 0.5rem 0px; }
   .yu-treaty .btn-box .btn2 {
@@ -2103,6 +2121,10 @@ body {
   color: #ff6b68; }
 
 /*hong*/
+.clr4 {
+  color: #000; }
+
+/*hei*/
 .ver {
   vertical-align: -2px;
   margin-right: 0.4rem; }

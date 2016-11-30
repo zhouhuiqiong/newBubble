@@ -62,9 +62,9 @@
 				</div>
 			</div>
 			<div class="order-inf order-inf1 order-inf3" v-show="type2">
-				<h3 class="o-title o-title2">
+				<h3 class="o-title o-title1">
 					<span class="item-t">订单已完成</span>
-					<span class="item-a">2012-12-12 10:80</a></span>
+					<span class="item-a clr4">2012-12-12 10:80</a></span>
 				</h3>
 				<h3 class="order-inf-t" v-link="{ name: 'myorderdetails', query: { orderId: '1'}}">
 					<div><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg"><span>去问问</span></div>
