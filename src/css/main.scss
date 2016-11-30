@@ -64,7 +64,7 @@ $pa:0px 40px;
 	left: 0px;
 	right: 0px;
 	bottom: 0px;
-	background: #ccc;
+	background: #000;
 	z-index: 1000;
 	@include boxZC;
 }
@@ -327,7 +327,7 @@ $pa:0px 40px;
 			font-size: 1.1rem;
 		}
 		&.active{
-			color:#000;
+			color:#ff6b68;
 		}
 	}
 }
@@ -336,7 +336,7 @@ $pa:0px 40px;
 	position: absolute;
 	top: 40px;
 	left: 0px;
-	z-index:30;
+	z-index:130;
 	background:#fff;
 	right: 0px;
 	padding: 0px 1rem 0px  0.5rem;
@@ -473,7 +473,7 @@ $pa:0px 40px;
 	.iconfont{
 		color:#000;
 		font-size: 22px;
-		margin-top: 0.1rem;
+		// margin-top: 0.1rem;
 	}
 }
 .title-bar1{
@@ -501,7 +501,6 @@ $pa:0px 40px;
 		.iconfont{
 			color:#000;
 			margin:0.2rem 0.2rem 0px 0px;
-
 		}
 	}
 }
@@ -967,7 +966,16 @@ $pa:0px 40px;
 	height: 9.0rem;
 	background: #000;
 	@include boxZC;
+	position: relative;
+	.user-inf-news{
+		position: absolute;
+		top: 0.3rem;
+		right: 0.3rem;
+		font-size: 24px;
+		color: #fff;
+	}
 }
+
 .image-text{
 	color:#fff;
 	text-align: center;
@@ -982,6 +990,9 @@ $pa:0px 40px;
 			color:#fff;
 		}
 		margin-top: 0.5rem;
+		.icon-iconright{
+			vertical-align: -1px;
+		}
 	}
 }
 .user-nav-list{
@@ -994,8 +1005,11 @@ $pa:0px 40px;
 			vertical-align: -2px;
 		}
 	}
-		.yu-time:nth-of-type(1){
+	.yu-time:nth-of-type(1){
 		margin-top: 0px;
+	}
+	.order-inf{
+		margin-top: 0.4rem !important;
 	}
 }
 //title
@@ -1007,6 +1021,7 @@ $pa:0px 40px;
 	padding:0px 1rem;
 	font-weight: normal;
 	font-size: 14px;
+	overflow: hidden;
 	&:after{
 		@include bt;
 	}
@@ -1028,6 +1043,9 @@ $pa:0px 40px;
 .o-title2{
 	background: #ff6b68;
 	color: #fff;
+	&:after{
+		@include bt($color: #ff6b68);
+	}
 }
 .order-inf1 {
 	.total,.btn2{
@@ -1041,6 +1059,9 @@ $pa:0px 40px;
 }
 .order-inf3:nth-of-type(1){
 	margin-top: 0px;
+}
+.order-inf3{
+
 }
 .user-center-item{
 	@include boxJC;
@@ -1083,8 +1104,8 @@ $pa:0px 40px;
 .user-center-item3{
 	@include boxJ;
 	.item-title{
-		width: 5.0rem;
-		margin-right: 0.5rem;
+		width: 5.5rem;
+		// margin-right: 0.5rem;
 		color:#000;
 	}
 	.txt-style{
@@ -1092,7 +1113,10 @@ $pa:0px 40px;
 		.sub-txt{
 			text-align: right;
 			@include flex;
-			margin: 0px 0.5rem;
+			// margin: 0px 0.5rem;
+			word-wrap:break-word; 
+			white-space:normal; 
+			word-break:break-all;
 		}
 	}
 	position: relative;
@@ -1284,25 +1308,34 @@ $pa:0px 40px;
 		background-size: contain;
 	}
 	.icon-order{
-		background: url('../images/oh.png') no-repeat center;
+		background: url('../images/o.png') no-repeat center;
 		background-size: contain;
 		width: 1.5rem;
 	}
 	.icon-news{
-		background: url('../images/nh.png') no-repeat center;
+		background: url('../images/n.png') no-repeat center;
 		background-size: contain;
 	}
 	&.active{
 		.icon-dairaku{
-			background: url('../images/ha.jpg') no-repeat center;
+			background: url('../images/ha.png') no-repeat center;
 			background-size: contain;
 		}
 		.icon-hue{
-			background: url('../images/ah.jpg') no-repeat center;
+			background: url('../images/ah.png') no-repeat center;
 			background-size: contain;
 		}
 		.icon-user{
-			background: url('../images/au.jpg') no-repeat center;
+			background: url('../images/au.png') no-repeat center;
+			background-size: contain;
+		}
+		.icon-order{
+			background: url('../images/oh.png') no-repeat center;
+			background-size: contain;
+			width: 1.5rem;
+		}
+		.icon-news{
+			background: url('../images/nh.png') no-repeat center;
 			background-size: contain;
 		}
 	}
@@ -1595,7 +1628,11 @@ $pa:0px 40px;
 	}
 	.ordercheck{
 		margin: 0.5rem;
-
+		input{
+			width: 20px;
+			height: 20px;
+			vertical-align: -5px;
+		}
 	}
 	.btn-box{
 		margin: 0.5rem 0px;
@@ -1699,5 +1736,6 @@ $pa:0px 40px;
 .clr1{color:#68bdff !important}/*lan*/
 .clr2{color:#1d1a1a !important;}/*hei*/
 .clr3{color:#ff6b68}/*hong*/
+.clr4{color:#000}/*hei*/
 .ver{vertical-align: -2px; margin-right: 0.4rem;}
 .tr{text-align: right;}

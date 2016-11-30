@@ -76,7 +76,7 @@
       </bar>
 
       <suitebar class="bar-foot-nav"  id="suiteNav" style="display:none" id="suiteNav">
-        <suitebaritem path="/suiteorder" label="订单" icon="order " class="active"></suitebaritem>
+        <suitebaritem path="/suiteorder" label="订单" icon="order" class="active"></suitebaritem>
         <suitebaritem path="/suitenews" label="消息" icon="news"></suitebaritem>
       </suitebar>
   </div>

@@ -2,6 +2,7 @@
 	<div class="container ">
 		<div class="content bg home-content">
 			<div class="user-inf-wap">
+				<span class="iconfont icon-1 user-inf-news" v-link="{name:'news'}"></span>
 				<div class="image-text">
 					<img v-if="userId" :src="userPh">
 					<img v-else="userId" src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2995040420,4087761391&fm=96">
@@ -23,12 +24,15 @@
 					<div class="item-after"><span class="iconfont icon-iconright "></span></div>
 				</a>
 				<!--订单信息-->
-				<div class="order-inf order-inf1" v-if="userId">
+				<div class="order-inf order-inf1 order-inf3" v-if="userId">
 					<h3 class="o-title active">
 						<span class="item-t">订单确认</span>
 						<span class="item-a">2012-12-12 10:80</span>
 					</h3>
-					<h3 class="order-inf-t"><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg">去问问</h3>
+					<h3 class="order-inf-t" v-link="{ name: 'myorderdetails', query: { orderId: '1'}}">
+					<div><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg"><span>去问问</span></div>
+		  			<a class="iconfont icon-iconright"></a>
+					</h3>
 					<ul  class="list-block">
 						<li class="item-content" >
 							<div class="item-inner">
