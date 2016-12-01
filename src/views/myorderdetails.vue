@@ -40,8 +40,8 @@
 				</div>
 				<div class="user-center-item user-center-item2">
 					<div class="item-title">商家地址</div>
-					<div class="item-after">5-11-1 Ginza, Chuo-ku,银座/筑地/新桥地区
-东京,东京都,104-0061,日本</div>
+					<div class="item-after">银座/筑地/新桥地区
+东京,东京都日本</div>
 				</div>
 				<div class="user-center-item user-center-item2">
 					<div class="item-title">服务名称</div>

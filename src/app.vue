@@ -63,7 +63,46 @@
 .testa {
     display: flex;
 }
+.place-tag-top{
+  animation:placeTop .2s  ease  both;
+  -webkit-animation:placeTop .2s  ease  both;
+  font-size: 10px;
+}
+.place-tag-bottom{
+  animation:placebottom .2s  ease  both;
+  -webkit-animation:placebottom .2s  ease  both;
+}
+@keyframes placeTop {
+  0%{
+    opacity: 0;
+      -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        font-size: 14px;
+  }
+  100%{
+    opacity: 1;
+      -webkit-transform: translate3d(0,-0.8rem,0);
+        transform: translate3d(0, -0.8rem, 0);
+        font-size: 10px;
 
+  }
+}
+
+@keyframes placebottom {
+  0%{
+      -webkit-transform: translate3d(0,-0.8rem,0);
+        transform: translate3d(0, -0.8rem, 0);
+        font-size: 10px;
+
+  }
+  100%{
+      -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        font-size: 14px;
+
+  }
+  
+}
 </style>
 
 <template>

@@ -1,6 +1,5 @@
 
 require('./css/common.css');//加载公共样式
-// require('./css/animate.css');//加载公共样式
 require('./css/sm.css');//加载公共样式
 require('./css/main.css');//加载公共样式
 require('./js/zepto.min.js')
