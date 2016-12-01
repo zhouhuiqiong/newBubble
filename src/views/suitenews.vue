@@ -8,7 +8,7 @@
 			<div class="list-block infinite-list  media-list news-list">
 				<ul>
 					<li >
-						<a href="#" class="item-content">
+						<a v-link="{ name: 'chat', query: { id: '1'}}" class="item-content">
 						  <div class="item-media">
 						  	<img src="../images/suite/news.png" >
 						  </div>
@@ -27,7 +27,7 @@
 
 
 					<li >
-						<a href="#" class="item-content">
+						<a v-link="{ name: 'chat', query: { id: '1'}}" class="item-content">
 						  <div class="item-media">
 						  	<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" >
 						  </div>
@@ -43,7 +43,7 @@
 						</a>
 					</li>
 					<li >
-						<a href="#" class="item-content">
+						<a v-link="{ name: 'chat', query: { id: '1'}}" class="item-content">
 						  <div class="item-media">
 						  	<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" >
 						  </div>

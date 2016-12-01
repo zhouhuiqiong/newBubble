@@ -32,6 +32,8 @@
 					<h3 class="order-inf-t" v-link="{ name: 'myorderdetails', query: { orderId: '1'}}">
 					<div><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg"><span>去问问</span></div>
 		  			<a class="iconfont icon-iconright"></a>
+
+
 					</h3>
 					<ul  class="list-block">
 						<li class="item-content" >

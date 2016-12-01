@@ -1065,7 +1065,8 @@ $pa:0px 40px;
 }
 .user-center-item{
 	@include boxJC;
-	height: 2.1rem;
+	padding: 0.25rem 0px ;
+	height: auto;
 	position: relative;
 	&:after{
 		@include bt;
@@ -1076,7 +1077,7 @@ $pa:0px 40px;
 	}
 }
 .user-center-item1{
-	height: 3.6rem;
+	padding: 0.25rem 0px ;
 	.item-after{
 		@include boxZC;
 	}
@@ -1731,6 +1732,19 @@ $pa:0px 40px;
 		background-size: contain; 
 	}
 }
+.read-chekbox{
+	font-size: 24px;
+	&.icon-checkbox{
+		color:  #E6E6E6;
+	}
+	&.may{
+		color:#000;
+	}
+	&.icon-duoxuan{
+		color:#ff6b68;
+	}
+}
+
 .logbg{width: 100%; display: block;}
 .shop-yu-time{font-size: 10px; color:#888;}
 .clr1{color:#68bdff !important}/*lan*/

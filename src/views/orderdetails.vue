@@ -54,13 +54,14 @@
 	    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白
 	    		</div>
 	    		<div class="ordercheck">
-	    			<input type="checkbox" name="" v-model="checked" 
-	    			:disabled="isDisabled"  class="mr">
+	    			<span class="iconfont icon-checkbox  read-chekbox" @click="checkedFun($event)" :class="{'may': isMay,'icon-duoxuan':checked}"></span>
+<!-- 	    			<input type="checkbox" name="" v-model="checked" 
+	    			:disabled="isDisabled"  class="mr"> -->
 	    			<label>我已阅读以上规则并同意遵守</label>
 	    			<span class="clr3">({{news}})</span>
 	    		</div>
 	    		<div class="btn-box">
-	    			<button class="btn2" v-bind:class="{ 'disabled': isDisabled}"  @click="referorder">我知道了<i class="dome-time"></i></button>
+	    			<button class="btn2" :class="{'disabled': isDisabled}"  @click="referorder">我知道了<i class="dome-time"></i></button>
 	    		</div>
 	    	</div>
 	    </div>
@@ -80,22 +81,26 @@ module.exports = {
 
 	},
 	ready: function(){
- 
-
+ 		this.$check = $('.read-chekbox');
 	},
 	data:function(){
 		return {
-			checked: false,
+			checked: false,//是否选中
 			isOrderDialog: false,
 			isFootBar: false,
 			news: '阅读完毕才能勾选',
 			isReadFinish: false,
-			isDisabled: true
+			isMay: false,
+			isDisabled: true//按钮是否可点
 		}
 	},
 	methods: {
 		orderdialog: function(){
 			this.$root.userId ? (this.isOrderDialog = true,this.orderHandle()) : (this.$router.go({path:'/login',query: {back:1}}));
+		},
+		checkedFun: function(e){// icon-duoxuan
+			var that = this;
+			if(that.isMay) that.checked = !that.checked;
 		},
 		orderHandle: function(){
 			var that = this;
@@ -108,14 +113,13 @@ module.exports = {
 			$('.content-padded').on('scroll', function(){
 				var h = $(this).scrollTop()  + $(this)[0].clientHeight,
 					hContent = $(this)[0].scrollHeight;
-					if(h == hContent){
-						that.isDisabled = false;
+					if(hContent - h <= 10){
+						//that.isDisabled = false;
+						that.isMay = true;
 						that.news = '可以勾选';
 						that.isBase = true;
 					};
 			});
-			
-
 		},
 		referorder: function(){//预约
 			var that = this;
@@ -134,7 +138,7 @@ module.exports = {
 		activate:function(transition){
 			//阅读初始化
 			this.news = '阅读完毕才能勾选';
-			this.checked = false;
+			this.checked = this.isMay = false;
 			this.isDisabled = true;
 			//大图
 			this.$children[0].maxbox = false;
