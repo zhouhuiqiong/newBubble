@@ -34,7 +34,7 @@
 					<div class="item-title">客户名称</div>
 					<div class="txt-style">
 						<div class="sub-txt">银座/筑地
-						东京,东京都日本东京都日本东京都日本</div>
+						东京,东京都日本东日本东京都日本</div>
 					</div>
 				</div>
 				<div class="user-center-item user-center-item2">
