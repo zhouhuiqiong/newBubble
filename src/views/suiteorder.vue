@@ -22,19 +22,19 @@
 					<div><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg"><span>去问问</span></div>
 
 				</h3>
-				<div class="user-center-item3">
+				<div class="user-center-item user-center-item2 user-center-item4">
 					<div class="item-title">商家地址</div>
-					<div class="txt-style">
-						<div class="sub-txt">银座/筑地
-						东京,东京都日本东京都日本东京都日本</div>
-						<a class="icon icon-right"></a>
+					<div class="item-after" >
+						<div>5-11-1 Ginza, Chuo-ku,银座/筑地
+						东京,东京都,104-0061,日本
+						</div>
+						<a class="iconfont icon-iconright"></a>
 					</div>
 				</div>
-				<div class="user-center-item3">
+				<div class="user-center-item user-center-item2">
 					<div class="item-title">客户名称</div>
-					<div class="txt-style">
-						<div class="sub-txt">银座/筑地
-						东京,东京都日本东日本东京都日本</div>
+					<div class="item-after">
+						苦艾又去大保健啦
 					</div>
 				</div>
 				<div class="user-center-item user-center-item2">
@@ -71,19 +71,19 @@
 					<div><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg"><span>去问问</span></div>
 
 				</h3>
-				<div class="user-center-item3">
+				<div class="user-center-item user-center-item2 user-center-item4">
 					<div class="item-title">商家地址</div>
-					<div class="txt-style">
-						<div class="sub-txt">#5-11-1 Ginza, Chuo-ku,银座/筑地
-						东京,东京都,104-0061,日本</div>
-						<a class="icon icon-right"></a>
+					<div class="item-after" >
+						<div>5-11-1 Ginza, Chuo-ku,银座/筑地
+						东京,东京都,104-0061,日本
+						</div>
+						<a class="iconfont icon-iconright"></a>
 					</div>
 				</div>
-				<div class="user-center-item3">
+				<div class="user-center-item user-center-item2">
 					<div class="item-title">客户名称</div>
-					<div class="txt-style">
-						<div class="sub-txt">#5-11-1 Ginza, Chuo-ku,银座/筑地
-						东京,东京都,104-0061,日本</div>
+					<div class="item-after">
+						苦艾又去大保健啦
 					</div>
 				</div>
 				<div class="user-center-item user-center-item2">

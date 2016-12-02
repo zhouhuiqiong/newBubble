@@ -222,6 +222,7 @@ $pa:0px 40px;
 	right: -3px;
 	font-size: 9px;
 	border:1px solid #fff;
+	line-height: 0.75rem;
 }
 .search-input{
 	input{
@@ -1060,61 +1061,54 @@ $pa:0px 40px;
 .order-inf3:nth-of-type(1){
 	margin-top: 0px;
 }
-.order-inf3{
-
-}
 .user-center-item{
 	@include boxJC;
-	padding: 0.25rem 0px ;
+	padding: 0.55rem 0px;
 	height: auto;
 	position: relative;
 	&:after{
 		@include bt;
-
 	}
 	.item-title{
 		@include title;
 	}
 }
 .user-center-item1{
-	padding: 0.25rem 0px ;
 	.item-after{
 		@include boxZC;
 	}
 }
 .user-center-item2{
-	height: auto;
-	padding: 0.25rem 0px ;
 	.item-title{
 		width: 5.0rem;
-		margin-right: 0.5rem;
 	}
 	.item-after{
-		@include boxJC;
-	}
-	position: relative;
-	&:after{
-		@include bt;
-
+		@include flex;
+		word-wrap:break-word; 
+		white-space:normal; 
+		word-break:break-all;
+		text-align: right;
 	}
 	.btn22{
 		margin-right: 0.25rem;
-		
+	}
+}
+.user-center-item4{
+	.item-after{
+		@include boxJC;
 	}
 }
 .user-center-item3{
 	@include boxJ;
+	padding: 0.55rem 0px ;
 	.item-title{
 		width: 5.5rem;
-		// margin-right: 0.5rem;
 		color:#000;
 	}
 	.txt-style{
-		@include boxJC;
+		@include flex;
 		.sub-txt{
 			text-align: right;
-			@include flex;
-			// margin: 0px 0.5rem;
 			word-wrap:break-word; 
 			white-space:normal; 
 			word-break:break-all;
@@ -1123,9 +1117,8 @@ $pa:0px 40px;
 	position: relative;
 	&:after{
 		@include bt;
-
 	}
-	padding: 0.25rem 0px ;
+	
 }
 
 .user-center-list{
@@ -1153,21 +1146,21 @@ $pa:0px 40px;
 	line-height: 1.4rem;
 	position: relative;
 	margin-top: 0.8rem;
-	
 	@include box;
 	input{
 		@include flex;
 		border:none;
 		color:#000;
+		display: block;
 	}
 	span{
 		position: absolute;;
 		left: 0px;
 		color:#888;
-
 	}
 	.iconfont{
 		color:#abafae;
+		font-size: 20px;
 	}
 }
 .place-tag-top{
@@ -1617,7 +1610,9 @@ $pa:0px 40px;
 	}
 }
 .yu-treaty{
+	padding-bottom: 0.5rem;
 	h3{line-height: 2.0rem;
+	
 	color: #000;
 	}
 	.content-padded{
@@ -1636,7 +1631,7 @@ $pa:0px 40px;
 		}
 	}
 	.btn-box{
-		margin: 0.5rem 0px;
+		margin-top: 0.5rem;
 		.btn2{
 			background: #fff;
 		}
@@ -1659,6 +1654,7 @@ $pa:0px 40px;
 		padding: 0px 0.5rem;
 		color: #000;
 		border: 1px solid #e5e5e5;
+		display: block;
 
 	}
 	.btn231{

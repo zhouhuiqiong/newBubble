@@ -486,9 +486,10 @@ $.fn.scrollTo =function(options){
     },
     active: function(){
       var t = this;
-      $el.find('.icon-shanchu').on('click', function(){
-          $(this).siblings('input').val('');
+      $el.find('.icon-shanchu').on('touchstart', function(){//点击删除
+          var $input = $(this).siblings('input');
           var $span = $(this).siblings('span');
+          $input.val('');
           t.spanShow($(this).parent(t.opts.el));
           if($span.hasClass('place-tag-top')){
             $span.removeClass('place-tag-top').addClass('place-tag-bottom');
@@ -505,7 +506,6 @@ $.fn.scrollTo =function(options){
         t.del = t.opts.moveDown;
         t.styleHanle($(this));
         t.delShow($(this).parent(t.opts.el));
-        //t.spanShow($(this).parent(t.opts.el));
       }).on('blur', function(){
         t.add = t.opts.moveUp;
         t.del = t.opts.moveDown;
@@ -520,13 +520,13 @@ $.fn.scrollTo =function(options){
         } 
       });
     },
-    delShow: function(obj){
+    delShow: function(obj){//删除按钮的显示
       var t = this;
       var $text = obj.find('input');
       var $del = obj.find('.icon-shanchu');
       $text.val() ? $del.show() : $del.hide();
     },
-    spanShow: function(obj){
+    spanShow: function(obj){//文本提示显示
       var t = this;
       var $span = obj.find('span');
       var $text = obj.find('input');

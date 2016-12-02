@@ -9,7 +9,7 @@
 				<div class="input-style">
 					<span class="place-tag">输入您的手机登录</span>
 					<input type="text" name=""  value="" v-slice-str="11" v-model="user.phone">
-					<i class="iconfont icon-shanchu"></i>
+					<i class="iconfont icon-shanchu" id="a"></i>
 				</div>
 				<div class="input-style">
 					<span class="place-tag">密码</span>
@@ -42,7 +42,7 @@ module.exports = {
 	methods: {
 		goLogin: function(){
 			var t = this;
-			console.log(t.user.phone);
+
 			if(!t.v.isMobile(t.user.phone)){
 
 			}else if(!t.v.isNull(t.user.password)){

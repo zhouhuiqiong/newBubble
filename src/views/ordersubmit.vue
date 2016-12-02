@@ -8,7 +8,7 @@
 			<div class="list-block media-list">
 				<ul>
 					<li class="itme-style min-itme-style">
-						<a href="#" class="item-content">
+						<a  v-link="{ name: 'orderdetails', query: { shopid: '1'}}" class="item-content">
 							<div class="item-media"><img src=""></div>
 							<div class="item-inner sale-txt">
 								<div class="item-title-row">

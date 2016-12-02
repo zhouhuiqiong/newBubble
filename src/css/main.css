@@ -494,7 +494,8 @@ body {
   top: 8px;
   right: -3px;
   font-size: 9px;
-  border: 1px solid #fff; }
+  border: 1px solid #fff;
+  line-height: 0.75rem; }
 
 .search-input {
   margin: 0px 0.4rem; }
@@ -1422,7 +1423,7 @@ body {
   -webkit-box-align: center;
   -webkit-align-items: center;
   align-items: center;
-  padding: 0.25rem 0px;
+  padding: 0.55rem 0px;
   height: auto;
   position: relative; }
   .user-center-item:after {
@@ -1439,49 +1440,43 @@ body {
     color: #000;
     font-weight: 500px; }
 
-.user-center-item1 {
-  padding: 0.25rem 0px; }
-  .user-center-item1 .item-after {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    align-items: center; }
+.user-center-item1 .item-after {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center; }
 
-.user-center-item2 {
-  height: auto;
-  padding: 0.25rem 0px;
-  position: relative; }
-  .user-center-item2 .item-title {
-    width: 5.0rem;
-    margin-right: 0.5rem; }
-  .user-center-item2 .item-after {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    align-items: center; }
-  .user-center-item2:after {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0px;
-    height: 1px;
-    background: #e3e3e3;
-    bottom: 0;
-    -webkit-transform: scaleY(0.5); }
-  .user-center-item2 .btn22 {
-    margin-right: 0.25rem; }
+.user-center-item2 .item-title {
+  width: 5.0rem; }
+.user-center-item2 .item-after {
+  -webkit-flex: 1;
+  flex: 1;
+  -moz-flex: 1;
+  -o-flex: 1;
+  -ms-flex: 1;
+  word-wrap: break-word;
+  white-space: normal;
+  word-break: break-all;
+  text-align: right; }
+.user-center-item2 .btn22 {
+  margin-right: 0.25rem; }
+
+.user-center-item4 .item-after {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center; }
 
 .user-center-item3 {
   display: -webkit-box;
@@ -1491,29 +1486,19 @@ body {
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  position: relative;
-  padding: 0.25rem 0px; }
+  padding: 0.55rem 0px;
+  position: relative; }
   .user-center-item3 .item-title {
     width: 5.5rem;
     color: #000; }
   .user-center-item3 .txt-style {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    align-items: center; }
+    -webkit-flex: 1;
+    flex: 1;
+    -moz-flex: 1;
+    -o-flex: 1;
+    -ms-flex: 1; }
     .user-center-item3 .txt-style .sub-txt {
       text-align: right;
-      -webkit-flex: 1;
-      flex: 1;
-      -moz-flex: 1;
-      -o-flex: 1;
-      -ms-flex: 1;
       word-wrap: break-word;
       white-space: normal;
       word-break: break-all; }
@@ -1562,13 +1547,15 @@ body {
     -o-flex: 1;
     -ms-flex: 1;
     border: none;
-    color: #000; }
+    color: #000;
+    display: block; }
   .input-style span {
     position: absolute;
     left: 0px;
     color: #888; }
   .input-style .iconfont {
-    color: #abafae; }
+    color: #abafae;
+    font-size: 20px; }
 
 .place-tag-top {
   animation: placeTop .2s  ease  both;
@@ -2000,25 +1987,27 @@ body {
 .seach-shop-list .sale .icon-iconright {
   margin-right: -0.2rem; }
 
-.yu-treaty h3 {
-  line-height: 2.0rem;
-  color: #000; }
-.yu-treaty .content-padded {
-  padding: 0.5rem;
-  line-height: 22px;
-  font-size: 10px;
-  text-indent: 0.5rem;
-  margin-top: 0px; }
-.yu-treaty .ordercheck {
-  margin: 0.5rem; }
-  .yu-treaty .ordercheck input {
-    width: 20px;
-    height: 20px;
-    vertical-align: -5px; }
-.yu-treaty .btn-box {
-  margin: 0.5rem 0px; }
-  .yu-treaty .btn-box .btn2 {
-    background: #fff; }
+.yu-treaty {
+  padding-bottom: 0.5rem; }
+  .yu-treaty h3 {
+    line-height: 2.0rem;
+    color: #000; }
+  .yu-treaty .content-padded {
+    padding: 0.5rem;
+    line-height: 22px;
+    font-size: 10px;
+    text-indent: 0.5rem;
+    margin-top: 0px; }
+  .yu-treaty .ordercheck {
+    margin: 0.5rem; }
+    .yu-treaty .ordercheck input {
+      width: 20px;
+      height: 20px;
+      vertical-align: -5px; }
+  .yu-treaty .btn-box {
+    margin-top: 0.5rem; }
+    .yu-treaty .btn-box .btn2 {
+      background: #fff; }
 
 .chat-input-box {
   height: 2.2rem;
@@ -2047,7 +2036,8 @@ body {
     border-radius: 0.5rem;
     padding: 0px 0.5rem;
     color: #000;
-    border: 1px solid #e5e5e5; }
+    border: 1px solid #e5e5e5;
+    display: block; }
   .chat-input-box .btn231 {
     margin-left: 0.5rem; }
 

@@ -238,9 +238,7 @@ a {
   text-decoration: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-a:active {
-  color: #0a8ddf;
-}
+
 .page {
   position: absolute;
   top: 0;
