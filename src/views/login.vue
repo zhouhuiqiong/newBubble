@@ -9,7 +9,7 @@
 				<div class="input-style">
 					<span class="place-tag">输入您的手机登录</span>
 					<input type="text" name=""  value="" v-slice-str="11" v-model="user.phone">
-					<i class="iconfont icon-shanchu" id="a"></i>
+					<i class="iconfont icon-shanchu"></i>
 				</div>
 				<div class="input-style">
 					<span class="place-tag">密码</span>

@@ -3,12 +3,12 @@
 	<div class="content list infinite-scroll home-content" :class="{'home-content1': isSelectShade}">
 		<nav class="bar bar-nav bar-nav-static search-nav">
 			<a class="open-adr-btn" v-link="{name:'address'}">{{address}}<i class="iconfont icon-icon-copy-copy"></i></a>
-			<a v-link="{name:'seach'}" class="search-input-box">
+			<form class="search-input-box" action="#">
 				<div class="search-input">
 					<label class="iconfont icon-chaxun" for="search"></label>
-					<input type="search" id="search" placeholder="输入商家,服务名称...">
+					<input type="text" v-model="searchVal" placeholder="输入城市…" @>
 				</div>
-			</a>
+			</form>
 			<a v-link="{name:'news'}" class="iconfont icon-home_news">
 				<i class="news-tags">10</i>
 			</a>
@@ -74,7 +74,7 @@
 								<span class="shop-tag ">安全</span>
 							</div>
 							<div class="item-title-row server-money-box">
-								<label class="server-money">¥5,00~¥5,0000</label>
+								<label class="server-money">5,00~5,0000日元</label>
 								<div class="item-after">1113人去过</div>
 							</div>
 						</div>
@@ -133,7 +133,10 @@ module.exports = {
 		//获取当前位置
 		that.getNowAdr();
 		
-
+		$('.search-input-box').on('submit', function(e){//鼠标键盘事件，右下角
+			that.searchGo()
+		  	return false;
+		});
 	},
 	data:function(){
 		return {
@@ -143,7 +146,8 @@ module.exports = {
 			loading: false,
 			isSelectShade: false,
 			address: '东京',
-			isIndex: false
+			isIndex: false,
+			searchVal: ''//搜索值
 			
 		}
 	},
@@ -178,7 +182,6 @@ module.exports = {
 		},
 		changeType: function(e,num){
 			var that = this;
-			
 			that.isSelectShade = num != undefined ? true : false;
 			$(e.currentTarget).addClass('active').siblings('li').removeClass('active');
 			that.$item.addClass('hide').eq(num).removeClass('hide');
@@ -198,6 +201,9 @@ module.exports = {
 		resetBtn: function(){
 			var that = this;
 			$('.screen-item-list span').removeClass('active');
+		},
+		searchGo: function(){//搜索页面值
+			if(this.searchVal) this.$router.go({path:'seach', query: {search: this.searchVal}});
 		}
 	},
 	components:{

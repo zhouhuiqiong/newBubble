@@ -68,8 +68,8 @@
  		<!--end 预约须知-->
 		<nav class="bar bar-tab foot-bar" >
 			<div class="sale-money">
-				<label class="server-money server-money1 ">¥<em>5,000</em></label>
-				<i>¥5,0000000</i>
+				<label class="server-money server-money1 "><em>5,000</em>日元</label>
+				<i>5,0000000日元</i>
 			</div>
 			<button @click="orderdialog" class="btn1" >立刻预约</button>
 		</nav>

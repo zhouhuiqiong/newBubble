@@ -1,8 +1,8 @@
 <template>
 	<div class="container">
 		<header class="bar bar-nav title-bar">
-
-		  <a class="iconfont icon-iconleft pull-left" v-go-history></a>
+<!-- 
+		  <a class="iconfont icon-iconleft pull-left" v-go-history></a> -->
 		  <h1 class="title">色相</h1>
 		  <div @click="changeType($event, 0)" class="hue-filtrate" >
 			  <span>筛选</span>
@@ -19,13 +19,13 @@
 		<div class="content infinite-scroll home-content bg" >
 			<!--item-->
 			<ul class="card-box">
-				<li class="card-item" v-link="{name:'huedertails',query: { id: '1'}}" >
+				<li class="card-item" v-link="{name:'orderdetails',query: { id: '1'}}" >
 					<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg">
 					<h3>在日本跟AV名女优一起洗泡泡浴是一种怎么样的体验
 在日本跟AV名女优一起洗泡泡浴是一种怎么样的体验在日本跟AV名女优一起洗泡泡浴是一种怎么样的体验在日本跟AV名女优一起洗泡泡浴是一种怎么样的体验</h3>
 					<p><span class="shop-tag shop-tag2">安全</span>AV服务极乐忘忧，为国争光精尽人亡。</p>
 				</li>
-				<li class="card-item" v-link="{name:'huedertails',query:{ id:'2'}}">
+				<li class="card-item" v-link="{name:'orderdetails',query:{ id:'2'}}">
 					<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg">
 					<h3>在日本跟AV名女优一起洗泡泡浴是一种怎么样的体验
 一起洗泡泡浴是一种怎么样的……</h3>
@@ -69,10 +69,16 @@ module.exports = {
 	methods: {
 		changeType: function(e,num){
 			var that = this;
+			var $obj = $(e.currentTarget);
 			that.isSelectShade = num != undefined ? true : false;
-			console.log(that.isSelectShade);
-			$(e.currentTarget).addClass('active').siblings('li').removeClass('active');
-			that.$item.addClass('hide').eq(num).removeClass('hide');
+			if($obj.hasClass('active')){
+				that.$nav.removeClass('active');
+				that.$item.addClass('hide')
+			}else{
+				$obj.addClass('active').siblings('li').removeClass('active');
+				that.$item.addClass('hide').eq(num).removeClass('hide');
+			}
+			
 		},
 		selectShade: function(e){
 			var that = this;

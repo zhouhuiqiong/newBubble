@@ -1,15 +1,16 @@
 <template>
   <div class="container">
 	<header class="bar bar-nav title-bar">
-	  	<div class="searchbar">
-		    <a class="searchbar-cancel" v-link="{name:'home'}">取消</a>
-		    <div class="search-input">
-		      <label class="iconfont icon-chaxun" for="search"></label>
-		      <input type="search" id='search' placeholder='输入关键字...'/>
-		    </div>
+		<div class="search-input-box1">
+			<div class="search-input">
+				<label class="iconfont icon-chaxun" for="search"></label>
+				<input type="search" id="search" placeholder="输入城市…" v-model="searchVal"  @keyup="showDel" @blur="showDel">
+				<i class="iconfont icon-shanchu" v-show="isDelVal" @click="delInputVal"></i>
+			</div>
+	    	<a class="search-input-cancel" v-link="{name:'home'}">取消</a>
 		</div>
 	</header>
-	<div class="content infinite-scroll seach-content bg" v-infinite-scroll="loadMore">
+	<div class="content infinite-scroll seach-content bg">
 		<!--商家-->
 		<div class="seach-shop-list">
 			<h3 class="s-title">曲目</h3>
@@ -28,7 +29,7 @@
 									<span class="shop-tag ">安全</span>
 								</div>
 								<div class="item-title-row server-money-box">
-									<label class="server-money">¥5,00~¥5,0000</label>
+									<label class="server-money">5,00~5,0000日元</label>
 									<div class="item-after">1113人去过</div>
 								</div>
 							</div>
@@ -47,7 +48,7 @@
 									<span class="shop-tag ">安全</span>
 								</div>
 								<div class="item-title-row server-money-box">
-									<label class="server-money">¥5,00~¥5,0000</label>
+									<label class="server-money">5,00~5,0000日元</label>
 									<div class="item-after">1113人去过</div>
 								</div>
 							</div>
@@ -78,8 +79,8 @@
 								</div>
 
 								<div class="sale-money">
-									<label class="server-money ">¥5,000</label>
-									<i>¥5,0000000</i>
+									<label class="server-money ">5,00日元</label>
+									<i>¥5,0000日元</i>
 								</div>
 								
 							</div>
@@ -98,11 +99,9 @@
 </template>
 <script>
 module.exports = {
-	//每次切换路由，在渲染出页面前都会执行
-	route: {
-
-	},
 	ready: function(){
+		var that = this;
+		
 		for (var  i = 0; i < 15; i++) {
 	      this.items.push({
 	        id: i,
@@ -114,19 +113,31 @@ module.exports = {
 		return {
 			title: '搜索',
 			items: [],
-			loading: false
+			loading: false,
+			searchVal: '',
+			isDelVal: false //删除输入框的值
 		}
-	},
-	computed: {
-	    
 	},
 	route:{
 		activate:function(transition){
+			var that = this;
 			this.$root.$set('header',this.title);
 			transition.next();
+
+			that.searchVal = that.$route.query.search;//搜索值变化
+			that.showDel();
 		}
 	},
 	methods: {
+		showDel: function(){
+			var that = this;
+			that.isDelVal = that.searchVal ? true : false;
+		},
+		delInputVal: function(){
+			var that = this;
+			that.searchVal = '';
+			that.isDelVal = false;
+		},
 		loadMore: function(){
 			var that = this;
 			var scroller = $('.infinite-scroll');
@@ -146,7 +157,6 @@ module.exports = {
 		}
 	},
 	components:{
-		uiload: require('../components/load.vue')
     }
 };
 

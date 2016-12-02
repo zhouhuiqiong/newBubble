@@ -160,6 +160,7 @@ $pa:0px 40px;
 .hue-filtrate{
 	position: absolute;
 	right: 0.75rem;
+	top: 3px;
 	.iconfont{
 		transition:all .3s ease-in;
 		padding: .4rem .1rem;
@@ -207,6 +208,25 @@ $pa:0px 40px;
 		@include flex;
 	}
 }
+.search-input-box1{
+	@include boxZC;
+	.search-input{
+		@include flex;
+		position: relative;
+		.icon-shanchu{
+			left: auto !important;
+			margin-top: -2px;
+
+		}
+		.iconfont{
+			font-size: 16px;
+			color:#888;
+		}
+	}
+	.search-input-cancel{
+
+	}
+}
 .open-adr-btn {
 	color:#000;
 	font-size: 16px;
@@ -222,7 +242,6 @@ $pa:0px 40px;
 	right: -3px;
 	font-size: 9px;
 	border:1px solid #fff;
-	line-height: 0.75rem;
 }
 .search-input{
 	input{
@@ -344,7 +363,6 @@ $pa:0px 40px;
 }
 
 .change-list{
-	padding-bottom: 1.5rem;
 	li{
 		position: relative;
 		height: 2.0rem;
@@ -356,7 +374,13 @@ $pa:0px 40px;
 		&.active{
 			color:#ff6b68;
 		}
+		&:last-of-type{
+			&:after{
+				@include bt($color:#fff);
+			}
+		}
 	}
+
 }
 .select-shade{
 	position: fixed;
@@ -459,7 +483,7 @@ $pa:0px 40px;
 }
 
 .input-adr-list{
-	@include ding($top:2.3rem);	
+	@include ding($top:0rem);	
 }
 .title-bar{
 	font-size: 15px;
@@ -1061,54 +1085,61 @@ $pa:0px 40px;
 .order-inf3:nth-of-type(1){
 	margin-top: 0px;
 }
+.order-inf3{
+
+}
 .user-center-item{
 	@include boxJC;
-	padding: 0.55rem 0px;
+	padding: 0.25rem 0px ;
 	height: auto;
 	position: relative;
 	&:after{
 		@include bt;
+
 	}
 	.item-title{
 		@include title;
 	}
 }
 .user-center-item1{
+	padding: 0.25rem 0px ;
 	.item-after{
 		@include boxZC;
 	}
 }
 .user-center-item2{
+	height: auto;
+	padding: 0.25rem 0px ;
 	.item-title{
 		width: 5.0rem;
+		margin-right: 0.5rem;
 	}
 	.item-after{
-		@include flex;
-		word-wrap:break-word; 
-		white-space:normal; 
-		word-break:break-all;
-		text-align: right;
+		@include boxJC;
+	}
+	position: relative;
+	&:after{
+		@include bt;
+
 	}
 	.btn22{
 		margin-right: 0.25rem;
-	}
-}
-.user-center-item4{
-	.item-after{
-		@include boxJC;
+		
 	}
 }
 .user-center-item3{
 	@include boxJ;
-	padding: 0.55rem 0px ;
 	.item-title{
 		width: 5.5rem;
+		// margin-right: 0.5rem;
 		color:#000;
 	}
 	.txt-style{
-		@include flex;
+		@include boxJC;
 		.sub-txt{
 			text-align: right;
+			@include flex;
+			// margin: 0px 0.5rem;
 			word-wrap:break-word; 
 			white-space:normal; 
 			word-break:break-all;
@@ -1117,8 +1148,9 @@ $pa:0px 40px;
 	position: relative;
 	&:after{
 		@include bt;
+
 	}
-	
+	padding: 0.25rem 0px ;
 }
 
 .user-center-list{
@@ -1146,63 +1178,24 @@ $pa:0px 40px;
 	line-height: 1.4rem;
 	position: relative;
 	margin-top: 0.8rem;
+	
 	@include box;
 	input{
 		@include flex;
 		border:none;
 		color:#000;
-		display: block;
 	}
 	span{
 		position: absolute;;
 		left: 0px;
 		color:#888;
+
 	}
 	.iconfont{
 		color:#abafae;
-		font-size: 20px;
-	}
-}
-.place-tag-top{
-	animation:placeTop .2s  ease  both;
-	-webkit-animation:placeTop .2s  ease  both;
-	font-size: 10px;
-}
-.place-tag-bottom{
-	animation:placebottom .2s  ease  both;
-	-webkit-animation:placebottom .2s  ease  both;
-}
-@keyframes placeTop {
-	0%{
-		opacity: 0;
-  		-webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-        font-size: 14px;
-	}
-	100%{
-		opacity: 1;
-  		-webkit-transform: translate3d(0,-0.8rem,0);
-        transform: translate3d(0, -0.8rem, 0);
-        font-size: 10px;
-
 	}
 }
 
-@keyframes placebottom {
-	0%{
-  		-webkit-transform: translate3d(0,-0.8rem,0);
-        transform: translate3d(0, -0.8rem, 0);
-        font-size: 10px;
-
-	}
-	100%{
-  		-webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-        font-size: 14px;
-
-	}
-	
-}
 .login-box{
 	.change-btn{
 		margin-top: 1.75rem;
@@ -1585,6 +1578,9 @@ $pa:0px 40px;
 		color:#000;
 	}
 }
+.seach-content .seach-shop-list:nth-of-type(1){
+	margin-top: 0px;
+}
 .more{
 	@include boxJ;
 	line-height: 1.75rem;
@@ -1610,9 +1606,7 @@ $pa:0px 40px;
 	}
 }
 .yu-treaty{
-	padding-bottom: 0.5rem;
 	h3{line-height: 2.0rem;
-	
 	color: #000;
 	}
 	.content-padded{
@@ -1631,7 +1625,7 @@ $pa:0px 40px;
 		}
 	}
 	.btn-box{
-		margin-top: 0.5rem;
+		margin: 0.5rem 0px;
 		.btn2{
 			background: #fff;
 		}
@@ -1654,7 +1648,6 @@ $pa:0px 40px;
 		padding: 0px 0.5rem;
 		color: #000;
 		border: 1px solid #e5e5e5;
-		display: block;
 
 	}
 	.btn231{
