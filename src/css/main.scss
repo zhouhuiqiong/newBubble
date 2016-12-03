@@ -191,9 +191,7 @@ $pa:0px 40px;
 		position: relative;
 	}
 }
-.txt-box{
-	@include ellipsisL($link:3);
-}
+
 .search-nav{
 	background: #fff;
 	height: 2.0rem;
@@ -508,6 +506,13 @@ $pa:0px 40px;
 	}
 	.iconfont{
 		color:#888;
+	}
+}
+.title-bar2{
+	.save-btn{
+		position: absolute;
+		right: 0.5rem;
+		z-index: 10;
 	}
 }
 .content1,.bg{background:#f6f6f6;}
@@ -1085,8 +1090,10 @@ $pa:0px 40px;
 .order-inf3:nth-of-type(1){
 	margin-top: 0px;
 }
-.order-inf3{
-
+.order-inf3,.order-inf4{
+	.list-block .item-inner{
+		padding-right: 0px;
+	}
 }
 .user-center-item{
 	@include boxJC;
@@ -1351,6 +1358,7 @@ $pa:0px 40px;
 	z-index: 800;
 	color:#fff;
 	background: rgba(0,0,0,0.8);
+	font-size: 22px;
 }
 
 .home-media-list  ul{
@@ -1396,7 +1404,7 @@ $pa:0px 40px;
 		.order-del-ic{
 			color:#020202;
 			margin-left: 0.25rem;
-			vertical-align:0.05rem;
+			
 		}
 	}
 }
@@ -1733,12 +1741,26 @@ $pa:0px 40px;
 		color:#ff6b68;
 	}
 }
-
+.shop-img-list{
+	div{
+		float: left;
+		width: 50%;
+		padding:  0.5rem 0.5rem 0px 0.5rem;
+		img{
+			width: 100%;
+			height: 5.5rem;
+		}
+	}
+}
+.txt-hide{
+	@include ellipsisL($link: 3); 
+}
 .logbg{width: 100%; display: block;}
 .shop-yu-time{font-size: 10px; color:#888;}
 .clr1{color:#68bdff !important}/*lan*/
 .clr2{color:#1d1a1a !important;}/*hei*/
 .clr3{color:#ff6b68}/*hong*/
-.clr4{color:#000}/*hei*/
+.clr4{color:#000 !important;}/*hei*/
 .ver{vertical-align: -2px; margin-right: 0.4rem;}
+.ver1{vertical-align: -2px; margin-right: 0.1rem;}
 .tr{text-align: right;}

@@ -26,8 +26,8 @@ em {
 
 @font-face {
   font-family: 'iconfont';
-  src: url("//at.alicdn.com/t/font_ly72380crw9udi.eot");
-  src: url("//at.alicdn.com/t/font_ly72380crw9udi.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_ly72380crw9udi.woff") format("woff"), url("//at.alicdn.com/t/font_ly72380crw9udi.ttf") format("truetype"), url("//at.alicdn.com/t/font_ly72380crw9udi.svg#iconfont") format("svg"); }
+  src: url("//at.alicdn.com/t/font_mi4l57qftehwu3di.eot");
+  src: url("//at.alicdn.com/t/font_mi4l57qftehwu3di.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_mi4l57qftehwu3di.woff") format("woff"), url("//at.alicdn.com/t/font_mi4l57qftehwu3di.ttf") format("truetype"), url("//at.alicdn.com/t/font_mi4l57qftehwu3di.svg#iconfont") format("svg"); }
 .iconfont {
   font-family: "iconfont";
   font-size: 16px;
@@ -120,6 +120,9 @@ em {
 
 .icon-duoxuan:before {
   content: "\e62a"; }
+
+.icon-lajitong:before {
+  content: "\e655"; }
 
 .shop-tag, .shop-tag1 {
   border: 1px solid #d6d6d6;
@@ -438,13 +441,6 @@ body {
   padding: 0px  0.8rem 0px 0.75rem; }
   .bar-nav-static .title {
     position: relative; }
-
-.txt-box {
-  display: -webkit-box;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical; }
 
 .search-nav {
   background: #fff;
@@ -799,6 +795,11 @@ body {
     color: #fff; }
   .title-bar1 .iconfont {
     color: #888; }
+
+.title-bar2 .save-btn {
+  position: absolute;
+  right: 0.5rem;
+  z-index: 10; }
 
 .content1, .bg {
   background: #f6f6f6; }
@@ -1444,6 +1445,9 @@ body {
 .order-inf3:nth-of-type(1) {
   margin-top: 0px; }
 
+.order-inf3 .list-block .item-inner, .order-inf4 .list-block .item-inner {
+  padding-right: 0px; }
+
 .user-center-item {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1726,7 +1730,8 @@ body {
   left: 0.5rem;
   z-index: 800;
   color: #fff;
-  background: rgba(0, 0, 0, 0.8); }
+  background: rgba(0, 0, 0, 0.8);
+  font-size: 22px; }
 
 .home-media-list ul:before {
   background: transparent; }
@@ -1763,8 +1768,7 @@ body {
     vertical-align: -0.2rem; }
 .order-inf3 .o-title .order-del-ic {
   color: #020202;
-  margin-left: 0.25rem;
-  vertical-align: 0.05rem; }
+  margin-left: 0.25rem; }
 
 .shop-txt .shop-sub-t {
   font-size: 12px;
@@ -2131,6 +2135,21 @@ body {
   .read-chekbox.icon-duoxuan {
     color: #ff6b68; }
 
+.shop-img-list div {
+  float: left;
+  width: 50%;
+  padding: 0.5rem 0.5rem 0px 0.5rem; }
+  .shop-img-list div img {
+    width: 100%;
+    height: 5.5rem; }
+
+.txt-hide {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; }
+
 .logbg {
   width: 100%;
   display: block; }
@@ -2152,12 +2171,16 @@ body {
 
 /*hong*/
 .clr4 {
-  color: #000; }
+  color: #000 !important; }
 
 /*hei*/
 .ver {
   vertical-align: -2px;
   margin-right: 0.4rem; }
+
+.ver1 {
+  vertical-align: -2px;
+  margin-right: 0.1rem; }
 
 .tr {
   text-align: right; }

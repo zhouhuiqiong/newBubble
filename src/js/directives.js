@@ -92,8 +92,26 @@ var sliceStr = {
 		});
 	}
 }
+//全文阅读
+var allRead = {
+	bind: function(){
+		var t = this;
+		t.on('click', function(){
+			var $obj = $(this).siblings('.txt-box');
+			var result = $obj.hasClass('txt-hide');
+			if(result){
+				$(this).text('收起');
+				$obj.removeClass('txt-hide');
+			}else{
+				$(this).text('全文');
+				$obj.addClass('txt-hide');
+			};
+		});
+	}
+}
 exports.infiniteScroll = infiniteScroll;
 exports.goHistory = goHistory;
 exports.sliceStr = sliceStr;
+exports.allRead = allRead;
 // exports.delVal = delVal;
 // exports.showPlaceholder = showPlaceholder;

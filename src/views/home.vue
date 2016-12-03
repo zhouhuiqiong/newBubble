@@ -127,7 +127,7 @@ module.exports = {
 		that.$screen = $('.screen-item dd span');
 		that.$screen.on('click', function(){
 			var t = $(this);
-			$(this).parents('dd').find('span').removeClass('active');
+			//$(this).parents('dd').find('span').removeClass('active');
 			$(this).addClass('active');
 		});
 		//获取当前位置
@@ -182,9 +182,15 @@ module.exports = {
 		},
 		changeType: function(e,num){
 			var that = this;
+			var $obj = $(e.currentTarget);
 			that.isSelectShade = num != undefined ? true : false;
-			$(e.currentTarget).addClass('active').siblings('li').removeClass('active');
-			that.$item.addClass('hide').eq(num).removeClass('hide');
+			if($obj.hasClass('active')){
+				that.$nav.removeClass('active');
+				that.$item.addClass('hide')
+			}else{
+				$obj.addClass('active').siblings('li').removeClass('active');
+				that.$item.addClass('hide').eq(num).removeClass('hide');
+			};
 		},
 		selectShade: function(e){
 			this.changeType(e);

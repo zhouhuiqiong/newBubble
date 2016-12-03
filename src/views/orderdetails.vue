@@ -30,7 +30,7 @@
 			</div>
 			<!--营业时间-->
 			<div class="do-time">
-				营业时间:18:00 9:00
+				营业时间:18:00 - 24:00
 			</div>
 			<!--预约须知-->
 			<dl class="clause">
@@ -44,7 +44,7 @@
  		<!--预约弹出框 -->
 	    <div class="dialog-wrap orderdialog" v-show="isOrderDialog">
 	    	<div class="dialog-main yu-treaty">
-	    		<h3>预约前必读</h3>
+	    		<h3 class="text-center">预约前必读</h3>
 	    		<div class="content-padded">
 	    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,
 	    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,
@@ -57,7 +57,7 @@
 	    			<span class="iconfont icon-checkbox  read-chekbox" @click="checkedFun($event)" :class="{'may': isMay,'icon-duoxuan':checked}"></span>
 <!-- 	    			<input type="checkbox" name="" v-model="checked" 
 	    			:disabled="isDisabled"  class="mr"> -->
-	    			<label>我已阅读以上规则并同意遵守</label>
+	    			<label @click="checkedFun($event)" >我已阅读以上规则并同意遵守</label>
 	    			<span class="clr3">({{news}})</span>
 	    		</div>
 	    		<div class="btn-box">
@@ -116,7 +116,7 @@ module.exports = {
 					if(hContent - h <= 10){
 						//that.isDisabled = false;
 						that.isMay = true;
-						that.news = '可以勾选';
+						that.news = '请勾选';
 						that.isBase = true;
 					};
 			});

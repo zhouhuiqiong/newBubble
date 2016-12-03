@@ -29,7 +29,7 @@
 						<span class="item-t">订单确认</span>
 						<span class="item-a">2012-12-12 10:80</span>
 					</h3>
-					<h3 class="order-inf-t" v-link="{ name: 'myorderdetails', query: { orderId: '1'}}">
+					<h3 class="order-inf-t" v-link="{ name: 'details', query: { orderId: '1'}}">
 					<div><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg"><span>去问问</span></div>
 		  			<a class="iconfont icon-iconright"></a>
 
@@ -39,26 +39,26 @@
 						<li class="item-content" >
 							<div class="item-inner">
 								<div class="item-title">项目套餐</div>
-								<div class="item-after">								{{50000 | price}}</div>
+								<div class="item-after">								{{50000 | price}}日元</div>
 							</div>
 						</li>
 						<li class="item-content" >
 							<div class="item-inner">
 								<div class="item-title">项目套餐</div>
-								<div class="item-after">								{{50000 | price}}</div>
+								<div class="item-after">								{{50000 | price}}日元</div>
 							</div>
 						</li>
 						<li class="item-content" >
 							<div class="item-inner">
 								<div class="item-title">项目套餐</div>
-								<div class="item-after">								{{50000 | price}}</div>
+								<div class="item-after">								{{50000 | price}}日元</div>
 							</div>
 						</li>
 					</ul>
 					<div class="total-item">
 						<div class="item-title">订单合计:</div>
 						<div class="item-after">合计:<span class="total">
-								{{30000 | price}}</span></div>
+								{{30000 | price}}日元</span></div>
 					</div>
 					<div class="total-item">
 						<span></span>

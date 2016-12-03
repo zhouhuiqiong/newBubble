@@ -12,7 +12,7 @@
 				</div>
 			</div>
 			<!--订单信息-->
-			<div class="order-inf">
+			<div class="order-inf order-inf4">
 				<h3 class="order-inf-t"><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg">{{shopList.title}}</h3>
 				<ul  class="list-block">
 					<li class="item-content" v-for="(key,val) in shopList.type">
@@ -23,9 +23,9 @@
 					</li>
 				</ul>
 				<div class="total-item">
-							<div class="item-title">订单合计:</div>
+							<div class="item-title">订单金额</div>
 							<div class="item-after">合计:<span class="total">
-							{{shopList.total | price}}</span></div>
+							{{shopList.total | price}}日元</span></div>
 					</div>
 			</div>
 			<!-- 付款方式-->

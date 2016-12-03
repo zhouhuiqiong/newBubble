@@ -8,12 +8,12 @@
 			<!--订单详情-->
 			<div class="order-inf order-inf1 order-inf3"  v-for="item in dataList" track-by="$index">
 				<h3 class="o-title active">
-					<span class="item-t clr1">订单确认</span>
-					<span class="item-a">2012-12-12 10:80 <a class="iconfont icon-shanchu order-del-ic"></a></span>
+					<span class="item-t clr4">订单已关闭</span>
+					<span class="item-a">2012-12-12 10:80 <a class="iconfont icon-lajitong order-del-ic" @click="delItem($event)"></a></span>
 				</h3>
 				<h3 class="order-inf-t" v-link="{ name: 'myorderdetails', query: { orderId: '1'}}">
 					<div><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg"><span>去问问</span></div>
-		  			<a class="icon icon-right"></a>
+		  			<a class="iconfont icon-iconright"></a>
 				</h3>
 				<ul  class="list-block">
 					<li class="item-content" >
@@ -36,7 +36,7 @@
 					</li>
 				</ul>
 				<div class="total-item">
-					<div class="item-title">订单合计:</div>
+					<div class="item-title">订单金额</div>
 					<div class="item-after">合计:<span class="total">
 							{{30000 | price}}</span></div>
 				</div>
@@ -48,8 +48,8 @@
 				</div> -->
 				<div class="total-item">
 
-					<p class="clr3"><i class="iconfont icon-tanhao ver"></i>退款成功</p>
-					<a href="javascript:void(0)" class="btn2">商家位置</a>
+					<p class="clr3"><i class="iconfont icon-tanhao ver1"></i>退款成功</p>
+					<a  class="btn2" v-link="{ name: 'chat', query: { orderId: '1'}}">商家位置</a>
 				</div>
 			</div>
 			<!--end 订单详情-->
@@ -86,7 +86,10 @@ module.exports = {
 		}
 	},
 	methods: {
-		
+		delItem: function(e){//删除数据
+			$(e.target).parents('.order-inf').remove();
+			$.toast('订单删除成功');
+		}
 	},
 	route:{
 		activate:function(transition){

@@ -17,7 +17,7 @@ module.exports = {
     getServerCode: function(){
       var that = this;
       var time = that.time;
-      if(util.string.isMobile(that.userPhone) &&  that.result){
+      if(util.string.isEmail(that.userPhone) &&  that.result){
         that.result = false;
         that.btntext = ''+time+' 秒';
         var timer = setInterval(function(){

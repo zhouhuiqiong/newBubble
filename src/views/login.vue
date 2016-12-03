@@ -1,14 +1,15 @@
 <template>
 	<div class="container">
-		<header class="bar bar-nav title-bar">
-		  <a class="iconfont icon-iconleft pull-left" v-go-history></a>
-		  <h1 class="title">登录</h1>
+		<header class="bar bar-nav title-bar title-bar2 ">
+		  <a class="save-btn" v-link="{name:'forget'}">注册</a>
+		  <a class="iconfont icon-iconfontclosesmall pull-left" v-go-history></a>
+		  <h1 class="title">邮箱登录</h1>
 		</header>
 		<div class="content login-box" >
 			<div class="edit-box">
 				<div class="input-style">
-					<span class="place-tag">输入您的手机登录</span>
-					<input type="text" name=""  value="" v-slice-str="11" v-model="user.phone">
+					<span class="place-tag">输入邮箱登录</span>
+					<input type="text" name=""  value=""  v-model="user.phone">
 					<i class="iconfont icon-shanchu"></i>
 				</div>
 				<div class="input-style">
@@ -41,20 +42,15 @@ module.exports = {
 	},
 	methods: {
 		goLogin: function(){
-			var t = this;
-
-			if(!t.v.isMobile(t.user.phone)){
-
+			var t = this
+			if(!t.v.isEmail(t.user.phone)){
+				$.toast('输入邮箱地址');
 			}else if(!t.v.isNull(t.user.password)){
 				$.toast('输入密码');
 			}else{//开始登录，cookie
 				t.$dispatch('userId','666');
 				util.cookie.set('userId', '666');
-				if(t.$route.query.back == 1){
-					util.goBack();
-				}else{
-					t.$router.go({path:'/home'});
-				};
+				util.goBack();
 			}
 		}
 	},

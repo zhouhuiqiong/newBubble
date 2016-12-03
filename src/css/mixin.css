@@ -26,8 +26,8 @@ em {
 
 @font-face {
   font-family: 'iconfont';
-  src: url("//at.alicdn.com/t/font_ly72380crw9udi.eot");
-  src: url("//at.alicdn.com/t/font_ly72380crw9udi.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_ly72380crw9udi.woff") format("woff"), url("//at.alicdn.com/t/font_ly72380crw9udi.ttf") format("truetype"), url("//at.alicdn.com/t/font_ly72380crw9udi.svg#iconfont") format("svg"); }
+  src: url("//at.alicdn.com/t/font_mi4l57qftehwu3di.eot");
+  src: url("//at.alicdn.com/t/font_mi4l57qftehwu3di.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_mi4l57qftehwu3di.woff") format("woff"), url("//at.alicdn.com/t/font_mi4l57qftehwu3di.ttf") format("truetype"), url("//at.alicdn.com/t/font_mi4l57qftehwu3di.svg#iconfont") format("svg"); }
 .iconfont {
   font-family: "iconfont";
   font-size: 16px;
@@ -120,6 +120,9 @@ em {
 
 .icon-duoxuan:before {
   content: "\e62a"; }
+
+.icon-lajitong:before {
+  content: "\e655"; }
 
 .shop-tag, .shop-tag1 {
   border: 1px solid #d6d6d6;
