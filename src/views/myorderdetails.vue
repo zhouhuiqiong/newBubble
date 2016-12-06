@@ -57,26 +57,26 @@
 					<li class="item-content">
 						<div class="item-inner">
 							<div class="item-title">项目套餐</div>
-							<div class="item-after">								¥50,000</div>
+							<div class="item-after">								50,000日元</div>
 						</div>
 					</li>
 					<li class="item-content">
 						<div class="item-inner">
 							<div class="item-title">项目套餐</div>
-							<div class="item-after">								¥50,000</div>
+							<div class="item-after">								50,000日元</div>
 						</div>
 					</li>
 					<li class="item-content">
 						<div class="item-inner">
 							<div class="item-title">项目套餐</div>
-							<div class="item-after">								¥50,000</div>
+							<div class="item-after">								50,000日元</div>
 						</div>
 					</li>
 				</ul>
 				<div class="total-item">
 					<div class="item-title"></div>
 					<div class="item-after">合计:<span class="total">
-					¥30,000</span></div>
+					50,000日元</span></div>
 				</div>
 			</div>
 			<!--end 订单金额-->

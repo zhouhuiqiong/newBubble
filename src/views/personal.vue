@@ -24,7 +24,7 @@
 					<div class="item-after"><span class="iconfont icon-iconright "></span></div>
 				</a>
 				<!--订单信息-->
-				<div class="order-inf order-inf1 order-inf3" v-if="userId">
+				<div class="order-inf order-inf1 order-inf3" v-if="userId" v-link="{ name: 'myorderdetails', query: { orderId: '1'}}">
 					<h3 class="o-title active">
 						<span class="item-t">订单确认</span>
 						<span class="item-a">2012-12-12 10:80</span>

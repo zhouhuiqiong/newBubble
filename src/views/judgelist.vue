@@ -9,7 +9,7 @@
 			<div class="list-block media-list evaluate-list">
 				<ul>
 					<li>
-						<a href="#" class="item-content evaluate-content">
+						<a href="javascript:void(0);" class="item-content evaluate-content">
 							<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" ></div>
 							<div class="item-inner">
 								<div class="item-title-row">

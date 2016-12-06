@@ -6,12 +6,12 @@
 		</header>
 		<div class="content infinite-scroll bg">
 			<!--订单详情-->
-			<div class="order-inf order-inf1 order-inf3"  v-for="item in dataList" track-by="$index">
+			<div class="order-inf order-inf1 order-inf3"  v-for="item in dataList" track-by="$index" v-link="{ name: 'myorderdetails', query: { orderId: '1'}}">
 				<h3 class="o-title active">
 					<span class="item-t clr4">订单已关闭</span>
 					<span class="item-a">2012-12-12 10:80 <a class="iconfont icon-lajitong order-del-ic" @click="delItem($event)"></a></span>
 				</h3>
-				<h3 class="order-inf-t" v-link="{ name: 'myorderdetails', query: { orderId: '1'}}">
+				<h3 class="order-inf-t" v-link="{ name: 'details', query: { orderId: '1'}}">
 					<div><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg"><span>去问问</span></div>
 		  			<a class="iconfont icon-iconright"></a>
 				</h3>
@@ -49,7 +49,7 @@
 				<div class="total-item">
 
 					<p class="clr3"><i class="iconfont icon-tanhao ver1"></i>退款成功</p>
-					<a  class="btn2" v-link="{ name: 'chat', query: { orderId: '1'}}">商家位置</a>
+					<a  class="btn2" v-link="{ name: 'chat', query: { orderId: '1'}}">联系客服</a>
 				</div>
 			</div>
 			<!--end 订单详情-->

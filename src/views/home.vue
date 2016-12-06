@@ -19,15 +19,23 @@
 		<div class="select-wrap">
 			<ul class="seach-select-list">
 				<li @click="changeType($event,0)"><span>附近</span><i class="iconfont icon-icon-copy-copy"></i></li>
-				<li @click="changeType($event,0)"><span>全部风俗</span><i class="iconfont icon-icon-copy-copy"></i></li>
-				<li @click="changeType($event,0)"><span>智能排序</span><i class=" iconfont icon-icon-copy-copy"></i></li>
-				<li @click="changeType($event,1)"><span>筛选</span><i class=" iconfont icon-icon-copy-copy"></i></li>
+				<li @click="changeType($event,1)"><span>全部风俗</span><i class="iconfont icon-icon-copy-copy"></i></li>
+				<li @click="changeType($event,2)"><span>智能排序</span><i class=" iconfont icon-icon-copy-copy"></i></li>
+				<li @click="changeType($event,3)"><span>筛选</span><i class=" iconfont icon-icon-copy-copy"></i></li>
 			</ul>
 			<!--list-->
 			<div class="select-box">
 				<ul class="change-list hide item">
-					<li class="active"><span >新宿</span><i class="iconfont icon-duigou"></i></li>
-					<li ><span>新宿</span</li>
+					<li class="active"><span >新宿1</span><i class="iconfont icon-duigou"></i></li>
+					<li ><span>新宿1</span</li>
+				</ul>
+				<ul class="change-list hide item">
+					<li class="active"><span >新宿2</span><i class="iconfont icon-duigou"></i></li>
+					<li ><span>新宿2</span</li>
+				</ul>
+				<ul class="change-list hide item">
+					<li class="active"><span >新宿3</span><i class="iconfont icon-duigou"></i></li>
+					<li ><span>新宿3</span</li>
 				</ul>
 				<!---->
 				<div class="screen-list hide item">
@@ -102,7 +110,7 @@ module.exports = {
 		var that = this;
 	    that.fixedbox();
 	    that.$nav = $('.seach-select-list li');
-	    that.$item = $('.select-box .item ');
+	    that.$item = $('.select-box .item');
 	    //加载数据
 		var dataObj = new util.scrollList();
 		dataObj.init(this,{
@@ -127,7 +135,6 @@ module.exports = {
 		that.$screen = $('.screen-item dd span');
 		that.$screen.on('click', function(){
 			var t = $(this);
-			//$(this).parents('dd').find('span').removeClass('active');
 			$(this).addClass('active');
 		});
 		//获取当前位置
@@ -147,8 +154,7 @@ module.exports = {
 			isSelectShade: false,
 			address: '东京',
 			isIndex: false,
-			searchVal: ''//搜索值
-			
+			searchVal: ''//搜索值	
 		}
 	},
 	computed: {
@@ -169,9 +175,6 @@ module.exports = {
 		}
 	},
 	methods: {
-		// showAdr: function(){
-		// 	$.popup('.popup-about');
-		// },
 		getNowAdr: function(){
 
 		},
@@ -183,18 +186,19 @@ module.exports = {
 		changeType: function(e,num){
 			var that = this;
 			var $obj = $(e.currentTarget);
-			that.isSelectShade = num != undefined ? true : false;
 			if($obj.hasClass('active')){
-				that.$nav.removeClass('active');
-				that.$item.addClass('hide')
+				that.selectShade();
 			}else{
 				$obj.addClass('active').siblings('li').removeClass('active');
 				that.$item.addClass('hide').eq(num).removeClass('hide');
+				that.isSelectShade = true;
 			};
 		},
-		selectShade: function(e){
-			this.changeType(e);
-			$('.seach-select-list li').removeClass('active');
+		selectShade: function(){
+			var that = this;
+			that.$nav.removeClass('active');
+			that.isSelectShade = false;
+			that.$item.addClass('hide');
 		},
 		submitScreen: function(){
 			var that = this;

@@ -75,7 +75,7 @@ var showPlaceholder =  {
 var goHistory = {
 	bind: function(){
 		$(this.el).bind('click', function(event){
-			window.history.back(-1);
+			window.history.go(-1);
 			event.stopPropagation();
 		});
 	}

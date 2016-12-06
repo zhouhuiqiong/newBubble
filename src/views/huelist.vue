@@ -70,20 +70,19 @@ module.exports = {
 		changeType: function(e,num){
 			var that = this;
 			var $obj = $(e.currentTarget);
-			that.isSelectShade = num != undefined ? true : false;
 			if($obj.hasClass('active')){
-				that.$nav.removeClass('active');
-				that.$item.addClass('hide')
+				that.selectShade();
 			}else{
 				$obj.addClass('active').siblings('li').removeClass('active');
 				that.$item.addClass('hide').eq(num).removeClass('hide');
+				that.isSelectShade = true;
 			}
-			
 		},
 		selectShade: function(e){
 			var that = this;
 			that.$nav.removeClass('active');
-			that.changeType(e);
+			that.isSelectShade = false;
+			that.$item.addClass('hide');
 		}
 	},
 	route:{

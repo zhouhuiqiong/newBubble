@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<header class="bar bar-nav title-bar title-bar2 ">
+		<header class="bar bar-nav title-bar title-bar3 ">
 		  <a class="save-btn" v-link="{name:'forget'}">注册</a>
 		  <a class="iconfont icon-iconfontclosesmall pull-left" v-go-history></a>
 		  <h1 class="title">邮箱登录</h1>

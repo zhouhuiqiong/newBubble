@@ -508,11 +508,16 @@ $pa:0px 40px;
 		color:#888;
 	}
 }
-.title-bar2{
+.title-bar3{
 	.save-btn{
 		position: absolute;
 		right: 0.5rem;
 		z-index: 10;
+	}
+	.icon-iconfontclosesmall{
+		font-size: 16px;
+		color:#888;
+		margin-top: 0.1rem;
 	}
 }
 .content1,.bg{background:#f6f6f6;}
@@ -1334,7 +1339,9 @@ $pa:0px 40px;
 		}
 	}
 }
-.app,.container{
+
+
+.container{
  	width: 100%;
  	height: 100%;
 }
@@ -1373,6 +1380,8 @@ $pa:0px 40px;
 	margin: 1rem auto 0px;
 	display: block;
 }
+
+
 @media(max-width: 320px){
   .seach-select-list > li{
     font-size: 12px;
@@ -1383,6 +1392,7 @@ $pa:0px 40px;
   .shop-tag1{
     width: 3.5rem;
   }
+
 }
 #tab-swiper{
 	.swiper-slide-prev .list-block,.swiper-slide-next .list-block{
@@ -1509,6 +1519,10 @@ $pa:0px 40px;
 		}
 	}
 }
+
+
+
+
 .card-item2 h3{
 	margin-top: 0px;
 }
@@ -1701,7 +1715,7 @@ $pa:0px 40px;
 	.u-jian{
 		position: absolute;
 		bottom: 0rem;
-		left: -0.4rem;
+		left: -0.33rem;
 		width: 0.65rem;
 		height: 0.45rem;
 		background: url('../images/un.png') no-repeat center;
@@ -1764,3 +1778,4 @@ $pa:0px 40px;
 .ver{vertical-align: -2px; margin-right: 0.4rem;}
 .ver1{vertical-align: -2px; margin-right: 0.1rem;}
 .tr{text-align: right;}
+.open-adr-btn:hover{color:#000 !important;}
