@@ -144,7 +144,14 @@ module.exports = {
 			that.searchGo()
 		  	return false;
 		});
-
+		that.getServerData({
+			url: 'http://192.168.199.109:9000/src/js/a.json',
+			type: 'get',
+			success: function(data){
+				console.log(data);
+			}
+		});
+		that.a();
 		
 	},
 	data:function(){

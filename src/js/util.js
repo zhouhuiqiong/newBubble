@@ -136,14 +136,18 @@ window.util = {
       that.obj['dataList' + that.obj.item] =  [];
 
     },
-    getServerDate: function(url,data){//获取远程数据
-      return $.ajax({
+    getServerDate: function(data){//获取远程数据
+      $.ajax({
           method: 'POST',
-          data: data,
-          url: url 
+          data: data.data,
+          url: data.url,
+          success: function(result){//成功
+
+          }
       })
+
     },
-    getListData: function(){
+    getListData: function(){//
       var that = this;
       if(that.data.page == 1) that.initIScroll();
       //数据
@@ -156,10 +160,6 @@ window.util = {
       };
       that.obj['dataList' + that.obj.item].concat(ary);
       that.data.page++;
-      // that.getServerDate('http://www.renrenbuy.com/index.php/yungouapi/goods/get_shaidan_list',{
-      // }).success(function(data){
-
-      // })
     },
     initIScroll: function(){//滚动条动作
       var that = this;
@@ -180,7 +180,7 @@ window.util = {
       setTimeout(function() {
           if (that.obj.loading) return;
           that.obj.loading = true;
-          that.getListData();
+          that.getListData();//远程获取数据
           var scrollTop = scroller[0].scrollHeight - scroller.height() - 20;
         scroller.scrollTop(scrollTop)
       }, 1000);
@@ -552,9 +552,8 @@ $.fn.scrollTo =function(options){
     }
   };
   util.inputAnmition = inputAnmition;
-})()
+})()      
 module.exports = util;
-      
 
 
 

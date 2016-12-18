@@ -219,6 +219,9 @@ module.exports = {
           },
           '/chat': {
             name: 'chat'
+          },
+          '/test': {
+            name: 'test'
           }
 
         },
