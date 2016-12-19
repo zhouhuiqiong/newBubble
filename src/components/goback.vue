@@ -8,11 +8,7 @@
 		ready: function(){
 			var that = this;
 			$('.' + that.targetScroll ).on('scroll', function(){
-				if($(this).scrollTop() > 200){
-					that.isGoback = true;
-				}else{
-					that.isGoback = false;
-				}
+				that.isGoback = $(this).scrollTop() > 200 ? true : false;
 			});
 		},
 		data:function(){

@@ -18,19 +18,21 @@
 			var t = this;
 			var params = $.extend({
 			},data);
+			$(params.scrollObj).scrollTop(0);
 			$(params.scrollObj).on('scroll', function(){
 				var el = $(this);
+				t.loading = false;
 				if(t.currentPage > t.itemsPerPage){
 					t.loading = true;
 					return;
 				};
 				var totalHeight = parseFloat(el.height()) + parseFloat(el.scrollTop());
-				if(el[0].scrollHeight - totalHeight <= 3){
-					t.loading = false;
+				if(el[0].scrollHeight == totalHeight){
 					setTimeout(function(){
-						t.currentPage ++;
+          				if (t.loading) return;
 						var scrollTop = el[0].scrollHeight - el.height() - 20;
-						//el.scrollTop(scrollTop)
+						t.currentPage ++;
+						el.scrollTop(scrollTop);
 					}, 1000);
 				};
 		    });

@@ -96,10 +96,17 @@ var allRead = {
 			};
 		});
 	}
+};
+//返回顶部
+var animateBack = {
+	bind: function(value){
+
+
+	}
 }
 exports.infiniteScroll = infiniteScroll;
 exports.goHistory = goHistory;
 exports.sliceStr = sliceStr;
 exports.allRead = allRead;
-// exports.delVal = delVal;
+exports.animateBack = animateBack;
 exports.showPlaceholder = showPlaceholder;

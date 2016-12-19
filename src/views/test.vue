@@ -125,8 +125,7 @@ module.exports = {
 				that.$nav.removeClass('active');
 			},300);
 			//选项更改后变化，加载数据
-			that.currentPage = 1;
-			that.dataList = [];
+			that.currentPage = 1;		
 		});
 		//筛选
 		that.$screen = $('.screen-item dd span');
@@ -149,6 +148,7 @@ module.exports = {
 	watch: {
 	    'currentPage': function (val, oldVal) {
 	    	var that = this;
+	    	if(that.currentPage == 1) that.dataList = [];
 	   		that.getServerData({
 	   			url: 'http://cnodejs.org/api/v1/topics',
 	   			type: 'get',
@@ -170,7 +170,7 @@ module.exports = {
 			isSelectShade: false,
 			address: '东京',
 			isIndex: false,
-			currentPage: '',
+			currentPage: 0,
 			searchVal: ''//搜索值	
 		}
 	},
