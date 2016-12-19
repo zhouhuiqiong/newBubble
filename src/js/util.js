@@ -70,12 +70,8 @@ window.util = {
    * @return {Boolean}     [description]
    */
   _String.isMobile = function(val) {
-     var phoneReg = /^(((13[0-9]{1})|(17[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
-      if(!phoneReg.test(val)){
-        $.toast("输入确证的手机号");
-        return false;
-      };
-      return true;
+    var phoneReg = /^(((13[0-9]{1})|(17[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+    return phoneReg.test(val);
   };
   /**
   * 去掉左右空格

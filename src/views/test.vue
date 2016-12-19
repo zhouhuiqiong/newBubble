@@ -111,13 +111,7 @@ module.exports = {
 	    that.fixedbox();
 	    that.$nav = $('.seach-select-list li');
 	    that.$item = $('.select-box .item');
-	    //加载数据
-		var dataObj = new util.scrollList();
-		dataObj.init(this,{
-			le: '.media-list',//承载列表的数据
-			scrollObj: '.content'
-		});
-		dataObj.getListData();
+	    
 		//附近
 		that.$nearby = $('.change-list>li');
 		that.$nearby.on('click', function(){
@@ -130,6 +124,9 @@ module.exports = {
 				that.isSelectShade = false;
 				that.$nav.removeClass('active');
 			},300);
+			//选项更改后变化，加载数据
+			that.currentPage = 1;
+			that.dataList = [];
 		});
 		//筛选
 		that.$screen = $('.screen-item dd span');
@@ -137,32 +134,43 @@ module.exports = {
 			var t = $(this);
 			$(this).addClass('active');
 		});
-		//获取当前位置
-		that.getNowAdr();
-		
-		$('.search-input-box').on('submit', function(e){//鼠标键盘事件，右下角
+		//鼠标键盘事件，右下角
+		$('.search-input-box').on('submit', function(e){
 			that.searchGo()
 		  	return false;
 		});
-		that.getServerData({
-			url: 'http://192.168.199.109:9000/src/js/a.json',
-			type: 'get',
-			success: function(data){
-				console.log(data);
-			}
+		//滚动获取数据
+		that.scrollList({
+			le: '.media-list',
+			scrollObj: '.content'
 		});
-		that.a();
-		
+		that.currentPage = 1;
+	},
+	watch: {
+	    'currentPage': function (val, oldVal) {
+	    	var that = this;
+	   		that.getServerData({
+	   			url: 'http://cnodejs.org/api/v1/topics',
+	   			type: 'get',
+	   			success: function(results){
+	   				results.data.data.length = 10;
+	   				that.dataList = that.dataList.concat(results.data.data);
+	   				that.loading = true;
+	   				that.itemsPerPage = 2;
+	   			}
+	   		});
+	    }
 	},
 	data:function(){
 		return {
 			msg:'aboutMessage',
 			title:'home',
 			dataList: [],
-			loading: false,
+			loading: true,//取反
 			isSelectShade: false,
 			address: '东京',
 			isIndex: false,
+			currentPage: '',
 			searchVal: ''//搜索值	
 		}
 	},
@@ -184,9 +192,7 @@ module.exports = {
 		}
 	},
 	methods: {
-		getNowAdr: function(){
-
-		},
+		
 		fixedbox: function(){
 			util.fixedbox({
 				fixedbox:'.select-wrap'

@@ -15,22 +15,6 @@ var infiniteScroll = {
  		
  	}
 }
-var delVal = {
-	bind: function(){
-		var t = this;
-		$(t.el).on('click', function(){
-			$(this).siblings('input').val('');
-			var $span = $(this).siblings('span');
-			$span.show();
-			if($span.hasClass('place-tag-top')){
-				$span.removeClass('place-tag-top').addClass('place-tag-bottom');
-			}else{
-				$span.removeClass('place-tag-top,place-tag-bottom');
-			};
-			$(this).hide();
-		});
-	}
-}
 
 var showPlaceholder =  {
 	bind: function(){
@@ -39,8 +23,12 @@ var showPlaceholder =  {
 			$span = $el.find('span'),
 			$text = $el.find('input'),
 			$del = $el.find('.icon-shanchu');
+
+
+			console.log(this);
  		style();
 		$text.on('focus', function(){
+
 			$pan = $(this).siblings('span');
 			$del =  $(this).siblings('.icon-shanchu');
 			style();
@@ -114,4 +102,4 @@ exports.goHistory = goHistory;
 exports.sliceStr = sliceStr;
 exports.allRead = allRead;
 // exports.delVal = delVal;
-// exports.showPlaceholder = showPlaceholder;
+exports.showPlaceholder = showPlaceholder;

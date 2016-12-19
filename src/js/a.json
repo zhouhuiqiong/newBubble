@@ -1,9 +1,18 @@
-{ "people": [
-
-{ "firstName": "Brett", "lastName":"McLaughlin", "email": "aaaa" },
-
-{ "firstName": "Jason", "lastName":"Hunter", "email": "bbbb"},
-
-{ "firstName": "Elliotte", "lastName":"Harold", "email": "cccc" }
-
-]}
+{
+	"totalCount": 100,
+	"itemsPerPage": 2,//总共2
+	"list": [
+		{ "firstName":"John" , "lastName":"Doe" },
+		{ "firstName":"John" , "lastName":"Doe" },
+		{ "firstName":"John" , "lastName":"Doe" },
+		{ "firstName":"John" , "lastName":"Doe" },
+		{ "firstName":"John" , "lastName":"Doe" },
+		{ "firstName":"John" , "lastName":"Doe" },
+		{ "firstName":"John" , "lastName":"Doe" },
+		{ "firstName":"John" , "lastName":"Doe" },
+		{ "firstName":"John" , "lastName":"Doe" },
+		{ "firstName":"John" , "lastName":"Doe" },
+		{ "firstName":"John" , "lastName":"Doe" },
+		{ "firstName":"John" , "lastName":"Doe" },
+	]
+}

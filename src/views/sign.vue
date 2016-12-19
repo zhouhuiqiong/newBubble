@@ -8,8 +8,9 @@
 		<div class="content login-box" >
 			<div class="edit-box">
 				<div class="input-style">
-					<span class="place-tag">输入您的手机号</span>
-					<input type="text" name=""  value="" v-model="phone" v-slice-str="11">
+					<span class="place-tag">输入邮箱登录</span>
+					<!-- <input type="text" name=""  value="" v-model="phone" v-slice-str="11"> -->
+					<input type="text" name=""  value=""  v-model="user.phone">
 					<i class="iconfont icon-shanchu"></i>
   					<div class="dome-time-box"><uidometime time="5" :user-phone="phone"></uidometime></div>
 				</div>
@@ -53,8 +54,8 @@ module.exports = {
 	methods: {
 		signSubmit: function(){
 			var t = this;
-			if(!t.v.isMobile(t.phone)){
-
+			if(!t.v.isEmail(t.user.phone)){
+				$.toast('输入邮箱地址');
 			}else if(!t.v.isNull(t.code)){
 				$.toast('输入验证码');
 			}else if(!t.v.isLength(t.password,8)){

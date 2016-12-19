@@ -217,10 +217,8 @@ module.exports = {
 			if(item){
 				if(item == 1){
 					var site =  t.site1;
-					//t.dataList2 = [];
 				}else {
 					var site =  t.site2;
-					//t.dataList1 = [];
 				}
 				t.$link.css({
 					left: site
