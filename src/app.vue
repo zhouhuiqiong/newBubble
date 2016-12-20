@@ -225,6 +225,9 @@ module.exports = {
           },
           '/testlogin': {
             name: 'testlogin'
+          },
+          '/testdetails': {
+            name: 'testdetails'
           }
 
         },

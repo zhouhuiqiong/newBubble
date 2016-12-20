@@ -93,6 +93,7 @@ module.exports = {
 	},
 	methods: {
 		goback: function(){
+			var t = this;
 			$.confirm('订单未提交，要返回吗？',
 				function () {
 					t.goBack();

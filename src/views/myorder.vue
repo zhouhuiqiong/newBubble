@@ -38,7 +38,7 @@
 				<div class="total-item">
 					<div class="item-title">订单金额</div>
 					<div class="item-after">合计:<span class="total">
-							{{30000 | price}}</span></div>
+							{{30000 | price}}日元</span></div>
 				</div>
 <!-- 				<div class="total-item">
 					<span></span>
@@ -49,7 +49,7 @@
 				<div class="total-item">
 
 					<p class="clr3"><i class="iconfont icon-tanhao ver1"></i>退款成功</p>
-					<a  class="btn2" v-link="{ name: 'chat', query: { orderId: '1'}}">联系客服</a>
+					<a  class="btn2" v-link="{ name: 'chat', query: { orderId: '1'}}" >联系客服</a>
 				</div>
 			</div>
 			<!--end 订单详情-->

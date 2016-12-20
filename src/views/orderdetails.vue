@@ -101,7 +101,11 @@ module.exports = {
 		},
 		checkedFun: function(e){// icon-duoxuan
 			var that = this;
-			if(that.isMay) that.checked = !that.checked;
+			if(that.isMay){
+				that.checked = !that.checked;
+			}else{
+				$.toast('阅读完毕才能勾选！');
+			}
 		},
 		orderHandle: function(){
 			var that = this;

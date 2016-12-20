@@ -79,7 +79,7 @@ var showPlaceholder =  {
     	function styleHanle() {
     		var obj = $text;
 			var $span = obj.siblings('span');
-			$span.removeClass(del);
+			$span.addClass(add)
 			if(!obj.val()) $span.removeClass(del);
 		};
 		function styleHanle1() {

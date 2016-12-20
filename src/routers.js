@@ -124,6 +124,10 @@ module.exports = function(router){
 			name: 'test',
 			component: require('./views/testlogin.vue')
 		},
+		'/testdetails': {//测试
+			name: 'test',
+			component: require('./views/testdetails.vue')
+		},
 		'*': {
 	      component: require('./views/home.vue')
 	    }
