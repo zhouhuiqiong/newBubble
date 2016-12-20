@@ -10,7 +10,7 @@ var VueTouch = require('./js/vtouch');
 var VueRouter = require('vue-router');
 var fastclick = require('fastclick');
 var VueResource = require('vue-resource');
-var vuePublic = require('./js/public.js');
+var vuePublic = require('./js/public');
 
 fastclick.attach(document.body);
 // Directive

@@ -24,7 +24,7 @@ module.exports = {
 	ready: function(){
 		var t = this;
 		new util.inputAnmition().init();
-		t.v = util.string;
+		
 
 	},
 	data:function(){
@@ -39,13 +39,13 @@ module.exports = {
 	methods: {
 		goLogin: function(){
 			var t = this;
-			if(!t.v.isEmail(t.user.phone)){
+			if(!t.string.isEmail(t.user.phone)){
 				$.toast('输入邮箱地址');
-			}else if(!t.v.isNull(t.user.password)){
+			}else if(!t.string.isNull(t.user.password)){
 				$.toast('输入密码');
 			}else{//开始登录，cookie
 				t.$dispatch('suiteUserId','666');
-				util.cookie.set('suiteUserId', '666');
+				t.cookie.set('suiteUserId', '666');
 				t.$router.go({path:'/suitepersonal'});
 				
 			}

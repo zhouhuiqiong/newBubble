@@ -7,7 +7,8 @@
 		props: ['targetScroll'],
 		ready: function(){
 			var that = this;
-			$('.' + that.targetScroll ).on('scroll', function(){
+			that.scroll = $('.' + that.targetScroll);
+			that.scroll.on('scroll', function(){
 				that.isGoback = $(this).scrollTop() > 200 ? true : false;
 			});
 		},
@@ -18,8 +19,11 @@
 		},
 		methods: {
 			goBack: function(event){
-				$('.' + this.targetScroll ).scrollTo(0);
-				this.isGoback = false;
+				var that = this;
+				that.scrollTo({
+					scope: that
+				});
+				that.isGoback = false;
 			}
 		}
 	};

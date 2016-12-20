@@ -89,7 +89,7 @@ module.exports = {
 				$('.icon-duigou').remove();
 				$(this).append('<i class="iconfont icon-duigou"></i>');
 				var txt = $(this).text();
-				util.cookie.set('address', txt);
+				t.cookie.set('address', txt);
 				t.isInput = false;
 				setTimeout(function(){
 					t.$router.go({path:'/home'});

@@ -7,12 +7,12 @@
 		</header>
 		<div class="content login-box" >
 			<div class="edit-box">
-				<div class="input-style">
+				<div class="input-style" v-show-placeholder>
 					<span class="place-tag">输入邮箱登录</span>
-					<input type="text" name=""  value=""  v-model="user.phone">
+					<input type="text" name=""  v-model="user.phone" value="{{user.phone}}">
 					<i class="iconfont icon-shanchu"></i>
 				</div>
-				<div class="input-style">
+				<div class="input-style" v-show-placeholder>
 					<span class="place-tag">密码</span>
 					<input type="password" name=""  value="" v-model="user.password">
 					<i class="iconfont icon-shanchu"></i>
@@ -27,8 +27,8 @@
 module.exports = {
 	ready: function(){
 		var t = this;
-		new util.inputAnmition().init();
-
+		//new util.inputAnmition().init();
+		t.user.phone = '121212';
 
 	},
 	data:function(){
@@ -43,6 +43,7 @@ module.exports = {
 	methods: {
 		goLogin: function(){
 			var t = this
+			console.log(t.user.phone);
 			if(!t.string.isEmail(t.user.phone)){
 				$.toast('输入邮箱地址');
 			}else if(!t.string.isNull(t.user.password)){

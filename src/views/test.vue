@@ -16,7 +16,7 @@
 		<div class="home-swiper">
 			<uiswiper></uiswiper>
 		</div>
-		<div class="select-wrap">
+		<div class="select-wrap" :class="{'fiex-select': isFixedbox}">
 			<ul class="seach-select-list">
 				<li @click="changeType($event,0)"><span>附近</span><i class="iconfont icon-icon-copy-copy"></i></li>
 				<li @click="changeType($event,1)"><span>全部风俗</span><i class="iconfont icon-icon-copy-copy"></i></li>
@@ -24,7 +24,7 @@
 				<li @click="changeType($event,3)"><span>筛选</span><i class=" iconfont icon-icon-copy-copy"></i></li>
 			</ul>
 			<!--list-->
-			<div class="select-box">
+			<div class="select-box" >
 				<ul class="change-list hide item">
 					<li class="active"><span >新宿1</span><i class="iconfont icon-duigou"></i></li>
 					<li ><span>新宿1</span</li>
@@ -118,7 +118,7 @@ module.exports = {
 			var t = $(this);
 			$('.icon-duigou').remove();
 			t.append('<i class="iconfont icon-duigou"></i>');
-			util.clickActive(t);
+			that.eStyle.clickActive(t);
 			setTimeout(function(){
 				t.parent().addClass('hide');
 				that.isSelectShade = false;
@@ -171,7 +171,8 @@ module.exports = {
 			address: '东京',
 			isIndex: false,
 			currentPage: 0,
-			searchVal: ''//搜索值	
+			searchVal: '',//搜索值
+			isFixedbox: false
 		}
 	},
 	computed: {
@@ -184,7 +185,7 @@ module.exports = {
 			var t = this;
 			t.$root.$set('header',t.title);
 			transition.next();
-			var adr = util.cookie.get('address');
+			var adr = t.cookie.get('address');
 			t.address = adr ? adr : '东京';
 			setTimeout(function(){
 				$('.icon-dairaku').parent('.tab-item').addClass('active');
@@ -192,10 +193,10 @@ module.exports = {
 		}
 	},
 	methods: {
-		
 		fixedbox: function(){
-			util.fixedbox({
-				fixedbox:'.select-wrap'
+			var that = this;
+			that.fixedBoxPlug({
+				scope: that
 			});
 		},
 		changeType: function(e,num){

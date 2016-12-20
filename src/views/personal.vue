@@ -89,7 +89,7 @@ module.exports = {
 		activate:function(transition){
 			this.$root.$set('header',this.title);
 			transition.next();
-			this.userId = util.cookie.get('userId');
+			this.userId = this.cookie.get('userId');
 		}
 	}
 

@@ -61,7 +61,7 @@
 	    			<span class="clr3">({{news}})</span>
 	    		</div>
 	    		<div class="btn-box">
-	    			<button class="btn2" :class="{'disabled': isDisabled}"  @click="referorder">我知道了<i class="dome-time"></i></button>
+	    			<button class="btn2 btn24" :class="{'disabled': isDisabled}"  @click="referorder">我知道了<i class="dome-time">{{btntext}}</i></button>
 	    		</div>
 	    	</div>
 	    </div>
@@ -91,7 +91,8 @@ module.exports = {
 			news: '阅读完毕才能勾选',
 			isReadFinish: false,
 			isMay: false,
-			isDisabled: true//按钮是否可点
+			isDisabled: true,//按钮是否可点
+			btntext: ''
 		}
 	},
 	methods: {
@@ -104,7 +105,9 @@ module.exports = {
 		},
 		orderHandle: function(){
 			var that = this;
-			util.domeTime({
+			that.domeTime({
+				endText: '',
+				scope: that,
 				callback: function(){
 					if(that.isBase && that.checked) that.isDisabled = false;
 				}

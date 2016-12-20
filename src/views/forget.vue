@@ -40,7 +40,6 @@ module.exports = {
 	ready: function(){
 		var t = this;
 		new util.inputAnmition().init();
-		t.v = util.string;
 	},
 	data:function(){
 		return {
@@ -53,13 +52,13 @@ module.exports = {
 	methods: {
 		signSubmit: function(){
 			var t = this;
-			if(!t.v.isEmail(t.phone)){
+			if(!t.string.isEmail(t.phone)){
 				$.toast('输入邮箱地址');
-			}else if(!t.v.isNull(t.code)){
+			}else if(!t.string.isNull(t.code)){
 				$.toast('输入验证码');
-			}else if(!t.v.isLength(t.password,8)){
+			}else if(!t.string.isLength(t.password,8)){
 				$.toast('输入长度不小8的密码');
-			}else if(!t.v.isEquality(t.password,t.password1)){
+			}else if(!t.string.isEquality(t.password,t.password1)){
 				$.toast('两次密码不一样');
 			}else{
 				console.log('验证完成');

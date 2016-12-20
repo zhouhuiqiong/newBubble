@@ -18,43 +18,74 @@ var infiniteScroll = {
 
 var showPlaceholder =  {
 	bind: function(){
-		var t = this,
-			$el = $(t.el);
+		var that = this,
+			$el = $(that.el);
 			$span = $el.find('span'),
 			$text = $el.find('input'),
 			$del = $el.find('.icon-shanchu');
-
-
-			console.log(this);
- 		style();
-		$text.on('focus', function(){
-
-			$pan = $(this).siblings('span');
-			$del =  $(this).siblings('.icon-shanchu');
-			style();
-			console.log(!$(this).val());
-			if(!$(this).val()){
-				$span.addClass('place-tag-top').removeClass('place-tag-bottom');
-			}else{
-				$span.removeClass('place-tag-top,place-tag-bottom');
+			var moveUp = 'place-tag-top',//移上去动画	
+				moveDown = 'place-tag-bottom';//下来动画
+			var el = '.input-style';
+		$span.on('click',function() {
+			$(this).siblings('input').focus();
+		});
+		$text.on('focus',function() {
+			add = moveUp;
+			del = moveDown;
+			$text = $(this);
+			$el = $text.parent(el)
+			styleHanle();
+			delShow();
+		}).on('blur',function() {
+			add = moveUp;
+			del = moveDown;
+			$text = $(this);
+			$el = $text.parent(el)
+			styleHanle1();
+			delShow();
+		}).on('input',function() {
+			add = moveUp;
+			del = moveDown;
+			$text = $(this);
+			$el = $text.parent(el)
+			delShow();
+			if (!$(this).val()) {
+				$(this).siblings('span').show().addClass(add).removeClass(del);
 			};
 		});
-		$text.on('blur', function(){
-			$pan = $(this).siblings('span');
-			if(!$(this).val()){
-				$span.addClass('place-tag-bottom').removeClass('place-tag-top');
-			}else{
-				$span.removeClass('place-tag-top,place-tag-bottom');
-			}
-		});
-		function style(){
-			if($text.val()){
-				$span.hide();
-				$del.show();
-			}else{
-				$span.show();
-				$del.hide();
-			}
+		//点击删除
+ 		$del.on('touchstart',function() {
+	        var $input = $(this).siblings('input');
+	        var $span = $(this).siblings('span');
+        	$input.val('');
+        	$el = $(this).parent(el);
+        	spanShow();
+        	$span.removeClass(moveUp);
+        	$span.hasClass(moveUp) ? $span.addClass(moveDown) : $span.removeClass(moveDown);
+			$(this).hide();
+      	});
+		delShow();
+        spanShow();
+		function delShow() { //删除按钮的显示
+			var $text = $el.find('input');
+			var $del = $el.find('.icon-shanchu');
+			$text.val() ? $del.show() : $del.hide();
+		};
+		function spanShow() { //文本提示显示
+			var $span = $el.find('span');
+			var $text = $el.find('input');
+			$text.val() ? $span.hide() : $span.show();
+    	};
+    	function styleHanle() {
+    		var obj = $text;
+			var $span = obj.siblings('span');
+			$span.removeClass(del);
+			if(!obj.val()) $span.removeClass(del);
+		};
+		function styleHanle1() {
+			var obj = $text;
+      		var $span = obj.siblings('span');
+      		!obj.val() ? $span.addClass(del).removeClass(add) : $span.removeClass(del);
 		};
 		
 	}
@@ -97,16 +128,9 @@ var allRead = {
 		});
 	}
 };
-//返回顶部
-var animateBack = {
-	bind: function(value){
 
-
-	}
-}
 exports.infiniteScroll = infiniteScroll;
 exports.goHistory = goHistory;
 exports.sliceStr = sliceStr;
 exports.allRead = allRead;
-exports.animateBack = animateBack;
 exports.showPlaceholder = showPlaceholder;

@@ -16,7 +16,7 @@
 		<div class="home-swiper">
 			<uiswiper></uiswiper>
 		</div>
-		<div class="select-wrap">
+		<div class="select-wrap" :class="{'fiex-select': isFixedbox}">
 			<ul class="seach-select-list">
 				<li @click="changeType($event,0)"><span>附近</span><i class="iconfont icon-icon-copy-copy"></i></li>
 				<li @click="changeType($event,1)"><span>全部风俗</span><i class="iconfont icon-icon-copy-copy"></i></li>
@@ -156,7 +156,8 @@ module.exports = {
 			isSelectShade: false,
 			address: '东京',
 			isIndex: false,
-			searchVal: ''//搜索值	
+			searchVal: '',//搜索值
+			isFixedbox: false
 		}
 	},
 	computed: {
@@ -169,7 +170,7 @@ module.exports = {
 			var t = this;
 			t.$root.$set('header',t.title);
 			transition.next();
-			var adr = util.cookie.get('address');
+			var adr = t.cookie.get('address');
 			t.address = adr ? adr : '东京';
 			setTimeout(function(){
 				$('.icon-dairaku').parent('.tab-item').addClass('active');
@@ -181,8 +182,9 @@ module.exports = {
 
 		},
 		fixedbox: function(){
-			util.fixedbox({
-				fixedbox:'.select-wrap'
+			var that = this;
+			that.fixedBoxPlug({
+				scope: that
 			});
 		},
 		changeType: function(e,num){

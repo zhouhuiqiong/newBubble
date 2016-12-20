@@ -222,6 +222,9 @@ module.exports = {
           },
           '/test': {
             name: 'test'
+          },
+          '/testlogin': {
+            name: 'testlogin'
           }
 
         },
@@ -252,9 +255,10 @@ module.exports = {
     methods:{
       
     },
-    ready:function(){ 
-      if(!this.userId) this.userId = util.cookie.get('userId');
-      console.log(this.userId);
+    ready:function(){
+      var that = this;
+      if(!that.userId) that.userId = that.cookie.get('userId');
+      console.log(that.userId);
     }
 }
 </script>

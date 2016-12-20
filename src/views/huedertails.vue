@@ -61,12 +61,11 @@ module.exports = {
 	    that.$item = $('.select-box .item ');
 		that.$nearby = $('.change-list>li');
 	    that.$nav = $('.hue-filtrate');
-
 		that.$nearby.on('click', function(){
 			var t = $(this);
 			$('.icon-duigou').remove();
 			t.append('<i class="iconfont icon-duigou"></i>');
-			util.clickActive(t);
+			that.eStyle.clickActive(t);
 			setTimeout(function(){
 				t.parent().addClass('hide');
 				that.isSelectShade = false;
@@ -83,7 +82,6 @@ module.exports = {
 		changeType: function(e,num){
 			var that = this;
 			that.isSelectShade = num != undefined ? true : false;
-			console.log(that.isSelectShade);
 			$(e.currentTarget).addClass('active').siblings('li').removeClass('active');
 			that.$item.addClass('hide').eq(num).removeClass('hide');
 		},

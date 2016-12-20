@@ -180,8 +180,10 @@ em {
   display: inline-block; }
 
 .btn21 {
+  margin-left: 0.25rem; }
+
+.btn21, .btn24 {
   padding: 0px;
-  margin-left: 0.25rem;
   width: 4.5rem;
   text-align: center;
   background: #fff; }
