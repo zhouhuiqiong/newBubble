@@ -124,7 +124,7 @@ module.exports = {
 			var t = $(this);
 			$('.icon-duigou').remove();
 			t.append('<i class="iconfont icon-duigou"></i>');
-			util.clickActive(t);
+			that.eStyle.clickActive(t);
 			setTimeout(function(){
 				t.parent().addClass('hide');
 				that.isSelectShade = false;
