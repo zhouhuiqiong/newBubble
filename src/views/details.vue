@@ -4,13 +4,14 @@
 		  <a class="iconfont icon-icon1 pull-left" v-go-history></a>
 		  <h1 class="title">商家详情</h1>
 		</header>
+    	<uiimgmax :maxbox='maxbox' :aryimg='aryimg' :index='index'></uiimgmax>
 		<div class="content list infinite-scroll list-content content1">
 			<!--商品详情-->
 			<div class="list-block media-list">
 				<ul>
 					<li class="itme-style itme-style1">
 						<a href="javascript:void(0)" class="item-content">
-							<div class="item-media rel" v-link="{ name: 'shopimg', query: { shopid: '1'}}"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3646051749,3801647591&fm=80&w=179&h=119&img.JPEG">
+							<div class="item-media rel" @click="say(1)"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3646051749,3801647591&fm=80&w=179&h=119&img.JPEG">
 								<span class="img-num">22</span>
 							</div>
 							<div class="item-inner">
@@ -118,9 +119,6 @@
 <script>
 var Swiper = require('swiper');
 module.exports = {
-	route: {
-
-	},
 	ready: function(){
 		var t = this;
 		t.mySwiper = new Swiper('.swper', {
@@ -130,6 +128,7 @@ module.exports = {
 			paginationClickable :true,
 			effect: 'slide',
 			direction: 'horizontal',
+
 			onTouchStart: function(swiper){
 				t.start = $(".swiper-wrapper").css('transform').replace('translate3d','').replace('(','').replace('）','').split(',')[0].replace('px','');
 				t.activeIndex = swiper.activeIndex;
@@ -171,9 +170,6 @@ module.exports = {
 					left: num
 				});
 			},
-			onSlideChangeEnd: function(swiper){//切换结束时，告诉我现在是第几个slide,变化了走这个方法
-
-		    },
 		    onSlideNextEnd: function(swiper){//2向后，这个方法走在onTouchEnd后面
 		    	t.$link.css({
 					left: t.site2
@@ -208,7 +204,20 @@ module.exports = {
 				items: []
 			},
 			dataList2: [],
-			dataList1: []
+			dataList1: [],
+			maxbox: false,
+			aryimg: [{
+                img: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1945941167,1388481778&fm=80&w=179&h=119&img.JPEG'
+            },
+            {
+                img: 'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1592706537,1193956207&fm=80&w=179&h=119&img.JPEG'
+            },
+            {
+                img: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1845208894,2480502039&fm=80&w=179&h=119&img.JPEG'
+            },
+            {
+                img: 'http://upload.cankaoxiaoxi.com/2016/1014/1476437777501.jpg'
+            }]
 		}
 	},
 	methods: {
@@ -242,7 +251,14 @@ module.exports = {
 			t.$link.css({
 				left: t.site1
 			});
-		}
+		},
+		say: function(index){
+            this.maxbox = true;
+            this.$dispatch('img-dispatch',{
+                maxbox: this.maxbox,
+                index: 0
+            });
+        }
 		
 	},
 	route:{
@@ -253,7 +269,10 @@ module.exports = {
 	},
 	components:{
       uigoback: require('../components/goback.vue'),
-      uiload: require('../components/load.vue')
+      uiload: require('../components/load.vue'),
+      uiimgmax: require('../components/imgmax.vue')
+
+
     }
 };
 

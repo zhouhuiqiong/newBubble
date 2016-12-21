@@ -67,7 +67,7 @@
 
 				</div>
 				<!--订单信息-->
-				<a class="yu-time">
+				<a class="yu-time" href="tel://18603921359">
 					<div class="item-title"><i class="iconfont icon-icon mr"></i>联系我们</div>
 					<div class="item-after"><span class="icon icon-right"></span></div>
 				</a>

@@ -661,6 +661,10 @@ $pa:0px 40px;
 		color: #ff6b68;
 		font-weight: 500;
 		font-size: 14px;
+
+	}
+	.item-after{
+		margin-right: -1rem;
 	}
 	.item-content{
 		padding-left: 0px;
@@ -735,12 +739,10 @@ $pa:0px 40px;
 	height: auto;
 	background: #fff;
 	margin:0px 1rem;
-	padding: 0.15rem 0px ;
+	padding: 0.5rem 0px ;
 	@include boxJC;
 	position: relative;
-	&:after{
-		@include bt($color:#fafafa);
-	}
+	border-bottom: 1px solid #fafafa;
 	.server-t {
 		h3{
 			font-size: 12px;
@@ -1768,6 +1770,10 @@ $pa:0px 40px;
 }
 .txt-hide{
 	@include ellipsisL($link: 3); 
+}
+.serve-type .sub-title{
+	line-height: 1.5rem;
+	font-size: 10px;
 }
 .logbg{width: 100%; display: block;}
 .shop-yu-time{font-size: 10px; color:#888;}
