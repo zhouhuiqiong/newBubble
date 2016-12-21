@@ -41,11 +41,9 @@
 				<span class="icon icon-right"></span>
 			</div>
 			<!--商品详情-->
-			<div class="swiper-container swper " id="tab-swiper">
-				<div class="swiper-pagination"></div>
-				<div class="buttons-tab details-tab">
-					<a href="javascript:void(0)" class="tab-link button" @click="changeType(1,'all')">商家服务</a>
-					<a href="javascript:void(0)" class="tab-link button" @click="changeType(2,'all')">客户评价</a>
+			<div class="swiper-container swper" id="tab-swiper">
+				<div class="details-tab">
+					<div class="swiper-pagination"></div>
 					<div class="activelink"></div>
 				</div>
 				<div class="swiper-wrapper">
@@ -128,47 +126,19 @@ module.exports = {
 			paginationClickable :true,
 			effect: 'slide',
 			direction: 'horizontal',
-
+			linkTouchMove: function(num){
+				t.$link.css({
+					left: - num
+				});
+			},
 			onTouchStart: function(swiper){
-				t.start = $(".swiper-wrapper").css('transform').replace('translate3d','').replace('(','').replace('）','').split(',')[0].replace('px','');
-				t.activeIndex = swiper.activeIndex;
 				t.clickFalse = false;
 			},
 			onTouchMove: function(swiper){
 				t.clickFalse = true;
-				//偏移的距离
-				var num = t.num = $(".swiper-wrapper").css('transform').replace('translate3d','').replace('(','').replace('）','').split(',')[0].replace('px','');
-				//计算,1区进入2区
-				if(num < 0 && num > (-414)){
-					if(swiper.activeIndex == 0){
-						t.l = t.site1 + num * (-1);
-						var nowL = t.l < t.site2 ? t.l : t.site2;
-					};
-					//2取进入1区
-					if(swiper.activeIndex == 1){
-						 t.l = t.site2 - (414 - (num * (-1)));
-						var nowL = (t.l > t.site1 ? t.l : t.site1);
-					};
-					t.$link.css({
-						left: nowL
-					});
-				};
-
 			},
 			onTouchEnd: function(swiper,event){
-				t.end = $(".swiper-wrapper").css('transform').replace('translate3d','').replace('(','').replace('）','').split(',')[0].replace('px','');
-				if(!t.clickFalse){//只点击了
-					return;
-				}else{
-					if(Math.abs(parseInt(t.end) - parseInt(t.start)) > t.w){
-						var num = t.activeIndex == 1 ? t.site1 : t.site2;
-					}else{
-						var num = t.activeIndex == 0 ? t.site1 : t.site2;
-					}
-				};
-				t.$link.css({
-					left: num
-				});
+				if(!t.clickFalse) return;
 			},
 		    onSlideNextEnd: function(swiper){//2向后，这个方法走在onTouchEnd后面
 		    	t.$link.css({
@@ -188,7 +158,9 @@ module.exports = {
 					var index = $nav.index($(this)) + 1;
 					//根据类型不同做出判断要加
 					t.changeType(index,'');
-				})
+				});
+				$('.swiper-pagination-bullet').eq(0).text('商家服务');
+				$('.swiper-pagination-bullet').eq(1).text('客户评价');
 
 			}	
 		});

@@ -849,7 +849,10 @@ body {
       margin: 0.2rem 0.2rem 0px 0px; }
 
 .details-tab {
-  margin-top: 0.4rem; }
+  margin-top: 0.4rem;
+  height: 2.0rem;
+  background: #fff;
+  position: relative; }
   .details-tab .tab-link:nth-of-type(1):after {
     content: '';
     display: block;
@@ -1643,9 +1646,10 @@ body {
   height: auto !important;
   margin: 0.4rem auto 0px; }
   #tab-swiper .swiper-pagination {
-    top: 9px;
+    top: 0px;
     height: 2rem;
     width: 100%;
+    line-height: 2rem;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex; }
@@ -1653,8 +1657,11 @@ body {
       width: 50%;
       height: 100%;
       border-radius: 0px;
-      background: transparent;
-      display: block; }
+      background: #fff;
+      display: block;
+      color: #000; }
+    #tab-swiper .swiper-pagination .swiper-pagination-bullet-active {
+      color: #ff6b68; }
   #tab-swiper .swiper-slide {
     text-align: left; }
   #tab-swiper .list-block {
@@ -1667,7 +1674,8 @@ body {
   height: 2px;
   background: #ff6b68;
   position: absolute;
-  bottom: 0px; }
+  bottom: 0px;
+  z-index: 10000; }
 
 .tab-item .navicon {
   width: 1.2rem;
@@ -2153,6 +2161,9 @@ body {
 .serve-type .sub-title {
   line-height: 1.5rem;
   font-size: 10px; }
+
+.details-tab .active {
+  color: #ff6b68; }
 
 .logbg {
   width: 100%;

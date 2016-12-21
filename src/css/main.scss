@@ -541,6 +541,9 @@ $pa:0px 40px;
 }
 .details-tab{
 	margin-top: 0.4rem;
+	height: 2.0rem;
+	background: #fff;
+	position: relative;
 	.tab-link{
 		&:nth-of-type(1){
 			&:after{
@@ -1256,16 +1259,21 @@ $pa:0px 40px;
 	height: auto !important; 
 	margin:0.4rem auto 0px;
 	.swiper-pagination{
-		top: 9px;
+		top: 0px;
 		height: 2rem;
 		width: 100%;
+		line-height: 2rem;
 		@include  box;
 		.swiper-pagination-bullet{
 			width: 50%;
 			height: 100%;
 			border-radius: 0px;
-			background: transparent;
+			background: #fff;
 			display: block;
+			color: #000;
+		};
+		.swiper-pagination-bullet-active{
+			color: #ff6b68;
 		}
 	}
 	.swiper-slide{
@@ -1285,6 +1293,7 @@ $pa:0px 40px;
 	background: #ff6b68;
 	position: absolute;
 	bottom: 0px;
+	z-index: 10000;
 
 }
 .tab-item{
@@ -1774,6 +1783,57 @@ $pa:0px 40px;
 .serve-type .sub-title{
 	line-height: 1.5rem;
 	font-size: 10px;
+}
+// .tab-content{
+// 	width: 100%;
+// 	overflow-x: hidden;
+// 	position: relative;
+// 	.tab{
+// 		height: 100%;
+// 		float: left;
+		
+// 		&.active {
+			
+// 		}
+// 	}
+// 	.activePre{
+// 		.list-block{
+// 			position: absolute;
+// 			top: 0px;
+// 		}
+// 	}
+
+// }
+// .silide-buttons-tab{
+// 	background: #fff;
+//     position: relative;
+//     margin-top: 0.4rem;
+//     border-bottom:1px solid #d0d0d0;
+//     @include box;
+//     text-align: center;
+//     position: relative;
+//     .tab-item{
+//     	color: #888;
+// 		font-size: 16px;
+// 		width: 100%;
+// 		height: 2rem;
+// 		line-height: 2rem;
+// 		@include flex;
+// 		&.active{
+// 			color: #ff6b68;
+// 		};
+// 		position: relative;
+// 		&:nth-of-type(1){
+// 			&:after{
+// 				@include br;
+// 				top: 0.5rem;
+// 				bottom: 0.25rem;
+// 			}
+// 		}
+//     }
+// }
+.details-tab .active{
+	color: #ff6b68;
 }
 .logbg{width: 100%; display: block;}
 .shop-yu-time{font-size: 10px; color:#888;}

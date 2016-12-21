@@ -161,8 +161,8 @@
 			clickActive: function(obj) {
 				obj.addClass('active').siblings().removeClass('active');
 			}
-		}
-	};
+		};
+	}
 	module.exports = vuePublic
 })();
 
