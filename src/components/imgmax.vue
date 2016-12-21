@@ -20,7 +20,7 @@
 </template>
 <script>
 	require('../../node_modules/swiper/dist/css/swiper.min.css');
-	var Swiper = require('swiper');
+	var Swiper = require('../js/swiper');
 	module.exports = {
         props:['maxbox','aryimg','index'],
 		ready:function(){

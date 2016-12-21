@@ -51,7 +51,7 @@
 						<!--商家服务-->
 						<div class="list-block media-list">
 							<ul>
-								<li class="itme-style min-itme-style" v-for="item in dataList1" track-by="$index">
+								<li class="itme-style min-itme-style" v-for="item in dataList0" track-by="$index">
 									<a href="#/orderdetails" class="item-content">
 										<div class="item-media"><img src="https://ss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/864063689.png"></div>
 										<div class="item-inner sale-txt">
@@ -76,7 +76,7 @@
 					<div class="swiper-slide">
 						<div class="list-block media-list evaluate-list" >
 						<ul>
-							<li v-for="item in dataList2" track-by="$index">
+							<li v-for="item in dataList1" track-by="$index">
 								<a href="javascript:void(0);" class="item-content evaluate-content">
 									<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" ></div>
 									<div class="item-inner">
@@ -115,7 +115,7 @@
 	</div>
 </template>
 <script>
-var Swiper = require('swiper');
+var Swiper = require('../js/swiper');
 module.exports = {
 	ready: function(){
 		var t = this;
@@ -127,46 +127,34 @@ module.exports = {
 			effect: 'slide',
 			direction: 'horizontal',
 			linkTouchMove: function(num){
+				num = Math.abs(num);
+				num = num < t.site1 ? t.site1 : (num > t.site2 ? t.site2 : num);
 				t.$link.css({
-					left: - num
+					left: num
 				});
 			},
 			onTouchStart: function(swiper){
-				t.clickFalse = false;
+				t.start = swiper.activeIndex;
 			},
-			onTouchMove: function(swiper){
-				t.clickFalse = true;
+			onSlideChangeEnd: function(swiper){
+				t.end = swiper.activeIndex;
+				if(t.end != t.start){
+					t.changeType(t.end);//加载数据
+				};
 			},
-			onTouchEnd: function(swiper,event){
-				if(!t.clickFalse) return;
-			},
-		    onSlideNextEnd: function(swiper){//2向后，这个方法走在onTouchEnd后面
-		    	t.$link.css({
-					left: t.site2
-				});
-				t.changeType(2);//加载数据
-		    },
-		    onSlidePrevEnd: function(swiper){//1向前
-		    	t.$link.css({
-					left: t.site1
-				});
-				t.changeType(1);//加载数据
-		    },
 			onInit: function(){
 				var $nav = $('.swiper-pagination .swiper-pagination-bullet');
 				$nav.click(function(){
-					var index = $nav.index($(this)) + 1;
+					var index = $nav.index($(this));
 					//根据类型不同做出判断要加
 					t.changeType(index,'');
 				});
 				$('.swiper-pagination-bullet').eq(0).text('商家服务');
 				$('.swiper-pagination-bullet').eq(1).text('客户评价');
-
 			}	
 		});
 		t.$link = $('.activelink');
-		t.linkInit();
-		t.changeType(1);
+		t.changeType(0);
 	},
 	data:function(){
 		return {
@@ -175,7 +163,7 @@ module.exports = {
 				type: 'all',
 				items: []
 			},
-			dataList2: [],
+			dataList0: [],
 			dataList1: [],
 			maxbox: false,
 			aryimg: [{
@@ -195,17 +183,7 @@ module.exports = {
 	methods: {
 		changeType: function(item,type){
 			var t = this;
-			if(item){
-				if(item == 1){
-					var site =  t.site1;
-				}else {
-					var site =  t.site2;
-				}
-				t.$link.css({
-					left: site
-				});
-			};
-			
+			t.linkInit(item)
 			//加载数据
 			t.item = item;
 			var dataObj = new util.scrollList();
@@ -215,13 +193,13 @@ module.exports = {
 			});
 			dataObj.getListData();
 		},
-		linkInit: function(){//link 初始化位置计算
+		linkInit: function(type){//link 初始化位置计算
 			var t = this;
-			var w = t.w = $(window).width() * 0.5;
-			t.site1 = (w - 64)/2;
+			var w = t.w = $(window).width() / 2;
+			t.site1= (w - 64)/2;
 			t.site2 = w + t.site1;
 			t.$link.css({
-				left: t.site1
+				left: type * w + t.site1
 			});
 		},
 		say: function(index){
@@ -239,12 +217,15 @@ module.exports = {
 			transition.next();
 		}
 	},
+	events: {
+        'img-dispatch': function(data){
+            this.$broadcast('img-broadcast',data);
+       	}
+    },
 	components:{
       uigoback: require('../components/goback.vue'),
       uiload: require('../components/load.vue'),
       uiimgmax: require('../components/imgmax.vue')
-
-
     }
 };
 

@@ -3,6 +3,7 @@
 	vuePublic.install = function(Vue){
 		var that = Vue.prototype;
 		//远程获取数据
+		//this.$http.jsonp('/someUrl', [data], [options]).then(successCallback, errorCallback);
 		that.getServerData = function(data){
 			var type = data.type ? data.type : 'post';
 			this.$http({

@@ -13,7 +13,7 @@ window.util = {};
         noData: false //false 有数据，ture 没数据
       },
       data);
-      that.obj.item = parseInt(that.obj.item) ? that.obj.item: '';
+      that.obj.item = parseInt(that.obj.item) > -1 ? that.obj.item: '';
       that.obj['dataList' + that.obj.item] = [];
     },
     getServerDate: function(data) { //获取远程数据
