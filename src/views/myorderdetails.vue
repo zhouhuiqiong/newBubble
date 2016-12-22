@@ -8,65 +8,75 @@
 			<div class="list-block media-list">
 				<ul>
 					<li class="itme-style min-itme-style">
-						<a href="#" class="item-content">
+						<a v-link="{ name: 'details', query: { shopid: '1'}}" class="item-content ">
 							<div class="item-media"><img src=""></div>
-							<div class="item-inner sale-txt">
+							<div class="item-inner sale-txt shop-txt">
 								<div class="item-title-row">
 									<div class="item-title">浜松町駅ビル店</div>
 								</div>
-								<div>
-									商家名称商家名称商家名称商家名称商家名称
+								<div class="shop-sub-t">
+									<span>商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称</span>
+									<span class="icon icon-right"></span>
 								</div>
-								<div>预约时间：2016-08-09 21:00</div>
+								<div class="shop-yu-time">预约时间：2016-08-09 21:00</div>
 							</div>
 						</a>
 					</li>
 				</ul>
 			</div>
 			<!--订单信息-->
-			<div class="order-inf order-inf1">
-				<h3 class="o-title active">
+			<div class="order-inf">
+				<h3 class="o-title o-title1">
 					<span class="item-t">订单信息</span>
-					<span class="item-a">订单已确认</span>
+					<span class="item-a clr1">订单已确认</span>
 				</h3>
 				<div class="user-center-item">
-					<div class="item-title">头像</div>
-					<div class="item-after">
-					请问请问请问
-					</div>
+					<div class="item-title">订单编号</div>
+					<div class="item-after">3301029192847573</div>
+				</div>
+				<div class="user-center-item">
+					<div class="item-title">商家名称</div>
+					<div class="item-after">3301029192847573</div>
+				</div>
+				<div class="user-center-item user-center-item2">
+					<div class="item-title">商家地址</div>
+					<div class="item-after">5-11-1 Ginza, Chuo-ku,银座/筑地
+东京,东京都,104-0061,日本</div>
+				</div>
+				<div class="user-center-item user-center-item2">
+					<div class="item-title">服务名称</div>
+					<div class="item-after"><a href="javascript:void(0)" class="btn2 btn22">联系客服</a> 张三</div>
 				</div>
 			</div>
 			<!--订单金额-->
 			<div class="order-inf order-inf1">
-				<h3 class="o-title active">
-					<span class="item-t">订单确认</span>
-					<span class="item-a">2012-12-12 10:80</span>
+				<h3 class="o-title o-title1">
+					<span class="item-t">订单金额</span>
 				</h3>
-				<h3 class="order-inf-t"><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg">去问问</h3>
 				<ul class="list-block">
 					<li class="item-content">
 						<div class="item-inner">
 							<div class="item-title">项目套餐</div>
-							<div class="item-after">								¥50,000</div>
+							<div class="item-after">								50,000日元</div>
 						</div>
 					</li>
 					<li class="item-content">
 						<div class="item-inner">
 							<div class="item-title">项目套餐</div>
-							<div class="item-after">								¥50,000</div>
+							<div class="item-after">								50,000日元</div>
 						</div>
 					</li>
 					<li class="item-content">
 						<div class="item-inner">
 							<div class="item-title">项目套餐</div>
-							<div class="item-after">								¥50,000</div>
+							<div class="item-after">								50,000日元</div>
 						</div>
 					</li>
 				</ul>
 				<div class="total-item">
-					<div class="item-title">订单合计:</div>
+					<div class="item-title"></div>
 					<div class="item-after">合计:<span class="total">
-					¥30,000</span></div>
+					50,000日元</span></div>
 				</div>
 			</div>
 			<!--end 订单金额-->

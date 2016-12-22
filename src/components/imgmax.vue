@@ -10,16 +10,17 @@
                 <div class="swiper-slide" v-for="item in aryimg">
                     <img :src="item.img" >
                 </div> 
-                <div class="swiper-pagination"></div>
-
             </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
         <!--大图幻灯片-->
     </div>
 </template>
 <script>
 	require('../../node_modules/swiper/dist/css/swiper.min.css');
-	var Swiper = require('swiper');
+	var Swiper = require('../js/swiper');
 	module.exports = {
         props:['maxbox','aryimg','index'],
 		ready:function(){
@@ -55,6 +56,8 @@
                     autoplay: 5000,
                     autoplay: 0,
                     direction: 'horizontal',
+                    prevButton:'.swiper-button-prev',
+                    nextButton:'.swiper-button-next',
                     initialSlide: that.index,
                     onInit: function(swiper){
                         that.imgnum = swiper.imagesToLoad.length;

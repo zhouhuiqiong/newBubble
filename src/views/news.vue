@@ -4,33 +4,45 @@
 		  <a class="iconfont icon-iconleft pull-left" v-go-history></a>
 		  <h1 class="title">消息</h1>
 		</header>
-		<div class="content list infinite-scroll home-content" >
-			<div class="list-block infinite-list  media-list">
+		<div class="content home-content" >
+			<div class="list-block infinite-list  media-list news-list">
 				<ul>
-					<li >
-						<a href="#" class="item-content">
-						  <div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style='width: 4rem;'></div>
+					<li v-link="{ name: 'chat', query: { id: '1'}}">
+						<a href="javascript:void(0)" class="item-content">
+						  <div class="item-media">
+						  	<img src="../images/suite/news.png" >
+						  </div>
 						  <div class="item-inner">
 						    <div class="item-title-row">
 						      <div class="item-title">标题</div>
 						      <div class="item-after">$15</div>
 						    </div>
-						    <div class="item-title-row">
-						    	<div>
-						    		一級棒
-						    	</div>
-						    	<div>
-						    		泡泡域
-						    	</div>
+						    <div class="item-title-row news-number">
+								嫖客爸爸
 						    </div>
 						  </div>
 						</a>
 					</li>
+					<li v-link="{ name: 'chat', query: { id: '2'}}">
+						<a href="javascript:void(0)" class="item-content">
+						  <div class="item-media">
+						  	<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" >
+						  </div>
+						  <div class="item-inner">
+						    <div class="item-title-row">
+						      <div class="item-title">嫖客爸爸</div>
+						      <div class="item-after">5分钟前</div>
+						    </div>
+						    <div class="item-title-row news-number">
+								嫖客爸爸
+						    </div>
+						  </div>
+						</a>
+					</li>
+
 				</ul>
 			</div>
 		</div>
-		
-	</div>
 	</div>
 </template>
 <script>
@@ -39,7 +51,6 @@ module.exports = {
 
 	},
 	ready: function(){
-		this.$dispatch('isIndex', false);	
 	},
 	data:function(){
 		return {

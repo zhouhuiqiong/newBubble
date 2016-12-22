@@ -9,7 +9,7 @@
 			<div class="list-block media-list evaluate-list">
 				<ul>
 					<li>
-						<a href="#" class="item-content evaluate-content">
+						<a href="javascript:void(0);" class="item-content evaluate-content">
 							<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" ></div>
 							<div class="item-inner">
 								<div class="item-title-row">
@@ -21,10 +21,13 @@
 									<span class="shop-tag min-shop-tag">一级棒</span>
 
 								</div>
-								<div class="txt-box">
+								<div class="txt-box txt-hide">
+									评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
+									评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
+									评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
 									评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
 								</div>
-								<div class="all-essay">全文</div>
+								<div class="all-essay" v-all-read>全文</div>
 							</div>
 						</a>
 					</li>

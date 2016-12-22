@@ -4,13 +4,14 @@
 		  <a class="iconfont icon-icon1 pull-left" v-go-history></a>
 		  <h1 class="title">商家详情</h1>
 		</header>
+    	<uiimgmax :maxbox='maxbox' :aryimg='aryimg' :index='index'></uiimgmax>
 		<div class="content list infinite-scroll list-content content1">
 			<!--商品详情-->
 			<div class="list-block media-list">
 				<ul>
 					<li class="itme-style itme-style1">
-						<a href="#" class="item-content">
-							<div class="item-media rel"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3646051749,3801647591&fm=80&w=179&h=119&img.JPEG">
+						<a href="javascript:void(0)" class="item-content">
+							<div class="item-media rel" @click="say(1)"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3646051749,3801647591&fm=80&w=179&h=119&img.JPEG">
 								<span class="img-num">22</span>
 							</div>
 							<div class="item-inner">
@@ -23,7 +24,7 @@
 									<span class="shop-tag ">安全</span>
 								</div>
 								<div class="item-title-row server-money-box">
-									<label class="server-money">¥5,00~¥5,000</label>
+									<label class="server-money">5,00日元~5,000日元</label>
 									<div class="item-after">1113人去过</div>
 								</div>
 							</div>
@@ -40,11 +41,9 @@
 				<span class="icon icon-right"></span>
 			</div>
 			<!--商品详情-->
-			<div class="swiper-container swper " id="tab-swiper">
-				<div class="swiper-pagination"></div>
-				<div class="buttons-tab details-tab">
-					<a href="javascript:void(0)" class="tab-link button" @click="changeType(1,'all')">商家服务</a>
-					<a href="javascript:void(0)" class="tab-link button" @click="changeType(2,'all')">客户评价</a>
+			<div class="swiper-container swper" id="tab-swiper">
+				<div class="details-tab">
+					<div class="swiper-pagination"></div>
 					<div class="activelink"></div>
 				</div>
 				<div class="swiper-wrapper">
@@ -52,7 +51,7 @@
 						<!--商家服务-->
 						<div class="list-block media-list">
 							<ul>
-								<li class="itme-style min-itme-style" v-for="item in dataList1" track-by="$index">
+								<li class="itme-style min-itme-style" v-for="item in dataList0" track-by="$index">
 									<a href="#/orderdetails" class="item-content">
 										<div class="item-media"><img src="https://ss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/864063689.png"></div>
 										<div class="item-inner sale-txt">
@@ -60,14 +59,13 @@
 												<div class="item-title">浜松町駅ビル店</div>
 											</div>
 											<div class="sale">
-												已售 99999<span class="icon icon-right"></span>
+												已售 99999<span class="iconfont icon-iconright"></span>
 											</div>
 
 											<div class="sale-money">
-												<label class="server-money ">¥5,000</label>
-												<i>¥5,0000000</i>
+												<label class="server-money ">5,000日元</label>
+												<i>5,0000日元</i>
 											</div>
-											
 										</div>
 									</a>
 								</li>
@@ -78,8 +76,8 @@
 					<div class="swiper-slide">
 						<div class="list-block media-list evaluate-list" >
 						<ul>
-							<li v-for="item in dataList2" track-by="$index">
-								<a href="#" class="item-content evaluate-content">
+							<li v-for="item in dataList1" track-by="$index">
+								<a href="javascript:void(0);" class="item-content evaluate-content">
 									<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" ></div>
 									<div class="item-inner">
 										<div class="item-title-row">
@@ -91,10 +89,13 @@
 											<span class="shop-tag min-shop-tag">一级棒</span>
 
 										</div>
-										<div class="txt-box">
+										<div class="txt-box txt-hide">
+											评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
+											评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
+											评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
 											评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
 										</div>
-										<div class="all-essay">全文</div>
+										<div class="all-essay" v-all-read>全文</div>
 									</div>
 
 								</a>
@@ -114,11 +115,8 @@
 	</div>
 </template>
 <script>
-var Swiper = require('swiper');
+var Swiper = require('../js/swiper');
 module.exports = {
-	route: {
-
-	},
 	ready: function(){
 		var t = this;
 		t.mySwiper = new Swiper('.swper', {
@@ -128,75 +126,35 @@ module.exports = {
 			paginationClickable :true,
 			effect: 'slide',
 			direction: 'horizontal',
-			onTouchStart: function(swiper){
-				t.start = $(".swiper-wrapper").css('transform').replace('translate3d','').replace('(','').replace('）','').split(',')[0].replace('px','');
-				t.activeIndex = swiper.activeIndex;
-				t.clickFalse = false;
-			},
-			onTouchMove: function(swiper){
-				t.clickFalse = true;
-				//偏移的距离
-				var num = t.num = $(".swiper-wrapper").css('transform').replace('translate3d','').replace('(','').replace('）','').split(',')[0].replace('px','');
-				//计算,1区进入2区
-				if(num < 0 && num > (-414)){
-					if(swiper.activeIndex == 0){
-						t.l = t.site1 + num * (-1);
-						var nowL = t.l < t.site2 ? t.l : t.site2;
-					};
-					//2取进入1区
-					if(swiper.activeIndex == 1){
-						 t.l = t.site2 - (414 - (num * (-1)));
-						var nowL = (t.l > t.site1 ? t.l : t.site1);
-					};
-					t.$link.css({
-						left: nowL
-					});
-				};
-
-			},
-			onTouchEnd: function(swiper,event){
-				t.end = $(".swiper-wrapper").css('transform').replace('translate3d','').replace('(','').replace('）','').split(',')[0].replace('px','');
-				if(!t.clickFalse){//只点击了
-					return;
-				}else{
-					if(Math.abs(parseInt(t.end) - parseInt(t.start)) > t.w){
-						var num = t.activeIndex == 1 ? t.site1 : t.site2;
-					}else{
-						var num = t.activeIndex == 0 ? t.site1 : t.site2;
-					}
-				};
+			linkTouchMove: function(num){
+				num = Math.abs(num);
+				num = num < t.site1 ? t.site1 : (num > t.site2 ? t.site2 : num);
 				t.$link.css({
 					left: num
 				});
 			},
-			onSlideChangeEnd: function(swiper){//切换结束时，告诉我现在是第几个slide,变化了走这个方法
-
-		    },
-		    onSlideNextEnd: function(swiper){//2向后，这个方法走在onTouchEnd后面
-		    	t.$link.css({
-					left: t.site2
-				});
-				t.changeType(2);//加载数据
-		    },
-		    onSlidePrevEnd: function(swiper){//1向前
-		    	t.$link.css({
-					left: t.site1
-				});
-				t.changeType(1);//加载数据
-		    },
+			onTouchStart: function(swiper){
+				t.start = swiper.activeIndex;
+			},
+			onSlideChangeEnd: function(swiper){
+				t.end = swiper.activeIndex;
+				if(t.end != t.start){
+					t.changeType(t.end);//加载数据
+				};
+			},
 			onInit: function(){
 				var $nav = $('.swiper-pagination .swiper-pagination-bullet');
 				$nav.click(function(){
-					var index = $nav.index($(this)) + 1;
+					var index = $nav.index($(this));
 					//根据类型不同做出判断要加
 					t.changeType(index,'');
-				})
-
+				});
+				$('.swiper-pagination-bullet').eq(0).text('商家服务');
+				$('.swiper-pagination-bullet').eq(1).text('客户评价');
 			}	
 		});
 		t.$link = $('.activelink');
-		t.linkInit();
-		t.changeType(1);
+		t.changeType(0);
 	},
 	data:function(){
 		return {
@@ -205,26 +163,27 @@ module.exports = {
 				type: 'all',
 				items: []
 			},
-			dataList2: [],
-			dataList1: []
+			dataList0: [],
+			dataList1: [],
+			maxbox: false,
+			aryimg: [{
+                img: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1945941167,1388481778&fm=80&w=179&h=119&img.JPEG'
+            },
+            {
+                img: 'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1592706537,1193956207&fm=80&w=179&h=119&img.JPEG'
+            },
+            {
+                img: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1845208894,2480502039&fm=80&w=179&h=119&img.JPEG'
+            },
+            {
+                img: 'http://upload.cankaoxiaoxi.com/2016/1014/1476437777501.jpg'
+            }]
 		}
 	},
 	methods: {
 		changeType: function(item,type){
 			var t = this;
-			if(item){
-				if(item == 1){
-					var site =  t.site1;
-					//t.dataList2 = [];
-				}else {
-					var site =  t.site2;
-					//t.dataList1 = [];
-				}
-				t.$link.css({
-					left: site
-				});
-			};
-			
+			t.linkInit(item)
 			//加载数据
 			t.item = item;
 			var dataObj = new util.scrollList();
@@ -234,15 +193,23 @@ module.exports = {
 			});
 			dataObj.getListData();
 		},
-		linkInit: function(){//link 初始化位置计算
+		linkInit: function(type){//link 初始化位置计算
 			var t = this;
-			var w = t.w = $(window).width() * 0.5;
-			t.site1 = (w - 64)/2;
+			var w = t.w = $(window).width() / 2;
+			t.site1= (w - 64)/2;
 			t.site2 = w + t.site1;
 			t.$link.css({
-				left: t.site1
+				left: type * w + t.site1
 			});
-		}
+		},
+		say: function(index){
+            this.maxbox = true;
+            this.$dispatch('img-dispatch',{
+                maxbox: this.maxbox,
+                index: 0
+            });
+        }
+		
 	},
 	route:{
 		activate:function(transition){
@@ -250,9 +217,15 @@ module.exports = {
 			transition.next();
 		}
 	},
+	events: {
+        'img-dispatch': function(data){
+            this.$broadcast('img-broadcast',data);
+       	}
+    },
 	components:{
       uigoback: require('../components/goback.vue'),
-      uiload: require('../components/load.vue')
+      uiload: require('../components/load.vue'),
+      uiimgmax: require('../components/imgmax.vue')
     }
 };
 

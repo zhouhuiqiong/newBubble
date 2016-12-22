@@ -45,7 +45,7 @@ module.exports = {
 	},
 	methods: {
 		exit: function(){
-			util.cookie.del('userId');
+			t.cookie.del('userId');
 			this.$dispatch('userId','');
 			this.$router.go({path:'/personal'});
 

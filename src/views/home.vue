@@ -3,12 +3,12 @@
 	<div class="content list infinite-scroll home-content" :class="{'home-content1': isSelectShade}">
 		<nav class="bar bar-nav bar-nav-static search-nav">
 			<a class="open-adr-btn" v-link="{name:'address'}">{{address}}<i class="iconfont icon-icon-copy-copy"></i></a>
-			<a v-link="{name:'seach'}" class="search-input-box">
+			<form class="search-input-box" action="#">
 				<div class="search-input">
 					<label class="iconfont icon-chaxun" for="search"></label>
-					<input type="search" id="search" placeholder="输入商家,服务名称...">
+					<input type="text" v-model="searchVal" placeholder="输入城市…" @>
 				</div>
-			</a>
+			</form>
 			<a v-link="{name:'news'}" class="iconfont icon-home_news">
 				<i class="news-tags">10</i>
 			</a>
@@ -16,25 +16,33 @@
 		<div class="home-swiper">
 			<uiswiper></uiswiper>
 		</div>
-		<div class="select-wrap">
+		<div class="select-wrap" :class="{'fiex-select': isFixedbox}">
 			<ul class="seach-select-list">
 				<li @click="changeType($event,0)"><span>附近</span><i class="iconfont icon-icon-copy-copy"></i></li>
-				<li @click="changeType($event,0)"><span>全部风俗</span><i class="iconfont icon-icon-copy-copy"></i></li>
-				<li @click="changeType($event,0)"><span>智能排序</span><i class=" iconfont icon-icon-copy-copy"></i></li>
-				<li @click="changeType($event,1)"><span>筛选</span><i class=" iconfont icon-icon-copy-copy"></i></li>
+				<li @click="changeType($event,1)"><span>全部风俗</span><i class="iconfont icon-icon-copy-copy"></i></li>
+				<li @click="changeType($event,2)"><span>智能排序</span><i class=" iconfont icon-icon-copy-copy"></i></li>
+				<li @click="changeType($event,3)"><span>筛选</span><i class=" iconfont icon-icon-copy-copy"></i></li>
 			</ul>
 			<!--list-->
-			<div class="select-box">
+			<div class="select-box" >
 				<ul class="change-list hide item">
-					<li class="active"><span >新宿</span><i class="iconfont icon-duigou"></i></li>
-					<li ><span>新宿</span</li>
+					<li><span>新宿1</span></li>
+					<li><span>新宿1</span</li>
+				</ul>
+				<ul class="change-list hide item">
+					<li><span >新宿2</span></li>
+					<li><span>新宿2</span</li>
+				</ul>
+				<ul class="change-list hide item">
+					<li><span >新宿3</span></li>
+					<li><span>新宿3</span</li>
 				</ul>
 				<!---->
 				<div class="screen-list hide item">
 					<dl class="screen-item ">
 						<dt>评价</dt>
 						<dd  class="screen-item-list clearfix">
-							<div><span class="shop-tag1 active">服务好</span></div>
+							<div><span class="shop-tag1">服务好</span></div>
 							<div><span class="shop-tag1 ">一级棒</span></div>
 							<div><span class="shop-tag1">性价比高</span></div>
 							<div><span class="shop-tag1">安全</span></div>
@@ -74,7 +82,7 @@
 								<span class="shop-tag ">安全</span>
 							</div>
 							<div class="item-title-row server-money-box">
-								<label class="server-money">¥5,00~¥5,0000</label>
+								<label class="server-money">5,00~5,0000日元</label>
 								<div class="item-after">1113人去过</div>
 							</div>
 						</div>
@@ -102,49 +110,69 @@ module.exports = {
 		var that = this;
 	    that.fixedbox();
 	    that.$nav = $('.seach-select-list li');
-	    that.$item = $('.select-box .item ');
-	    //加载数据
-		var dataObj = new util.scrollList();
-		dataObj.init(this,{
-			le: '.media-list',//承载列表的数据
-			scrollObj: '.content'
-		});
-		dataObj.getListData();
+	    that.$item = $('.select-box .item');
+	    
 		//附近
 		that.$nearby = $('.change-list>li');
 		that.$nearby.on('click', function(){
 			var t = $(this);
 			$('.icon-duigou').remove();
 			t.append('<i class="iconfont icon-duigou"></i>');
-			util.clickActive(t);
+			that.eStyle.clickActive(t);
 			setTimeout(function(){
 				t.parent().addClass('hide');
 				that.isSelectShade = false;
 				that.$nav.removeClass('active');
 			},300);
+			//选项更改后变化，加载数据
+			that.currentPage = 1;		
 		});
 		//筛选
 		that.$screen = $('.screen-item dd span');
 		that.$screen.on('click', function(){
 			var t = $(this);
-			$(this).parents('dd').find('span').removeClass('active');
 			$(this).addClass('active');
 		});
-		//获取当前位置
-		that.getNowAdr();
-		
-
+		//鼠标键盘事件，右下角
+		$('.search-input-box').on('submit', function(e){
+			that.searchGo()
+		  	return false;
+		});
+		//滚动获取数据
+		that.scrollList({
+			le: '.media-list',
+			scrollObj: '.content'
+		});
+		that.currentPage = 1;
+	},
+	watch: {
+	    'currentPage': function (val, oldVal) {
+	    	var that = this;
+	    	if(that.currentPage == 1) that.dataList = [];
+	   		that.getServerData({
+	   			url: 'http://cnodejs.org/api/v1/topics',
+	   			type: 'get',
+	   			success: function(results){
+	   				results.data.data.length = 10;
+	   				that.dataList = that.dataList.concat(results.data.data);
+	   				that.loading = true;
+	   				that.itemsPerPage = 2;
+	   			}
+	   		});
+	    }
 	},
 	data:function(){
 		return {
 			msg:'aboutMessage',
 			title:'home',
 			dataList: [],
-			loading: false,
+			loading: true,//取反
 			isSelectShade: false,
 			address: '东京',
-			isIndex: false
-			
+			isIndex: false,
+			currentPage: 0,
+			searchVal: '',//搜索值
+			isFixedbox: false
 		}
 	},
 	computed: {
@@ -157,7 +185,7 @@ module.exports = {
 			var t = this;
 			t.$root.$set('header',t.title);
 			transition.next();
-			var adr = util.cookie.get('address');
+			var adr = t.cookie.get('address');
 			t.address = adr ? adr : '东京';
 			setTimeout(function(){
 				$('.icon-dairaku').parent('.tab-item').addClass('active');
@@ -165,27 +193,28 @@ module.exports = {
 		}
 	},
 	methods: {
-		// showAdr: function(){
-		// 	$.popup('.popup-about');
-		// },
-		getNowAdr: function(){
-
-		},
 		fixedbox: function(){
-			util.fixedbox({
-				fixedbox:'.select-wrap'
+			var that = this;
+			that.fixedBoxPlug({
+				scope: that
 			});
 		},
 		changeType: function(e,num){
 			var that = this;
-			
-			that.isSelectShade = num != undefined ? true : false;
-			$(e.currentTarget).addClass('active').siblings('li').removeClass('active');
-			that.$item.addClass('hide').eq(num).removeClass('hide');
+			var $obj = $(e.currentTarget);
+			if($obj.hasClass('active')){
+				that.selectShade();
+			}else{
+				$obj.addClass('active').siblings('li').removeClass('active');
+				that.$item.addClass('hide').eq(num).removeClass('hide');
+				that.isSelectShade = true;
+			};
 		},
-		selectShade: function(e){
-			this.changeType(e);
-			$('.seach-select-list li').removeClass('active');
+		selectShade: function(){
+			var that = this;
+			that.$nav.removeClass('active');
+			that.isSelectShade = false;
+			that.$item.addClass('hide');
 		},
 		submitScreen: function(){
 			var that = this;
@@ -198,6 +227,9 @@ module.exports = {
 		resetBtn: function(){
 			var that = this;
 			$('.screen-item-list span').removeClass('active');
+		},
+		searchGo: function(){//搜索页面值
+			if(this.searchVal) this.$router.go({path:'seach', query: {search: this.searchVal}});
 		}
 	},
 	components:{

@@ -30,7 +30,7 @@
 			</div>
 			<!--营业时间-->
 			<div class="do-time">
-				营业时间:18:00 9:00
+				营业时间:18:00 - 24:00
 			</div>
 			<!--预约须知-->
 			<dl class="clause">
@@ -41,10 +41,10 @@
 
 
  		</div>
- 		<!--预约弹出框-->
+ 		<!--预约弹出框 -->
 	    <div class="dialog-wrap orderdialog" v-show="isOrderDialog">
-	    	<div class="dialog-main">
-	    		<h3>预约前必读</h3>
+	    	<div class="dialog-main yu-treaty">
+	    		<h3 class="text-center">预约前必读</h3>
 	    		<div class="content-padded">
 	    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,
 	    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,
@@ -53,17 +53,23 @@
 	    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,
 	    			我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白,我的左右两边有留白
 	    		</div>
-	    		<div class="ordercheck"><input type="checkbox" name="" v-model="checked" disabled="disabled"><label>我已阅读以上规则并同意遵守</label><span>阅读完毕才能勾选</span></div>
+	    		<div class="ordercheck">
+	    			<span class="iconfont icon-checkbox  read-chekbox" @click="checkedFun($event)" :class="{'may': isMay,'icon-duoxuan':checked}"></span>
+<!-- 	    			<input type="checkbox" name="" v-model="checked" 
+	    			:disabled="isDisabled"  class="mr"> -->
+	    			<label @click="checkedFun($event)" >我已阅读以上规则并同意遵守</label>
+	    			<span class="clr3">({{news}})</span>
+	    		</div>
 	    		<div class="btn-box">
-	    			<button class="button-success" v-bind:class="{ 'disabled': isDisabled}"  @click="referorder">我知道了<i class="dome-time"></i></button>
+	    			<button class="btn2 btn24" :class="{'disabled': isDisabled}"  @click="referorder">我知道了<i class="dome-time">{{btntext}}</i></button>
 	    		</div>
 	    	</div>
 	    </div>
  		<!--end 预约须知-->
 		<nav class="bar bar-tab foot-bar" >
 			<div class="sale-money">
-				<label class="server-money server-money1 ">¥<em>5,000</em></label>
-				<i>¥5,0000000</i>
+				<label class="server-money server-money1 "><em>5,000</em>日元</label>
+				<i>5,0000000日元</i>
 			</div>
 			<button @click="orderdialog" class="btn1" >立刻预约</button>
 		</nav>
@@ -75,24 +81,37 @@ module.exports = {
 
 	},
 	ready: function(){
- 
-
+ 		this.$check = $('.read-chekbox');
 	},
 	data:function(){
 		return {
-			checked: false,
-			isDisabled: true,
+			checked: false,//是否选中
 			isOrderDialog: false,
-			isFootBar: false
+			isFootBar: false,
+			news: '阅读完毕才能勾选',
+			isReadFinish: false,
+			isMay: false,
+			isDisabled: true,//按钮是否可点
+			btntext: ''
 		}
 	},
 	methods: {
 		orderdialog: function(){
 			this.$root.userId ? (this.isOrderDialog = true,this.orderHandle()) : (this.$router.go({path:'/login',query: {back:1}}));
 		},
+		checkedFun: function(e){// icon-duoxuan
+			var that = this;
+			if(that.isMay){
+				that.checked = !that.checked;
+			}else{
+				$.toast('阅读完毕才能勾选！');
+			}
+		},
 		orderHandle: function(){
 			var that = this;
-			util.domeTime({
+			that.domeTime({
+				endText: '',
+				scope: that,
 				callback: function(){
 					if(that.isBase && that.checked) that.isDisabled = false;
 				}
@@ -101,13 +120,13 @@ module.exports = {
 			$('.content-padded').on('scroll', function(){
 				var h = $(this).scrollTop()  + $(this)[0].clientHeight,
 					hContent = $(this)[0].scrollHeight;
-					if(h == hContent){
-						$('.ordercheck input').removeAttr('disabled');
+					if(hContent - h <= 10){
+						//that.isDisabled = false;
+						that.isMay = true;
+						that.news = '请勾选';
 						that.isBase = true;
 					};
 			});
-			
-
 		},
 		referorder: function(){//预约
 			var that = this;
@@ -124,6 +143,14 @@ module.exports = {
 	},
 	route:{
 		activate:function(transition){
+			//阅读初始化
+			this.news = '阅读完毕才能勾选';
+			this.checked = this.isMay = false;
+			this.isDisabled = true;
+			//大图
+			this.$children[0].maxbox = false;
+			this.isFootBar = false;
+
 			this.$root.$set('header',this.title);
 			transition.next();
 		}

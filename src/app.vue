@@ -63,7 +63,46 @@
 .testa {
     display: flex;
 }
+.place-tag-top{
+  animation:placeTop .2s  ease  both;
+  -webkit-animation:placeTop .2s  ease  both;
+  font-size: 10px;
+}
+.place-tag-bottom{
+  animation:placebottom .2s  ease  both;
+  -webkit-animation:placebottom .2s  ease  both;
+}
+@keyframes placeTop {
+  0%{
+    opacity: 0;
+      -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        font-size: 14px;
+  }
+  100%{
+    opacity: 1;
+      -webkit-transform: translate3d(0,-0.8rem,0);
+        transform: translate3d(0, -0.8rem, 0);
+        font-size: 10px;
 
+  }
+}
+
+@keyframes placebottom {
+  0%{
+      -webkit-transform: translate3d(0,-0.8rem,0);
+        transform: translate3d(0, -0.8rem, 0);
+        font-size: 10px;
+
+  }
+  100%{
+      -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        font-size: 14px;
+
+  }
+  
+}
 </style>
 
 <template>
@@ -71,9 +110,14 @@
     <router-view class="view" id="view" keep-alive :transition="effect" transition-mode="out-in"></router-view>
       <bar class="bar-foot-nav" style="display:none" id="barNav">
         <baritem path="/home" label="大楽" icon="dairaku" class="active"></baritem>
-        <baritem path="/details" label="色相" icon="hue"></baritem>
+        <baritem path="/huelist" label="色相" icon="hue"></baritem>
         <baritem path="/personal" label="我的" icon="user"></baritem>
       </bar>
+
+      <suitebar class="bar-foot-nav"  id="suiteNav" style="display:none" id="suiteNav">
+        <suitebaritem path="/suiteorder" label="订单" icon="order" class="active"></suitebaritem>
+        <suitebaritem path="/suitenews" label="消息" icon="news"></suitebaritem>
+      </suitebar>
   </div>
 </template>
 <script>
@@ -150,15 +194,42 @@ module.exports = {
             name: 'sign'
           },
           '/forget': {
-            name: 'forget',
+            name: 'forget'
           },
           '/myorder': {
-            name: 'myorder',
+            name: 'myorder'
           },
           '/myorderdetails': {
-            name: 'myorderdetails',
+            name: 'myorderdetails'
+          },
+          '/suitelogin': {
+            name: 'suitelogin'
+          },
+          '/suiteorder': {
+            name: 'suiteorder'
+          },
+          '/suitepersonal': {
+            name: 'suitepersonal'
+          },
+          '/suitenews': {
+            name: 'suitenews'
+          },
+          '/huedertails': {
+            name: 'huedertails'
+          },
+          '/chat': {
+            name: 'chat'
+          },
+          '/test': {
+            name: 'test'
+          },
+          '/testlogin': {
+            name: 'testlogin'
+          },
+          '/testdetails': {
+            name: 'testdetails'
           }
-          
+
         },
         effect          : 'fade',
         header          : '首页',
@@ -169,7 +240,9 @@ module.exports = {
     },
     components:{
       bar: require('./components/bar.vue'),
-      baritem: require('./components/baritem.vue')
+      baritem: require('./components/baritem.vue'),
+      suitebar: require('./components/suitebar.vue'),
+      suitebaritem: require('./components/suitebaritem.vue')
     },
     created:function(){
 
@@ -185,9 +258,10 @@ module.exports = {
     methods:{
       
     },
-    ready:function(){ 
-      if(!this.userId) this.userId = util.cookie.get('userId');
-      console.log(this.userId);
+    ready:function(){
+      var that = this;
+      if(!that.userId) that.userId = that.cookie.get('userId');
+      console.log(that.userId);
     }
 }
 </script>

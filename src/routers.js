@@ -12,7 +12,7 @@ module.exports = function(router){
 			name:'news',
 			component: require('./views/news.vue')
 		},
-		'/huelist': {
+		'/huelist': {//色相
 			name:'huelist',
 			component: require('./views/huelist.vue')
 		},
@@ -92,6 +92,42 @@ module.exports = function(router){
 			name: 'myorderdetails',
 			component: require('./views/myorderdetails.vue')
 		},
+		'/suitelogin': {//随从登录
+			name: 'suitelogin',
+			component: require('./views/suitelogin.vue')
+		},
+		'/suiteorder': {//随从订单
+			name: 'suiteorder',
+			component: require('./views/suiteorder.vue')
+		},
+		'/suitepersonal': {//随从个人中心
+			name: 'suitepersonal',
+			component: require('./views/suitepersonal.vue')
+		},
+		'/suitenews': {//随从个人中心
+			name: 'suitenews',
+			component: require('./views/suitenews.vue')
+		},
+		'/huedertails': {//色相详情页
+			name: 'huedertails',
+			component: require('./views/huedertails.vue')
+		},
+		'/chat': {//聊天
+			name: 'chat',
+			component: require('./views/chat.vue')
+		},
+		'/test': {//测试
+			name: 'test',
+			component: require('./views/test.vue')
+		},
+		'/testlogin': {//测试
+			name: 'test',
+			component: require('./views/testlogin.vue')
+		},
+		'/testdetails': {//测试
+			name: 'test',
+			component: require('./views/testdetails.vue')
+		},
 		'*': {
 	      component: require('./views/home.vue')
 	    }
@@ -161,10 +197,15 @@ module.exports = function(router){
 		}else{
 			router.app.effect='fade';
 		}
-		if(result == 'home' || result == 'personal' || !result){
+		if(result == 'home' || result == 'personal' || !result || result == 'huelist'){
 			$('#barNav').css('display','inline-block');
-		}else{
+			$('#suiteNav').hide();
+		}else if(result == 'suiteorder' || result == 'suitepersonal' || result == 'suitenews'){
+			$('#suiteNav').css('display','inline-block');
 			$('#barNav').hide();
+		}else{
+			$('#barNav,#suiteNav').hide();
+
 		};
 		if(routeList.length > 1 && transition.to.name==routeList[routeList.length-2]['name']){
 			//router.app.effect='back';

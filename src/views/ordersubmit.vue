@@ -8,7 +8,7 @@
 			<div class="list-block media-list">
 				<ul>
 					<li class="itme-style min-itme-style">
-						<a href="#" class="item-content">
+						<a  v-link="{ name: 'orderdetails', query: { shopid: '1'}}" class="item-content">
 							<div class="item-media"><img src=""></div>
 							<div class="item-inner sale-txt">
 								<div class="item-title-row">
@@ -18,8 +18,8 @@
 									已售 99999<span class="icon icon-right"></span>
 								</div>
 								<div class="sale-money">
-									<label class="server-money ">¥5,000</label>
-									<i>¥5,0000000</i>
+									<label class="server-money ">5,000日元</label>
+									<i>5,000000日元</i>
 								</div>
 							</div>
 						</a>
@@ -33,14 +33,14 @@
 			</div>
 			<!--特别随从-->
 			<div class="serve-type ">
-				<h3 class="sub-title">增值服务</h3>
+				<h3 class="sub-title">附加服务</h3>
 				<div class="bg1">
-					<div class="server-item"  :class="{'active' : isChangeTe}" @click="changeType(1)">
+					<div class="server-item"  :class="{'active' : isChangeTe}">
 						<div class="server-t"><h3>特别随从：</h3>
 						<p><i class="iconfont icon-tanhao"></i>为您解读，帮您沟通，更多服务请点击查看</p></div>
 						<div class="radio-box ">
 							<span>{{especiallyMonye | price}}</span>
-							<i class="change-icon"></i>
+							&nbsp;赠送
 						</div>
 					</div>
 					<div class="server-item server-item1" :class="{'active' : isChangeZi}"  @click="changeType(2)">
@@ -93,9 +93,10 @@ module.exports = {
 	},
 	methods: {
 		goback: function(){
+			var t = this;
 			$.confirm('订单未提交，要返回吗？',
 				function () {
-					util.goBack();
+					t.goBack();
 				},
 				function () {
 					

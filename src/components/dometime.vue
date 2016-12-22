@@ -1,37 +1,37 @@
 <template>
   <button @click="getServerCode" class="btn2 btn21 " :class="{'disabled': !result
-  }">{{btntext}}</button>
+}">{{btntext}}</button>
 </template>
-
 <script>
-module.exports = {
-  props: ['time','userPhone'],
-  data: function(){
-    return {
-      phone: '',
-      btntext: '获取验证码',
-      result: true
-    }
-  },
-  methods: {
-    getServerCode: function(){
-      var that = this;
-      var time = that.time;
-      if(util.string.isMobile(that.userPhone) &&  that.result){
-        that.result = false;
-        that.btntext = ''+time+' 秒';
-        var timer = setInterval(function(){
-            time--;
-          that.btntext = ''+time+' 秒';
-          if(time == 0){
-            clearInterval(timer);
-            that.btntext = '再次发送';
-            that.result = true;
-          };
-        }, 1000);
+  module.exports = {
+    props: ['userPhone'],
+    data: function(){
+      return {
+        phone: '',
+        btntext: '获取验证码',
+        result: true
+      }
+    },
+    methods: {
+      getServerCode: function(){
+        var that = this;
+        var time = that.time;
+        if(!util.string.isEmail(that.$parent.phone)){
+          $.toast('输入邮箱地址');
+          return false;
+        };
+        if(that.result){
+          that.result = false;
+          that.domeTime({
+            endText: '再次发送',
+            time: 5,
+            scope: that,
+            callback: function(){
+              that.result = true;
+            }
+          });
+        };
         //获取验证码
-
-      };
     }
   }
 }

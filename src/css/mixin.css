@@ -26,10 +26,8 @@ em {
 
 @font-face {
   font-family: 'iconfont';
-  src: url("//at.alicdn.com/t/font_1478529469_2955549.eot");
-  /* IE9*/
-  src: url("//at.alicdn.com/t/font_1478529469_2955549.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1478529469_2955549.woff") format("woff"), url("//at.alicdn.com/t/font_1478529469_2955549.ttf") format("truetype"), url("//at.alicdn.com/t/font_1478529469_2955549.svg#iconfont") format("svg");
-  /* iOS 4.1- */ }
+  src: url("//at.alicdn.com/t/font_mi4l57qftehwu3di.eot");
+  src: url("//at.alicdn.com/t/font_mi4l57qftehwu3di.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_mi4l57qftehwu3di.woff") format("woff"), url("//at.alicdn.com/t/font_mi4l57qftehwu3di.ttf") format("truetype"), url("//at.alicdn.com/t/font_mi4l57qftehwu3di.svg#iconfont") format("svg"); }
 .iconfont {
   font-family: "iconfont";
   font-size: 16px;
@@ -105,6 +103,27 @@ em {
 .icon-chaxun:before {
   content: "\e60e"; }
 
+.icon-mingpianxuanzhong01:before {
+  content: "\e616"; }
+
+.icon-yxj-auth:before {
+  content: "\e645"; }
+
+.icon-gerenzhongxin:before {
+  content: "\e630"; }
+
+.icon-1:before {
+  content: "\e615"; }
+
+.icon-checkbox:before {
+  content: "\e617"; }
+
+.icon-duoxuan:before {
+  content: "\e62a"; }
+
+.icon-lajitong:before {
+  content: "\e655"; }
+
 .shop-tag, .shop-tag1 {
   border: 1px solid #d6d6d6;
   color: #888;
@@ -131,6 +150,11 @@ em {
 .shop-tag1.active {
   color: #ff6b68; }
 
+.shop-tag2 {
+  color: #ff6b68;
+  padding: 0 0.75rem;
+  border-color: #ff6b68; }
+
 .min-shop-tag {
   padding: 0 0.5rem; }
 
@@ -144,7 +168,8 @@ em {
   background: #ff6b68;
   color: #fff;
   height: 2.25rem;
-  padding: 0px 2.0rem; }
+  width: 6.0rem;
+  text-align: center; }
 
 .btn2 {
   padding: 0px 1.0rem;
@@ -155,8 +180,10 @@ em {
   display: inline-block; }
 
 .btn21 {
+  margin-left: 0.25rem; }
+
+.btn21, .btn24 {
   padding: 0px;
-  margin-left: 0.25rem;
   width: 4.5rem;
   text-align: center;
   background: #fff; }
@@ -165,13 +192,34 @@ em {
   border: 1px solid #d9d9d9;
   color: #d9d9d9; }
 
+.btn22 {
+  border: 1px solid #68bdff;
+  color: #68bdff !important; }
+
+/*lan*/
+.btn23 {
+  border: 1px solid #ff6b68;
+  color: #ff6b68 !important; }
+
+/*ju*/
+.btn231 {
+  background: #ff6b68;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  color: #fff  !important;
+  font-size: 14px; }
+
 .save-btn {
   color: #000;
   line-height: 2.2rem; }
 
 .buttons-tab .button.active {
   color: #ff6b68;
-  border-color: #ff6b68; }
+  border-color: transparent; }
+  .buttons-tab .button.active span {
+    display: inline-block;
+    border-bottom: 1px solid #ff6b68;
+    padding: 0px 0.25rem; }
 
 .list-block .item-inner:after {
   background: transparent !important; }

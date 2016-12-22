@@ -1,0 +1,65 @@
+<MKM version="2.0" minAppVer="2.0.0" imageFileUrl="">
+  <Marks>
+    <LengthMark x="672" y="1226" color="16711680" length="132" direction="3"/>
+    <LengthMark x="730" y="1331" color="16711680" length="26" direction="3"/>
+    <LengthMark x="729" y="1225" color="16711680" length="26" direction="3"/>
+    <LengthMark x="875" y="1327" color="16711680" length="32" direction="3"/>
+    <LengthMark x="875" y="1224" color="16711680" length="32" direction="3"/>
+    <LengthMark x="730" y="1384" color="16711680" length="80" direction="3"/>
+    <LengthMark x="1342" y="1225" color="16711680" length="32" direction="3"/>
+    <LengthMark x="1380" y="1395" color="255" length="30" direction="12"/>
+    <LengthMark x="661" y="1425" color="255" length="30" direction="12"/>
+    <LengthMark x="771" y="1426" color="255" length="30" direction="12"/>
+    <LengthMark x="1779" y="1226" color="16711680" length="32" direction="3"/>
+    <LengthMark x="1779" y="1294" color="16711680" length="16" direction="3"/>
+    <LengthMark x="1744" y="1532" color="16711680" length="32" direction="3"/>
+    <LengthMark x="1741" y="1329" color="16711680" length="32" direction="3"/>
+    <LengthMark x="1741" y="1429" color="16711680" length="32" direction="3"/>
+    <LengthMark x="1914" y="1257" color="16711680" length="36" direction="3"/>
+    <LengthMark x="1876" y="1360" color="16711680" length="70" direction="3"/>
+    <LengthMark x="1938" y="1564" color="16711680" length="110" direction="3"/>
+    <LengthMark x="1518" y="1377" color="16711680" length="54" direction="3"/>
+    <LengthMark x="1869" y="1612" color="16711680" length="12" direction="3"/>
+    <LengthMark x="1462" y="1406" color="255" length="30" direction="12"/>
+    <LengthMark x="1547" y="1401" color="255" length="16" direction="12"/>
+    <LengthMark x="2181" y="1530" color="255" length="30" direction="12"/>
+    <LengthMark x="1979" y="1497" color="255" length="26" direction="12"/>
+    <LengthMark x="2145" y="1498" color="255" length="26" direction="12"/>
+    <LengthMark x="1477" y="2139" color="16711680" length="88" direction="3"/>
+    <LengthMark x="1626" y="2211" color="16711680" length="16" direction="3"/>
+    <LengthMark x="1627" y="2140" color="16711680" length="16" direction="3"/>
+    <LengthMark x="1528" y="2414" color="16711680" length="26" direction="3"/>
+    <LengthMark x="1529" y="2226" color="16711680" length="26" direction="3"/>
+    <LengthMark x="1620" y="2254" color="16711680" length="160" direction="3"/>
+    <LengthMark x="1462" y="2337" color="255" length="30" direction="12"/>
+    <LengthMark x="1654" y="2336" color="255" length="20" direction="12"/>
+    <LengthMark x="1672" y="2284" color="255" length="160" direction="12"/>
+    <LengthMark x="1572" y="2399" color="16711680" length="16" direction="3"/>
+    <LengthMark x="1565" y="2216" color="255" length="546" direction="12"/>
+    <LengthMark x="2111" y="2187" color="255" length="20" direction="12"/>
+    <LengthMark x="1546" y="2182" color="255" length="20" direction="12"/>
+    <LengthMark x="1463" y="2165" color="255" length="30" direction="12"/>
+    <LengthMark x="2182" y="2186" color="255" length="30" direction="12"/>
+    <LengthMark x="2264" y="2398" color="255" length="30" direction="12"/>
+    <TextMark x="1303" y="1261" color="16711935" offsetX="37" offsetY="13" defaultDirection="5" direction="5" textMaxWidth="100" text="20px #888"/>
+    <TextMark x="944" y="1316" color="16711935" offsetX="25" offsetY="10" defaultDirection="9" direction="9" textMaxWidth="100" text="24px #888"/>
+    <TextMark x="756" y="1244" color="1118481" offsetX="93" offsetY="56" defaultDirection="9" direction="9" textMaxWidth="100" text="气泡提示样式同首页"/>
+    <TextMark x="1876" y="1265" color="16711935" offsetX="80" offsetY="23" defaultDirection="9" direction="9" textMaxWidth="100" text="20px #fff"/>
+    <TextMark x="2009" y="1479" color="16711935" offsetX="64" offsetY="25" defaultDirection="5" direction="5" textMaxWidth="100" text="28px #fff"/>
+    <TextMark x="908" y="1265" color="16711935" offsetX="25" offsetY="10" defaultDirection="9" direction="9" textMaxWidth="100" text="28px #000"/>
+    <TextMark x="2694" y="2400" color="16711935" offsetX="146" offsetY="27" defaultDirection="9" direction="9" textMaxWidth="100" text="28px #d6d6d6"/>
+    <TextMark x="1819" y="1378" color="16711935" offsetX="146" offsetY="27" defaultDirection="9" direction="9" textMaxWidth="100" text="28px #404040"/>
+    <TextMark x="1947" y="2379" color="16711935" offsetX="81" offsetY="26" defaultDirection="9" direction="9" textMaxWidth="100" text="24px #888"/>
+    <LengthMark x="1908" y="1298" color="255" length="32" direction="12"/>
+    <LengthMark x="1737" y="1276" color="255" length="32" direction="12"/>
+    <TextMark x="2019" y="1477" color="1118481" offsetX="174" offsetY="4" defaultDirection="5" direction="5" textMaxWidth="100" text="＃68bdff 圆角36"/>
+    <TextMark x="1929" y="1279" color="1118481" offsetX="25" offsetY="10" defaultDirection="9" direction="9" textMaxWidth="100" text="＃e5e5e5 圆角18"/>
+    <TextMark x="1985" y="2157" color="1118481" offsetX="134" offsetY="71" defaultDirection="9" direction="9" textMaxWidth="100" text="描边＃e5e5e5 2px"/>
+    <ColorMark x="2454" y="2396" color="1118481" offsetX="25" offsetY="10" defaultDirection="9" colorSystem="hex"/>
+    <TextMark x="1846" y="1410" color="1118481" offsetX="133" offsetY="5" defaultDirection="9" direction="9" textMaxWidth="100" text="＃e5e5e5 圆角36"/>
+    <ColorMark x="1975" y="2280" color="1118481" offsetX="25" offsetY="10" defaultDirection="9" colorSystem="hex"/>
+    <TextMark x="2621" y="2350" color="1118481" offsetX="72" offsetY="39" defaultDirection="9" direction="9" textMaxWidth="100" text="分割线2px #fafafa"/>
+    <TextMark x="1677" y="2140" color="1118481" offsetX="72" offsetY="39" defaultDirection="9" direction="9" textMaxWidth="100" text="分割线2px #fafafa"/>
+    <TextMark x="1772" y="2181" color="16711935" offsetX="146" offsetY="27" defaultDirection="9" direction="9" textMaxWidth="100" text="28px #404040"/>
+  </Marks>
+</MKM>
