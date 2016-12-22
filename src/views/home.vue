@@ -2,7 +2,7 @@
   <div class="container">
 	<div class="content list infinite-scroll home-content" :class="{'home-content1': isSelectShade}">
 		<nav class="bar bar-nav bar-nav-static search-nav">
-			<a class="open-adr-btn" v-link="{name:'address'}">{{address}}<i class="iconfont icon-icon-copy-copy"></i></a>
+			<a class="open-adr-btn" v-link="{name:'address'}">{{countryName}}<i class="iconfont icon-icon-copy-copy"></i></a>
 			<form class="search-input-box" action="#">
 				<div class="search-input">
 					<label class="iconfont icon-chaxun" for="search"></label>
@@ -70,20 +70,21 @@
 		<div class="list-block infinite-list  media-list home-media-list">
 			<ul>
 				<li v-for="item in dataList" track-by="$index" class="itme-style">
-					<a href="#/details" class="item-content">
-						<div class="item-media"><img src="../images/1.jpg"></div>
+					<a v-link="{name: 'details', query: {shopid: item.id}}" class="item-content" >
+						<div class="item-media"><img src="{{item.picLogo}}"></div>
 						<div class="item-inner">
 							<div class="item-title-row">
-								<div class="item-title">浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル店</div>
+								<div class="item-title">{{item.name}}</div>
 								<div class="item-after">1.9km</div>
 							</div>
 							<div class="shop-tag-box">
-								<span class="shop-tag shop-tag-active">一級棒</span>
-								<span class="shop-tag ">安全</span>
+								<!--shop-tag-active-->
+								<span class="shop-tag" v-for="tag in item.etags">{{tag}}</span>
+								<span class="shop-tag" v-for="tag in item.ctags">{{tag}}</span>
 							</div>
 							<div class="item-title-row server-money-box">
 								<label class="server-money">5,00~5,0000日元</label>
-								<div class="item-after">1113人去过</div>
+								<div class="item-after">{{item.baojianNum}}人去过</div>
 							</div>
 						</div>
 					</a>
@@ -111,7 +112,7 @@ module.exports = {
 	    that.fixedbox();
 	    that.$nav = $('.seach-select-list li');
 	    that.$item = $('.select-box .item');
-	    
+	    that.cookie.set('countryName', that.countryName);
 		//附近
 		that.$nearby = $('.change-list>li');
 		that.$nearby.on('click', function(){
@@ -150,16 +151,32 @@ module.exports = {
 	    	var that = this;
 	    	if(that.currentPage == 1) that.dataList = [];
 	   		that.getServerData({
-	   			url: 'http://cnodejs.org/api/v1/topics',
-	   			type: 'get',
+	   			url: 'shop/find_city.do',
+	   			data: {
+	   				cityName: that.countryName
+	   			},
 	   			success: function(results){
-	   				results.data.data.length = 10;
-	   				that.dataList = that.dataList.concat(results.data.data);
+	   				that.dataList = that.dataList.concat(results.data.content);
 	   				that.loading = true;
-	   				that.itemsPerPage = 2;
 	   			}
 	   		});
-	    }
+	   		//假数据
+	   		that.dataList =[{
+	   			id:1,
+				name:'商家名称',
+				addressCountry:'所在国家',
+				addressProvince:'所在县',
+				addressCity:'所在城市',
+				addressDetail:'详细地址',
+				locationBaidu:'',
+				telphone:'18601921313',
+				picLogo:'https://pic3.zhimg.com/f2b216f82779b9112d21a92792358e7a_s.jpg',
+				etags:['不错','很好'],
+				ctags: ['泡泡浴','很好'],
+				pics:'图片列表，逗号分隔',
+				baojianNum:'100'
+	   		}] 
+		}
 	},
 	data:function(){
 		return {
@@ -168,7 +185,7 @@ module.exports = {
 			dataList: [],
 			loading: true,//取反
 			isSelectShade: false,
-			address: '东京',
+			countryName: '日本',
 			isIndex: false,
 			currentPage: 0,
 			searchVal: '',//搜索值
@@ -185,8 +202,8 @@ module.exports = {
 			var t = this;
 			t.$root.$set('header',t.title);
 			transition.next();
-			var adr = t.cookie.get('address');
-			t.address = adr ? adr : '东京';
+			var adr = t.cookie.get('countryName');
+			t.countryName = adr ? adr : t.countryName;
 			setTimeout(function(){
 				$('.icon-dairaku').parent('.tab-item').addClass('active');
 			},10);

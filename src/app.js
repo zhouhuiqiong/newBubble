@@ -12,6 +12,7 @@ var fastclick = require('fastclick');
 var VueResource = require('vue-resource');
 var vuePublic = require('./js/public');
 
+
 fastclick.attach(document.body);
 // Directive
 var directive =  require('./js/directives');

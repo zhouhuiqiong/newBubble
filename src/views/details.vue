@@ -75,33 +75,30 @@
 					</div>
 					<div class="swiper-slide">
 						<div class="list-block media-list evaluate-list" >
-						<ul>
-							<li v-for="item in dataList1" track-by="$index">
-								<a href="javascript:void(0);" class="item-content evaluate-content">
-									<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" ></div>
-									<div class="item-inner">
-										<div class="item-title-row">
-											<div class="item-title">标题</div>
-											<div class="item-after">2015-23-23</div>
-										</div>
-										<div class="evaluate-tag-box">
-											<span class="shop-tag min-shop-tag">安全</span>
-											<span class="shop-tag min-shop-tag">一级棒</span>
+							<ul>
+								<li v-for="item in dataList1" track-by="$index">
+									<a href="javascript:void(0);" class="item-content evaluate-content">
+										<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" ></div>
+										<div class="item-inner">
+											<div class="item-title-row">
+												<div class="item-title">标题</div>
+												<div class="item-after">2015-23-23</div>
+											</div>
+											<div class="evaluate-tag-box">
+												<span class="shop-tag min-shop-tag">安全</span>
+												<span class="shop-tag min-shop-tag">一级棒</span>
 
+											</div>
+											<div class="txt-box txt-hide">
+												评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
+												内容评价内容评价内容评价内容
+											</div>
+											<div class="all-essay" v-all-read>全文</div>
 										</div>
-										<div class="txt-box txt-hide">
-											评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
-											评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
-											评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
-											评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
-										</div>
-										<div class="all-essay" v-all-read>全文</div>
-									</div>
-
-								</a>
-							</li>
-						</ul>
-					</div>
+									</a>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -118,49 +115,15 @@
 var Swiper = require('../js/swiper');
 module.exports = {
 	ready: function(){
-		var t = this;
-		t.mySwiper = new Swiper('.swper', {
-			direction: 'vertical',
-			pagination: '.swiper-pagination',
-			createPagination :false,
-			paginationClickable :true,
-			effect: 'slide',
-			direction: 'horizontal',
-			linkTouchMove: function(num){
-				num = Math.abs(num);
-				num = num < t.site1 ? t.site1 : (num > t.site2 ? t.site2 : num);
-				t.$link.css({
-					left: num
-				});
-			},
-			onTouchStart: function(swiper){
-				t.start = swiper.activeIndex;
-			},
-			onSlideChangeEnd: function(swiper){
-				t.end = swiper.activeIndex;
-				if(t.end != t.start){
-					t.changeType(t.end);//加载数据
-				};
-			},
-			onInit: function(){
-				var $nav = $('.swiper-pagination .swiper-pagination-bullet');
-				$nav.click(function(){
-					var index = $nav.index($(this));
-					//根据类型不同做出判断要加
-					t.changeType(index,'');
-				});
-				$('.swiper-pagination-bullet').eq(0).text('商家服务');
-				$('.swiper-pagination-bullet').eq(1).text('客户评价');
-			}	
-		});
-		t.$link = $('.activelink');
-		t.changeType(0);
+		var that = this;
+		that.initSwper();
+		that.$link = $('.activelink');
+		that.changeType(0);
 	},
 	data:function(){
 		return {
 			loadMore: {
 				url: '3理解2空间',
-				type: 'all',
 				items: []
 			},
 			dataList0: [],
@@ -182,10 +145,10 @@ module.exports = {
 	},
 	methods: {
 		changeType: function(item,type){
-			var t = this;
-			t.linkInit(item)
+			var that = this;
+			that.linkInit(item)
 			//加载数据
-			t.item = item;
+			that.item = item;
 			var dataObj = new util.scrollList();
 			dataObj.init(this,{
 				le: '.swiper-slide-active .content-block',//承载列表的数据
@@ -194,11 +157,11 @@ module.exports = {
 			dataObj.getListData();
 		},
 		linkInit: function(type){//link 初始化位置计算
-			var t = this;
-			var w = t.w = $(window).width() / 2;
-			t.site1= (w - 64)/2;
-			t.site2 = w + t.site1;
-			t.$link.css({
+			var that = this;
+			var w = that.w = $(window).width() / 2;
+			that.site1= (w - 64)/2;
+			that.site2 = w + t.site1;
+			that.$link.css({
 				left: type * w + t.site1
 			});
 		},
@@ -208,8 +171,44 @@ module.exports = {
                 maxbox: this.maxbox,
                 index: 0
             });
+        },
+        initSwper: function(){
+        	var that = this;
+        	that.mySwiper = new Swiper('.swper', {
+				direction: 'vertical',
+				pagination: '.swiper-pagination',
+				createPagination :false,
+				paginationClickable :true,
+				effect: 'slide',
+				direction: 'horizontal',
+				linkTouchMove: function(num){
+					num = Math.abs(num);
+					num = num < that.site1 ? that.site1 : (num > that.site2 ? that.site2 : num);
+					that.$link.css({
+						left: num
+					});
+				},
+				onTouchStart: function(swiper){
+					that.start = swiper.activeIndex;
+				},
+				onSlideChangeEnd: function(swiper){
+					that.end = swiper.activeIndex;
+					if(that.end != that.start){
+						that.changeType(that.end);//加载数据
+					};
+				},
+				onInit: function(){
+					var $nav = $('.swiper-pagination .swiper-pagination-bullet');
+					$nav.click(function(){
+						var index = $nav.index($(this));
+						//根据类型不同做出判断要加
+						that.changeType(index,'');
+					});
+					$('.swiper-pagination-bullet').eq(0).text('商家服务');
+					$('.swiper-pagination-bullet').eq(1).text('客户评价');
+				}	
+			});
         }
-		
 	},
 	route:{
 		activate:function(transition){

@@ -73,7 +73,11 @@ var digitsRE = /(\d{3})(?=\d)/g
     
 }
 
+function aryType(val){
+  return val.split(',');
+}
 exports.imgUrl = imgUrl;
 exports.price = price;
 exports.timeago = timeago;
 exports.urlize = urlize;
+exports.aryType = aryType;

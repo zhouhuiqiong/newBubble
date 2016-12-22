@@ -6,13 +6,38 @@
 		//this.$http.jsonp('/someUrl', [data], [options]).then(successCallback, errorCallback);
 		that.getServerData = function(data){
 			var type = data.type ? data.type : 'post';
-			this.$http({
-				method: type,
-				url: data.url,
-				data: data.data
-			}).then(function(results){
-				data.success(results);
-			});
+			// this.$http({
+			// 	method: type,
+			// 	url: 'http://118.178.188.7:8104/' + data.url,
+			// 	data: data.data
+			// }).then(function(results){
+			// 	console.log(results)
+			// 	// if(results)
+			// 	// data.success(results);
+			// });
+			//跨域
+			// this.$http.jsonp({
+			// 	method: type,
+			// 	url: 'http://118.178.188.7:8104/' + data.url,
+			// 	data: data.data
+			// }).then(function(results){
+			// 	console.log(results)
+			// }, function(){
+
+			// });
+			$.ajax({  
+		        type: 'get',  
+		        url : 'http://118.178.188.7:8104/' + data.url,  
+		        dataType : 'jsonp',  
+		        data: data.data, 
+		        success: function(results){
+
+		        },  
+		        error: function(results) {  
+		          	
+		        }  
+		    }); 
+		 //     
 		};
 		//滚动条加载数据
 		that.scrollList = function(data){

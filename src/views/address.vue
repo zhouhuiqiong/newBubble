@@ -18,84 +18,84 @@
 		   	<!--地址列表-->
 		   	<div class="hot-adr-list">
 		   		<dl class="hot-adr-item">
-		   			<dt>日本热门城市</dt>
-		   			<dd>东京</dd>
-		   			<dd>大阪</dd>
-		   			<dd>京东</dd>
+		   			<dt>{{countryName}}热门城市</dt>
+		   			<dd v-for="item in hotCountryList" @click="handle($event,item)">{{item}}</dd>
 		   		</dl>
-<!-- 		   		<dl class="hot-adr-item">
-		   			<dt>泰国热门城市</dt>
-		   			<dd>东京</dd>
-		   			<dd>大阪</dd>
-		   			<dd>京东</dd>
-		   		</dl> -->
 		   	</div>
 		   	<div class="input-adr-list" v-show="isInput">
 		   		<dl class="hot-adr-item">
-		   			<dd>东京</dd>
-		   			<dd>大阪</dd>
-		   			<dd>京东</dd>
-		   			<dd>东京</dd>
-		   			<dd>大阪</dd>
-		   			<dd>京东</dd>
-		   			<dd>东京</dd>
-		   			<dd>大阪</dd>
-		   			<dd>京东</dd>
-		   			<dd>东京</dd>
-		   			<dd>大阪</dd>
-		   			<dd>京东</dd>
-		   			<dd>东京</dd>
-		   			<dd>大阪</dd>
-		   			<dd>京东</dd>
-		   			<dd>东京</dd>
-		   			<dd>大阪</dd>
-		   			<dd>京东</dd>
+		   			<dd v-for="item in searchCountryList" @click="handle($event,item)">{{item}}</dd>
 		   		</dl>
 		   	</div>
 		</div>
 	</div>
 </template>
 <script>
-module.exports = {
-	route: {
 
-	},
+module.exports = {
 	ready: function(){
-		var t = this;
-		t.$list = $('.hot-adr-list dd,.input-adr-list dd');
-		t.$dui = $('.icon-duigou');
-		t.handle();	
+		var that = this;
+		that.countryName = that.cookie.get('countryName');
+		that.hotCountryFun();	
 	},	
 	data:function(){
 		return {
 			searchVal: '',
 			isDelVal: false,//删除输入框的值
 			isInput: false,
+			countryName: '',//默认城市
+			hotCountryList: [],
+			searchCountryList: []
 		}
 	},
 	methods: {
 		showDel: function(){
 			var that = this;
 			that.isInput = that.isDelVal = that.searchVal ? true : false;
+			that.searchCountryFun();
 		},
 		delInputVal: function(){
 			var that = this;
 			that.searchVal = '';
 			that.isDelVal = false;
 		},
-		handle: function(){
-			var t = this;
-			t.$list.on('click', function(){
-				$('.icon-duigou').remove();
-				$(this).append('<i class="iconfont icon-duigou"></i>');
-				var txt = $(this).text();
-				t.cookie.set('address', txt);
-				t.isInput = false;
-				setTimeout(function(){
-					t.$router.go({path:'/home'});
-				},200)
-			});	
+		handle: function(event,adr){
+			var that = this;
+			$('.icon-duigou').remove();
+			$(event.target).append('<i class="iconfont icon-duigou"></i>');
+			that.cookie.set('countryName', adr);
+			that.isInput = false;
+			setTimeout(function(){
+				that.$router.go({path:'/home'});
+			},200);
+		},
+		hotCountryFun: function(){//搜索城市
+			var that = this;
+			that.getServerData({
+				url: 'city/list.do',
+				data: {
+					countryName: that.countryName  
+				},
+				success: function(data){
+					that.hotCountryList = data.content;
+				}
+			});
+			that.hotCountryList = ["高知市","大馆市","大野市","名护市","北上市"];
+		},
+		searchCountryFun: function(){//搜索城市
+			var that = this;
+			that.getServerData({
+				url: 'city/list.do',
+				data: {
+					countryName: that.searchVal  
+				},
+				success: function(data){
+					that.searchCountryList = data.content;
+				}
+			});
+			that.searchCountryList = ["高知市","大馆市","大野市","名护市","北上市"];
 		}
+
 		
 	},
 	computed: {

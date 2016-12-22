@@ -16,10 +16,10 @@
       getServerCode: function(){
         var that = this;
         var time = that.time;
-        if(!util.string.isEmail(that.$parent.phone)){
-          $.toast('输入邮箱地址');
-          return false;
-        };
+        // if(!that.string.isEmail(that.$parent.user.phone)){
+        //   $.toast('输入邮箱地址');
+        //   return false;
+        // };
         if(that.result){
           that.result = false;
           that.domeTime({
@@ -32,6 +32,18 @@
           });
         };
         //获取验证码
+        that.getServerData({
+          url: 'user/sendCode.do',
+          data: {
+            eamil: 'zhq_189@163.com'
+          },
+          success: function(){
+
+          },
+          error: function(){
+            
+          }
+        })
     }
   }
 }
