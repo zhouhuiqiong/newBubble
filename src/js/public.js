@@ -16,27 +16,21 @@
 			// 	// data.success(results);
 			// });
 			//跨域
-			// this.$http.jsonp({
-			// 	method: type,
-			// 	url: 'http://118.178.188.7:8104/' + data.url,
-			// 	data: data.data
-			// }).then(function(results){
-			// 	console.log(results)
-			// }, function(){
+			
+			// $.ajax({  
+		 //        type: 'post',  
+		 //        url : 'http://118.178.188.7:8104/city/list.action',  
+		 //        dataType : 'jsonp',  
+		 //        data: {
+		 //        	countryName: '日本'
+		 //        }, 
+		 //        success: function(results){
 
-			// });
-			$.ajax({  
-		        type: 'get',  
-		        url : 'http://118.178.188.7:8104/' + data.url,  
-		        dataType : 'jsonp',  
-		        data: data.data, 
-		        success: function(results){
-
-		        },  
-		        error: function(results) {  
+		 //        },  
+		 //        error: function(results) {  
 		          	
-		        }  
-		    }); 
+		 //        }  
+		 //    }); 
 		 //     
 		};
 		//滚动条加载数据

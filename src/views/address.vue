@@ -72,7 +72,7 @@ module.exports = {
 		hotCountryFun: function(){//搜索城市
 			var that = this;
 			that.getServerData({
-				url: 'city/list.do',
+				url: 'city/list',
 				data: {
 					countryName: that.countryName  
 				},
@@ -80,12 +80,12 @@ module.exports = {
 					that.hotCountryList = data.content;
 				}
 			});
-			that.hotCountryList = ["高知市","大馆市","大野市","名护市","北上市"];
+			//that.hotCountryList = ["高知市","大馆市","大野市","名护市","北上市"];
 		},
 		searchCountryFun: function(){//搜索城市
 			var that = this;
 			that.getServerData({
-				url: 'city/list.do',
+				url: 'city/list',
 				data: {
 					countryName: that.searchVal  
 				},

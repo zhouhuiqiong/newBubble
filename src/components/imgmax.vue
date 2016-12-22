@@ -8,7 +8,7 @@
         <div class="swiper-container maxswiperlist" >
             <div class="swiper-wrapper" >
                 <div class="swiper-slide" v-for="item in aryimg">
-                    <img :src="item.img" >
+                    <img :src="item" >
                 </div> 
             </div>
             <div class="swiper-pagination"></div>

@@ -2165,6 +2165,12 @@ body {
 .details-tab .active {
   color: #ff6b68; }
 
+.check-box {
+  margin-left: 0.25rem;
+  font-size: 14px; }
+  .check-box i {
+    font-size: 10px; }
+
 .logbg {
   width: 100%;
   display: block; }
@@ -2202,5 +2208,13 @@ body {
 
 .open-adr-btn:hover {
   color: #000 !important; }
+
+.giving {
+  border-radius: 0.5rem;
+  background: #ff6b68;
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+  padding: 0.1rem 0.3rem; }
 
 /*# sourceMappingURL=main.css.map */

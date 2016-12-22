@@ -1787,6 +1787,14 @@ $pa:0px 40px;
 .details-tab .active{
 	color: #ff6b68;
 }
+.check-box{
+	margin-left:0.25rem;
+	font-size: 14px;
+	i{
+		font-size:10px;
+	}
+}
+
 .logbg{width: 100%; display: block;}
 .shop-yu-time{font-size: 10px; color:#888;}
 .clr1{color:#68bdff !important}/*lan*/
@@ -1797,3 +1805,11 @@ $pa:0px 40px;
 .ver1{vertical-align: -2px; margin-right: 0.1rem;}
 .tr{text-align: right;}
 .open-adr-btn:hover{color:#000 !important;}
+.giving{
+	border-radius: 0.5rem;
+	background: #ff6b68;
+	text-align: center;;
+	color:#fff;
+	font-size: 12px;
+	padding:0.1rem 0.3rem;
+}

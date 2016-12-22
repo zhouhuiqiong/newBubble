@@ -70,8 +70,8 @@
 		<div class="list-block infinite-list  media-list home-media-list">
 			<ul>
 				<li v-for="item in dataList" track-by="$index" class="itme-style">
-					<a v-link="{name: 'details', query: {shopid: item.id}}" class="item-content" >
-						<div class="item-media"><img src="{{item.picLogo}}"></div>
+					<a v-link="{name: 'details', query: {shopid: item.id,lon: item.locationBaidu[0], lat: item.locationBaidu[1]}}" class="item-content" >
+						<div class="item-media"><img :src="item.picLogo"></div>
 						<div class="item-inner">
 							<div class="item-title-row">
 								<div class="item-title">{{item.name}}</div>
@@ -79,7 +79,7 @@
 							</div>
 							<div class="shop-tag-box">
 								<!--shop-tag-active-->
-								<span class="shop-tag" v-for="tag in item.etags">{{tag}}</span>
+								<span class="shop-tag shop-tag-active" v-for="tag in item.etags">{{tag}}</span>
 								<span class="shop-tag" v-for="tag in item.ctags">{{tag}}</span>
 							</div>
 							<div class="item-title-row server-money-box">
@@ -168,7 +168,7 @@ module.exports = {
 				addressProvince:'所在县',
 				addressCity:'所在城市',
 				addressDetail:'详细地址',
-				locationBaidu:'',
+				locationBaidu:['36.5856490000','139.0614540000'],
 				telphone:'18601921313',
 				picLogo:'https://pic3.zhimg.com/f2b216f82779b9112d21a92792358e7a_s.jpg',
 				etags:['不错','很好'],

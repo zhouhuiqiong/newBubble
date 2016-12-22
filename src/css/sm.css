@@ -4628,3 +4628,9 @@ html:not(.watch-active-state) .theme-white label.label-radio:active,
 .theme-white .range-slider input[type="range"]:after {
   background: #ffffff;
 }
+.label-switch .checkbox:before{
+  background: #d6d6d6;
+}
+.label-switch input[type="checkbox"]:checked + .checkbox{
+  background: #ff6b68;
+}

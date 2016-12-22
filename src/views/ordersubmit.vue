@@ -35,20 +35,22 @@
 			<div class="serve-type ">
 				<h3 class="sub-title">附加服务</h3>
 				<div class="bg1">
-					<div class="server-item"  :class="{'active' : isChangeTe}">
-						<div class="server-t"><h3>特别随从：</h3>
+					<div class="server-item">
+						<div class="server-t"><h3>特别随从<span class="clr3 check-box"><em>{{especiallyMonye | price}}</em><i>日元</i></span></h3>
 						<p><i class="iconfont icon-tanhao"></i>为您解读，帮您沟通，更多服务请点击查看</p></div>
-						<div class="radio-box ">
-							<span>{{especiallyMonye | price}}</span>
-							&nbsp;赠送
-						</div>
+						<div class="giving">赠送</div>
+
 					</div>
-					<div class="server-item server-item1" :class="{'active' : isChangeZi}"  @click="changeType(2)">
-						<div class="server-t"><h3>自选服务人员</h3>
-						<p><i class="iconfont icon-tanhao"></i>为您解读，帮您沟通，更多服务请点击查看</p></div>
-						<div class="radio-box">
-							<span>{{especiallyMonye | price}}</span>
-							<i class="change-icon"></i>
+					<div class="server-item server-item1">
+						<div class="server-t">
+							<h3>自选服务人员<span class="clr3 check-box"><em>{{especiallyMonye | price}}</em><i>日元</i></span></h3>
+							<p><i class="iconfont icon-tanhao"></i>为您解读，帮您沟通，更多服务请点击查看</p>
+						</div>
+						<div class="item-input">
+							<label class="label-switch">
+								<input type="checkbox">
+								<div class="checkbox"></div>
+							</label>
 						</div>
 					</div>
 				</div>
