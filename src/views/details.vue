@@ -48,11 +48,11 @@
 				</div>
 				<div class="swiper-wrapper">
 					<div class="swiper-slide">
-						<!--商家服务-->
+						<!--商家服务orderdetails-->
 						<div class="list-block media-list">
 							<ul>
 								<li class="itme-style min-itme-style" v-for="item in dataList0" track-by="$index">
-									<a href="#/orderdetails" class="item-content">
+									<a v-link="{name: 'orderdetails', query: {productId: item.id}}" class="item-content">
 										<div class="item-media"><img :src="item.logo"></div>
 										<div class="item-inner sale-txt">
 											<div class="item-title-row">
@@ -71,12 +71,12 @@
 								</li>
 							</ul>
 						</div>
-						<!--end 商家服务v-for="item in dataList1"-->
+						<!--end 商家服务-->
 					</div>
 					<div class="swiper-slide">
 						<div class="list-block media-list evaluate-list" >
 							<ul>
-								<li  track-by="$index">
+								<li  v-for="item in dataList1" track-by="$index">
 									<a href="javascript:void(0);" class="item-content evaluate-content">
 										<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" ></div>
 										<div class="item-inner">
@@ -87,11 +87,9 @@
 											<div class="evaluate-tag-box">
 												<span class="shop-tag min-shop-tag">安全</span>
 												<span class="shop-tag min-shop-tag">一级棒</span>
-
 											</div>
 											<div class="txt-box txt-hide">
-												评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
-												内容评价内容评价内容评价内容
+												{{item.content}}
 											</div>
 											<div class="all-essay" v-all-read>全文</div>
 										</div>
@@ -119,35 +117,50 @@ module.exports = {
 		that.q = that.$route.query;
 		that.initSwper();
 		that.$link = $('.activelink');
+		//滚动获取数据
+		that.scrollList({
+			le: '.media-list',
+			scrollObj: '.content'
+		});
+		that.currentPage0 = 1; 
 		that.changeType(0);
+		that.shopDetails();
 	},
 	data:function(){
 		return {
-			loadMore: {
-				url: '3理解2空间',
-				items: []
-			},
-			dataList0: [],
-			dataList1: [],
-			maxbox: false,
-			aryimg: [],
+			dataList0: [],//服务列表
+			dataList1: [],//用户评论
+			maxbox: false,//大图是否显示
+			aryimg: [],//大图数组
 			shopInfo: {},
+			pageSize: 20,
+			currentPage0: 0,
+			currentPage1: 0,
+			currentStr: '0',
+			loading: false,
+			noData: false,//无数据标志
+			listType: 0,//1用户评论列表
 			imgL: ''
 		}
 	},
+	watch: {
+		'currentPage0': function (val, oldVal) {
+	    	var that = this;
+	    	that.getProduct();
+	   	},
+	   	'currentPage1': function (val, oldVal) {
+	    	var that = this;
+	    	that.getReview();
+	   	},
+	},
 	methods: {
-		changeType: function(item,type){
-			var that = this;
+		changeType: function(item){
+	    	var that = this;
+	    	if(item == 1 && that.currentPage1 == 0) that.currentPage1 = 1;//初次加载
 			that.linkInit(item)
-			that.shopDetails()
-			//加载数据
-			// that.item = item;
-			// var dataObj = new util.scrollList();
-			// dataObj.init(this,{
-			// 	le: '.swiper-slide-active .content-block',//承载列表的数据
-			// 	scrollObj: '.content'
-			// });
-			// dataObj.getListData();
+			that.listType = item;
+			that.currentStr = item + '';
+			that.noData = false;
 		},
 		linkInit: function(type){//link 初始化位置计算
 			var that = this;
@@ -165,7 +178,7 @@ module.exports = {
                 index: 0
             });
         },
-        //服务列表与店铺
+        //店铺详情
         shopDetails: function(){
         	var that = this;
         	that.getServerData({
@@ -175,39 +188,29 @@ module.exports = {
         			lat: that.q.lat,
         			lon: that.q.lon
         		},
-        		scuess: function(result){
-        			that.dataList0 = that.dataList0.concat(result.content.productList);
+        		success: function(result){
         			that.shopInfo = result.content.shopInfo;
         			that.aryimg = that.shopInfo.pics;
         			that.imgL = that.aryimg.length;
+        			that.loading = true;
+        		}
+        	});	
+        },
+        //服务列表
+        getProduct: function(){
+        	var that = this;
+        	that.getServerData({
+        		url: 'product/list_by_shop',
+        		data: {
+        			scShopId: that.q.shopid,
+        			pageNo: that.currentPage0,
+        		},
+        		success: function(result){
+        			that.dataList0 = that.dataList0.concat(result.content);
+        			if(result.content.length < that.pageSize) that.noData = true;
+        			that.loading = true;
         		}
         	});
-        	that.shopInfo = {
-        		id:1,
-				name:'商家名称',
-				addressCountry:'所在国家',
-				addressProvince:'所在县',
-				addressCity:'北京',
-				addressDetail:'中国北京市昌平区水库路东侧北京随园公寓',
-				locationBaidu:['36.5856490000','139.0614540000'],
-				telphone:'18601921313',
-				picLogo:'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3646051749,3801647591&fm=80&w=179&h=119&img.JPEG',
-				etags:['不错','很好'],
-				ctags: ['泡泡浴','很好'],
-				pics: ['https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1945941167,1388481778&fm=80&w=179&h=119&img.JPEG',
-				'https://ss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/864063689.png'],
-				baojianNum:'100'
-        	};
-        	that.dataList0 = [{
-        		scShopId:1,
-				scShopName:'商家名称',
-				priceRealJpy:'5000',
-				priceViewJpy:'100000',
-				fictitiousSales: '1000',
-				logo:'https://ss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/864063689.png'
-        	}]
-        	that.aryimg = that.shopInfo.pics;
-        	that.imgL = that.shopInfo.pics.length;
         },
         //取商户评论
         getReview: function(){
@@ -216,14 +219,12 @@ module.exports = {
         		url: 'shop/evaluate/list',
         		data: {
         			sid: that.q.shopid,
-        			pageSize: 10,
-        			lon: that.q.lon
+        			eid: that.currentPage1,
         		},
-        		scuess: function(result){
-        			that.dataList0 = that.dataList0.concat(result.content.productList);
-        			that.shopInfo = result.content.shopInfo;
-        			that.aryimg = that.shopInfo.pics;
-        			that.imgL = that.aryimg.length;
+        		success: function(result){
+        			that.dataList1 = that.dataList1.concat(result.content);
+        			if(result.content.length < that.pageSize) that.noData = true;
+        			that.loading = true;
         		}
         	});
         },
@@ -253,12 +254,6 @@ module.exports = {
 					};
 				},
 				onInit: function(){
-					var $nav = $('.swiper-pagination .swiper-pagination-bullet');
-					$nav.click(function(){
-						var index = $nav.index($(this));
-						//根据类型不同做出判断要加
-						that.changeType(index,'');
-					});
 					setTimeout(function() {
 						$('.swiper-pagination-bullet').eq(0).text('商家服务');
 						$('.swiper-pagination-bullet').eq(1).text('客户评价');

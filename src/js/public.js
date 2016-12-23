@@ -7,31 +7,28 @@
 		that.getServerData = function(data){
 			var type = data.type ? data.type : 'post';
 			// this.$http({
-			// 	method: type,
-			// 	url: 'http://118.178.188.7:8104/' + data.url,
+			// 	method: 'get',
+			// 	url: 'http://192.168.3.156:9000/src/data/' + data.url + '.json',
 			// 	data: data.data
 			// }).then(function(results){
-			// 	console.log(results)
-			// 	// if(results)
-			// 	// data.success(results);
+			// 	data.scuess(results.data);
 			// });
 			//跨域
-			
-			// $.ajax({  
-		 //        type: 'post',  
-		 //        url : 'http://118.178.188.7:8104/city/list.action',  
-		 //        dataType : 'jsonp',  
-		 //        data: {
-		 //        	countryName: '日本'
-		 //        }, 
-		 //        success: function(results){
-
-		 //        },  
-		 //        error: function(results) {  
-		          	
-		 //        }  
-		 //    }); 
-		 //     
+			$.ajax({  
+		        type: 'post',  
+		        url : 'http://118.178.188.7:8104/'+ data.url +'.action',  
+		        data: data.data, 
+		        success: function(results){
+		        	if(results.state == 200){
+		        		data.success(results);
+		        	}else{
+		        		if(typeof data.error == 'function') data.error(results);
+		        	};
+		        },  
+		        error: function(results) {	
+		        }  
+		    }); 
+		     
 		};
 		//滚动条加载数据
 		that.scrollList = function(data){
@@ -41,17 +38,20 @@
 			$(params.scrollObj).scrollTop(0);
 			$(params.scrollObj).on('scroll', function(){
 				var el = $(this);
-				t.loading = false;
-				if(t.currentPage > t.itemsPerPage){
+				if(t.noData){
 					t.loading = true;
 					return;
+				}else{
+					t.loading = false;
 				};
 				var totalHeight = parseFloat(el.height()) + parseFloat(el.scrollTop());
+				//tab 多个
+				var str = t.currentStr ? t.currentStr : '';
 				if(el[0].scrollHeight - totalHeight <=3){
 					setTimeout(function(){
           				if (t.loading) return;
 						var scrollTop = el[0].scrollHeight - el.height() - 20;
-						t.currentPage ++;
+						t['currentPage' + str] ++;
 						el.scrollTop(scrollTop);
 					}, 1000);
 				};
@@ -128,7 +128,7 @@
 			del: function(key){
 				var i = new Date;
 				i.setTime(i.getTime() - 1e4),
-				document.cookie = key + "=a; expires=" + i.toGMTString()
+				document.cookie = key + "=a; expires=" + i.toGMTString();
 			}
 		};
 		//验证
@@ -144,6 +144,7 @@
 				return new RegExp("[.]+(jpg|jpeg|png|bmp|gif)$", "gi").test(val);
 			},
 			trim: function(val){
+				if(!val) return;
     			return val.replace(/(^\s*)|(\s*$)/g, '');
   			},
   			isNull: function(val){
@@ -182,6 +183,50 @@
 				obj.addClass('active').siblings().removeClass('active');
 			}
 		};
+		//提交订单预约，时间处理yyyy-MM-dd HH:mm:ss
+		that.orderTime = function(str){
+			var data = new Date(),
+				y = data.getFullYear(),
+				m = data.getMonth() + 1,
+				d = data.getDate();
+			return y + '-' + m + '-' + d + ' ' + str + ':00';
+		};
+		//获取选中多选框的值
+		that.checkList = function(obj){
+			var ary = [];
+			obj.each(function(){
+				ary.push($(this).val());
+			});
+			return ary;
+		};
+		that.getUserInfo =  function(scope){
+			that.getServerData({
+				url: 'user/info',
+				data: {
+					token: scope.$root.userId
+				},
+				success: function(result){
+					scope.userInfo = result.content;
+				}
+			});
+		};
+		//退出登录
+		that.exitFun = function(scope){
+			that.cookie.del('userId');
+			scope.$dispatch('userId','');
+			scope.$router.go({path:'/login'});
+		}
+		// that.promiseFun = function(data){
+		// 	return new Promise(function(resolve){
+		// 		that.getServerData({
+		// 			url: data.url,
+		// 			data: data.data,
+		// 			success: function(result){
+		// 				resolve(result.content);
+		// 			}
+		// 		});
+		// 	});
+		// }
 	}
 	module.exports = vuePublic
 })();

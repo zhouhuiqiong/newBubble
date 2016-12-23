@@ -917,7 +917,7 @@ a {
   top: 0;
 }
 .title {
-  position: absolute;
+  /*position: absolute;*/
   display: block;
   width: 100%;
   padding: 0;

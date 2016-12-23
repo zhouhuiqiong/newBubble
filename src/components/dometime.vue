@@ -4,22 +4,19 @@
 </template>
 <script>
   module.exports = {
-    props: ['userPhone'],
     data: function(){
       return {
-        phone: '',
-        btntext: '获取验证码',
-        result: true
+        result: true,
+        btntext: '获取证验'
       }
     },
     methods: {
       getServerCode: function(){
         var that = this;
-        var time = that.time;
-        // if(!that.string.isEmail(that.$parent.user.phone)){
-        //   $.toast('输入邮箱地址');
-        //   return false;
-        // };
+        if(!that.string.isEmail(that.$parent.user.email)){
+          $.toast('请输入正确邮箱地址');
+          return false;
+        };
         if(that.result){
           that.result = false;
           that.domeTime({
@@ -33,17 +30,17 @@
         };
         //获取验证码
         that.getServerData({
-          url: 'user/sendCode.do',
+          url: 'user/sendCode',
           data: {
-            eamil: 'zhq_189@163.com'
+            eamil: that.$parent.user.email
           },
-          success: function(){
-
+          success: function(result){
+            $.toast('发送成功，注意查收!');
           },
-          error: function(){
-            
+          error: function(result){
+            $.toast(result.content);
           }
-        })
+        });
     }
   }
 }

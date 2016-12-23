@@ -80,7 +80,6 @@ module.exports = {
 					that.hotCountryList = data.content;
 				}
 			});
-			//that.hotCountryList = ["高知市","大馆市","大野市","名护市","北上市"];
 		},
 		searchCountryFun: function(){//搜索城市
 			var that = this;
@@ -93,13 +92,7 @@ module.exports = {
 					that.searchCountryList = data.content;
 				}
 			});
-			that.searchCountryList = ["高知市","大馆市","大野市","名护市","北上市"];
 		}
-
-		
-	},
-	computed: {
-		
 	},
 	route:{
 		activate:function(transition){

@@ -8,7 +8,7 @@
 					<img v-else="userId" src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2995040420,4087761391&fm=96">
 
 
-					<p v-if="userId" class="user-name"><a v-link="{name:'editlist'}">去去就来<span class="iconfont icon-iconright ml"></span>
+					<p v-if="userId" class="user-name"><a v-link="{name:'editlist'}">{{userInfo.userName}}<span class="iconfont icon-iconright ml"></span>
 	</a ></p>
 					<p v-else class="user-name"><a v-link="{name:'login'}">点击登录<span class="iconfont icon-iconright ml"></span>
 	</a ></p>
@@ -32,8 +32,6 @@
 					<h3 class="order-inf-t" v-link="{ name: 'details', query: { orderId: '1'}}">
 					<div><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg"><span>去问问</span></div>
 		  			<a class="iconfont icon-iconright"></a>
-
-
 					</h3>
 					<ul  class="list-block">
 						<li class="item-content" >
@@ -78,11 +76,28 @@
 <script>
 module.exports = {
 	ready: function(){
+		var that = this;
+		that.getUserInfo();
 	},
 	data:function(){
 		return {
 			userId: '',
+			userInfo: {},
 			userPh: 'https://ss0.baidu.com/73F1bjeh1BF3odCf/it/u=3829429095,3803476155&fm=85&s=92D415CEDFE1B9725445C007000030C1'
+		}
+	},
+	methods: {
+		getUserInfo: function(){
+			var that = this;
+			that.getServerData({
+				url: 'user/info',
+				data: {
+					token: that.userId
+				},
+				success: function(result){
+					that.userInfo = result.content;
+				}
+			});
 		}
 	},
 	route:{

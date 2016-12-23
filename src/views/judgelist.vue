@@ -8,7 +8,7 @@
 			<!--item-->
 			<div class="list-block media-list evaluate-list">
 				<ul>
-					<li>
+					<li v-for="item in evaluateAry">
 						<a href="javascript:void(0);" class="item-content evaluate-content">
 							<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" ></div>
 							<div class="item-inner">
@@ -19,13 +19,9 @@
 								<div class="evaluate-tag-box">
 									<span class="shop-tag min-shop-tag">安全</span>
 									<span class="shop-tag min-shop-tag">一级棒</span>
-
 								</div>
 								<div class="txt-box txt-hide">
-									评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
-									评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
-									评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
-									评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
+									{{item.content}}
 								</div>
 								<div class="all-essay" v-all-read>全文</div>
 							</div>
@@ -35,24 +31,43 @@
 			</div>
 			<!--item-->
 		</div>
-		
-	</div>
 	</div>
 </template>
 <script>
 module.exports = {
-	route: {
-
-	},
 	ready: function(){
+		var that = this;
+		that.q = that.$route.query;
+		that.currentPage = 1;
 	},
 	data:function(){
 		return {
-			
+			evaluateAry: [],
+			pageSize: 10,
+			currentPage: 0,
+			pageSize: 10,
+			noData: false
+		}
+	},
+	watch: {
+		'currentPage': function(){
+			var that = this;
+			that.getServerData({
+				url: 'product/evaluate/list',
+				data: {
+					pid: that.q.productId,
+					eid: that.currentPage,
+					pageSize: that.pageSize
+				},
+				success: function(result){
+					that.evaluateAry = result.content;
+					if(results.content.length < that.pageSize) that.noData = true;
+	   				that.loading = true;
+				}
+			});
 		}
 	},
 	methods: {
-		
 	},
 	route:{
 		activate:function(transition){
@@ -61,5 +76,4 @@ module.exports = {
 		}
 	}
 };
-
 </script>

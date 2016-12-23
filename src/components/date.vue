@@ -18,7 +18,7 @@
         </div>
         <div class="bg1 content-padded-wap">
             <div class="content-padded1">
-                <h3>商家营业时间：{{yuStartTime}} ～ {{yuEndTime}}</h3>
+                <h3>商家营业时间：{{start}} ～ {{end}}</h3>
                 <p>请至少提前1小时预约，可选择15天内服务时间</p>
             </div>
         </div>
@@ -32,13 +32,14 @@
 </template>
 <script>
 	require('../css/swiper.min.css');
-	var Swiper = require('swiper');
+	var Swiper = require('../js/swiper');
 	module.exports = {
+        props:['start','end'],
 		ready:function(){
             var t = this;
             t.$time = new util.yuTime({
-                yuStartTime: '18:30',//营业时间
-                yuEndTime: '05:30'//营业结束时间
+                yuStartTime: t.start,//营业时间
+                yuEndTime: t.end//营业结束时间
             });
             t.nowTime = t.$time.getDateAry();
             t.changeDate = t.nowTime.y + '-' + t.nowTime.m + '-' + t.nowTime.d;

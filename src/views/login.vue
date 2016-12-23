@@ -7,14 +7,14 @@
 		</header>
 		<div class="content login-box" >
 			<div class="edit-box">
-				<div class="input-style">
+				<div class="input-style" v-show-placeholder>
 					<span class="place-tag">输入邮箱登录</span>
-					<input type="text" name=""  value=""  v-model="user.phone">
+					<input type="text" v-model="user.email">
 					<i class="iconfont icon-shanchu"></i>
 				</div>
-				<div class="input-style">
+				<div class="input-style" v-show-placeholder>
 					<span class="place-tag">密码</span>
-					<input type="password" name=""  value="" v-model="user.password">
+					<input type="password" v-model="user.pwd">
 					<i class="iconfont icon-shanchu"></i>
 				</div>
 			</div>
@@ -26,31 +26,36 @@
 <script>
 module.exports = {
 	ready: function(){
-		var t = this;
-		new util.inputAnmition().init();
-
-
 	},
 	data:function(){
 		return {
 			user: {
-				phone: '',
-				password: ''
+				email: '',
+				pwd: ''
 			}
-
 		}
 	},
 	methods: {
 		goLogin: function(){
-			var t = this
-			if(!t.string.isEmail(t.user.phone)){
-				$.toast('输入邮箱地址');
-			}else if(!t.string.isNull(t.user.password)){
+			var that = this
+			if(!that.string.isEmail(that.user.email)){
+				$.toast('输入正确邮箱地址');
+			}else if(!that.string.isNull(that.user.pwd)){
 				$.toast('输入密码');
 			}else{//开始登录，cookie
-				t.$dispatch('userId','99999');
-				t.cookie.set('userId', '999999');
-				t.goBack();
+				that.getServerData({
+					url: 'login',
+					data: that.user,
+					success: function(result){
+						that.$dispatch('userId',result.content.userToken);
+						that.cookie.set('userId', result.content.userToken);
+						$.toast('登录成功!');
+						that.goBack();
+					},
+					error: function(result){
+						$.toast(result.content);
+					}
+				});
 			}
 		}
 	},

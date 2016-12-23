@@ -8,25 +8,25 @@
 			<div class="edit-box">
 				<div class="input-style" v-show-placeholder>
 					<span class="place-tag">输入邮箱登录</span>
-					<input type="text" name=""  value=""  v-model="user.phone">
+					<input type="text"   v-model="user.email">
 					<i class="iconfont icon-shanchu"></i>
   					<div class="dome-time-box">
-  						<uidometime :user-phone="user.phone"></uidometime>
+  						<uidometime></uidometime>
   					</div>
 				</div>
 				<div class="input-style" v-show-placeholder>
 					<span class="place-tag">输入验证码</span>
-					<input type="text" name=""  value="" v-model="user.code">
+					<input type="text"  v-model="user.code">
 					<i class="iconfont icon-shanchu"></i>
 				</div>
 				<div class="input-style" v-show-placeholder>
 					<span class="place-tag">输入登录密码(不少于8位)</span>
-					<input type="text" name=""  value="" v-model="user.password">
+					<input type="password"  v-model="user.pwd">
 					<i class="iconfont icon-shanchu"></i>
 				</div>
 				<div class="input-style" v-show-placeholder>
 					<span class="place-tag">再次确认密码</span>
-					<input type="text" name=""  value="" v-model="user.password1">
+					<input type="password" v-model="user.password1">
 					<i class="iconfont icon-shanchu"></i>
 				</div>
 			</div>
@@ -39,37 +39,46 @@
 <script>
 module.exports = {
 	ready: function(){
-		var t = this;
-		// new util.inputAnmition().init();
 	},
 	data:function(){
 		return {
 			user: {
-				phone: '',
+				email: '',
 				code: '',
-				password: '',
+				pwd: '',
 				password1: ''
 			}
 		}
 	},
 	methods: {
 		signSubmit: function(){
-			var t = this;
-			// if(!t.string.isEmail(t.user.phone)){
-			// 	$.toast('输入邮箱地址');
-			// }else if(!t.string.isNull(t.code)){
-			// 	$.toast('输入验证码');
-			// }else if(!t.string.isLength(t.password,8)){
-			// 	$.toast('输入长度不小8的密码');
-			// }else if(!t.string.isEquality(t.password,t.password1)){
-			// 	$.toast('两次密码不一样');
-			// }else{
-			// 	console.log('验证完成');
-			// }
-			// t.getServerData({
-			// 	url: 
-			// })
-
+			var that = this;
+			if(!that.string.isEmail(that.user.email)){
+				$.toast('输入邮箱地址');
+			}else if(!that.string.isNull(that.user.code)){
+				$.toast('输入验证码');
+			}else if(!that.string.isLength(that.user.pwd,8)){
+				$.toast('输入长度不小8的密码');
+			}else if(!that.string.isEquality(that.user.pwd,that.user.password1)){
+				$.toast('两次密码不一样');
+			}else{
+				that.submitform();
+			};
+		},
+		submitform: function(){
+			var that = this;
+			that.getServerData({
+				url: 'user/register',
+				data: that.user,
+				success: function(result){
+					$.toast('注册成功');
+					that.$router.go({path:'/login'});
+					that.exitFun(scope);
+				},
+				error: function(result){
+					$.toast(result.content);
+				}
+			});
 		}
 	},
 	route:{

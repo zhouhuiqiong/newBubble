@@ -6,7 +6,7 @@
 		</header>
 		<div class="content infinite-scroll bg">
 			<!--订单详情-->
-			<div class="order-inf order-inf1 order-inf3"  v-for="item in dataList" track-by="$index" v-link="{ name: 'myorderdetails', query: { orderId: '1'}}">
+			<div class="order-inf order-inf1 order-inf3"  v-for="item in orderInfo" track-by="$index" v-link="{ name: 'myorderdetails', query: { orderId: item.orderInfo}}">
 				<h3 class="o-title active">
 					<span class="item-t clr4">订单已关闭</span>
 					<span class="item-a">2012-12-12 10:80 <a class="iconfont icon-lajitong order-del-ic" @click="delItem($event)"></a></span>
@@ -65,27 +65,41 @@
 </template>
 <script>
 module.exports = {
-	route: {
-
-	},
 	ready: function(){
-		var t = this;
-			//加载数据
-			var dataObj = new util.scrollList();
-			dataObj.init(this,{
-				le: '.media-list',//承载列表的数据
-				scrollObj: '.content'
-			});
-			dataObj.getListData();
-		
+		var that = this;
+		that.currentPage = 1;
 	},
 	data:function(){
 		return {
-			dataList: []
-			
+			pageSize: 20,
+			noData: false,
+			currentPage: 0,
+			orderInfo: []
+		}
+	},
+	watch: {
+		'currentPage': function(){
+			var that = this;
+			that.getOrderList();
 		}
 	},
 	methods: {
+		getOrderList: function(){
+			var that = this;
+			that.getServerData({
+				url: 'user/order_list',
+				data: {
+					token: that.$root.userId,
+					pageNo: that.currentPage,
+					pageSize: that.pageSize
+				},
+				success: function(result){
+					that.orderInfo = that.orderInfo.concat(result.content);
+					if(result.content.length < that.pageSize) that.noData = true;
+        			that.loading = true;
+				}
+			});
+		},
 		delItem: function(e){//删除数据
 			$(e.target).parents('.order-inf').remove();
 			$.toast('订单删除成功');

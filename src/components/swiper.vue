@@ -1,20 +1,24 @@
 <template>
     <!--v-el:swper-->
 	<div class="swiper-container swper" >
-	    <div class="swiper-wrapper">
-	        <div class="swiper-slide">Slide 1</div>
-	        <div class="swiper-slide">Slide 2</div>
-	        <div class="swiper-slide">Slide 3</div>
-	        <div class="swiper-slide">Slide 4</div>
+	    <div class="swiper-wrapper" >
+	        <div class="swiper-slide" v-for="item in bannerAry">
+                <a :href="item.h5url">
+                    <img :src="item.logoUrl">
+                </a>
+            </div>
 	    </div>
 	    <div class="swiper-pagination"></div>
 	</div>
 </template>
 <script>
 	require('../css/swiper.min.css');
-	var Swiper = require('swiper');
+	var Swiper = require('../js/swiper');
 	module.exports = {
+        props: ['bannerAry']
 		ready:function(){
+            var that = this;
+
 			new Swiper('.swper', {
 				direction: 'vertical',
     			loop: true,

@@ -229,7 +229,6 @@ module.exports = {
           '/testdetails': {
             name: 'testdetails'
           }
-
         },
         effect          : 'fade',
         header          : '首页',
@@ -249,19 +248,15 @@ module.exports = {
     },
     events:{
       'isIndex': function(isIndex){
-        this.isIndex = isIndex;
+          this.isIndex = isIndex;
       },
       'userId': function(userInf){
-          this.userId = 'userInf';
+          this.userId = 'userId';
       }
-    },
-    methods:{
-      
     },
     ready:function(){
       var that = this;
       if(!that.userId) that.userId = that.cookie.get('userId');
-      console.log(that.userId);
     }
 }
 </script>

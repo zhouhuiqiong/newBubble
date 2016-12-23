@@ -15,11 +15,11 @@
 				</li>
 				<li class="user-center-item" v-link="{name:'editname'}">
 					<div class="item-title">昵称</div>
-					<div class="item-after">不去不畏不<span class="iconfont icon-iconright ml"></span></div>
+					<div class="item-after">{{userInfo.userName}}<span class="iconfont icon-iconright ml"></span></div>
 				</li>
 				<li class="user-center-item" v-link="{name:'editmail'}">
 					<div class="item-title">邮箱</div>
-					<div class="item-after">hyy@163.com<span class="iconfont icon-iconright ml"></span></div>
+					<div class="item-after">{{userInfo.email}}<span class="iconfont icon-iconright ml"></span></div>
 				</li>
 			</ul>
 			<ul class="user-center-list">
@@ -28,7 +28,6 @@
 					<div class="item-after"><span class="iconfont icon-iconright ml"></span></div>
 				</li>
 			</ul>
-        	
         	<a href="javascript:void(0)" class="change-btn change-btn1 quit"   @click="exit">退出登录</a>
 
 		</div>	
@@ -37,18 +36,21 @@
 <script>
 module.exports = {
 	ready: function(){
+		var that = this;
+		that.getUserInfo(that);
 	},
 	data:function(){
 		return {
-			
+			userInfo: {}
 		}
 	},
 	methods: {
 		exit: function(){
-			t.cookie.del('userId');
-			this.$dispatch('userId','');
-			this.$router.go({path:'/personal'});
-
+			var that = this;
+			that.cookie.del('userId');
+			that.$dispatch('userId','');
+			$.toast('退出成功!');
+			scope.$router.go({path:'/home'});
 		}
 	},
 	route:{

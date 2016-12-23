@@ -14,7 +14,7 @@
 			</a>
 		</nav>
 		<div class="home-swiper">
-			<uiswiper></uiswiper>
+			<uiswiper :bannerAry="bannerAry"></uiswiper>
 		</div>
 		<div class="select-wrap" :class="{'fiex-select': isFixedbox}">
 			<ul class="seach-select-list">
@@ -83,7 +83,7 @@
 								<span class="shop-tag" v-for="tag in item.ctags">{{tag}}</span>
 							</div>
 							<div class="item-title-row server-money-box">
-								<label class="server-money">5,00~5,0000日元</label>
+								<label class="server-money">{{item.priceXMin | price}}日元~{{item.priceXMax | price}}日元</label>
 								<div class="item-after">{{item.baojianNum}}人去过</div>
 							</div>
 						</div>
@@ -101,10 +101,21 @@
 </template>
 <script>
 module.exports = {
-	//每次切换路由，在渲染出页面前都会执
-	events: {
-		'cookies': function(msg){
-			console.log(msg);
+	data:function(){
+		return {
+			msg:'aboutMessage',
+			title:'home',
+			dataList: [],
+			loading: true,//取反
+			isSelectShade: false,
+			countryName: '',
+			isIndex: false,
+			currentPage: 1,
+			noData: false,
+			searchVal: '',//搜索值
+			isFixedbox: false,
+			pageSize: 20,
+			bannerAry: []//ad
 		}
 	},
 	ready: function(){
@@ -112,7 +123,7 @@ module.exports = {
 	    that.fixedbox();
 	    that.$nav = $('.seach-select-list li');
 	    that.$item = $('.select-box .item');
-	    that.cookie.set('countryName', that.countryName);
+	    that.initCity();
 		//附近
 		that.$nearby = $('.change-list>li');
 		that.$nearby.on('click', function(){
@@ -144,52 +155,18 @@ module.exports = {
 			le: '.media-list',
 			scrollObj: '.content'
 		});
-		that.currentPage = 1;
 	},
 	watch: {
 	    'currentPage': function (val, oldVal) {
 	    	var that = this;
-	    	if(that.currentPage == 1) that.dataList = [];
-	   		that.getServerData({
-	   			url: 'shop/find_city.do',
-	   			data: {
-	   				cityName: that.countryName
-	   			},
-	   			success: function(results){
-	   				that.dataList = that.dataList.concat(results.data.content);
-	   				that.loading = true;
-	   			}
-	   		});
-	   		//假数据
-	   		that.dataList =[{
-	   			id:1,
-				name:'商家名称',
-				addressCountry:'所在国家',
-				addressProvince:'所在县',
-				addressCity:'所在城市',
-				addressDetail:'详细地址',
-				locationBaidu:['36.5856490000','139.0614540000'],
-				telphone:'18601921313',
-				picLogo:'https://pic3.zhimg.com/f2b216f82779b9112d21a92792358e7a_s.jpg',
-				etags:['不错','很好'],
-				ctags: ['泡泡浴','很好'],
-				pics:'图片列表，逗号分隔',
-				baojianNum:'100'
-	   		}] 
-		}
-	},
-	data:function(){
-		return {
-			msg:'aboutMessage',
-			title:'home',
-			dataList: [],
-			loading: true,//取反
-			isSelectShade: false,
-			countryName: '日本',
-			isIndex: false,
-			currentPage: 0,
-			searchVal: '',//搜索值
-			isFixedbox: false
+	    	if(that.currentPage == 1) return;
+	    	that.getCityData();
+		},
+		'countryName': function(val, oldVal){
+			var that = this;
+			that.currentPage = 1;
+			that.dataList = [];
+			that.getCityData();
 		}
 	},
 	computed: {
@@ -199,11 +176,10 @@ module.exports = {
 	},
 	route:{
 		activate:function(transition){
-			var t = this;
-			t.$root.$set('header',t.title);
+			var that = this;
+			that.$root.$set('header',that.title);
 			transition.next();
-			var adr = t.cookie.get('countryName');
-			t.countryName = adr ? adr : t.countryName;
+			that.initCity();
 			setTimeout(function(){
 				$('.icon-dairaku').parent('.tab-item').addClass('active');
 			},10);
@@ -247,6 +223,38 @@ module.exports = {
 		},
 		searchGo: function(){//搜索页面值
 			if(this.searchVal) this.$router.go({path:'seach', query: {search: this.searchVal}});
+		},
+		initCity: function(){
+			var that = this;
+			var countryName = that.cookie.get('countryName');
+	    	that.countryName = countryName ? countryName : '日本';
+	    	that.cookie.set('countryName', that.countryName);
+		},
+		getCityData: function(){
+			var that = this;
+			that.getServerData({
+	   			url: 'shop/find_city',
+	   			data: {
+	   				cityName: that.countryName
+	   			},
+	   			success: function(results){
+	   				that.dataList = that.dataList.concat(results.content);
+	   				if(results.content.length < that.pageSize) that.noData = true;
+	   				that.loading = true;
+	   			}
+	   		});
+		},
+		bannerList: function(){
+			var that = this;
+			that.getServerData({
+	   			url: 'ad/list',
+	   			data: {
+	   				type: 1
+	   			},
+	   			success: function(results){
+	   				that.bannerAry = results.content;
+	   			}
+	   		});
 		}
 	},
 	components:{

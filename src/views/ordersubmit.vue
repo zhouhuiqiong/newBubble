@@ -12,14 +12,14 @@
 							<div class="item-media"><img src=""></div>
 							<div class="item-inner sale-txt">
 								<div class="item-title-row">
-									<div class="item-title">浜松町駅ビル店</div>
+									<div class="item-title">{{orderInfo.product.name}}</div>
 								</div>
 								<div class="sale">
-									已售 99999<span class="icon icon-right"></span>
+									已售 {{orderInfo.product.fictitiousSales}}<span class="icon icon-right"></span>
 								</div>
 								<div class="sale-money">
-									<label class="server-money ">5,000日元</label>
-									<i>5,000000日元</i>
+									<label class="server-money ">{{orderInfo.product.priceRealJpy | price}}日元</label>
+									<i>{{orderInfo.product.priceViewJpy | price}}日元</i>
 								</div>
 							</div>
 						</a>
@@ -36,31 +36,28 @@
 				<h3 class="sub-title">附加服务</h3>
 				<div class="bg1">
 					<div class="server-item">
-						<div class="server-t"><h3>特别随从<span class="clr3 check-box"><em>{{especiallyMonye | price}}</em><i>日元</i></span></h3>
+						<div class="server-t"><h3>{{orderInfo.entourageLevel.name}}<span class="clr3 check-box"><em>{{orderInfo.entourageLevel.priceRealJpy | price}}</em><i>日元</i></span></h3>
 						<p><i class="iconfont icon-tanhao"></i>为您解读，帮您沟通，更多服务请点击查看</p></div>
 						<div class="giving">赠送</div>
-
 					</div>
-					<div class="server-item server-item1">
+					<div class="server-item server-item1" v-for="item in orderInfo.scAppendCacheList">
 						<div class="server-t">
-							<h3>自选服务人员<span class="clr3 check-box"><em>{{especiallyMonye | price}}</em><i>日元</i></span></h3>
+							<h3>{{item.name}}<span class="clr3 check-box"><em>{{item.priceRealJpy | price}}</em><i>日元</i></span></h3>
 							<p><i class="iconfont icon-tanhao"></i>为您解读，帮您沟通，更多服务请点击查看</p>
 						</div>
 						<div class="item-input">
 							<label class="label-switch">
-								<input type="checkbox">
+								<input type="checkbox" value="{{item.id}}" name="addition">
 								<div class="checkbox"></div>
 							</label>
 						</div>
 					</div>
 				</div>
 			</div>
-
-
 		</div>
 		<!--预约时间ng-show="isShDate"-->
 		<div v-show="isShDate" class="uidate-wrap" :class="{'animatebox' : isShDate}">
-			<uidate></uidate>
+			<uidate :start="orderInfo.advanceDayStart" :end="orderInfo.advanceDayEnd"></uidate>
 		</div>
 		<div class="select-shade" v-show="isSelectShade" @click="selectShade"></div>
 		<!--预约按钮-->
@@ -70,27 +67,19 @@
 </template>
 <script>
 module.exports = {
-	route: {
-
-	},
 	ready: function(){
-		var t = this;
-		if( t.ordertime != '请选择'){
-			that.isDisabled = false;
-		};
+		var that = this;
+		if(that.ordertime != '请选择') that.isDisabled = false;
+		that.q = that.$route.query;
+		that.getOrderDetails();
 	},
 	data:function(){
 		return {
 			ordertime: '请选择',
 			isDisabled: true,//确认预约按钮
-			serveMonye: 500000,
-			especiallyMonye: 3000,//特别随从的价格
-			subjoinMonye: '2000',//附加人员的价格
-			isChangeTe: false,//特别随从
-			isChangeZi: false,
 			isSelectShade: false,//遮罩
+			orderInfo: {},
 			isShDate: false //预约时间弹出层
-
 		}
 	},
 	methods: {
@@ -118,38 +107,42 @@ module.exports = {
                 });
             },100);
 		},
-		changeType: function(num){
-			var t = this;
-			if(num == 1){
-				t.isChangeTe = !t.isChangeTe;
-			}else{
-				t.isChangeZi = !t.isChangeZi;
-			};
-		},
 		submitform: function(){
 			var that = this;
 			if(that.ordertime == '请选择'){
 				$.toast('请选择预约时间');
 				return;
 			};
-			that.subjoinMonye = that.isChangeZi  ? that.subjoinMonye : 0;
-			that.especiallyMonye = that.isChangeTe  ? that.especiallyMonye : 0;
-			var shopList =  {
-				type:{
-					'服务名称及该服务的价格': that.serveMonye,
-					'特别随从': that.especiallyMonye,
-					'自选服务人员': that.subjoinMonye
-
+			//提交订单
+			that.getServerData({
+				url: 'order/submit',
+				data: {
+					token: that.$root.userId,
+					productId: that.q.productId,
+					appointmentTime: that.orderTime(that.ordertime),
+					appendIds: that.checkList($("input[name='addition']:checked")).join(',')
 				},
-				title: '商家名称',
-				total: Number(that.serveMonye) + Number(that.especiallyMonye) + Number(that.subjoinMonye)
-			};
-			sessionStorage.shopList = JSON.stringify(shopList);
-			window.location.href = '#pay'
+				success: function(result){
+					that.$router.go({path:'/pay'});//支付页面
+				}
+			});
+			
 		},
 		selectShade: function(){
-
+		},
+		getOrderDetails: function(){
+			var that = this;
+			that.getServerData({
+				url: 'order/pre',
+				data: {
+					pid: that.q.productId
+				},
+				success: function(result){
+					that.orderInfo = result.content;
+				}
+			});
 		}
+
 	},
 	route:{
 		activate:function(transition){
