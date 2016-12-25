@@ -1,40 +1,57 @@
 <template>
-    <!--v-el:swper-->
-	<div class="swiper-container swper" >
-	    <div class="swiper-wrapper" >
-	        <div class="swiper-slide" v-for="item in bannerAry">
-                <a :href="item.h5url">
-                    <img :src="item.logoUrl">
-                </a>
-            </div>
-	    </div>
-	    <div class="swiper-pagination"></div>
-	</div>
+    <div class="swiper-container swper" >
+        <div class="swiper-wrapper" >
+            <a href="{{item.h5url}}" class="swiper-slide" v-for="item in bannerary">
+                <img :src="item.logoUrl">
+            </a>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
 </template>
 <script>
-	require('../css/swiper.min.css');
-	var Swiper = require('../js/swiper');
-	module.exports = {
-        props: ['bannerAry']
-		ready:function(){
+    require('../css/swiper.min.css');
+    var Swiper = require('../js/swiper');
+    module.exports = {
+        ready:function(){
             var that = this;
-
-			new Swiper('.swper', {
-				direction: 'vertical',
-    			loop: true,
-    			pagination: '.swiper-pagination',
-    			paginationClickable :true,
-    			effect: 'slide',
-    			autoplay: 5000,
-    			loop: true,
-    			direction: 'horizontal'
-			});
-		}
-	}
+            that.bannerList();
+        },
+        data: function(){
+            return {
+                bannerary: []
+            }
+        },
+        methods: {
+            bannerList: function(){
+                var that = this;
+                that.getServerData({
+                    url: 'ad/list',
+                    data: {
+                        type: 1
+                    },
+                    success: function(results){
+                        that.bannerary = results.content;
+                        setTimeout(function(){
+                            new Swiper('.swper', {
+                                direction: 'vertical',
+                                loop: true,
+                                pagination: '.swiper-pagination',
+                                paginationClickable :true,
+                                effect: 'slide',
+                                autoplay: 5000,
+                                loop: true,
+                                direction: 'horizontal'
+                            });
+                        },200);
+                    }
+                });
+            }
+        }
+    }
 </script>
 
 <style>
-	.swper {
+    .swper {
         width: 100%;
         height: 300px;
         margin: 20px auto;

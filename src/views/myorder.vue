@@ -8,49 +8,41 @@
 			<!--订单详情-->
 			<div class="order-inf order-inf1 order-inf3"  v-for="item in orderInfo" track-by="$index" v-link="{ name: 'myorderdetails', query: { orderId: item.orderInfo}}">
 				<h3 class="o-title active">
-					<span class="item-t clr4">订单已关闭</span>
-					<span class="item-a">2012-12-12 10:80 <a class="iconfont icon-lajitong order-del-ic" @click="delItem($event)"></a></span>
+					<span class="item-t clr3" :class="{'clr3': item.status > 2}">{{item.status | statusAry}}</span>
+					<span class="item-a">{{item.gmtCreateTime}} <a class="iconfont icon-lajitong order-del-ic" @click="delItem($event)" v-if="item == 3"></a></span>
 				</h3>
-				<h3 class="order-inf-t" v-link="{ name: 'details', query: { orderId: '1'}}">
-					<div><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg"><span>去问问</span></div>
+				<h3 class="order-inf-t" v-link="{ name: 'details', query: { orderId: {{item.id}}}}">
+					<div><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg"><span>{{item.scShopName}}</span></div>
 		  			<a class="iconfont icon-iconright"></a>
 				</h3>
 				<ul  class="list-block">
-					<li class="item-content" >
-						<div class="item-inner">
-							<div class="item-title">项目套餐</div>
-							<div class="item-after">								{{50000 | price}}</div>
-						</div>
-					</li>
-					<li class="item-content" >
-						<div class="item-inner">
-							<div class="item-title">项目套餐</div>
-							<div class="item-after">								{{50000 | price}}</div>
-						</div>
-					</li>
-					<li class="item-content" >
-						<div class="item-inner">
-							<div class="item-title">项目套餐</div>
-							<div class="item-after">								{{50000 | price}}</div>
-						</div>
-					</li>
-				</ul>
+						<li class="item-content" >
+							<div class="item-inner">
+								<div class="item-title">{{item.scProductName}}</div>
+								<div class="item-after">{{item.scProductPrice | price}}日元</div>
+							</div>
+						</li>
+						<li class="item-content" >
+							<div class="item-inner">
+								<div class="item-title">{{item.scEntourageName}}</div>
+								<div class="item-after">								{{item.scEntouragePrice | price}}日元</div>
+							</div>
+						</li>
+					</ul>
 				<div class="total-item">
 					<div class="item-title">订单金额</div>
 					<div class="item-after">合计:<span class="total">
-							{{30000 | price}}日元</span></div>
+							{{item.priceTotal | price}}日元</span></div>
 				</div>
-<!-- 				<div class="total-item">
-					<span></span>
-					<a href="javascript:void(0)" class="btn2">联系客服</a>
-					<a href="javascript:void(0)" class="btn2 btn22">联系客服</a>
-
-				</div> -->
 				<div class="total-item">
+					<p class="clr3" v-if="item.status == 4"><i class="iconfont icon-tanhao ver1"></i></p>
+					<a href="tel:{{item.scShopTelphone}}" class="btn2">联系客服</a>
+					<a href="javascript:void(0)" class="btn2 btn22" v-if="item.status == 1|| item.status == 2">商家位置</a>
+					<a href="javascript:void(0)" class="btn2 btn22" v-if="item.status == 2">联系随从</a>
+					<a href="javascript:void(0)" class="btn2 btn22" v-if="item.status == 3" @click="orderEvaluate(item.id)">评价</a>
 
-					<p class="clr3"><i class="iconfont icon-tanhao ver1"></i>退款成功</p>
-					<a  class="btn2" v-link="{ name: 'chat', query: { orderId: '1'}}" >联系客服</a>
 				</div>
+
 			</div>
 			<!--end 订单详情-->
 
@@ -68,13 +60,19 @@ module.exports = {
 	ready: function(){
 		var that = this;
 		that.currentPage = 1;
+		//滚动获取数据
+        that.scrollList({
+            le: '.content',
+            scrollObj: '.content'
+        });
 	},
 	data:function(){
 		return {
 			pageSize: 20,
 			noData: false,
 			currentPage: 0,
-			orderInfo: []
+			orderInfo: [],
+			loading: true
 		}
 	},
 	watch: {
@@ -103,7 +101,35 @@ module.exports = {
 		delItem: function(e){//删除数据
 			$(e.target).parents('.order-inf').remove();
 			$.toast('订单删除成功');
+		},
+		orderEvaluate: function(id){//订单评论
+
+			var that = this;
+			$.confirm('<div  class="evaluate-txt"><textarea id="evaluateTxt"></textarea></div>', '订单评论', function(){
+				that.sumbitEvaluate(id);
+			}, function(){
+				that.closeModel();
+			});
+		},
+		sumbitEvaluate: function(id){
+			var that = this;
+			that.val =  $('#evaluateTxt').val();
+			if(!that.string.isNull(that.val)){
+				$.toast('请输入订单评价内容');
+				return;
+			};
+
+			that.getServerData({
+				url: 'order/evaluate_submit',
+				orderId: id,
+				content: that.val,
+				success: function(result){
+					$.toast(result.content);
+					that.closeModel();
+				}
+			})
 		}
+
 	},
 	route:{
 		activate:function(transition){

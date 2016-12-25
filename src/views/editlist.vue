@@ -9,7 +9,7 @@
 				<li class="user-center-item user-center-item1" v-link="{name: 'editph'}">
 					<div class="item-title">头像</div>
 					<div class="item-after">
-						<img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2995040420,4087761391&fm=96" class="user-img">
+						<img :src="userInfo.pic" class="user-img">
 						<span class="iconfont icon-iconright ml"></span>
 					</div>
 				</li>
@@ -41,16 +41,14 @@ module.exports = {
 	},
 	data:function(){
 		return {
-			userInfo: {}
+			userInfo: {},
+			goHome: true
 		}
 	},
 	methods: {
 		exit: function(){
 			var that = this;
-			that.cookie.del('userId');
-			that.$dispatch('userId','');
-			$.toast('退出成功!');
-			scope.$router.go({path:'/home'});
+			that.exitFun(that);
 		}
 	},
 	route:{

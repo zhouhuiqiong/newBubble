@@ -6,7 +6,7 @@
 			<form class="search-input-box" action="#">
 				<div class="search-input">
 					<label class="iconfont icon-chaxun" for="search"></label>
-					<input type="text" v-model="searchVal" placeholder="输入城市…" @>
+					<input type="text" v-model="searchVal" placeholder="输入商家、服务...." @>
 				</div>
 			</form>
 			<a v-link="{name:'news'}" class="iconfont icon-home_news">
@@ -14,7 +14,7 @@
 			</a>
 		</nav>
 		<div class="home-swiper">
-			<uiswiper :bannerAry="bannerAry"></uiswiper>
+			<uiswiper></uiswiper>
 		</div>
 		<div class="select-wrap" :class="{'fiex-select': isFixedbox}">
 			<ul class="seach-select-list">
@@ -114,8 +114,7 @@ module.exports = {
 			noData: false,
 			searchVal: '',//搜索值
 			isFixedbox: false,
-			pageSize: 20,
-			bannerAry: []//ad
+			pageSize: 20
 		}
 	},
 	ready: function(){
@@ -155,6 +154,7 @@ module.exports = {
 			le: '.media-list',
 			scrollObj: '.content'
 		});
+
 	},
 	watch: {
 	    'currentPage': function (val, oldVal) {
@@ -243,19 +243,8 @@ module.exports = {
 	   				that.loading = true;
 	   			}
 	   		});
-		},
-		bannerList: function(){
-			var that = this;
-			that.getServerData({
-	   			url: 'ad/list',
-	   			data: {
-	   				type: 1
-	   			},
-	   			success: function(results){
-	   				that.bannerAry = results.content;
-	   			}
-	   		});
 		}
+
 	},
 	components:{
       uiswiper: require('../components/swiper.vue'),

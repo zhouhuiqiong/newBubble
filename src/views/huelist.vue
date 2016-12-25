@@ -5,31 +5,27 @@
 		  <a class="iconfont icon-iconleft pull-left" v-go-history></a> -->
 		  <h1 class="title">色相</h1>
 		  <div @click="changeType($event, 0)" class="hue-filtrate" >
-			  <span>筛选</span>
-			  <i class="iconfont icon-icon-copy-copy"></i>
-			  
-		  </div>
+              <span>筛选</span>
+              <i class="iconfont icon-icon-copy-copy"></i> 
+          </div>
 		</header>
-		<div class="select-box">
-			<ul class="change-list item hide">
-				<li class="active"><span >新宿</span><i class="iconfont icon-duigou"></i></li>
-				<li ><span>新宿</span</li>
-			</ul>
-		</div>
+        <div class="select-box">
+            <ul class="change-list item hide">
+                <li v-for="item in tagsAry"  @click="handle($event,item.id)"><span>{{item.name}}</span></li>
+            </ul>
+        </div>
 		<div class="content infinite-scroll home-content bg" >
 			<!--item-->
 			<ul class="card-box">
-				<li class="card-item" v-link="{name:'orderdetails',query: { id: '1'}}" >
-					<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg">
-					<h3>在日本跟AV名女优一起洗泡泡浴是一种怎么样的体验
-在日本跟AV名女优一起洗泡泡浴是一种怎么样的体验在日本跟AV名女优一起洗泡泡浴是一种怎么样的体验在日本跟AV名女优一起洗泡泡浴是一种怎么样的体验</h3>
-					<p><span class="shop-tag shop-tag2">安全</span>AV服务极乐忘忧，为国争光精尽人亡。</p>
-				</li>
-				<li class="card-item" v-link="{name:'orderdetails',query:{ id:'2'}}">
-					<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg">
-					<h3>在日本跟AV名女优一起洗泡泡浴是一种怎么样的体验
-一起洗泡泡浴是一种怎么样的……</h3>
-					<p><span class="shop-tag shop-tag2">安全</span>AV服务极乐忘忧，为国争光精尽人亡。</p>
+				<li class="card-item" v-for="item in hueAry"  v-link="{name:'orderdetails',query: {id: item.id}}" >
+                    <img :src="item.pic">
+                    <h3>{{item.context}}</h3>
+                    <p>
+                        <span class="shop-tag shop-tag2" v-for="tag in item.tags">
+                            {{tag}}
+                        </span>
+                        {{item.desc}}
+                    </p>
 				</li>
 			</ul>
 			<!--end item-->
@@ -40,57 +36,110 @@
 </template>
 <script>
 module.exports = {
-	route: {
+    ready: function(){
+        var that = this;
+        that.$item = $('.select-box .item ');
+        that.$nearby = $('.change-list>li');
+        that.$nav = $('.hue-filtrate');
+        //滚动获取数据
+        that.scrollList({
+            le: '.card-box',
+            scrollObj: '.content'
+        });
 
-	},
-	ready: function(){
-		var that = this;
-	    that.$item = $('.select-box .item ');
-		that.$nearby = $('.change-list>li');
-	    that.$nav = $('.hue-filtrate');
-
-		that.$nearby.on('click', function(){
-			var t = $(this);
-			$('.icon-duigou').remove();
-			t.append('<i class="iconfont icon-duigou"></i>');
-			that.eStyle.clickActive(t);
-			setTimeout(function(){
-				t.parent().addClass('hide');
-				that.isSelectShade = false;
-				that.$nav.removeClass('active');
-			},300);
-		});
-	},
-	data:function(){
-		return {
-			isSelectShade: false
-		}
-	},
-	methods: {
-		changeType: function(e,num){
-			var that = this;
-			var $obj = $(e.currentTarget);
-			if($obj.hasClass('active')){
-				that.selectShade();
-			}else{
-				$obj.addClass('active').siblings('li').removeClass('active');
-				that.$item.addClass('hide').eq(num).removeClass('hide');
-				that.isSelectShade = true;
-			}
-		},
-		selectShade: function(e){
-			var that = this;
-			that.$nav.removeClass('active');
-			that.isSelectShade = false;
-			that.$item.addClass('hide');
-		}
-	},
-	route:{
-		activate:function(transition){
-			this.$root.$set('header',this.title);
-			transition.next();
-		}
-	}
+        that.getTagsList();
+        that.getHueList();
+    },
+    data:function(){
+        return {
+            isSelectShade: false,
+            pageSize: 20,
+            hueAry: [],
+            noData: false,
+            currentPage: 1,
+            tagId: '',//默认值
+            tagsAry: [],
+            loading: true
+        }
+    },
+    watch: {
+        'currentPage': function(){
+            var that = this;
+            if(that.currentPage == 1) return;
+            that.getHueList();
+        },
+        'tagId': function(){
+            var that = this;
+            that.getHueList();
+        }
+    },
+    methods: {
+        handle: function(event,id){
+            var that = this;
+            that.currentPage = 1;
+            $('.icon-duigou').remove();
+            that.tagId = id;
+            $(event.target).append('<i class="iconfont icon-duigou"></i>');
+            setTimeout(function(){
+                $(event.target).parent().addClass('hide');
+                that.isSelectShade = false;
+                that.$nav.removeClass('active');
+            },300);
+        },
+        changeType: function(e,num){
+            var that = this;
+            var $obj = $(e.currentTarget);
+            if($obj.hasClass('active')){
+                that.selectShade();
+            }else{
+                $obj.addClass('active').siblings('li').removeClass('active');
+                that.$item.addClass('hide').eq(num).removeClass('hide');
+                that.isSelectShade = true;
+            }
+        },
+        selectShade: function(e){
+            var that = this;
+            that.$nav.removeClass('active');
+            that.isSelectShade = false;
+            that.$item.addClass('hide');
+        },
+        getHueList: function(){//获取列表
+            var that = this;
+            that.getServerData({
+                url: 'sex_article',
+                data: {
+                    tag: that.tagId,
+                    pageNo: that.currentPage,//页码
+                    pageSize: that.pageSize
+                },
+                success: function(results){
+                    that.hueAry = results.content;
+                    if(results.content.length < that.pageSize) that.noData = true;
+                    that.loading = true;
+                }
+            })
+        },
+        getTagsList: function(){//获取全部标签
+            var that = this;
+            that.getServerData({
+                url: 'sex_article/all_tag',
+                success: function(results){
+                    that.tagsAry = results.content;
+                }
+            })
+        }
+    },
+    route:{
+        activate:function(transition){
+            var that = this;
+            that.$root.$set('header',that.title);
+            transition.next();
+        }
+    },
+    components:{
+      uigoback: require('../components/goback.vue'),
+      uiload: require('../components/load.vue')
+    }
 };
 
 </script>

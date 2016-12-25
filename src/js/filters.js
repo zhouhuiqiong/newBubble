@@ -76,6 +76,11 @@ var digitsRE = /(\d{3})(?=\d)/g
 function aryType(val){
   return val.split(',');
 }
+
+function statusAry(val){
+  var ary = ['订单待支付','订单确认','订单已确认','订单已完成','订单已关闭','支付失败'];
+  return ary[val];
+}
 exports.imgUrl = imgUrl;
 exports.price = price;
 exports.timeago = timeago;

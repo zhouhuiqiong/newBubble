@@ -169,9 +169,6 @@ module.exports = {
           '/help': {
             name:'help'
           },
-          '/shopimg': {
-            name: 'shopimg'
-          },
           '/orderdetails':{
             name: 'orderdetails'
           },
@@ -183,9 +180,6 @@ module.exports = {
           },
           '/pay':{
             name: 'pay'
-          },
-          '/map':{
-            name: 'map'
           },
           '/address':{
             name: 'address'
@@ -219,15 +213,6 @@ module.exports = {
           },
           '/chat': {
             name: 'chat'
-          },
-          '/test': {
-            name: 'test'
-          },
-          '/testlogin': {
-            name: 'testlogin'
-          },
-          '/testdetails': {
-            name: 'testdetails'
           }
         },
         effect          : 'fade',

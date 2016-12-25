@@ -79,6 +79,8 @@ module.exports = {
 			isReadFinish: false,
 			isMay: false,
 			aryimg: [],
+			prodcutInfo: {},
+			priceRealJpy: {},
 			isDisabled: true,//按钮是否可点
 			btntext: ''
 		}

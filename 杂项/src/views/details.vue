@@ -9,8 +9,8 @@
 			<div class="list-block media-list">
 				<ul>
 					<li class="itme-style itme-style1">
-						<a href="#" class="item-content">
-							<div class="item-media rel"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3646051749,3801647591&fm=80&w=179&h=119&img.JPEG">
+						<a href="javascript:void(0)" class="item-content">
+							<div class="item-media rel" v-link="{ name: 'shopimg', query: { shopid: '1'}}"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3646051749,3801647591&fm=80&w=179&h=119&img.JPEG">
 								<span class="img-num">22</span>
 							</div>
 							<div class="item-inner">
@@ -23,7 +23,7 @@
 									<span class="shop-tag ">安全</span>
 								</div>
 								<div class="item-title-row server-money-box">
-									<label class="server-money">¥5,00~¥5,000</label>
+									<label class="server-money">5,00日元~5,000日元</label>
 									<div class="item-after">1113人去过</div>
 								</div>
 							</div>
@@ -60,14 +60,13 @@
 												<div class="item-title">浜松町駅ビル店</div>
 											</div>
 											<div class="sale">
-												已售 99999<span class="icon icon-right"></span>
+												已售 99999<span class="iconfont icon-iconright"></span>
 											</div>
 
 											<div class="sale-money">
-												<label class="server-money ">¥5,000</label>
-												<i>¥5,0000000</i>
+												<label class="server-money ">5,000日元</label>
+												<i>5,0000日元</i>
 											</div>
-											
 										</div>
 									</a>
 								</li>
@@ -79,7 +78,7 @@
 						<div class="list-block media-list evaluate-list" >
 						<ul>
 							<li v-for="item in dataList2" track-by="$index">
-								<a href="#" class="item-content evaluate-content">
+								<a href="javascript:void(0);" class="item-content evaluate-content">
 									<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" ></div>
 									<div class="item-inner">
 										<div class="item-title-row">
@@ -91,10 +90,13 @@
 											<span class="shop-tag min-shop-tag">一级棒</span>
 
 										</div>
-										<div class="txt-box">
+										<div class="txt-box txt-hide">
+											评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
+											评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
+											评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
 											评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容
 										</div>
-										<div class="all-essay">全文</div>
+										<div class="all-essay" v-all-read>全文</div>
 									</div>
 
 								</a>
@@ -132,7 +134,6 @@ module.exports = {
 				t.start = $(".swiper-wrapper").css('transform').replace('translate3d','').replace('(','').replace('）','').split(',')[0].replace('px','');
 				t.activeIndex = swiper.activeIndex;
 				t.clickFalse = false;
-
 			},
 			onTouchMove: function(swiper){
 				t.clickFalse = true;
@@ -148,7 +149,6 @@ module.exports = {
 					if(swiper.activeIndex == 1){
 						 t.l = t.site2 - (414 - (num * (-1)));
 						var nowL = (t.l > t.site1 ? t.l : t.site1);
-						
 					};
 					t.$link.css({
 						left: nowL
@@ -212,30 +212,27 @@ module.exports = {
 		}
 	},
 	methods: {
-		changeType: function(num,type){
+		changeType: function(item,type){
 			var t = this;
-			if(num){
-				if(num == 1){
+			if(item){
+				if(item == 1){
 					var site =  t.site1;
-					t.dataList2 = [];
 				}else {
 					var site =  t.site2;
-					t.dataList1 = [];
 				}
 				t.$link.css({
 					left: site
 				});
 			};
-
+			
 			//加载数据
-			t.num = num;
+			t.item = item;
 			var dataObj = new util.scrollList();
 			dataObj.init(this,{
 				le: '.swiper-slide-active .content-block',//承载列表的数据
-				scrollObj: '.content',
-				vessel: num
+				scrollObj: '.content'
 			});
-			dataObj.getListData(num);
+			dataObj.getListData();
 		},
 		linkInit: function(){//link 初始化位置计算
 			var t = this;
@@ -246,6 +243,7 @@ module.exports = {
 				left: t.site1
 			});
 		}
+		
 	},
 	route:{
 		activate:function(transition){

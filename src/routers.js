@@ -48,10 +48,10 @@ module.exports = function(router){
 			name: 'editpassword',
 			component: require('./views/editpassword.vue')
 		},
-		'/shopimg': {//帮助中心
-			name: 'shopimg',
-			component: require('./views/shopimg.vue')
-		},
+		// '/shopimg': {//帮助中心
+		// 	name: 'shopimg',
+		// 	component: require('./views/shopimg.vue')
+		// },
 		'/orderdetails': {//服务详情页
 			name: 'orderdetails',
 			component: require('./views/orderdetails.vue')
@@ -67,10 +67,6 @@ module.exports = function(router){
 		'/pay': {//支付页面
 			name: 'pay',
 			component: require('./views/pay.vue')
-		},
-		'/map': {//地图
-			name: 'map',
-			component: require('./views/map.vue')
 		},
 		'/address': {//定位
 			name: 'address',
@@ -115,18 +111,6 @@ module.exports = function(router){
 		'/chat': {//聊天
 			name: 'chat',
 			component: require('./views/chat.vue')
-		},
-		'/test': {//测试
-			name: 'test',
-			component: require('./views/test.vue')
-		},
-		'/testlogin': {//测试
-			name: 'test',
-			component: require('./views/testlogin.vue')
-		},
-		'/testdetails': {//测试
-			name: 'test',
-			component: require('./views/testdetails.vue')
 		},
 		'*': {
 	      component: require('./views/home.vue')
@@ -197,7 +181,7 @@ module.exports = function(router){
 		}else{
 			router.app.effect='fade';
 		}
-		if(result == 'home' || result == 'personal' || !result || result == 'huelist'){
+		if(result == 'home' || result == 'personal' ||  result == 'huelist' || !result){
 			$('#barNav').css('display','inline-block');
 			$('#suiteNav').hide();
 		}else if(result == 'suiteorder' || result == 'suitepersonal' || result == 'suitenews'){

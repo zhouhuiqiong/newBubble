@@ -24,7 +24,7 @@
 									<span class="shop-tag" v-for="tag in shopInfo.ctags">{{tag}}</span>
 								</div>
 								<div class="item-title-row server-money-box">
-									<label class="server-money">5,00日元~5,000日元</label>
+									<label class="server-money">{{productList.priceRealJpy | price}}日元~{{productList.priceViewJpy  | price}}日元</label>
 									<div class="item-after">{{shopInfo.baojianNum}}人去过</div>
 								</div>
 							</div>
@@ -190,6 +190,7 @@ module.exports = {
         		},
         		success: function(result){
         			that.shopInfo = result.content.shopInfo;
+        			that.productList = result.content.productList[0];
         			that.aryimg = that.shopInfo.pics;
         			that.imgL = that.aryimg.length;
         			that.loading = true;

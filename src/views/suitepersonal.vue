@@ -10,12 +10,13 @@
 		<div class="content  home-content">
 			<div class="user-inf-wap">
 				<div class="image-text">
-					<img src="https://ss0.baidu.com/73F1bjeh1BF3odCf/it/u=3829429095,3803476155&amp;fm=85&amp;s=92D415CEDFE1B9725445C007000030C1">
-					<p class="user-name"><a href="javascript:void(0);">苦艾又去大保健啦
+					<img :src="info.logo">
+					<p class="user-name">
+						<a href="javascript:void(0);">{{info.name}}
 					<span class="iconfont icon-yxj-auth clr3"></span></a></p>
 					<div class="suite-inf">
-						<p>联系电话：109439482</p>
-						<p>联系邮箱：email@email.com</p>
+						<p>联系电话：{{info.mobile}}</p>
+						<p>联系邮箱：{{info.emial}}</p>
 					</div>
 				</div>
 
@@ -40,31 +41,36 @@
 </template>
 <script>
 module.exports = {
-	route: {
-
-	},
 	ready: function(){
-		
-		
+		var that = this;
+		that.suiteUserId = that.cookie.set('suiteUserId');
+		that.getSuiteInfo();
 	},
 	data:function(){
 		return {
-			dataList: []
-			
+			info: {}
 		}
 	},
 	methods: {
-		
+		getSuiteInfo: function(){
+			var that = this;
+			that.getServerData({
+				url: 'entourage/login_email',
+				data: {
+					id: that.suiteUserId
+				},
+				success: function(result){
+					that.info = result.content;
+				}
+			});
+		}
 	},
 	route:{
 		activate:function(transition){
 			this.$root.$set('header',this.title);
 			transition.next();
 		}
-	},
-	components:{
-      
-    }
+	}
 };
 
 </script>

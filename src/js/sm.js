@@ -1294,7 +1294,7 @@ Device/OS Detection
         // Add events on buttons
         modal.find('.modal-button').each(function (index, el) {
             $(el).on('click', function (e) {
-                if (params.buttons[index].close !== false) $.closeModal(modal);
+                //if (params.buttons[index].close !== false) $.closeModal(modal);
                 if (params.buttons[index].onClick) params.buttons[index].onClick(modal, e);
                 if (params.onClick) params.onClick(modal, index);
             });

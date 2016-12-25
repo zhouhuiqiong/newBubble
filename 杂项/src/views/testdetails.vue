@@ -40,19 +40,19 @@
 				<span class="icon icon-right"></span>
 			</div>
 			<!--商品详情-->
-			<div class="silide-buttons-tab">
-				<a href="javascript:void(0)" class="tab-item active" @click="changeType(0)">商家服务</a>
-				<a href="javascript:void(0)" class="tab-item" @click="changeType(1)">客户评价</a>
-				<div class="activelink"></div>
-			</div>
-			<div class="tab-content">
-				<div class="tabWrapper"  id="tabWrapper">
-						<div class="tab active">
-							<!--商家#/orderdetails服务-->
+			<div class="swiper-container swper " id="tab-swiper">
+				<div class="buttons-tab details-tab">
+					<span class="tab-link button" @click="changeType(1,'all')">商家服务</span>
+					<span class="tab-link button" @click="changeType(2,'all')">客户评价</span>
+					<div class="activelink"></div>
+				</div>
+					<div class="tabs">
+						<div id="tab1" class="tab active">
+							<!--商家服务-->
 							<div class="list-block media-list">
 								<ul>
-									<li class="itme-style min-itme-style" v-for="item in dataList0" track-by="$index">
-										<a href="javascript:void(0)" class="item-content">
+									<li class="itme-style min-itme-style" v-for="item in dataList1" track-by="$index">
+										<a href="#/orderdetails" class="item-content">
 											<div class="item-media"><img src="https://ss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/864063689.png"></div>
 											<div class="item-inner sale-txt">
 												<div class="item-title-row">
@@ -71,11 +71,12 @@
 									</li>
 								</ul>
 							</div>
+							<!--end 商家服务-->
 						</div>
-						<div class="tab">
-							<div class="list-block media-list evaluate-list">
+						<div id="tab2" class="tab">
+							<div class="list-block media-list evaluate-list" >
 								<ul>
-									<li v-for="item in dataList1">
+									<li v-for="item in dataList2" track-by="$index">
 										<a href="javascript:void(0);" class="item-content evaluate-content">
 											<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" ></div>
 											<div class="item-inner">
@@ -96,13 +97,12 @@
 												</div>
 												<div class="all-essay" v-all-read>全文</div>
 											</div>
-
 										</a>
 									</li>
 								</ul>
 							</div>
 						</div>
-				</div>
+					</div>
 			</div>
 			<!--end tab list-->
 			<!-- 加载提示符 -->
@@ -119,26 +119,10 @@ module.exports = {
 
 	},
 	ready: function(){
-		var that = this;
-		//滑动菜单效果
-		
-		that.currentPage = 1;
-
-		//滚动获取数据
-		that.scrollList({
-			le: '.tabWrapper .active .list-block',
-			scrollObj: '.content'
-		});
-		that.touchSlide.init({
-			slider: document.getElementById('tabWrapper'),
-			target: 0,
-			maxNum: 2,
-			variationFun: function(type){//0开始
-				that.currentPage = 1;
-				that.item = 1;
-				that.initFun();
-			}
-		});
+		var t = this;
+		t.$link = $('.activelink');
+		t.linkInit();
+		t.changeType(1);
 	},
 	data:function(){
 		return {
@@ -147,41 +131,43 @@ module.exports = {
 				type: 'all',
 				items: []
 			},
-			dataList0: [],
-			dataList1: [],
-			item: 0,
-			currentPage: 0
-			
+			dataList2: [],
+			dataList1: []
 		}
 	},
 	methods: {
-		changeType: function(item){
-			var that = this;
-			that.item = item;
-			that.initFun();
-			that.touchSlide.linkInit(0,item,'click');
-			that.touchSlide.end('click',item);
+		changeType: function(item,type){
+			var t = this;
+			if(item){
+				if(item == 1){
+					var site =  t.site1;
+				}else {
+					var site =  t.site2;
+				}
+				t.$link.css({
+					left: site
+				});
+			};
+			
+			//加载数据
+			t.item = item;
+			var dataObj = new util.scrollList();
+			dataObj.init(this,{
+				le: '.swiper-slide-active .content-block',//承载列表的数据
+				scrollObj: '.content'
+			});
+			dataObj.getListData();
 		},
-		initFun: function(){
-			var that = this;
-	   		that.getServerData({
-	   			url: 'http://cnodejs.org/api/v1/topics',
-	   			type: 'get',
-	   			success: function(results){
-	   				results.data.data.length = 10;
-	   				that['dataList' + that.item] = that['dataList' + that.item].concat(results.data.data);
-	   				that.loading = true;
-	   				that.itemsPerPage = 2;
-	   				//that['dataList0'] = results.data.data;
-	   			}
-	   		});
+		linkInit: function(){//link 初始化位置计算
+			var t = this;
+			var w = t.w = $(window).width() * 0.5;
+			t.site1 = (w - 64)/2;
+			t.site2 = w + t.site1;
+			t.$link.css({
+				left: t.site1
+			});
 		}
-	},
-	watch: {
-	    'currentPage': function (val, oldVal) {
-	    	console.log(val);
-	    	this.initFun();
-	    }
+		
 	},
 	route:{
 		activate:function(transition){

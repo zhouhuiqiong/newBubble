@@ -13,50 +13,31 @@
 	<div class="content infinite-scroll seach-content bg">
 		<!--商家-->
 		<div class="seach-shop-list">
-			<h3 class="s-title">曲目</h3>
+			<h3 class="s-title">商家</h3>
 			<div class="list-block media-list">
 				<ul>
-					<li  class="itme-style">
-						<a href="#/details" class="item-content">
+					<li  class="itme-style" v-for="item in dataList1">
+						<a v-link="{name: 'details', query: {shopid: item.id,lon: item.locationBaidu[0], lat: item.locationBaidu[1]}}" class="item-content">
 							<div class="item-media"><img src="../images/1.jpg"></div>
 							<div class="item-inner">
 								<div class="item-title-row">
-									<div class="item-title">浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル店</div>
+									<div class="item-title">{{item.name}}</div>
 									<div class="item-after">1.9km</div>
 								</div>
 								<div class="shop-tag-box">
-									<span class="shop-tag shop-tag-active">一級棒</span>
-									<span class="shop-tag ">安全</span>
+									<span class="shop-tag shop-tag-active" v-for="tag in item.etags">{{tag}}</span>
+									<span class="shop-tag" v-for="tag in item.ctags">{{tag}}</span>
 								</div>
 								<div class="item-title-row server-money-box">
-									<label class="server-money">5,00~5,0000日元</label>
-									<div class="item-after">1113人去过</div>
-								</div>
-							</div>
-						</a>
-					</li>
-					<li  class="itme-style">
-						<a href="#/details" class="item-content">
-							<div class="item-media"><img src="../images/1.jpg"></div>
-							<div class="item-inner">
-								<div class="item-title-row">
-									<div class="item-title">浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル浜松町駅ビル店</div>
-									<div class="item-after">1.9km</div>
-								</div>
-								<div class="shop-tag-box">
-									<span class="shop-tag shop-tag-active">一級棒</span>
-									<span class="shop-tag ">安全</span>
-								</div>
-								<div class="item-title-row server-money-box">
-									<label class="server-money">5,00~5,0000日元</label>
-									<div class="item-after">1113人去过</div>
+									<label class="server-money">{{item.priceXMin | price}}日元~{{item.priceXMax | price}}日元</label>
+									<div class="item-after">{{item.baojianNum}}人去过</div>
 								</div>
 							</div>
 						</a>
 					</li>
 				</ul>
 			</div>
-			<div class="more">
+			<div class="more" v-if="isShow1" v-link="{name: 'home'}">
 				<span>查看更多商家</span>
 				<span class="iconfont icon-iconright"></span>
 			</div>
@@ -67,33 +48,34 @@
 			<h3 class="s-title">服务</h3>
 			<div class="list-block media-list">
 				<ul>
-					<li class="itme-style min-itme-style">
-						<a href="#/orderdetails" class="item-content">
-							<div class="item-media"><img src="https://ss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/864063689.png"></div>
+					<li class="itme-style min-itme-style" v-for="item in dataList2">
+						<a v-link="{name: 'orderdetails', query: {productId: item.id}}" class="item-content">
+							<div class="item-media"><img  :src="item.logo"></div>
 							<div class="item-inner sale-txt">
 								<div class="item-title-row">
-									<div class="item-title">浜松町駅ビル店</div>
+									<div class="item-title">{{item.scShopName}}</div>
 								</div>
 								<div class="sale">
-									已售 99999<span class="iconfont icon-iconright"></span>
+									已售 {{item.fictitiousSales}}<span class="iconfont icon-iconright"></span>
 								</div>
 
 								<div class="sale-money">
-									<label class="server-money ">5,00日元</label>
-									<i>¥5,0000日元</i>
+									<label class="server-money ">">{{item.priceRealJpy | price}}日元</label>
+									<i>{{item.priceViewJpy | price}}日元</i>
 								</div>
-								
 							</div>
 						</a>
 					</li>
 				</ul>
 			</div>
-			<div class="more">
+			<div class="more" v-if="isShow2">
 				<span>查看更多商家</span>
 				<span class="iconfont icon-iconright"></span>
 			</div>
 		</div>
 		<!--end 服务-->
+		<!--色相-->
+		<!--end 色相-->
 	</div>  
 </div>
 </template>
@@ -101,13 +83,6 @@
 module.exports = {
 	ready: function(){
 		var that = this;
-		
-		for (var  i = 0; i < 15; i++) {
-	      this.items.push({
-	        id: i,
-	        name: 'demo' +  i
-	      })
-	    };
 	},
 	data:function(){
 		return {
@@ -115,6 +90,12 @@ module.exports = {
 			items: [],
 			loading: false,
 			searchVal: '',
+			dataList1: [],
+			dataList2: [],
+			dataList3: [],
+			isShow1: false,
+			isShow2: false,
+			isShow3: false,
 			isDelVal: false //删除输入框的值
 		}
 	},
@@ -123,7 +104,6 @@ module.exports = {
 			var that = this;
 			this.$root.$set('header',this.title);
 			transition.next();
-
 			that.searchVal = that.$route.query.search;//搜索值变化
 			that.showDel();
 		}
@@ -138,26 +118,34 @@ module.exports = {
 			that.searchVal = '';
 			that.isDelVal = false;
 		},
-		loadMore: function(){
+		getServerList: function(type){
 			var that = this;
-			var scroller = $('.infinite-scroll');
-			that.loading = false;
-			setTimeout(function() {
-	      		if (that.loading) return;
-	        	that.loading = true;
-	        	for (var  i = 0; i < 15; i++) {
-			      that.items.push({
-			        id: i,
-			        name: 'demo' +  i+length
-			      })
-			    };
-			    var scrollTop = scroller[0].scrollHeight - scroller.height() - 20;
-				scroller.scrollTop(scrollTop)
-			}, 1000);
+			that.getServerData({
+				url: 'sys/collect_search',
+				data: {
+					keywords: that.searchVal,
+					type: type,
+					pageNo: 1
+				},
+				success: function(results){
+					that.regroup(results.content);
+				}
+			})
+		},
+		regroup: function(data){
+			var that = this;
+			for(var i=0; i<=data.length; i++){
+				that['dataList' + data[i].type] = data[i].obj;
+				if(i == data.length){//数据处理完毕
+					for(var j=0; j<2; j++){
+						if(data['dataList' + j].length > 2){
+							data['dataList' + j].length = 2;
+							that.isShow[j+1] = true;
+						};
+					};
+				};
+			};
 		}
-	},
-	components:{
-    }
+	}
 };
-
 </script>

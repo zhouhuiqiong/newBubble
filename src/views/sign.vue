@@ -73,7 +73,6 @@ module.exports = {
 				success: function(result){
 					$.toast('注册成功');
 					that.$router.go({path:'/login'});
-					that.exitFun(scope);
 				},
 				error: function(result){
 					$.toast(result.content);

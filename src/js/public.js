@@ -212,9 +212,25 @@
 		};
 		//退出登录
 		that.exitFun = function(scope){
-			that.cookie.del('userId');
-			scope.$dispatch('userId','');
-			scope.$router.go({path:'/login'});
+			that.getServerData({
+				url: 'logout',
+				data: {
+					token: that.cookie.get('userId')
+				},
+				success: function(){
+					that.cookie.del('userId');
+					scope.$dispatch('userId','');
+					if(scope.goHome){
+						$.toast('退出成功!');
+						scope.$router.go({path:'/home'});
+					}else{
+						scope.$router.go({path:'/login'});
+					}
+				}
+			})
+		};
+		that.closeModel = function(){
+			$.closeModal($('.modal-in'));
 		}
 		// that.promiseFun = function(data){
 		// 	return new Promise(function(resolve){

@@ -90,7 +90,7 @@ module.exports = {
 					t.goBack();
 				},
 				function () {
-					
+					t.closeModel();
 				},'返回');
 		},
 		changeOrderTime: function(){
