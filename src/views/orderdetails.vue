@@ -25,7 +25,7 @@
 			</div>
 			<!--营业时间-->
 			<div class="do-time">
-				营业时间:{{prodcutInfo.advanceDayStart}} - {{prodcutInfo.advanceDayEnd}}
+				营业时间:{{prodcutInfo.gmtStart}} - {{prodcutInfo.gmtEnd}}
 			</div>
 			<!--预约须知-->
 			<dl class="clause">
