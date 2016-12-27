@@ -3,7 +3,7 @@
     	 <div class="swiper-container swipertxt" >
     	    <div class="swiper-wrapper" >
     	        <div class="swiper-slide" v-for="item in aryimg"  @click="say($index)">
-                    <img :src="item" >
+                    <img :src="item.picUrl" >
                 </div>
     	    </div>
     	    <div class="swiper-pagination"></div>
@@ -11,7 +11,7 @@
             <div class="swiper-button-next"></div>
     	</div> 
     </div>
-    <uiimgmax :maxbox='maxbox' :aryimg='aryimg' :index='index'></uiimgmax>
+    <uiimgmax :maxbox='maxbox' :aryimg='maxAryimg' :index='index'></uiimgmax>
 </template>
 <script>
 	require('../css/swiper.min.css');
@@ -19,21 +19,16 @@
 	module.exports = {
         props:['aryimg'],
 		ready:function(){
-			new Swiper('.swipertxt', {
-                direction: 'vertical',
-                pagination: '.swiper-pagination',
-                paginationClickable :true,
-                effect: 'slide',
-                autoplay: 0,
-                direction: 'horizontal',
-                prevButton:'.swiper-button-prev',
-                nextButton:'.swiper-button-next'
-            });
+            var that = this;
+            that.q = that.$route.query;
+            that.getSwiperImg();
+			
 		},
         data: function(){
             return {
                 maxbox: false,
-                animatebox: ''
+                animatebox: '',
+                maxAryimg: []
             }
         },
         methods: {
@@ -44,6 +39,33 @@
                     index: index
                 });
                 this.$parent.isFootBar = true;
+            },
+            getSwiperImg: function(){
+                var that = this;
+                that.getServerData({
+                    url: 'product/pics',
+                    data: {
+                        productId: that.q.productId
+                    },
+                    success: function(result){
+                        that.aryimg = result.content;
+                        for(var i=0; i<that.aryimg.length; i++){
+                            that.maxAryimg.push(that.aryimg[i].picUrl);
+                        };
+                        setTimeout(function(){
+                            new Swiper('.swipertxt', {
+                                direction: 'vertical',
+                                pagination: '.swiper-pagination',
+                                paginationClickable :true,
+                                effect: 'slide',
+                                autoplay: 0,
+                                direction: 'horizontal',
+                                prevButton:'.swiper-button-prev',
+                                nextButton:'.swiper-button-next'
+                            });
+                        },200);
+                    }
+                });
             }
         },
         events: {

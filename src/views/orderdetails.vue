@@ -3,7 +3,7 @@
 		<div class="content home-content bg" :class="{'home-content1': isFootBar}">
 			<a class="iconfont icon-icon1 order-details-back" v-go-history></a>
 			<div class="home-swiper">
-				<uiswipertxt :aryimg="aryimg"></uiswipertxt>
+				<uiswipertxt></uiswipertxt>
 			</div>
 			<dl class="introduce">
 				<dt>{{prodcutInfo.name}}</dt>
@@ -11,11 +11,11 @@
 			</dl>
 			<!--客户评价区域-->
 			<div class="list-block media-list estimate">
-				<a class="item-link item-content" v-link="{name:'judgelist',query: {productId: q.productId}}">
+				<a class="item-link item-content" v-link="{name:'judgelist',query: {productId: productId}}">
 					<div class="item-inner">
 						<div class="item-title-row">
 							<div class="item-title">客户评价</div>
-							<div class="item-after">200人去过</div>
+							<div class="item-after">210人去过</div>
 						</div>
 						<div class="item-text" v-for="(key,val) in prodcutInfo.etagMap">
 							<span class="shop-tag min-shop-tag">{{key}}({{val}})</span>
@@ -25,12 +25,12 @@
 			</div>
 			<!--营业时间-->
 			<div class="do-time">
-				营业时间:{{prodcutInfo.gmtStart}} - {{prodcutInfo.gmtEnd}}
+				营业时间:  {{prodcutInfo.gmtStart}} - {{prodcutInfo.gmtEnd}}
 			</div>
 			<!--预约须知-->
 			<dl class="clause">
 				<dt>预定须知</dt>
-				<dd><i></i><div>{{prodcutInfo.notice}}</div></dd>
+				<dd><div>{{prodcutInfo.notice}}</div></dd>
 			</dl>
  		</div>
  		<!--预约弹出框 -->
@@ -54,8 +54,8 @@
 		<nav class="bar bar-tab foot-bar" >
 			<div class="sale-money">
 				<label class="server-money server-money1 ">
-					<em>{{ priceRealJpy.priceRealJpy | price}}</em>日元</label>
-					<i>{{ priceRealJpy.priceViewJpy | price}}日元</i>
+					<em>{{prodcutInfo.priceRealJpy | price}}</em>日元</label>
+					<i>{{prodcutInfo.priceViewJpy | price}}日元</i>
 			</div>
 			<button @click="orderdialog" class="btn1" >立刻预约</button>
 		</nav>
@@ -67,10 +67,10 @@ module.exports = {
 		var that = this;
 		that.q = that.$route.query;
  		that.$check = $('.read-chekbox');
-
  		that.getProdcutDetail();
 	},
 	data:function(){
+		var that = this;
 		return {
 			checked: false,//是否选中
 			isOrderDialog: false,
@@ -81,6 +81,7 @@ module.exports = {
 			aryimg: [],
 			prodcutInfo: {},
 			priceRealJpy: {},
+			productId: that.$route.query.productId,
 			isDisabled: true,//按钮是否可点
 			btntext: ''
 		}
@@ -133,27 +134,16 @@ module.exports = {
 		getProdcutDetail: function(){
 			var that = this;
 			that.getServerData({
-				url: 'prodcut/detail',
+				url: 'product/detail',
 				data: {
-					productId: that.q.productId
+					pid: that.q.productId
 				},
 				success: function(result){
 					that.prodcutInfo = result.content;
 				}
 			});
-		},
-		getSwiperImg: function(){
-			var that = this;
-			that.getServerData({
-				url: 'product/pics',
-				data: {
-					productId: that.q.productId
-				},
-				success: function(result){
-					that.aryimg = result.content;
-				}
-			});
 		}
+		
 
 	},
 	route:{

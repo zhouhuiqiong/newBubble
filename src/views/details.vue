@@ -133,6 +133,7 @@ module.exports = {
 			maxbox: false,//大图是否显示
 			aryimg: [],//大图数组
 			shopInfo: {},
+			productList: {},
 			pageSize: 20,
 			currentPage0: 0,
 			currentPage1: 0,
@@ -150,6 +151,7 @@ module.exports = {
 	   	},
 	   	'currentPage1': function (val, oldVal) {
 	    	var that = this;
+	    	console.log(111);
 	    	that.getReview();
 	   	},
 	},
@@ -216,6 +218,7 @@ module.exports = {
         //取商户评论
         getReview: function(){
         	var that = this;
+        	
         	that.getServerData({
         		url: 'shop/evaluate/list',
         		data: {

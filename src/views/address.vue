@@ -12,7 +12,7 @@
 		</header>
 		<div class="content">
 			<div class="now-address-box">
-		   		<div class="now-address"><label>京东</label>当前gps定位城市</div>
+		   		<div class="now-address"><label>{{gpsAdrText}}</label>当前gps定位城市</div>
 		   		<i class="iconfont icon-duigou"></i>
 		   	</div>
 		   	<!--地址列表-->
@@ -36,7 +36,8 @@ module.exports = {
 	ready: function(){
 		var that = this;
 		that.countryName = that.cookie.get('countryName');
-		that.hotCountryFun();	
+		that.hotCountryFun();
+		that.getGpsAdr();
 	},	
 	data:function(){
 		return {
@@ -45,7 +46,8 @@ module.exports = {
 			isInput: false,
 			countryName: '',//默认城市
 			hotCountryList: [],
-			searchCountryList: []
+			searchCountryList: [],
+			gpsAdrText: ''//GPS定位
 		}
 	},
 	methods: {
@@ -92,6 +94,36 @@ module.exports = {
 					that.searchCountryList = data.content;
 				}
 			});
+		},
+		getGpsAdr: function(){
+			var that = this;
+			if(navigator.geolocation){
+      			that.updataPosition();
+      			navigator.geolocation.getCurrentPosition(that.updataPosition);
+    		}else{
+        		that.gpsAdrText = '对不起，浏览器不支持！';
+    		};
+    		function updataPosition(position){
+    			console.log(position);
+    		};
+		},
+		updataPosition: function(position){
+			var that = this;
+			var position = {
+				coords: {}
+			};
+			position.coords.latitude = '30.2616125';
+			position.coords.longitude = '120.0318063';
+			$.ajax({
+				url:'http://maps.google.com/maps/api/geocode/json?latlng='+ position.coords.latitude+','+ position.coords.longitude+'&language=zh-CN&sensor=false',
+				type:'get',
+				dataType:'json',
+				success:function(resp){
+					if(resp['status']==='OK'){
+						that.gpsAdrText = resp.results[2].formatted_address;
+					}
+				}  
+			});	
 		}
 	},
 	route:{

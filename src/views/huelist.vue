@@ -17,9 +17,9 @@
 		<div class="content infinite-scroll home-content bg" >
 			<!--item-->
 			<ul class="card-box">
-				<li class="card-item" v-for="item in hueAry"  v-link="{name:'orderdetails',query: {id: item.id}}" >
+				<li class="card-item" v-for="item in hueAry"  v-link="{name:'huedertails',query: {id: item.id}}" >
                     <img :src="item.pic">
-                    <h3>{{item.context}}</h3>
+                    <h3>{{item.title}}</h3>
                     <p>
                         <span class="shop-tag shop-tag2" v-for="tag in item.tags">
                             {{tag}}
@@ -106,7 +106,7 @@ module.exports = {
         getHueList: function(){//获取列表
             var that = this;
             that.getServerData({
-                url: 'sex_article',
+                url: 'sex_article/list',
                 data: {
                     tag: that.tagId,
                     pageNo: that.currentPage,//页码

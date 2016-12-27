@@ -238,7 +238,7 @@
 		// 			url: data.url,
 		// 			data: data.data,
 		// 			success: function(result){
-		// 				resolve(result.content);
+		// 				resolve(result);
 		// 			}
 		// 		});
 		// 	});

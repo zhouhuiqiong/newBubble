@@ -61,7 +61,7 @@ module.exports = {
 				},
 				success: function(result){
 					that.evaluateAry = result.content;
-					if(results.content.length < that.pageSize) that.noData = true;
+					if(result.content && result.content.length < that.pageSize) that.noData = true;
 	   				that.loading = true;
 				}
 			});

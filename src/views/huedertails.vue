@@ -4,7 +4,7 @@
 		  <a class="iconfont icon-iconleft pull-left" v-go-history></a>
 		  <h1 class="title">色相</h1>
 		</header>
-		<div class="content infinite-scroll home-content bg" >
+		<div class="content bg" >
 			<!--item-->
 			<ul class="card-box">
 				<li class="card-item card-item2">
@@ -13,13 +13,13 @@
 						<div>
 							<span class="shop-tag shop-tag2" v-for="item in article.tags">{{item}}</span>
 						</div>
-						<i class="data">2016-10-10 20:06</i>
+						<i class="data">{{article.gmtCreateTime | time}}</i>
 					</div>
 					<img :src="article.pic">
 					<div class="hue-content">
 						{{article.desc}}
 					</div>
-					<div class="hue-shop-inf">
+					<!-- <div class="hue-shop-inf">
 						<div class="text-center"><span class="hue-shop-btn">商家信息</span></div>
 						<div class="hue-shop-adr">
 							<div class="hue-shop-adr-d">
@@ -31,15 +31,15 @@
 							</div>
 							<span class="iconfont icon-iconright"></span>
 						</div>
-					</div>
+					</div> -->
 					<div class="hue-content">
-						{{article.context}}
+						{{{article.context}}}
 					</div>
 				</li>
 			</ul>
 			<!--end item-->
 		</div>
-		<div class="select-shade select-shade1" v-show="isSelectShade" @click="selectShade"></div>
+		
 	</div>
 </template>
 <script>
@@ -47,6 +47,7 @@ module.exports = {
 	ready: function(){
 		var that = this;
 	    that.id = that.$route.query.id;
+	    that.getDetailsData();
 	},
 	data:function(){
 		return {

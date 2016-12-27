@@ -694,14 +694,13 @@ $pa:0px 40px;
 }
 .clause{
 	@include boxStyle;
-
 	padding: 0.5rem 0.75rem;
 	dt{
 		color: #000;
 		margin:0rem 0px 0.5rem;
 	}
 	dd{
-		@include boxJC;
+		@include box;
 		margin-bottom: 0.2rem;
 		div{
 			position: relative;
@@ -709,7 +708,7 @@ $pa:0px 40px;
 			&:before{
 				position: absolute;
 				content: '';
-				top: 5px;
+				top: 7px;
 				left: -0.5rem;
 				@include numRound($size: 0.2rem, $bc: #ff6b68);
 			}
@@ -1546,13 +1545,14 @@ $pa:0px 40px;
 }
 .card-item-tiem{
 	@include boxJC;
-	margin-top: 0.75rem;
+	margin: 0.2rem 0px 0.4rem;
 	.shop-tag2{
 		margin-top: 0.25rem;
 	}
 	.data{
 		font-size: 10px;
 		width: 140px;
+		text-align: center;
 	}
 }
 .hue-content{
