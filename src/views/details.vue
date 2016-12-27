@@ -34,7 +34,7 @@
 			</div>
 			<div class="map-box">
 				<!--target="_blank"-->
-				<a class="adr-specific"  href="https://www.google.com/maps/place/					{{shopInfo.addressDetail}}/@{{shopInfo.lon}},					{{shopInfo.lat}},15z/">
+				<a class="adr-specific"  href="https://www.google.com/maps/place/					{{shopInfo.addressDetail}}/@{{shopInfo.lat}},{{shopInfo.lon}},15z/">
 					<span class="iconfont icon-ditu"></span>
 					{{shopInfo.addressDetail}}
 				</a>
@@ -218,7 +218,7 @@ module.exports = {
         //取商户评论
         getReview: function(){
         	var that = this;
-        	
+
         	that.getServerData({
         		url: 'shop/evaluate/list',
         		data: {
