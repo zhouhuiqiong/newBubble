@@ -8,7 +8,7 @@
 			<div class="buttons-tab details-tab details-tab1">
 				<a href="#" class="tab-link button active" type="2"><span>待服务</span></a>
 				<a href="#" class="tab-link button" type="3"><span>已完成</span></a>
-				<a href="#" class="tab-link button" type="6"><span>全部订单</span></a>
+				<a href="#" class="tab-link button" type=""><span>全部订单</span></a>
 			</div>
 			<div class="infinite-order-list">
 				<!--订单详情v-for="item in dataList" track-by="$index"-->
@@ -16,7 +16,7 @@
 					<!--待服务订单-->
 					<h3 class="o-title" :class="{'o-title2': {{item.status == 1}}, 'o-title1': {{item.status == 3}} }">
 						<span class="item-t">{{item.status | statusAry}}</span>
-						<span class="item-a">2012-12-12 10:80</a></span>
+						<span class="item-a">{{item.gmtCreateTime}}</a></span>
 					</h3>
 					<h3 class="order-inf-t" v-link="{ name: 'myorderdetails', query: { orderId: {{item.id}}}}">
 						<div>
@@ -52,9 +52,7 @@
 					<div class="user-center-item3">
 						<div class="item-title">订单服务</div>
 						<div class="tr">
-							<p>订单服务11</p>
-							<p>订单服务22222</p>
-							<p>订单服务2222</p>
+							<p>{{item.scProductName}}</p>
 						</div>
 					</div>
 					<div class="total-item1">
@@ -75,11 +73,11 @@
 <script>
 module.exports = {
 	ready: function(){
-		var t = this;
-		t.suiteUserId = that.cookie.set('suiteUserId');
+		var that = this;
+		that.suiteUserId = that.cookie.get('suiteUserId');
 		//点击
 		$('.details-tab1>a').on('click', function(){
-			t.orderType = $(this).attr('type');
+			that.orderType = $(this).attr('type');
 			$(this).addClass('active').siblings('a').removeClass('active');
 		});
 		//加载数据
@@ -87,7 +85,7 @@ module.exports = {
 			le: '.infinite-order-list',
 			scrollObj: '.content'
 		});
-		that.orderType = 2;
+		that.getOrderList();
 	},
 	data:function(){
 		return {
@@ -95,7 +93,8 @@ module.exports = {
 			noData: false,
 			pageSize: 10,
 			currentPage: 1,
-			orderType: 0//订单状态：2：支付,3:已完成，6：全部
+			loading: true,
+			orderType: 2//订单状态：2：支付,3:已完成，空：全部
 		}
 	},
 	methods: {
@@ -123,6 +122,7 @@ module.exports = {
 			that.dataList = [];
 			that.currentPage = 1;
 			that.getOrderList();
+			
 		},
 		'currentPage': function(){
 			that.getOrderList();

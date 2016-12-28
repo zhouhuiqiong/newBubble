@@ -34,7 +34,7 @@
 			</div>
 			<div class="map-box">
 				<!--target="_blank"-->
-				<a class="adr-specific"  href="https://www.google.com/maps/place/					{{shopInfo.addressDetail}}/@{{shopInfo.lat}},{{shopInfo.lon}},15z/">
+				<a class="adr-specific"  href="https://www.google.com/maps/place/					{{shopInfo.addressDetail}}/@{{shopInfo.lat}},{{shopInfo.lon}}`,15z/">
 					<span class="iconfont icon-ditu"></span>
 					{{shopInfo.addressDetail}}
 				</a>
@@ -76,7 +76,7 @@
 					<div class="swiper-slide">
 						<div class="list-block media-list evaluate-list" >
 							<ul>
-								<li  v-for="item in dataList1" track-by="$index">
+								<li  v-for="item in dataList1" >
 									<a href="javascript:void(0);" class="item-content evaluate-content">
 										<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" ></div>
 										<div class="item-inner">
@@ -85,8 +85,8 @@
 												<div class="item-after">2015-23-23</div>
 											</div>
 											<div class="evaluate-tag-box">
-												<span class="shop-tag min-shop-tag">安全</span>
-												<span class="shop-tag min-shop-tag">一级棒</span>
+												<span class="shop-tag min-shop-tag" v-if="tag in item.etags">{{tag}}</span>
+
 											</div>
 											<div class="txt-box txt-hide">
 												{{item.content}}
@@ -151,7 +151,6 @@ module.exports = {
 	   	},
 	   	'currentPage1': function (val, oldVal) {
 	    	var that = this;
-	    	console.log(111);
 	    	that.getReview();
 	   	},
 	},
@@ -210,7 +209,7 @@ module.exports = {
         		},
         		success: function(result){
         			that.dataList0 = that.dataList0.concat(result.content);
-        			if(result.content.length < that.pageSize) that.noData = true;
+        			if(result.content && result.content.length < that.pageSize) that.noData = true;
         			that.loading = true;
         		}
         	});
@@ -226,8 +225,10 @@ module.exports = {
         			eid: that.currentPage1,
         		},
         		success: function(result){
-        			that.dataList1 = that.dataList1.concat(result.content);
-        			if(result.content.length < that.pageSize) that.noData = true;
+        			if(result.content){
+        				that.dataList1 = that.dataList1.concat(result.content);
+	        			if(result.content.length < that.pageSize) that.noData = true;
+        			};
         			that.loading = true;
         		}
         	});
@@ -261,7 +262,7 @@ module.exports = {
 					setTimeout(function() {
 						$('.swiper-pagination-bullet').eq(0).text('商家服务');
 						$('.swiper-pagination-bullet').eq(1).text('客户评价');
-					}, 1000);
+					}, 500);
 				}	
 			});
         }

@@ -5,8 +5,8 @@
 				<span class="iconfont icon-1 user-inf-news" v-link="{name:'news'}"></span>
 				<div class="image-text">
 					<img v-if="userId" :src="userInfo.pic">
-					<img v-else="userId" src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2995040420,4087761391&fm=96">
-					<p v-if="userId" class="user-name"><a v-link="{name:'editlist'}">{{userInfo.userName}}<span class="iconfont icon-iconright ml"></span>
+					<img v-else="userId" src="../images/userph.jpg">
+					<p v-if="userId" class="user-name"><a v-link="{name:'editlist'}">{{userInfo.email}}<span class="iconfont icon-iconright ml"></span>
 	</a ></p>
 					<p v-else class="user-name"><a v-link="{name:'login'}">点击登录<span class="iconfont icon-iconright ml"></span>
 	</a ></p>
@@ -72,16 +72,21 @@
 module.exports = {
 	ready: function(){
 		var that = this;
-		that.getUserInfo();
-		that.getLastOrderInfo();
 	},
 	data:function(){
 		var that = this;
 		return {
-			userId: that.$root.userId,
+			userId: '',
 			userInfo: {},
-			lastOrderInfo: {},
-			userPh: 'https://ss0.baidu.com/73F1bjeh1BF3odCf/it/u=3829429095,3803476155&fm=85&s=92D415CEDFE1B9725445C007000030C1'
+			lastOrderInfo: {}
+		}
+	},
+	watch: {
+		'userId': function(){
+			var that = this;
+			if(!that.userId) return;
+			that.getUserInfo();
+			that.getLastOrderInfo();
 		}
 	},
 	methods: {
@@ -90,7 +95,7 @@ module.exports = {
 			that.getServerData({
 				url: 'user/info',
 				data: {
-					token: that.$root.userId
+					token: that.userId
 				},
 				success: function(result){
 					that.userInfo = result.content;
@@ -102,7 +107,7 @@ module.exports = {
 			that.getServerData({
 				url: 'user/lastOrder',
 				data: {
-					token: that.$root.userId
+					token: that.userId
 				},
 				success: function(result){
 					that.lastOrderInfo = result.content;
@@ -114,6 +119,8 @@ module.exports = {
 		activate:function(transition){
 			this.$root.$set('header',this.title);
 			transition.next();
+			var that = this;
+			that.userId = that.cookie.get('userId');
 		}
 	}
 

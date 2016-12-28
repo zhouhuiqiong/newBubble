@@ -43,8 +43,9 @@
 module.exports = {
 	ready: function(){
 		var that = this;
-		that.suiteUserId = that.cookie.set('suiteUserId');
+		that.suiteUserId = that.cookie.get('suiteUserId');
 		that.getSuiteInfo();
+		
 	},
 	data:function(){
 		return {
@@ -55,7 +56,7 @@ module.exports = {
 		getSuiteInfo: function(){
 			var that = this;
 			that.getServerData({
-				url: 'entourage/login_email',
+				url: 'entourage/info',
 				data: {
 					id: that.suiteUserId
 				},
