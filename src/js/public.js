@@ -167,11 +167,15 @@
 			},data);
 			var $scroll = $(opts.scollParent),$obj = $(opts.fixedbox);
     		var top = $obj[0].offsetTop;
+
 		    $obj.on('click',function() {
-				if (!opts.scope.isFixedbox) {
+		    	var total = $(window).height() + $scroll.scrollTop(),
+		    		body = $scroll[0].scrollHeight;
+				if (!opts.scope.isFixedbox && total < body) {
 					opts.scope.isFixedbox = true;
 					$scroll.scrollTop(top);
 				};
+				
 		    });
 		    $scroll.on('scroll',function() {
 		    	opts.scope.isFixedbox = $(this).scrollTop() < top ? false : true;
@@ -184,13 +188,14 @@
 			}
 		};
 		//提交订单预约，时间处理yyyy-MM-dd HH:mm:ss
-		that.orderTime = function(str){
-			var data = new Date(),
-				y = data.getFullYear(),
-				m = data.getMonth() + 1,
-				d = data.getDate();
-			return y + '-' + m + '-' + d + ' ' + str + ':00';
-		};
+		// that.orderTime = function(str){
+		// 	var data = new Date(),
+		// 		y = data.getFullYear(),
+		// 		m = data.getMonth() + 1,
+		// 		d = data.getDate();
+		// 		console.log(str);
+		// 	return str + ':00';
+		// };
 		//获取选中多选框的值
 		that.checkList = function(obj){
 			var ary = [];

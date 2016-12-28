@@ -294,18 +294,18 @@ window.util = {};
           if (s.m == gap) {
             hourAry.push((s.h + j) + ':' + gap);
           } else {
-            hourAry.push((s.h + j) + ': 00');
+            hourAry.push((s.h + j) + ':00');
             hourAry.push((s.h + j) + ':' + gap);
           }
         } else if (i < e.h) {
-          hourAry.push((s.h + j) + ': 00');
+          hourAry.push((s.h + j) + ':00');
           hourAry.push((s.h + j) + ':' + gap);
         } else if (i == e.h) {
           if (e.m == gap) {
-            hourAry.push((s.h + j) + ': 00');
+            hourAry.push((s.h + j) + ':00');
             hourAry.push((s.h + j) + ':' + gap);
           } else {
-            hourAry.push((s.h + j) + ': 00');
+            hourAry.push((s.h + j) + ':00');
           }
         }
       };

@@ -8,7 +8,7 @@
 			<div class="list-block media-list">
 				<ul>
 					<li class="itme-style min-itme-style">
-						<a  v-link="{ name: 'orderdetails', query: { shopid: '1'}}" class="item-content">
+						<a  v-link="{ name: 'orderdetails', query: { shopid: {{orderInfo.product.id}}}}" class="item-content">
 							<div class="item-media"><img src=""></div>
 							<div class="item-inner sale-txt">
 								<div class="item-title-row">
@@ -35,22 +35,19 @@
 			<div class="serve-type ">
 				<h3 class="sub-title">附加服务</h3>
 				<div class="bg1">
-					<div class="server-item">
-						<div class="server-t"><h3>{{orderInfo.entourageLevel.name}}<span class="clr3 check-box"><em>{{orderInfo.entourageLevel.priceRealJpy | price}}</em><i>日元</i></span></h3>
-						<p><i class="iconfont icon-tanhao"></i>为您解读，帮您沟通，更多服务请点击查看</p></div>
-						<div class="giving">赠送</div>
-					</div>
 					<div class="server-item server-item1" v-for="item in orderInfo.scAppendCacheList">
 						<div class="server-t">
 							<h3>{{item.name}}<span class="clr3 check-box"><em>{{item.priceRealJpy | price}}</em><i>日元</i></span></h3>
-							<p><i class="iconfont icon-tanhao"></i>为您解读，帮您沟通，更多服务请点击查看</p>
+							<p @click="descPopup(item.desc)">
+								<i class="iconfont icon-tanhao"></i>为您解读，帮您沟通，更多服务请点击查看</p>
 						</div>
-						<div class="item-input">
+						<div class="item-input" v-if="item.priceRealJpy > 0">
 							<label class="label-switch">
 								<input type="checkbox" value="{{item.id}}" name="addition">
 								<div class="checkbox"></div>
 							</label>
 						</div>
+						<div class="giving" v-else>赠送</div>
 					</div>
 				</div>
 			</div>
@@ -62,7 +59,16 @@
 		<div class="select-shade" v-show="isSelectShade" @click="selectShade"></div>
 		<!--预约按钮-->
 		<button class="max-btn" @click="submitform" :class="{ 'disabled': isDisabled}">确认预约</button>
-
+		<!--预约协议-->
+		<div class="popup popup-services">
+			<header class="bar bar-nav title-bar title-bar3">
+			  <a class="iconfont icon-iconfontclosesmall pull-left" @click="closePopup()"></a>
+			  <h1 class="title">附加服务简介</h1>
+			</header>
+			<div class="popup-desc">
+				{{desc}}
+			</div>
+		</div>
 	</div>
 </template>
 <script>
@@ -79,10 +85,19 @@ module.exports = {
 			isDisabled: true,//确认预约按钮
 			isSelectShade: false,//遮罩
 			orderInfo: {},
+			desc:"",
 			isShDate: false //预约时间弹出层
 		}
 	},
 	methods: {
+		descPopup: function(txt){
+			var that = this;
+			$.popup('.popup-services');
+			that.desc = txt;
+		},
+		closePopup: function(){
+			$.closeModal('.popup-services');
+		},
 		goback: function(){
 			var t = this;
 			$.confirm('订单未提交，要返回吗？',
@@ -119,7 +134,7 @@ module.exports = {
 				data: {
 					token: that.$root.userId,
 					productId: that.q.productId,
-					appointmentTime: that.orderTime(that.ordertime),
+					appointmentTime: that.ordertime + ':00',
 					appendIds: that.checkList($("input[name='addition']:checked")).join(',')
 				},
 				success: function(result){

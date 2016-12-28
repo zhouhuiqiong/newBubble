@@ -378,6 +378,10 @@ body {
   .btn-box .disabled {
     background: #999; }
 
+.select-wrap {
+  position: relative;
+  z-index: 10000; }
+
 .seach-select-list {
   height: 40px;
   border: 1px solid #e5e5e5;
@@ -2234,5 +2238,12 @@ body {
   color: #fff;
   font-size: 12px;
   padding: 0.1rem 0.3rem; }
+
+.popup-desc {
+  margin-top: 2.2rem;
+  padding: 0.5rem 1.0rem 1.0rem;
+  line-height: 20px;
+  font-size: 12px;
+  text-indent: 1.0rem; }
 
 /*# sourceMappingURL=main.css.map */

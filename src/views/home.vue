@@ -67,6 +67,7 @@
 
 			</div>
 		</div>
+
 		<div class="list-block infinite-list  media-list home-media-list">
 			<ul>
 				<li v-for="item in dataList" track-by="$index" class="itme-style">
@@ -169,11 +170,6 @@ module.exports = {
 			that.getCityData();
 		}
 	},
-	computed: {
-	    length: function(){
-	      return this.items.length
-	    }
-	},
 	route:{
 		activate:function(transition){
 			var that = this;
@@ -252,4 +248,5 @@ module.exports = {
       uiload: require('../components/load.vue')
     }
 };
+//computed
 </script>
