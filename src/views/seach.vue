@@ -1,14 +1,14 @@
 <template>
   <div class="container">
 	<header class="bar bar-nav title-bar">
-		<div class="search-input-box1">
+		<form class="search-input-box1">
 			<div class="search-input">
 				<label class="iconfont icon-chaxun" for="search"></label>
 				<input type="search" id="search" placeholder="输入城市…" v-model="searchVal"  @keyup="showDel" @blur="showDel">
 				<i class="iconfont icon-shanchu" v-show="isDelVal" @click="delInputVal"></i>
 			</div>
 	    	<a class="search-input-cancel" v-link="{name:'home'}">取消</a>
-		</div>
+		</form>
 	</header>
 	<div class="content infinite-scroll seach-content bg">
 		<!--商家-->
@@ -83,6 +83,10 @@
 module.exports = {
 	ready: function(){
 		var that = this;
+		$('.search-input-box1').on('submit', function(e){
+			that.getServerList()
+		  	return false;
+		});
 	},
 	data:function(){
 		return {
@@ -124,8 +128,8 @@ module.exports = {
 				url: 'sys/collect_search',
 				data: {
 					keywords: that.searchVal,
-					type: type,
-					pageNo: 1
+					pageNo: 1,
+					pageSize: 10
 				},
 				success: function(results){
 					that.regroup(results.content);
