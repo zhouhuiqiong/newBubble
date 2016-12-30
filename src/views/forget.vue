@@ -4,51 +4,48 @@
 		  <a class="iconfont icon-iconleft pull-left" v-go-history></a>
 		  <h1 class="title">忘记密码</h1>
 		</header>
-
 		<div class="content login-box" >
 			<div class="edit-box">
 				<div class="input-style" v-show-placeholder>
 					<span class="place-tag">输入邮箱登录</span>
-					<input type="text" v-model="user.eamil" >
+					<input type="text"   v-model="user.email">
 					<i class="iconfont icon-shanchu"></i>
   					<div class="dome-time-box">
-  						<uidometime time="5" :user-phone="user.eamil"></uidometime></div>
+  						<uidometime></uidometime>
+  					</div>
 				</div>
 				<div class="input-style" v-show-placeholder>
 					<span class="place-tag">输入验证码</span>
-					<input type="text" v-model="user.code">
+					<input type="text"  v-model="user.code">
 					<i class="iconfont icon-shanchu"></i>
 				</div>
 				<div class="input-style" v-show-placeholder>
-					<span class="place-tag">输入新登录密码(不少于8位)</span>
-					<input type="text" v-model="user.oldPwd">
+					<span class="place-tag">输入登录密码(不少于8位)</span>
+					<input type="password"  v-model="user.pwd">
 					<i class="iconfont icon-shanchu"></i>
 				</div>
-				<div class="input-style"  v-show-placeholder>
+				<div class="input-style" v-show-placeholder>
 					<span class="place-tag">再次确认密码</span>
-					<input type="text" name=""  value="" v-model="user.newPwd">
+					<input type="password" v-model="user.password1">
 					<i class="iconfont icon-shanchu"></i>
 				</div>
 			</div>
-		  	<a class="change-btn change-btn1 quit" @click="signSubmit">登录</a>
+		  	<a class="change-btn change-btn1 quit" @click="signSubmit">设置密码</a>
 			<p class="min-news">验证码将在30分钟内发送至您的邮箱，请<em>查收邮件</em></p>
 		</div>
-
 	</div>
 </template>
 <script>
 module.exports = {
 	ready: function(){
-		var that = this;
-		
 	},
 	data:function(){
 		return {
 			user: {
-				eamil: '',
+				email: '',
 				code: '',
-				oldPwd: '',
-				newPwd: ''
+				pwd: '',
+				password1: ''
 			}
 		}
 	},
@@ -59,13 +56,27 @@ module.exports = {
 				$.toast('输入邮箱地址');
 			}else if(!that.string.isNull(that.user.code)){
 				$.toast('输入验证码');
-			}else if(!that.string.isLength(that.user.oldPwd,8)){
+			}else if(!that.string.isLength(that.user.pwd,8)){
 				$.toast('输入长度不小8的密码');
-			}else if(!that.string.isEquality(that.user.oldPwd,that.user.newPwd)){
+			}else if(!that.string.isEquality(that.user.pwd,that.user.password1)){
 				$.toast('两次密码不一样');
 			}else{
-				console.log('验证完成');
-			}
+				that.submitform();
+			};
+		},
+		submitform: function(){
+			var that = this;
+			that.getServerData({
+				url: 'findpwd/update',
+				data: that.user,
+				success: function(result){
+					$.toast('修改密码成功!');
+					that.$router.go({path:'/login'});
+				},
+				error: function(result){
+					$.toast(result.content);
+				}
+			});
 		}
 	},
 	route:{
@@ -78,5 +89,4 @@ module.exports = {
     	uidometime: require('../components/dometime.vue')
     }
 };
-
 </script>

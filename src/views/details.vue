@@ -206,6 +206,7 @@ module.exports = {
         		data: {
         			scShopId: that.q.shopid,
         			pageNo: that.currentPage0,
+        			pageSize: that.pageSize
         		},
         		success: function(result){
         			that.dataList0 = that.dataList0.concat(result.content);
@@ -223,6 +224,7 @@ module.exports = {
         		data: {
         			sid: that.q.shopid,
         			eid: that.currentPage1,
+        			pageSize: that.pageSize
         		},
         		success: function(result){
         			if(result.content){

@@ -34,26 +34,17 @@
 	require('../css/swiper.min.css');
 	var Swiper = require('../js/swiper');
 	module.exports = {
-        props:['start','end'],
+        props:['productId'],
 		ready:function(){
-            var t = this;
-            t.$time = new util.yuTime({
-                yuStartTime: t.start,//营业时间
-                yuEndTime: t.end//营业结束时间
-            });
-            t.nowTime = t.$time.getDateAry();
-            t.changeDate = t.nowTime.y + '-' + t.nowTime.m + '-' + t.nowTime.d;
-            t.dateAry = t.$time.nowTime();
-            t.hourAry = t.$time.initHour(t.changeDate);
-            t.changeHour = t.hourAry[0];
-            
+           this.getYuTime();
 		},
         data: function(){
+            var that = this;
             return {
                 dateAry: [],
                 hourAry: [],
-                yuStartTime: '18:30',
-                yuEndTime: '05:30',
+                yuStartTime: '',
+                yuEndTime: '',
                 changeDate: '',
                 changeHour: ''
             }
@@ -81,8 +72,28 @@
             isCloseDialog: function(){
                 var t = this;
                 t.$parent.isSelectShade = t.$parent.isShDate = false;
+            },
+            getYuTime: function(){
+                var that = this;
+                that.getServerData({
+                    url: 'order/pre',
+                    data: {
+                        pid: 3
+                    },
+                    success: function(result){
+                        that.yuTime = result.content.product;
+                        that.$time = new util.yuTime({
+                            yuStartTime: that.yuTime.gmtStart,//营业时间
+                            yuEndTime:  that.yuTime.gmtEnd//营业结束时间
+                        });
+                        that.nowTime = that.$time.getDateAry();
+                        that.changeDate = that.nowTime.y + '-' + that.nowTime.m + '-' + that.nowTime.d;
+                        that.dateAry = that.$time.nowTime();
+                        that.hourAry = that.$time.initHour(that.changeDate);
+                        that.changeHour = that.hourAry[0];
+                    }
+                });
             }
-        }
-
-	}
+    }
+}
 </script>

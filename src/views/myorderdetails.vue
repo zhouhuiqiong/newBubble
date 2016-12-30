@@ -86,26 +86,37 @@
 <script>
 module.exports = {
 	ready: function(){
-		console.log(this.$route.query);
+		var that = this;
+		that.q = that.$route.query;
+		that.getMyOrderDetails();
 	},
 	data:function(){
 		return {
-
+			orderInfo: {}
 		}
 	},
 	methods: {
-		
-		
+		getMyOrderDetails: function(){
+			var that = this;
+			that.getServerData({
+				url: 'order/detail',
+				data: {
+					token: that.$root.userId,
+					orderId: that.q.orderId
+				},
+				success: function(result){
+					that.orderInfo = that.orderInfo.concat(result.content);
+					if(result.content.length < that.pageSize) that.noData = true;
+        			that.loading = true;
+				}
+			});
+		}
 	},
 	route:{
 		activate:function(transition){
 			this.$root.$set('header',this.title);
 			transition.next();
-
 		}
-	},
-	components:{
-    }
+	}
 };
-
 </script>

@@ -8,7 +8,7 @@
 			<div class="list-block media-list">
 				<ul>
 					<li class="itme-style min-itme-style">
-						<a  v-link="{ name: 'orderdetails', query: { shopid: {{orderInfo.product.id}}}}" class="item-content">
+						<a  v-link="{ name: 'orderdetails', query: { productId: orderInfo.product.id}}" class="item-content">
 							<div class="item-media"><img src=""></div>
 							<div class="item-inner sale-txt">
 								<div class="item-title-row">
@@ -35,6 +35,22 @@
 			<div class="serve-type ">
 				<h3 class="sub-title">附加服务</h3>
 				<div class="bg1">
+					<div class="server-item server-item1">
+						<div class="server-t">
+							<h3>{{orderInfo.entourageLevel.name}}<span class="clr3 check-box"><em>{{orderInfo.entourageLevel.priceRealJpy | price}}</em><i>日元</i></span></h3>
+							<p @click="descPopup(orderInfo.entourageLevel.desc)">
+								<i class="iconfont icon-tanhao"></i>为您解读，帮您沟通，更多服务请点击查看</p>
+						</div>
+						<div class="item-input" v-if="orderInfo.entourageLevel.priceRealJpy > 0">
+							<label class="label-switch">
+								<input type="checkbox" value="{{item.id}}" name="addition">
+								<div class="checkbox"></div>
+							</label>
+						</div>
+						<div class="giving" v-else>赠送</div>
+					</div>
+				</div>
+				<div class="bg1">
 					<div class="server-item server-item1" v-for="item in orderInfo.scAppendCacheList">
 						<div class="server-t">
 							<h3>{{item.name}}<span class="clr3 check-box"><em>{{item.priceRealJpy | price}}</em><i>日元</i></span></h3>
@@ -54,7 +70,8 @@
 		</div>
 		<!--预约时间ng-show="isShDate"-->
 		<div v-show="isShDate" class="uidate-wrap" :class="{'animatebox' : isShDate}">
-			<uidate :start="orderInfo.advanceDayStart" :end="orderInfo.advanceDayEnd"></uidate>
+			<uidate :id="productId"></uidate>
+		}
 		</div>
 		<div class="select-shade" v-show="isSelectShade" @click="selectShade"></div>
 		<!--预约按钮-->
@@ -66,7 +83,7 @@
 			  <h1 class="title">附加服务简介</h1>
 			</header>
 			<div class="popup-desc">
-				{{desc}}
+				{{{desc}}}
 			</div>
 		</div>
 	</div>
@@ -77,6 +94,7 @@ module.exports = {
 		var that = this;
 		if(that.ordertime != '请选择') that.isDisabled = false;
 		that.q = that.$route.query;
+		that.productId = that.q.productId;
 		that.getOrderDetails();
 	},
 	data:function(){
@@ -84,7 +102,10 @@ module.exports = {
 			ordertime: '请选择',
 			isDisabled: true,//确认预约按钮
 			isSelectShade: false,//遮罩
-			orderInfo: {},
+			orderInfo: {
+				product: {},
+				entourageLevel: {}
+			},
 			desc:"",
 			isShDate: false //预约时间弹出层
 		}
@@ -103,6 +124,7 @@ module.exports = {
 			$.confirm('订单未提交，要返回吗？',
 				function () {
 					t.goBack();
+					t.closeModel();
 				},
 				function () {
 					t.closeModel();
@@ -154,6 +176,8 @@ module.exports = {
 				},
 				success: function(result){
 					that.orderInfo = result.content;
+
+
 				}
 			});
 		}

@@ -6,12 +6,12 @@
 		</header>
 		<div class="content infinite-scroll bg">
 			<!--订单详情-->
-			<div class="order-inf order-inf1 order-inf3"  v-for="item in orderInfo" track-by="$index" v-link="{ name: 'myorderdetails', query: { orderId: item.orderInfo}}">
+			<div class="order-inf order-inf1 order-inf3"  v-for="item in orderInfo" track-by="$index" v-link="{ name: 'myorderdetails', query: { orderId: item.id}}">
 				<h3 class="o-title active">
 					<span class="item-t clr3" :class="{'clr3': item.status > 2}">{{item.status | statusAry}}</span>
-					<span class="item-a">{{item.gmtCreateTime}} <a class="iconfont icon-lajitong order-del-ic" @click="delItem($event)" v-if="item == 3"></a></span>
+					<span class="item-a">{{item.gmtCreateTime}} <a class="iconfont icon-lajitong order-del-ic" @click="delItem($event,item.id)" v-if="item == 3"></a></span>
 				</h3>
-				<h3 class="order-inf-t" v-link="{ name: 'details', query: { orderId: {{item.id}}}}">
+				<h3 class="order-inf-t" v-link="{ name: 'details', query: { orderId: item.id}}">
 					<div><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg"><span>{{item.scShopName}}</span></div>
 		  			<a class="iconfont icon-iconright"></a>
 				</h3>
@@ -98,12 +98,24 @@ module.exports = {
 				}
 			});
 		},
-		delItem: function(e){//删除数据
-			$(e.target).parents('.order-inf').remove();
-			$.toast('订单删除成功');
+		delItem: function(e,id){//删除数据
+			var that = this;
+			that.getServerData({
+				url: 'order/cancle',
+				data: {
+					orderId: id,
+					token: that.$root.userId
+				},
+				success: function(result){
+					$(e.target).parents('.order-inf').remove();
+					$.toast('订单删除成功');
+				},
+				error: function(result){
+					$.toast(result.content);
+				}
+			});
 		},
 		orderEvaluate: function(id){//订单评论
-
 			var that = this;
 			$.confirm('<div  class="evaluate-txt"><textarea id="evaluateTxt"></textarea></div>', '订单评论', function(){
 				that.sumbitEvaluate(id);
@@ -118,18 +130,18 @@ module.exports = {
 				$.toast('请输入订单评价内容');
 				return;
 			};
-
 			that.getServerData({
 				url: 'order/evaluate_submit',
-				orderId: id,
-				content: that.val,
+				data: {
+					orderId: id,
+					content: that.val
+				},
 				success: function(result){
 					$.toast(result.content);
 					that.closeModel();
 				}
 			})
 		}
-
 	},
 	route:{
 		activate:function(transition){

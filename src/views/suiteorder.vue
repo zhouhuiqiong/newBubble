@@ -18,7 +18,7 @@
 						<span class="item-t">{{item.status | statusAry}}</span>
 						<span class="item-a">{{item.gmtCreateTime}}</a></span>
 					</h3>
-					<h3 class="order-inf-t" v-link="{ name: 'myorderdetails', query: { orderId: {{item.id}}}}">
+					<h3 class="order-inf-t" v-link="{ name: 'myorderdetails', query: { orderId: item.id}}">
 						<div>
 							<img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg">
 							<span>{{item.scShopName}}</span>

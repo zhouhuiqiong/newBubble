@@ -42,22 +42,19 @@
 					<dl class="screen-item ">
 						<dt>评价</dt>
 						<dd  class="screen-item-list clearfix">
-							<div><span class="shop-tag1">服务好</span></div>
-							<div><span class="shop-tag1 ">一级棒</span></div>
-							<div><span class="shop-tag1">性价比高</span></div>
-							<div><span class="shop-tag1">安全</span></div>
+							<div v-for="item in evaluateTagsAry" >
+								<span class="shop-tag1" value="{{item.id}}"  @click="screenFn($event,item.id,'evaluate')">{{item.name}}</span>
+							</div>
+						</dd>
+					</dl>
+					<dl class="screen-item clearfix">
+						<dt>价格</dt>
+						<dd class="screen-item-list">
 							<div><span class="shop-tag1 ">服务好</span></div>
 							<div><span class="shop-tag1 ">一级棒</span></div>
 							<div><span class="shop-tag1">性价比高</span></div>
 							<div><span class="shop-tag1">安全</span></div>
 						</dd>
-					</dl>
-					<dl class="screen-item clearfix">
-						<dt>价格</dt>
-						<dd class="screen-item-list"><div><span class="shop-tag1 active">服务好</span></div>
-							<div><span class="shop-tag1 ">一级棒</span></div>
-							<div><span class="shop-tag1">性价比高</span></div>
-							<div><span class="shop-tag1">安全</span></div></dd>
 					</dl>
 					<div class="screen-btn-box">
 						<button class="screen-btn" @click="resetBtn">重置</button>
@@ -115,7 +112,9 @@ module.exports = {
 			noData: false,
 			searchVal: '',//搜索值
 			isFixedbox: false,
-			pageSize: 20
+			pageSize: 20,
+			evaluateTagsAry: [],
+			etagId: []
 		}
 	},
 	ready: function(){
@@ -139,12 +138,6 @@ module.exports = {
 			//选项更改后变化，加载数据
 			that.currentPage = 1;		
 		});
-		//筛选
-		that.$screen = $('.screen-item dd span');
-		that.$screen.on('click', function(){
-			var t = $(this);
-			$(this).addClass('active');
-		});
 		//鼠标键盘事件，右下角
 		$('.search-input-box').on('submit', function(e){
 			that.searchGo()
@@ -155,7 +148,7 @@ module.exports = {
 			le: '.media-list',
 			scrollObj: '.content'
 		});
-
+		that.evaluateTags();
 	},
 	watch: {
 	    'currentPage': function (val, oldVal) {
@@ -207,15 +200,24 @@ module.exports = {
 		},
 		submitScreen: function(){
 			var that = this;
+			that.closeScreen();
+			that.searchShopList();
+		},
+		closeScreen: function(){//关闭筛选
+			var that = this;
+			that.currentPage = 1;
+			that.dataList = [];
 			setTimeout(function(){
 				$('.screen-list').addClass('hide');
 				that.isSelectShade = false;
 				that.$nav.removeClass('active');
 			},300);
 		},
-		resetBtn: function(){
+		resetBtn: function(){//重置
 			var that = this;
 			$('.screen-item-list span').removeClass('active');
+			that.closeScreen();
+			that.getCityData();
 		},
 		searchGo: function(){//搜索页面值
 			if(this.searchVal) this.$router.go({path:'seach', query: {search: this.searchVal}});
@@ -231,7 +233,39 @@ module.exports = {
 			that.getServerData({
 	   			url: 'shop/find_city',
 	   			data: {
-	   				cityName: that.countryName
+	   				cityName: that.countryName,
+	   				pageNo: that.currentPage,
+	   				pageSize: that.pageSize
+	   			},
+	   			success: function(results){
+	   				that.dataList = that.dataList.concat(results.content);
+	   				if(results.content.length < that.pageSize) that.noData = true;
+	   				that.loading = true;
+	   			}
+	   		});
+		},
+		evaluateTags: function(){//筛选-评价
+			var that = this;
+			that.getServerData({
+	   			url: 'tag/ctags',
+	   			success: function(results){
+	   				that.evaluateTagsAry = results.content;
+	   			}
+	   		});
+		},
+		screenFn: function(e,id,type){//筛选-评价与价格
+			var t = $(e.target), that = this;
+			if(type == 'evaluate') that.etagId.push(id);
+			$(e.target).addClass('active');
+		},
+		searchShopList: function(){//标签筛选选查询
+			var that = this;
+			that.getServerData({
+	   			url: 'shop/search',
+	   			data: {
+	   				etagId: that.etagId,
+	   				pageNo: that.currentPage,
+	   				pageSize: that.pageSize
 	   			},
 	   			success: function(results){
 	   				that.dataList = that.dataList.concat(results.content);
@@ -240,7 +274,6 @@ module.exports = {
 	   			}
 	   		});
 		}
-
 	},
 	components:{
       uiswiper: require('../components/swiper.vue'),
