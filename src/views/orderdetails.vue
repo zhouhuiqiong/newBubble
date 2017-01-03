@@ -38,7 +38,7 @@
 	    	<div class="dialog-main yu-treaty">
 	    		<h3 class="text-center">预约前必读</h3>
 	    		<div class="content-padded">
-	    			{{priceRealJpy.descBeforeOrder}}
+	    			{{prodcutInfo.descBeforeOrder}}
 	    		</div>
 	    		<div class="ordercheck">
 	    			<span class="iconfont icon-checkbox  read-chekbox" @click="checkedFun($event)" :class="{'may': isMay,'icon-duoxuan':checked}"></span>

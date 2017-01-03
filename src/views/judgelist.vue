@@ -17,8 +17,7 @@
 									<div class="item-after">2015-23-23</div>
 								</div>
 								<div class="evaluate-tag-box">
-									<span class="shop-tag min-shop-tag">安全</span>
-									<span class="shop-tag min-shop-tag">一级棒</span>
+									<span class="shop-tag min-shop-tag" v-for="tag in item.etagsArr">{{tag}}</span>
 								</div>
 								<div class="txt-box txt-hide">
 									{{item.content}}
@@ -45,7 +44,6 @@ module.exports = {
 			evaluateAry: [],
 			pageSize: 10,
 			currentPage: 0,
-			pageSize: 10,
 			noData: false
 		}
 	},

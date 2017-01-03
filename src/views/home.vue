@@ -2,7 +2,11 @@
   <div class="container">
 	<div class="content list infinite-scroll home-content" :class="{'home-content1': isSelectShade}">
 		<nav class="bar bar-nav bar-nav-static search-nav">
-			<a class="open-adr-btn" v-link="{name:'address'}">{{countryName}}<i class="iconfont icon-icon-copy-copy"></i></a>
+			<a class="open-adr-btn" v-link="{name:'address'}">
+				{{countryName}}
+				<i class="iconfont icon-icon-copy-copy"></i>
+			
+			</a>
 			<form class="search-input-box" action="#">
 				<div class="search-input">
 					<label class="iconfont icon-chaxun" for="search"></label>
@@ -66,9 +70,9 @@
 		</div>
 
 		<div class="list-block infinite-list  media-list home-media-list">
-			<ul>
+			<ul><!--item.id-->
 				<li v-for="item in dataList" track-by="$index" class="itme-style">
-					<a v-link="{name: 'details', query: {shopid: item.id,lon: item.locationBaidu[0], lat: item.locationBaidu[1]}}" class="item-content" >
+					<a v-link="{name: 'details', query: {shopid: '2'}}" class="item-content" >
 						<div class="item-media"><img :src="item.picLogo"></div>
 						<div class="item-inner">
 							<div class="item-title-row">
@@ -77,8 +81,8 @@
 							</div>
 							<div class="shop-tag-box">
 								<!--shop-tag-active-->
-								<span class="shop-tag shop-tag-active" v-for="tag in item.etags">{{tag}}</span>
-								<span class="shop-tag" v-for="tag in item.ctags">{{tag}}</span>
+								<span class="shop-tag shop-tag-active" v-for="tag in item.etagsArr" >{{tag}}</span>
+								<span class="shop-tag" v-for="tag in item.ctagsArr">{{tag}}</span>
 							</div>
 							<div class="item-title-row server-money-box">
 								<label class="server-money">{{item.priceXMin | price}}日元~{{item.priceXMax | price}}日元</label>
@@ -122,7 +126,7 @@ module.exports = {
 	    that.fixedbox();
 	    that.$nav = $('.seach-select-list li');
 	    that.$item = $('.select-box .item');
-	    that.initCity();
+	    //that.initCity();
 		//附近
 		that.$nearby = $('.change-list>li');
 		that.$nearby.on('click', function(){
@@ -226,7 +230,7 @@ module.exports = {
 			var that = this;
 			var countryName = that.cookie.get('countryName');
 	    	that.countryName = countryName ? countryName : '日本';
-	    	that.cookie.set('countryName', that.countryName);
+	    	//if(that.countryName == '日本') that.cookie.set('countryName', that.countryName);
 		},
 		getCityData: function(){
 			var that = this;
@@ -234,13 +238,14 @@ module.exports = {
 	   			url: 'shop/find_city',
 	   			data: {
 	   				cityName: that.countryName,
-	   				pageNo: that.currentPage,
+	   				gmtId: that.currentPage,
 	   				pageSize: that.pageSize
 	   			},
 	   			success: function(results){
 	   				that.dataList = that.dataList.concat(results.content);
 	   				if(results.content.length < that.pageSize) that.noData = true;
 	   				that.loading = true;
+
 	   			}
 	   		});
 		},

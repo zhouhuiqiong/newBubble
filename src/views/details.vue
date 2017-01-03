@@ -20,8 +20,8 @@
 									<div class="item-after">1.9km</div>
 								</div>
 								<div class="shop-tag-box">
-									<span class="shop-tag shop-tag-active" v-for="tag in shopInfo.etags">{{tag}}</span>
-									<span class="shop-tag" v-for="tag in shopInfo.ctags">{{tag}}</span>
+									<span class="shop-tag shop-tag-active" v-for="tag in shopInfo.etagsArr">{{tag}}</span>
+									<span class="shop-tag" v-for="tag in shopInfo.etagsArr">{{tag}}</span>
 								</div>
 								<div class="item-title-row server-money-box">
 									<label class="server-money">{{productList.priceRealJpy | price}}日元~{{productList.priceViewJpy  | price}}日元</label>
@@ -34,7 +34,7 @@
 			</div>
 			<div class="map-box">
 				<!--target="_blank"-->
-				<a class="adr-specific"  href="https://www.google.com/maps/place/					{{shopInfo.addressDetail}}/@{{shopInfo.lat}},{{shopInfo.lon}}`,15z/">
+				<a class="adr-specific"  href="https://www.google.com/maps/place/					{{shopInfo.addressDetail}}/@{{locationBaidu[0]}},{{locationBaidu[1]}}">
 					<span class="iconfont icon-ditu"></span>
 					{{shopInfo.addressDetail}}
 				</a>
@@ -85,7 +85,7 @@
 												<div class="item-after">2015-23-23</div>
 											</div>
 											<div class="evaluate-tag-box">
-												<span class="shop-tag min-shop-tag" v-if="tag in item.etags">{{tag}}</span>
+												<span class="shop-tag min-shop-tag" v-if="tag in item.etagsArr">{{tag}}</span>
 
 											</div>
 											<div class="txt-box txt-hide">
@@ -141,7 +141,8 @@ module.exports = {
 			loading: false,
 			noData: false,//无数据标志
 			listType: 0,//1用户评论列表
-			imgL: ''
+			imgL: '',
+			locationBaidu: []
 		}
 	},
 	watch: {
@@ -185,16 +186,14 @@ module.exports = {
         	that.getServerData({
         		url: 'shop/detail',
         		data: {
-        			sid: that.q.shopid,
-        			lat: that.q.lat,
-        			lon: that.q.lon
+        			sid: that.q.shopid
         		},
         		success: function(result){
         			that.shopInfo = result.content.shopInfo;
         			that.productList = result.content.productList[0];
-        			that.aryimg = that.shopInfo.pics;
+        			that.aryimg = that.shopInfo.picsArr;
         			that.imgL = that.aryimg.length;
-        			that.loading = true;
+        			that.locationBaidu = that.shopInfo.locationBaidu.split(';');
         		}
         	});	
         },

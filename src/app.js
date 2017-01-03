@@ -11,7 +11,7 @@ var VueRouter = require('vue-router');
 var fastclick = require('fastclick');
 var VueResource = require('vue-resource');
 var vuePublic = require('./js/public');
-
+//var VueLoad = require('./js/load');
 
 fastclick.attach(document.body);
 // Directive
@@ -40,7 +40,9 @@ var App = Vue.extend(require('./app.vue'));
 Vue.use(VueTouch);
 Vue.use(VueRouter);
 Vue.use(VueResource);
-Vue.use(vuePublic)
+Vue.use(vuePublic);
+//Vue.use(VueLoad);
+
 var router = new VueRouter(
 	{
 	  hashbang: false,  //为true的时候 example.com/#!/foo/bar ， false的时候 example.com/#/foo/bar
