@@ -217,14 +217,14 @@ module.exports = {
         //取商户评论
         getReview: function(){
         	var that = this;
-
+        	var data = {
+        		sid: that.q.shopid,
+        		pageSize: that.pageSize
+        	};
+        	if(that.currentPage1 > 1) data.eid = that.dataList1[that.dataList1.length - 1].scShopId;
         	that.getServerData({
         		url: 'shop/evaluate/list',
-        		data: {
-        			sid: that.q.shopid,
-        			eid: that.currentPage1,
-        			pageSize: that.pageSize
-        		},
+        		data: data,
         		success: function(result){
         			if(result.content){
         				that.dataList1 = that.dataList1.concat(result.content);

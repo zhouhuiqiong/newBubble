@@ -15,7 +15,7 @@
 				</li>
 				<li class="user-center-item" v-link="{name:'editname'}">
 					<div class="item-title">昵称</div>
-					<div class="item-after">{{userInfo.userName}}<span class="iconfont icon-iconright ml"></span></div>
+					<div class="item-after">{{userInfo.realName}}<span class="iconfont icon-iconright ml"></span></div>
 				</li>
 				<li class="user-center-item" v-link="{name:'editmail'}">
 					<div class="item-title">邮箱</div>

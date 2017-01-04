@@ -72,7 +72,7 @@
 		<div class="list-block infinite-list  media-list home-media-list">
 			<ul><!--item.id-->
 				<li v-for="item in dataList" track-by="$index" class="itme-style">
-					<a v-link="{name: 'details', query: {shopid: '2'}}" class="item-content" >
+					<a v-link="{name: 'details', query: {shopid: item.id}}" class="item-content" >
 						<div class="item-media"><img :src="item.picLogo"></div>
 						<div class="item-inner">
 							<div class="item-title-row">
@@ -235,10 +235,10 @@ module.exports = {
 		getCityData: function(){
 			var that = this;
 			that.getServerData({
-	   			url: 'shop/find_city',
+	   			url: 'shop/find_province',
 	   			data: {
-	   				cityName: that.countryName,
-	   				gmtId: that.currentPage,
+	   				provinceName: that.countryName,
+	   				pageNo: that.currentPage,
 	   				pageSize: that.pageSize
 	   			},
 	   			success: function(results){

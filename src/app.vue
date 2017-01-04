@@ -236,7 +236,7 @@ module.exports = {
           this.isIndex = isIndex;
       },
       'userId': function(userInf){
-          this.userId = 'userId';
+          this.userId = userInf;
       }
     },
     ready:function(){
