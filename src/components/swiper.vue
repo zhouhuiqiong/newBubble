@@ -1,10 +1,21 @@
 <template>
     <div class="swiper-container swper" >
-        <div class="swiper-wrapper" >
-            <a href="{{item.h5url}}" class="swiper-slide" v-for="item in bannerary">
-                <img :src="item.logoUrl">
-            </a>
-        </div>
+        <ul class="swiper-wrapper" >
+            <li class="swiper-slide" v-for="item in bannerary">
+                <a v-if="item.type == 1" href="{{item.h5Url}}" >
+                    <img :src="$root.baseImgSrc + '/' + item.logoUrl">
+                </a>
+                <a v-if="item.type == 2" v-link="{name: 'details', query: {shopid: item.id}}" >
+                    <img :src="$root.baseImgSrc + '/' + item.logoUrl">
+                </a>
+                <a v-if="item.type == 3" v-link="{name: 'orderdetails', query: {productId: item.id}}">
+                    <img :src="$root.baseImgSrc + '/' + item.logoUrl">
+                </a>
+                <a v-if="item.type == 4" v-link="{name: 'huedertails', query: {id: item.id}}">
+                    <img :src="$root.baseImgSrc + '/' + item.logoUrl">
+                </a>
+            </li>
+        </ul>
         <div class="swiper-pagination"></div>
     </div>
 </template>
@@ -42,14 +53,13 @@
                                 loop: true,
                                 direction: 'horizontal'
                             });
-                        },200);
+                        },1000);
                     }
                 });
             }
         }
     }
 </script>
-
 <style>
     .swper {
         width: 100%;

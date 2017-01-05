@@ -1,74 +1,4 @@
 window.util = {};
- (function() {
-  function scrollList() {};
-  scrollList.prototype = {
-    init: function(obj, data) {
-      var that = this;
-      that.obj = obj;
-      that.data = $.extend({
-        page: 1,
-        size: 10,
-        vessel: '',
-        //组装数据的容器
-        noData: false //false 有数据，ture 没数据
-      },
-      data);
-      that.obj.item = parseInt(that.obj.item) > -1 ? that.obj.item: '';
-      that.obj['dataList' + that.obj.item] = [];
-    },
-    getServerDate: function(data) { //获取远程数据
-      $.ajax({
-        method: 'POST',
-        data: data.data,
-        url: data.url,
-        success: function(result) { //成功
-        }
-      })
-
-    },
-    getListData: function() { //
-      var that = this;
-      if (that.data.page == 1) that.initIScroll();
-      //数据
-      var ary = [];
-      for (var i = 0; i < 10; i++) {
-        that.obj['dataList' + that.obj.item].push({
-          id: i,
-          name: 'demo' + i
-        });
-      };
-      that.obj['dataList' + that.obj.item].concat(ary);
-      that.data.page++;
-    },
-    initIScroll: function() { //滚动条动作
-      var that = this;
-      $(that.data.scrollObj).on('scroll',
-      function() {
-        var el = $(this);
-        var h = parseFloat(el.height()),
-        scrollTop = parseFloat(el.scrollTop()),
-        totalHeight = h + scrollTop;
-        if (el[0].scrollHeight - totalHeight <= 3) {
-          that.loadData();
-        };
-      });
-    },
-    loadData: function() {
-      var that = this;
-      var scroller = $(that.data.scrollObj);
-      that.obj.loading = false;
-      setTimeout(function() {
-        if (that.obj.loading) return;
-        that.obj.loading = true;
-        that.getListData(); //远程获取数据
-        var scrollTop = scroller[0].scrollHeight - scroller.height() - 20;
-        scroller.scrollTop(scrollTop)
-      },
-      1000);
-    }
-  }
-  util.scrollList = scrollList;
-})(); 
 (function() {
   function YuTime(opts) {
     var that = this;
@@ -223,17 +153,16 @@ window.util = {};
           that.yuStartObj = that.splitTime(opts.yuStartTime);
           that.systemTimeAry = that.systemTime(); //获取系统当前时间
           if (that.systemTimeAry.h > that.yuStartObj.h) that.yuStartObj = that.systemTimeAry;
-          return that.aryTimeList(that.yuStartObj, that.yuEndObj);
+          return that.aryTimeList(that.yuStartObj,that.yuEndObj);
         };
       } else {
         if (start.h < end.h) {
           that.yuStartObj = that.splitTime(opts.yuStartTime);
           that.yuEndObj = that.endTime(opts.yuEndTime);
           return that.aryTimeList(that.yuStartObj, that.yuEndObj);
-
         } else {
-          that.yuStartObj = that.splitTime(opts.yuEndTime);
-          that.yuEndObj = that.endTime(opts.yuStartTime);
+          that.yuStartObj = that.endTime(opts.yuEndTime);
+          that.yuEndObj = that.splitTime(opts.yuStartTime);
           return that.calculate1();
         }
       };
@@ -259,9 +188,9 @@ window.util = {};
         m: nm
       };
     },
-    endTime: function(obj) { //可预约时间是营业时间 - 1
+    endTime: function(obj,isSplit) { //可预约时间是营业时间 - 1
       var that = this;
-      var e = that.splitTime(obj);
+      var e = isSplit ? obj : that.splitTime(obj);
       return {
         h: e.h - 1,
         m: e.m
@@ -274,22 +203,19 @@ window.util = {};
       var ary1 = that.aryTimeList({
         h: '0',
         m: '0'
-      },
-      s);
+      },s);
       var ary2 = that.aryTimeList(e, {
         h: '23',
         m: '30'
       });
       return [].concat(ary1, ary2);
-
     },
     aryTimeList: function(s, e) { //s 开始时间，e:结束时间
       var that = this;
       opts = that.opts;
       var gap = opts.startAheadTime;
       var hourAry = [];
-      for (var i = s.h,
-      j = 0; i <= e.h; i++, j++) {
+      for (var i = s.h,j = 0; i <= e.h; i++, j++) {
         if (i == s.h) {
           if (s.m == gap) {
             hourAry.push((s.h + j) + ':' + gap);
@@ -314,93 +240,4 @@ window.util = {};
   }
   util.yuTime = YuTime;  //new util.yuTime().init();
 })(); 
-
-(function() {
-  function inputAnmition() {};
-  inputAnmition.prototype = {
-    init: function(data) {
-      var t = this;
-      t.opts = $.extend({
-        el: '.input-style',
-        moveUp: 'place-tag-top',
-        //移上去动画
-        moveDown: 'place-tag-bottom' //下来动画
-      },
-      data);
-      $el = $(t.opts.el);
-      $el.each(function(item) {
-        t.delShow($(this));
-        t.spanShow($(this));
-      });
-      t.active();
-    },
-    active: function() {
-      var t = this;
-      $el.find('.icon-shanchu').on('touchstart',function() { //点击删除
-        var $input = $(this).siblings('input');
-        var $span = $(this).siblings('span');
-        $input.val('');
-        t.spanShow($(this).parent(t.opts.el));
-        if ($span.hasClass('place-tag-top')) {
-          $span.removeClass('place-tag-top').addClass('place-tag-bottom');
-        } else {
-          $span.removeClass('place-tag-top,place-tag-bottom');
-        };
-        $(this).hide();
-      });
-      $el.find('span').on('click',function() {
-        $(this).siblings('input').focus();
-      });
-      $el.find('input').on('focus',function() {
-        t.add = t.opts.moveUp;
-        t.del = t.opts.moveDown;
-        t.styleHanle($(this));
-        t.delShow($(this).parent(t.opts.el));
-      }).on('blur',function() {
-        t.add = t.opts.moveUp;
-        t.del = t.opts.moveDown;
-        t.styleHanle1($(this));
-        t.delShow($(this).parent(t.opts.el));
-      }).on('input',function() {
-        t.add = t.opts.moveUp;
-        t.del = t.opts.moveDown;
-        t.delShow($(this).parent(t.opts.el));
-        if (!$(this).val()) {
-          $(this).siblings('span').show().addClass(t.add).removeClass(t.del);
-        }
-      });
-    },
-    delShow: function(obj) { //删除按钮的显示
-      var t = this;
-      var $text = obj.find('input');
-      var $del = obj.find('.icon-shanchu');
-      $text.val() ? $del.show() : $del.hide();
-    },
-    spanShow: function(obj) { //文本提示显示
-      var t = this;
-      var $span = obj.find('span');
-      var $text = obj.find('input');
-      $text.val() ? $span.hide() : $span.show();
-    },
-    styleHanle: function(that) {
-      var $span = that.siblings('span');
-      var t = this;
-      if (!that.val()) {
-        $span.addClass(t.add).removeClass(t.del);
-      } else {
-        $span.removeClass(t.del);
-      };
-    },
-    styleHanle1: function(that) {
-      var $span = that.siblings('span');
-      var t = this;
-      if (!that.val()) {
-        $span.addClass(t.del).removeClass(t.add);
-      } else {
-        $span.removeClass(t.del);
-      };
-    }
-  };
-  util.inputAnmition = inputAnmition;
-})();
- module.exports = util;
+module.exports = util;

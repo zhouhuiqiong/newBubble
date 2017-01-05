@@ -53,7 +53,7 @@
             changeDateFn: function(e,y){
                 var t = this;
                 t.hourAry = t.$time.initHour(y);
-                $(e.currentTarget).find('.date-itme').addClass('active')
+                $(e.currentTarget).find('.date-itme').addClass('active');
                 $(e.currentTarget).siblings('div').find('.date-itme').removeClass('active');
                 t.changeDate = y;
                 t.changeHour = t.hourAry[0];
@@ -83,11 +83,13 @@
                     success: function(result){
                         that.yuTime = result.content.product;
                         that.$time = new util.yuTime({
-                            yuStartTime: that.yuTime.gmtStart,//营业时间
-                            yuEndTime:  that.yuTime.gmtEnd//营业结束时间
+                            yuStartTime: that.yuTime.gmtStart,//营业时间that.yuTime.gmtStart
+                            yuEndTime:  that.yuTime.gmtEnd//营业结束时间that.yuTime.gmtEnd
                         });
                         that.nowTime = that.$time.getDateAry();
-                        that.changeDate = that.nowTime.y + '-' + that.nowTime.m + '-' + that.nowTime.d;
+                        that.nowTime.m = (that.nowTime.m + 1) > 9 ? (that.nowTime.m + 1) : '0' + (that.nowTime.m + 1);
+                        that.nowTime.d = that.nowTime.d > 9 ? that.nowTime.d : '0' + that.nowTime.d;
+                        that.changeDate = that.nowTime.y + '-' + that.nowTime.m  + '-' + that.nowTime.d;
                         that.dateAry = that.$time.nowTime();
                         that.hourAry = that.$time.initHour(that.changeDate);
                         that.changeHour = that.hourAry[0];

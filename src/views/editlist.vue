@@ -9,7 +9,7 @@
 				<li class="user-center-item user-center-item1" v-link="{name: 'editph'}">
 					<div class="item-title">头像</div>
 					<div class="item-after">
-						<img :src="userInfo.pic" class="user-img">
+						<img :src="$root.baseImgSrc + '/' + userInfo.pic" class="user-img">
 						<span class="iconfont icon-iconright ml"></span>
 					</div>
 				</li>
@@ -36,8 +36,7 @@
 <script>
 module.exports = {
 	ready: function(){
-		var that = this;
-		that.getUserInfo(that);
+		
 	},
 	data:function(){
 		return {
@@ -55,6 +54,7 @@ module.exports = {
 		activate:function(transition){
 			this.$root.$set('header',this.title);
 			transition.next();
+			this.getUserInfo(this);
 		}
 	}
 };

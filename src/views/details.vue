@@ -11,7 +11,7 @@
 				<ul>
 					<li class="itme-style itme-style1">
 						<a href="javascript:void(0)" class="item-content">
-							<div class="item-media rel" @click="say(1)"><img :src="shopInfo.picLogo">
+							<div class="item-media rel" @click="say(1)"><img :src="$root.baseImgSrc + '/' +shopInfo.picLogo">
 								<span class="img-num">{{imgL}}</span>
 							</div>
 							<div class="item-inner">
@@ -24,7 +24,7 @@
 									<span class="shop-tag" v-for="tag in shopInfo.etagsArr">{{tag}}</span>
 								</div>
 								<div class="item-title-row server-money-box">
-									<label class="server-money">{{productList.priceRealJpy | price}}日元~{{productList.priceViewJpy  | price}}日元</label>
+									<label class="server-money">{{shopInfo.priceXMin | price}}日元~{{shopInfo.priceXMax  | price}}日元</label>
 									<div class="item-after">{{shopInfo.baojianNum}}人去过</div>
 								</div>
 							</div>
@@ -34,7 +34,7 @@
 			</div>
 			<div class="map-box">
 				<!--target="_blank"-->
-				<a class="adr-specific"  href="https://www.google.com/maps/place/					{{shopInfo.addressDetail}}/@{{locationBaidu[0]}},{{locationBaidu[1]}}">
+				<a class="adr-specific"  href="https://www.google.com/maps/place/{{shopInfo.addressDetail}}/@{{locationBaidu[0]}},{{locationBaidu[1]}}">
 					<span class="iconfont icon-ditu"></span>
 					{{shopInfo.addressDetail}}
 				</a>
@@ -53,7 +53,8 @@
 							<ul>
 								<li class="itme-style min-itme-style" v-for="item in dataList0" track-by="$index">
 									<a v-link="{name: 'orderdetails', query: {productId: item.id}}" class="item-content">
-										<div class="item-media"><img :src="item.logo"></div>
+										<div class="item-media">
+											<img :src="$root.baseImgSrc + '/' +item.logo"></div>
 										<div class="item-inner sale-txt">
 											<div class="item-title-row">
 												<div class="item-title">{{item.scShopName}}</div>
@@ -78,11 +79,11 @@
 							<ul>
 								<li  v-for="item in dataList1" >
 									<a href="javascript:void(0);" class="item-content evaluate-content">
-										<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" ></div>
+										<div class="item-media"><img src="../images/userph.jpg" ></div>
 										<div class="item-inner">
 											<div class="item-title-row">
 												<div class="item-title">标题</div>
-												<div class="item-after">2015-23-23</div>
+												<div class="item-after">{{item.gmtCreated | time}}</div>
 											</div>
 											<div class="evaluate-tag-box">
 												<span class="shop-tag min-shop-tag" v-if="tag in item.etagsArr">{{tag}}</span>
@@ -125,6 +126,8 @@ module.exports = {
 		that.currentPage0 = 1; 
 		that.changeType(0);
 		that.shopDetails();
+
+		console.log(that.$root.baseImgSrc)
 	},
 	data:function(){
 		return {

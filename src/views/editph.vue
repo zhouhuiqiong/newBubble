@@ -21,7 +21,11 @@
 module.exports = {
 	ready: function(){
 		var that = this;
-		that.getUserInfo(that);
+		that.getUserInfo(that,function(){
+			that.pic = that.$root.baseImgSrc + '/' + that.pic;
+			console.log(that.pic);
+		});
+		
 	},
 	data:function(){
 		return {

@@ -5,7 +5,6 @@
 			<a class="open-adr-btn" v-link="{name:'address'}">
 				{{countryName}}
 				<i class="iconfont icon-icon-copy-copy"></i>
-			
 			</a>
 			<form class="search-input-box" action="#">
 				<div class="search-input">
@@ -18,7 +17,7 @@
 			</a>
 		</nav>
 		<div class="home-swiper">
-			<uiswiper></uiswiper>
+			<uiswiper :baseImgSrc="baseImgSrc"></uiswiper>
 		</div>
 		<div class="select-wrap" :class="{'fiex-select': isFixedbox}">
 			<ul class="seach-select-list">
@@ -73,7 +72,7 @@
 			<ul><!--item.id-->
 				<li v-for="item in dataList" track-by="$index" class="itme-style">
 					<a v-link="{name: 'details', query: {shopid: item.id}}" class="item-content" >
-						<div class="item-media"><img :src="item.picLogo"></div>
+						<div class="item-media"><img :src="$root.baseImgSrc + '/' +item.picLogo"></div>
 						<div class="item-inner">
 							<div class="item-title-row">
 								<div class="item-title">{{item.name}}</div>
@@ -118,7 +117,9 @@ module.exports = {
 			isFixedbox: false,
 			pageSize: 20,
 			evaluateTagsAry: [],
-			etagId: []
+			etagId: [],
+			ctagArr: [],
+			baseImgSrc: ''
 		}
 	},
 	ready: function(){
@@ -153,6 +154,7 @@ module.exports = {
 			scrollObj: '.content'
 		});
 		that.evaluateTags();
+		that.getAllctag();
 	},
 	watch: {
 	    'currentPage': function (val, oldVal) {
@@ -230,7 +232,6 @@ module.exports = {
 			var that = this;
 			var countryName = that.cookie.get('countryName');
 	    	that.countryName = countryName ? countryName : '日本';
-	    	//if(that.countryName == '日本') that.cookie.set('countryName', that.countryName);
 		},
 		getCityData: function(){
 			var that = this;
@@ -245,7 +246,6 @@ module.exports = {
 	   				that.dataList = that.dataList.concat(results.content);
 	   				if(results.content.length < that.pageSize) that.noData = true;
 	   				that.loading = true;
-
 	   			}
 	   		});
 		},
@@ -278,6 +278,16 @@ module.exports = {
 	   				that.loading = true;
 	   			}
 	   		});
+		},
+		getAllctag: function(){//获取全部风俗
+			var that = this;
+			that.getServerData({
+	   			url: 'tag/ctag',
+	   			success: function(results){
+	   				that.ctagArr = results.content;
+	   			}
+	   		});
+
 		}
 	},
 	components:{
