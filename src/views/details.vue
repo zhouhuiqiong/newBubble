@@ -79,15 +79,16 @@
 							<ul>
 								<li  v-for="item in dataList1" >
 									<a href="javascript:void(0);" class="item-content evaluate-content">
-										<div class="item-media"><img src="../images/userph.jpg" ></div>
+										<div class="item-media">
+											<img :src="$root.baseImgSrc + '/' + item.userPic" >
+										</div>
 										<div class="item-inner">
 											<div class="item-title-row">
-												<div class="item-title">标题</div>
+												<div class="item-title">{{item.userNick}}</div>
 												<div class="item-after">{{item.gmtCreated | time}}</div>
 											</div>
 											<div class="evaluate-tag-box">
-												<span class="shop-tag min-shop-tag" v-if="tag in item.etagsArr">{{tag}}</span>
-
+												<span class="shop-tag min-shop-tag" v-for="tag in item.etagsArr">{{tag}}</span>
 											</div>
 											<div class="txt-box txt-hide">
 												{{item.content}}

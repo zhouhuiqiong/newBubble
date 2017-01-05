@@ -159,7 +159,7 @@ module.exports = {
 					appendIds: that.checkList($("input[name='addition']:checked")).join(',')
 				},
 				success: function(result){
-					that.$router.go({path:'/pay'});//支付页面
+					that.$router.go({path:'/pay?'});//支付页面
 				}
 			});
 			

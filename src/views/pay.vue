@@ -11,21 +11,21 @@
 				 	<p>商家会提前为您准备，请于预约时间准时到达商家使用服务。</p>
 				</div>
 			</div>
-			<!--订单信息-->
+			<!--订单信息v-for="(key,val) in shopList.type"-->
 			<div class="order-inf order-inf4">
-				<h3 class="order-inf-t"><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg">{{shopList.title}}</h3>
+				<h3 class="order-inf-t"><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg"></h3>
 				<ul  class="list-block">
-					<li class="item-content" v-for="(key,val) in shopList.type">
+					<li class="item-content" >
 						<div class="item-inner">
-							<div class="item-title">{{key}}</div>
-							<div class="item-after">{{val}}</div>
+							<div class="item-title"></div>
+							<div class="item-after"></div>
 						</div>
 					</li>
 				</ul>
 				<div class="total-item">
 							<div class="item-title">订单金额</div>
 							<div class="item-after">合计:<span class="total">
-							{{shopList.total | price}}日元</span></div>
+							日元</span></div>
 					</div>
 			</div>
 			<!-- 付款方式-->
@@ -71,15 +71,13 @@ module.exports = {
 		var that = this;
 			
 	},
-	data:function(){
+	data: function(){
 		return {
-			shopList: JSON.parse(sessionStorage.shopList),
 			isChange1: true,
 			isChange2: false
 		}
 	},
 	methods: {
-		
 		submitPay: function(){
 			
 		},
@@ -89,16 +87,11 @@ module.exports = {
 			};
 		}
 	},
-	computed: {
-		total: function(){
-			var m = this.shopList,
-				num = 0;
-				for(var i in m.type){
-					num +=m.type[i]
-				}
-			return num;
-		}
-	},
+	// computed: {
+	// 	total: function(){
+			
+	// 	}
+	// },
 	route:{
 		activate:function(transition){
 			this.$root.$set('header',this.title);

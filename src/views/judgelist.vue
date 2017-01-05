@@ -10,11 +10,13 @@
 				<ul>
 					<li v-for="item in evaluateAry">
 						<a href="javascript:void(0);" class="item-content evaluate-content">
-							<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" ></div>
+							<div class="item-media">
+								<img :src="$root.baseImgSrc + '/' + item.userPic" >
+							</div>
 							<div class="item-inner">
 								<div class="item-title-row">
-									<div class="item-title">标题</div>
-									<div class="item-after">2015-23-23</div>
+									<div class="item-title">{{item.userNick}}</div>
+									<div class="item-after">{{item.gmtCreated | time}}</div>
 								</div>
 								<div class="evaluate-tag-box">
 									<span class="shop-tag min-shop-tag" v-for="tag in item.etagsArr">{{tag}}</span>

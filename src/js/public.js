@@ -47,9 +47,8 @@
 				var totalHeight = parseFloat(el.height()) + parseFloat(el.scrollTop());
 				//tab 多个
 				var str = t.currentStr ? t.currentStr : '';
-				if(el[0].scrollHeight - totalHeight <=3){
+				if(el[0].scrollHeight - totalHeight < 20){
 					setTimeout(function(){
-          				if (t.loading) return;
 						var scrollTop = el[0].scrollHeight - el.height() - 20;
 						t['currentPage' + str] ++;
 						el.scrollTop(scrollTop);
