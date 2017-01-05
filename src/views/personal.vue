@@ -4,7 +4,7 @@
 			<div class="user-inf-wap">
 				<span class="iconfont icon-1 user-inf-news" v-link="{name:'news'}"></span>
 				<div class="image-text">
-					<img v-if="userId" :src="userInfo.pic">
+					<img v-if="userId" :src="$root.baseImgSrc + '/' +userInfo.pic">
 					<img v-else="userId" src="../images/userph.jpg">
 					<p v-if="userId" class="user-name"><a v-link="{name:'editlist'}">{{userInfo.email}}<span class="iconfont icon-iconright ml"></span>
 	</a ></p>

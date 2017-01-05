@@ -10,7 +10,7 @@
 		<div class="content  home-content">
 			<div class="user-inf-wap">
 				<div class="image-text">
-					<img :src="info.logo">
+					<img :src="$root.baseImgSrc + '/' + info.logo">
 					<p class="user-name">
 						<a href="javascript:void(0);">{{info.name}}
 					<span class="iconfont icon-yxj-auth clr3"></span></a></p>

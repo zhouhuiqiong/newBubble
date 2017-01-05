@@ -18,7 +18,7 @@
 			<!--item-->
 			<ul class="card-box">
 				<li class="card-item" v-for="item in hueAry"  v-link="{name:'huedertails',query: {id: item.id}}" >
-                    <img :src="item.pic">
+                    <img :src="$root.baseImgSrc + '/' + item.pic">
                     <h3>{{item.title}}</h3>
                     <p>
                         <span class="shop-tag shop-tag2" v-for="tag in item.tags">

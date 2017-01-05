@@ -218,7 +218,8 @@ module.exports = {
         effect          : 'fade',
         header          : '首页',
         routeList       : [],    //访问周期中所访问了那些路径,在route.js中设置
-        userId: ''
+        userId: '',
+        baseImgSrc: ''
         
       };
     },
@@ -228,9 +229,6 @@ module.exports = {
       suitebar: require('./components/suitebar.vue'),
       suitebaritem: require('./components/suitebaritem.vue')
     },
-    created:function(){
-
-    },
     events:{
       'isIndex': function(isIndex){
           this.isIndex = isIndex;
@@ -239,9 +237,21 @@ module.exports = {
           this.userId = userInf;
       }
     },
+    methods: {
+      baseImg: function(){//获取全站图片地址
+        var that = this;
+        that.getServerData({
+          url: 'sys/params',
+          success: function(results){
+            that.baseImgSrc = results.content.sysImgDomain;
+          }
+        });
+      }
+    },
     ready:function(){
       var that = this;
       if(!that.userId) that.userId = that.cookie.get('userId');
+      that.baseImg(); 
     }
 }
 </script>

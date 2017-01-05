@@ -3,7 +3,7 @@
     	 <div class="swiper-container swipertxt" >
     	    <div class="swiper-wrapper" >
     	        <div class="swiper-slide" v-for="item in aryimg"  @click="say($index)">
-                    <img :src="item.picUrl" >
+                    <img :src="$root.baseImgSrc + '/' + item.picUrl" >
                 </div>
     	    </div>
     	    <div class="swiper-pagination"></div>

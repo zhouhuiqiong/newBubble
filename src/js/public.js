@@ -204,7 +204,7 @@
 			});
 			return ary;
 		};
-		that.getUserInfo =  function(scope){
+		that.getUserInfo =  function(scope,fn){
 			that.getServerData({
 				url: 'user/info',
 				data: {
@@ -212,6 +212,7 @@
 				},
 				success: function(result){
 					scope.userInfo = result.content;
+					if(typeof fn == 'function') fn();
 				}
 			});
 		};

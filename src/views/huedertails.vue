@@ -15,7 +15,7 @@
 						</div>
 						<i class="data">{{article.gmtCreateTime | time}}</i>
 					</div>
-					<img :src="article.pic">
+					<img :src="$root.baseImgSrc + '/' + article.pic">
 					<div class="hue-content">
 						{{article.desc}}
 					</div>

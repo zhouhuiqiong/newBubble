@@ -8,7 +8,7 @@
         <div class="swiper-container maxswiperlist" >
             <div class="swiper-wrapper" >
                 <div class="swiper-slide" v-for="item in aryimg">
-                    <img :src="item" >
+                    <img :src="$root.baseImgSrc + '/' + item" >
                 </div> 
             </div>
             <div class="swiper-pagination"></div>
@@ -19,7 +19,7 @@
     </div>
 </template>
 <script>
-	require('../../node_modules/swiper/dist/css/swiper.min.css');
+	require('../css/swiper.min.css');
 	var Swiper = require('../js/swiper');
 	module.exports = {
         props:['maxbox','aryimg','index'],
