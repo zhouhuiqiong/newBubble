@@ -173,14 +173,23 @@ module.exports = function(router){
 		}
 		var result = transition.to.name;
 		if(result == 'seach'){
-			router.app.effect='bottom';
+			if(window.innerHeight <= 500 && window.innerWidth == 320){//4s以下设备
+				router.app.effect='fade';
+			}else{
+				router.app.effect='bottom';
+			};
 		}else if(result == 'news' || result == 'details'  || result == 'orderdetails'){
-			router.app.effect='left';
+			if(window.innerHeight <= 500 && window.innerWidth == 320){//4s以下设备
+				router.app.effect='fade';
+			}else{
+				router.app.effect='left';
+			};
 		}else if(result == 'home' ||  !result){
 			router.app.effect='fade';
 		}else{
 			router.app.effect='fade';
-		}
+		};
+		
 		if(result == 'home' || result == 'personal' ||  result == 'huelist' || !result){
 			$('#barNav').css('display','inline-block');
 			$('#suiteNav').hide();

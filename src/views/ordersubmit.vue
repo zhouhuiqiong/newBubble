@@ -70,8 +70,7 @@
 		</div>
 		<!--预约时间ng-show="isShDate"-->
 		<div v-show="isShDate" class="uidate-wrap" :class="{'animatebox' : isShDate}">
-			<uidate :id="productId"></uidate>
-		}
+				<uidate :id="productId"></uidate>
 		</div>
 		<div class="select-shade" v-show="isSelectShade" @click="selectShade"></div>
 		<!--预约按钮-->
@@ -176,8 +175,6 @@ module.exports = {
 				},
 				success: function(result){
 					that.orderInfo = result.content;
-
-
 				}
 			});
 		}

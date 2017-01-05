@@ -8,11 +8,11 @@
 			<div class="list-block media-list">
 				<ul>
 					<li class="itme-style min-itme-style">
-						<a v-link="{ name: 'details', query: { shopid: '1'}}" class="item-content ">
+						<a v-link="{ name: 'details', query: { productId: orderInfo.scProductId}}" class="item-content ">
 							<div class="item-media"><img src=""></div>
 							<div class="item-inner sale-txt shop-txt">
 								<div class="item-title-row">
-									<div class="item-title">浜松町駅ビル店</div>
+									<div class="item-title">{{orderInfo.scShopName}}</div>
 								</div>
 								<div class="shop-sub-t">
 									<span>商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称</span>
@@ -28,15 +28,15 @@
 			<div class="order-inf">
 				<h3 class="o-title o-title1">
 					<span class="item-t">订单信息</span>
-					<span class="item-a clr1">订单已确认</span>
+					<span class="item-a clr1">{{orderInfo.status | statusAry}}</span>
 				</h3>
 				<div class="user-center-item">
 					<div class="item-title">订单编号</div>
-					<div class="item-after">3301029192847573</div>
+					<div class="item-after">{{orderInfo.code}}</div>
 				</div>
 				<div class="user-center-item">
 					<div class="item-title">商家名称</div>
-					<div class="item-after">3301029192847573</div>
+					<div class="item-after">{{orderInfo.scShopName}}</div>
 				</div>
 				<div class="user-center-item user-center-item2">
 					<div class="item-title">商家地址</div>
@@ -45,7 +45,7 @@
 				</div>
 				<div class="user-center-item user-center-item2">
 					<div class="item-title">服务名称</div>
-					<div class="item-after"><a href="javascript:void(0)" class="btn2 btn22">联系客服</a> 张三</div>
+					<div class="item-after"><a href="tel:{{orderInfo.scShopTelphone}}" class="btn2 btn22">联系客服</a> {{orderInfo.scEntourageName}}</div>
 				</div>
 			</div>
 			<!--订单金额-->
@@ -56,27 +56,21 @@
 				<ul class="list-block">
 					<li class="item-content">
 						<div class="item-inner">
-							<div class="item-title">项目套餐</div>
-							<div class="item-after">								50,000日元</div>
+							<div class="item-title">{{orderInfo.scProductName}}</div>
+							<div class="item-after">{{orderInfo.scProductPrice | price}}日元</div>
 						</div>
 					</li>
 					<li class="item-content">
 						<div class="item-inner">
-							<div class="item-title">项目套餐</div>
-							<div class="item-after">								50,000日元</div>
-						</div>
-					</li>
-					<li class="item-content">
-						<div class="item-inner">
-							<div class="item-title">项目套餐</div>
-							<div class="item-after">								50,000日元</div>
+							<div class="item-title">{{orderInfo.scEntourageName}}</div>
+							<div class="item-after">{{orderInfo.scEntouragePrice}}日元</div>
 						</div>
 					</li>
 				</ul>
 				<div class="total-item">
 					<div class="item-title"></div>
 					<div class="item-after">合计:<span class="total">
-					50,000日元</span></div>
+					{{orderInfo.priceTotal | price}}日元</span></div>
 				</div>
 			</div>
 			<!--end 订单金额-->
@@ -105,9 +99,7 @@ module.exports = {
 					orderId: that.q.orderId
 				},
 				success: function(result){
-					that.orderInfo = that.orderInfo.concat(result.content);
-					if(result.content.length < that.pageSize) that.noData = true;
-        			that.loading = true;
+					that.orderInfo = result.content;
 				}
 			});
 		}
