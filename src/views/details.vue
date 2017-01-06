@@ -127,8 +127,6 @@ module.exports = {
 		that.currentPage0 = 1; 
 		that.changeType(0);
 		that.shopDetails();
-
-		console.log(that.$root.baseImgSrc)
 	},
 	data:function(){
 		return {

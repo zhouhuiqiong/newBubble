@@ -8,17 +8,17 @@
 			<div class="list-block media-list">
 				<ul>
 					<li class="itme-style min-itme-style">
-						<a v-link="{ name: 'details', query: { productId: orderInfo.scProductId}}" class="item-content ">
+						<a v-link="{ name: 'orderdetails', query: { productId: orderInfo.ocOrder.scProductId}}" class="item-content ">
 							<div class="item-media"><img src=""></div>
 							<div class="item-inner sale-txt shop-txt">
 								<div class="item-title-row">
-									<div class="item-title">{{orderInfo.scShopName}}</div>
+									<div class="item-title">{{orderInfo.ocOrder.scProductName}}</div>
 								</div>
 								<div class="shop-sub-t">
-									<span>商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称商家名称</span>
+									<span>{{orderInfo.ocOrder.scShopName}}</span>
 									<span class="icon icon-right"></span>
 								</div>
-								<div class="shop-yu-time">预约时间：2016-08-09 21:00</div>
+								<div class="shop-yu-time">预约时间：{{orderInfo.ocOrder.gmtAppointment | time}}</div>
 							</div>
 						</a>
 					</li>
@@ -28,24 +28,23 @@
 			<div class="order-inf">
 				<h3 class="o-title o-title1">
 					<span class="item-t">订单信息</span>
-					<span class="item-a clr1">{{orderInfo.status | statusAry}}</span>
+					<span class="item-a clr1">{{orderInfo.ocOrder.status | statusAry}}</span>
 				</h3>
 				<div class="user-center-item">
 					<div class="item-title">订单编号</div>
-					<div class="item-after">{{orderInfo.code}}</div>
+					<div class="item-after">{{orderInfo.ocOrder.code}}</div>
 				</div>
 				<div class="user-center-item">
 					<div class="item-title">商家名称</div>
-					<div class="item-after">{{orderInfo.scShopName}}</div>
+					<div class="item-after">{{orderInfo.ocOrder.scShopName}}</div>
 				</div>
 				<div class="user-center-item user-center-item2">
 					<div class="item-title">商家地址</div>
-					<div class="item-after">5-11-1 Ginza, Chuo-ku,银座/筑地
-东京,东京都,104-0061,日本</div>
+					<div class="item-after"></div>
 				</div>
 				<div class="user-center-item user-center-item2">
 					<div class="item-title">服务名称</div>
-					<div class="item-after"><a href="tel:{{orderInfo.scShopTelphone}}" class="btn2 btn22">联系客服</a> {{orderInfo.scEntourageName}}</div>
+					<div class="item-after"><a href="tel:{{orderInfo.scShopTelphone}}" class="btn2 btn22">联系客服</a> {{orderInfo.ocOrder.scProductName}}</div>
 				</div>
 			</div>
 			<!--订单金额-->
@@ -56,21 +55,22 @@
 				<ul class="list-block">
 					<li class="item-content">
 						<div class="item-inner">
-							<div class="item-title">{{orderInfo.scProductName}}</div>
-							<div class="item-after">{{orderInfo.scProductPrice | price}}日元</div>
+							<div class="item-title">{{orderInfo.ocOrder.scProductName}}</div>
+							<div class="item-after">{{orderInfo.ocOrder.scProductPrice | price}}日元</div>
 						</div>
 					</li>
-					<li class="item-content">
+					<li class="item-content" v-for="item in orderInfo.orderAppendList">
 						<div class="item-inner">
-							<div class="item-title">{{orderInfo.scEntourageName}}</div>
-							<div class="item-after">{{orderInfo.scEntouragePrice}}日元</div>
+							<div class="item-title">{{item.scAppendName}}</div>
+							<div class="item-after" v-if="item.scAppendPrice > 0">{{item.scAppendPrice | price}}</div>
+							<div class="item-after" v-else>赠送</div>
 						</div>
 					</li>
 				</ul>
 				<div class="total-item">
 					<div class="item-title"></div>
 					<div class="item-after">合计:<span class="total">
-					{{orderInfo.priceTotal | price}}日元</span></div>
+					{{orderInfo.ocOrder.priceTotal | price}}日元</span></div>
 				</div>
 			</div>
 			<!--end 订单金额-->
@@ -86,7 +86,10 @@ module.exports = {
 	},
 	data:function(){
 		return {
-			orderInfo: {}
+			orderInfo: {
+				ocOrder: {},
+				orderAppendList: []
+			}
 		}
 	},
 	methods: {

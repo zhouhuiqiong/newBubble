@@ -25,15 +25,15 @@
 			<div class="order-num">
 				<div>
 					<p>今日完成订单</p>
-					<h3>20</h3>
+					<h3>{{infoMain.day}}</h3>
 				</div>
 				<div>
 					<p>本周完成订单</p>
-					<h3>100</h3>
+					<h3>{{infoMain.week}}</h3>
 				</div>
 				<div>
 					<p>本月完成订单</p>
-					<h3>300</h3>
+					<h3>{{infoMain.Mouth}}</h3>
 				</div>
 			</div>
 		</div>	
@@ -49,7 +49,8 @@ module.exports = {
 	},
 	data:function(){
 		return {
-			info: {}
+			info: {},
+			infoMain: {}
 		}
 	},
 	methods: {
@@ -61,7 +62,9 @@ module.exports = {
 					id: that.suiteUserId
 				},
 				success: function(result){
-					that.info = result.content;
+					that.infoMain = result.content;
+					that.info = result.content.entourage;
+					
 				}
 			});
 		}

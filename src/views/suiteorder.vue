@@ -18,7 +18,7 @@
 						<span class="item-t">{{item.status | statusAry}}</span>
 						<span class="item-a">{{item.gmtCreateTime}}</a></span>
 					</h3>
-					<h3 class="order-inf-t" v-link="{ name: 'myorderdetails', query: { orderId: item.id}}">
+					<h3 class="order-inf-t">
 						<div>
 							<img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg">
 							<span>{{item.scShopName}}</span>
@@ -40,7 +40,7 @@
 					<div class="user-center-item user-center-item2">
 						<div class="item-title">预约时间</div>
 						<div class="item-after">
-							
+							{{item.gmtAppointment}}
 						</div>
 					</div>
 					<div class="user-center-item user-center-item2">

@@ -13,20 +13,30 @@
 			</div>
 			<!--订单信息v-for="(key,val) in shopList.type"-->
 			<div class="order-inf order-inf4">
-				<h3 class="order-inf-t"><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg"></h3>
+				<h3 class="order-inf-t">
+					<img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg">
+					{{orderInf.scShopName}}
+				</h3>
 				<ul  class="list-block">
-					<li class="item-content" >
+					<li class="item-content">
 						<div class="item-inner">
-							<div class="item-title"></div>
-							<div class="item-after"></div>
+							<div class="item-title">{{orderInf.scProductName}}</div>
+							<div class="item-after">{{orderInf.scProductPrice}}</div>
+						</div>
+					</li>
+					<li class="item-content" v-for="item in orderList">
+						<div class="item-inner">
+							<div class="item-title">{{item.scAppendName}}</div>
+							<div class="item-after" v-if="item.scAppendPrice > 0">{{item.scAppendPrice}}</div>
+							<div class="item-after" v-else>赠送</div>
 						</div>
 					</li>
 				</ul>
 				<div class="total-item">
-							<div class="item-title">订单金额</div>
-							<div class="item-after">合计:<span class="total">
-							日元</span></div>
-					</div>
+					<div class="item-title">订单金额</div>
+					<div class="item-after">合计:<span class="total">
+					{{orderInf.priceTotal | price}}日元</span></div>
+				</div>
 			</div>
 			<!-- 付款方式-->
 			<h3 class="sub-title sub-title1">付款方式</h3>
@@ -64,22 +74,36 @@
 </template>
 <script>
 module.exports = {
-	route: {
-
-	},
 	ready: function(){
 		var that = this;
-			
+		that.q = that.$route.query;
+		that.getOrderDetails();	
 	},
 	data: function(){
 		return {
 			isChange1: true,
-			isChange2: false
+			isChange2: false,
+			orderInf: {},
+			orderList: []
 		}
 	},
 	methods: {
 		submitPay: function(){
 			
+		},
+		getOrderDetails: function(){
+			var that = this;
+			that.getServerData({
+				url: 'order/detail',
+				data: {
+					orderId: that.q.orderId,
+					token: that.$root.userId
+				},
+				success: function(result){
+					that.orderInf = result.content.ocOrder;
+					that.orderList = result.content.orderAppendList;
+				}
+			});
 		},
 		changeType: function(num){
 			for(var i=1; i< 3; i++){
@@ -87,11 +111,6 @@ module.exports = {
 			};
 		}
 	},
-	// computed: {
-	// 	total: function(){
-			
-	// 	}
-	// },
 	route:{
 		activate:function(transition){
 			this.$root.$set('header',this.title);

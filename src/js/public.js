@@ -47,7 +47,7 @@
 				var totalHeight = parseFloat(el.height()) + parseFloat(el.scrollTop());
 				//tab 多个
 				var str = t.currentStr ? t.currentStr : '';
-				if(el[0].scrollHeight - totalHeight < 20){
+				if(el[0].scrollHeight - totalHeight <= 3){
 					setTimeout(function(){
 						var scrollTop = el[0].scrollHeight - el.height() - 20;
 						t['currentPage' + str] ++;
@@ -210,7 +210,7 @@
 					token: scope.$root.userId
 				},
 				success: function(result){
-					scope.userInfo = result.content;
+					scope.userInfo = result.content.entourage;
 					if(typeof fn == 'function') fn();
 				}
 			});

@@ -15,7 +15,7 @@
 					<div class="item-inner">
 						<div class="item-title-row">
 							<div class="item-title">客户评价</div>
-							<div class="item-after">210人去过</div>
+							<div class="item-after">{{prodcutInfo.baojianNum}}人去过</div>
 						</div>
 						<div class="item-text" v-for="(key,val) in prodcutInfo.etagMap">
 							<span class="shop-tag min-shop-tag">{{key}}({{val}})</span>

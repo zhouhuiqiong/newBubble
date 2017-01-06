@@ -73,6 +73,10 @@ function time(time){
           arr[0] += '';
           second = arr.join(':');
       };
+      var firstAry = first.split('-');
+      var str1 = firstAry[1] < 10 ?  '0'+ firstAry[1]  : firstAry[1],
+          str2 = firstAry[2] < 10 ?  '0'+ firstAry[2]  : firstAry[2];
+      first = firstAry[0] + '-' + str1 + '-' + str2;
       return first + ' ' + second;
 };
 exports.imgUrl = imgUrl;

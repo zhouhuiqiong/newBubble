@@ -6,46 +6,43 @@
 		</header>
 		<div class="content infinite-scroll bg">
 			<!--订单详情-->
-			<div class="order-inf order-inf1 order-inf3"  v-for="item in orderInfo" track-by="$index" v-link="{ name: 'myorderdetails', query: { orderId: item.id}}">
+			<div class="order-inf order-inf1 order-inf3"  v-for="item in orderInfo" track-by="$index" v-link="{ name: 'myorderdetails', query: { orderId: item.ocOrder.id}}">
 				<h3 class="o-title active">
-					<span class="item-t clr3" :class="{'clr3': item.status > 2}">{{item.status | statusAry}}</span>
-					<span class="item-a">{{item.gmtCreateTime}} <a class="iconfont icon-lajitong order-del-ic" @click="delItem($event,item.id)" v-if="item == 3"></a></span>
+					<span class="item-t clr3" :class="{'clr3': item.ocOrder.status > 2}">{{item.ocOrder.status | statusAry}}</span>
+					<span class="item-a">{{item.ocOrder.gmtAppointment | time}} <a class="iconfont icon-lajitong order-del-ic" @click="delItem($event,item.ocOrder.id)" v-if="item.ocOrder.status == 3"></a></span>
 				</h3>
-				<h3 class="order-inf-t" v-link="{ name: 'details', query: { orderId: item.id}}">
-					<div><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg"><span>{{item.scShopName}}</span></div>
+				<h3 class="order-inf-t" v-link="{ name: 'details', query: { shopid: item.ocOrder.scShopId}}">
+					<div><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg"><span>{{item.ocOrder.scShopName}}</span></div>
 		  			<a class="iconfont icon-iconright"></a>
 				</h3>
 				<ul  class="list-block">
 						<li class="item-content" >
 							<div class="item-inner">
-								<div class="item-title">{{item.scProductName}}</div>
-								<div class="item-after">{{item.scProductPrice | price}}日元</div>
+								<div class="item-title">{{item.ocOrder.scProductName}}</div>
+								<div class="item-after">{{item.ocOrder.scProductPrice | price}}</div>
 							</div>
 						</li>
-						<li class="item-content" >
+						<li class="item-content" v-for="item in item.orderAppendList">
 							<div class="item-inner">
-								<div class="item-title">{{item.scEntourageName}}</div>
-								<div class="item-after">								{{item.scEntouragePrice | price}}日元</div>
+								<div class="item-title">{{item.scAppendName}}</div>
+								<div class="item-after" v-if="item.scAppendPrice > 0">{{item.scAppendPrice}}</div>
+								<div class="item-after" v-else>赠送</div>
 							</div>
 						</li>
 					</ul>
 				<div class="total-item">
 					<div class="item-title">订单金额</div>
 					<div class="item-after">合计:<span class="total">
-							{{item.priceTotal | price}}日元</span></div>
+							{{item.ocOrder.priceTotal | price}}日元</span></div>
 				</div>
 				<div class="total-item">
-					<p class="clr3" v-if="item.status == 4"><i class="iconfont icon-tanhao ver1"></i></p>
-					<a href="tel:{{item.scShopTelphone}}" class="btn2">联系客服</a>
-					<a href="javascript:void(0)" class="btn2 btn22" v-if="item.status == 1|| item.status == 2">商家位置</a>
-					<a href="javascript:void(0)" class="btn2 btn22" v-if="item.status == 2">联系随从</a>
-					<a href="javascript:void(0)" class="btn2 btn22" v-if="item.status == 3" @click="orderEvaluate(item.id)">评价</a>
-
+					<p class="clr3" v-if="item.ocOrder.status == 4"><i class="iconfont icon-tanhao ver1"></i></p>
+					<a href="tel:{{item.ocOrder.scShopTelphone}}" class="btn2">联系客服</a>
+					<a href="javascript:void(0)" class="btn2 btn22" v-if="item.ocOrder.status == 1|| item.ocOrder.status == 2">商家位置</a>
+					<a href="javascript:void(0)" class="btn2 btn22" v-if="item.ocOrder.status == 2">联系随从</a>
+					<a href="javascript:void(0)" class="btn2 btn22" v-if="item.ocOrder.status == 3" @click="orderEvaluate(item.ocOrder.id)">评价</a>
 				</div>
-
 			</div>
-			<!--end 订单详情-->
-
 			<!--end 订单-->
 			<!--商品详情-->
 			<div v-show="!loading">
@@ -68,7 +65,7 @@ module.exports = {
 	},
 	data:function(){
 		return {
-			pageSize: 20,
+			pageSize: 10,
 			noData: false,
 			currentPage: 0,
 			orderInfo: [],
