@@ -17,7 +17,7 @@
 							<div class="item-inner">
 								<div class="item-title-row">
 									<div class="item-title">{{shopInfo.name}}</div>
-									<div class="item-after">1.9km</div>
+									<div class="item-after">{{shopInfo.miles}}km</div>
 								</div>
 								<div class="shop-tag-box">
 									<span class="shop-tag shop-tag-active" v-for="tag in shopInfo.etagsArr">{{tag}}</span>

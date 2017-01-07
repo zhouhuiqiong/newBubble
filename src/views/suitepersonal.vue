@@ -49,7 +49,9 @@ module.exports = {
 	},
 	data:function(){
 		return {
-			info: {},
+			info: {
+				
+			},
 			infoMain: {}
 		}
 	},

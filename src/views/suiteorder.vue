@@ -20,7 +20,7 @@
 					</h3>
 					<h3 class="order-inf-t">
 						<div>
-							<img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg">
+							<img  :src="$root.baseImgSrc + '/' + item.productPic">
 							<span>{{item.scShopName}}</span>
 						</div>
 					</h3>

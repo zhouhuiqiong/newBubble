@@ -30,10 +30,10 @@
 			<div class="select-box" >
 				<ul class="change-list hide item">
 					<li><span>新宿1</span></li>
-					<li><span>新宿1</span</li>
+					<li><span>新宿1</span></li>
 				</ul>
 				<ul class="change-list hide item">
-					<li><span >新宿2</span></li>
+					<li><span>新宿1</span</li>
 					<li><span>新宿2</span</li>
 				</ul>
 				<ul class="change-list hide item">
@@ -53,10 +53,9 @@
 					<dl class="screen-item clearfix">
 						<dt>价格</dt>
 						<dd class="screen-item-list">
-							<div><span class="shop-tag1 ">服务好</span></div>
-							<div><span class="shop-tag1 ">一级棒</span></div>
-							<div><span class="shop-tag1">性价比高</span></div>
-							<div><span class="shop-tag1">安全</span></div>
+							<div v-for="item in allPrice" >
+								<span class="shop-tag1"  @click="screenFn($event,[item.min,item.max],'price')">{{item.min}}<i v-if="item.max">-{{item.max}}</i></span>
+							</div>
 						</dd>
 					</dl>
 					<div class="screen-btn-box">
@@ -76,7 +75,7 @@
 						<div class="item-inner">
 							<div class="item-title-row">
 								<div class="item-title">{{item.name}}</div>
-								<div class="item-after">1.9km</div>
+								<div class="item-after">{{item.miles}}km</div>
 							</div>
 							<div class="shop-tag-box">
 								<!--shop-tag-active-->
@@ -119,6 +118,9 @@ module.exports = {
 			evaluateTagsAry: [],
 			etagId: [],
 			ctagArr: [],
+			allPrice: [],
+			priceXMin: '',
+			priceXMax: '',
 			baseImgSrc: ''
 		}
 	},
@@ -154,7 +156,7 @@ module.exports = {
 			scrollObj: '.content'
 		});
 		that.evaluateTags();
-		that.getAllctag();
+		that.getAllPrice();
 	},
 	watch: {
 	    'currentPage': function (val, oldVal) {
@@ -187,6 +189,19 @@ module.exports = {
 				scope: that
 			});
 		},
+		handle: function(event,id){
+            var that = this;
+            $(event.target).parent('.change-list').find('.icon-duigou').remove();
+            $(event.target).append('<i class="iconfont icon-duigou"></i>');
+            setTimeout(function(){
+                $(event.target).parent().addClass('hide');
+                that.isSelectShade = false;
+                that.$nav.removeClass('active');
+            },300);
+
+            that.currentPage = 1;
+            that.searchShopList();
+        },
 		changeType: function(e,num){
 			var that = this;
 			var $obj = $(e.currentTarget);
@@ -223,7 +238,10 @@ module.exports = {
 			var that = this;
 			$('.screen-item-list span').removeClass('active');
 			that.closeScreen();
-			that.getCityData();
+			that.priceXMin = that.priceXMax = '';
+			that.etagId = [];
+			that.currentPage == 1;
+			that.searchShopList();
 		},
 		searchGo: function(){//搜索页面值
 			if(this.searchVal) this.$router.go({path:'seach', query: {search: this.searchVal}});
@@ -260,8 +278,29 @@ module.exports = {
 		},
 		screenFn: function(e,id,type){//筛选-评价与价格
 			var t = $(e.target), that = this;
-			if(type == 'evaluate') that.etagId.push(id);
-			$(e.target).addClass('active');
+			if(type == 'evaluate'){
+				if($(e.target).hasClass('active')){
+					$(e.target).removeClass('active')
+					var num = that.etagId.indexOf(id);
+					that.etagId.splice(num,1);
+				}else{
+					$(e.target).addClass('active');
+					that.etagId.push(id);
+
+				};
+			};
+			if(type == 'price'){
+				var results = $(e.currentTarget).hasClass('active');
+				$(e.currentTarget).parents('.screen-item-list').find('.shop-tag1').removeClass('active');
+				if(results){
+					that.priceXMin = '';
+					that.priceXMax = '';
+				}else{
+					$(e.currentTarget).addClass('active');
+					that.priceXMin = id[0];
+					that.priceXMax = id[1];
+				}
+			};
 		},
 		searchShopList: function(){//标签筛选选查询
 			var that = this;
@@ -269,6 +308,8 @@ module.exports = {
 	   			url: 'shop/search',
 	   			data: {
 	   				etagId: that.etagId,
+	   				priceXMin: that.priceXMin,
+	   				priceXMax: that.priceXMax,
 	   				pageNo: that.currentPage,
 	   				pageSize: that.pageSize
 	   			},
@@ -279,15 +320,14 @@ module.exports = {
 	   			}
 	   		});
 		},
-		getAllctag: function(){//获取全部风俗
+		getAllPrice: function(){//获取全部价格
 			var that = this;
 			that.getServerData({
-	   			url: 'tag/ctag',
+	   			url: 'sys/get_price',
 	   			success: function(results){
-	   				that.ctagArr = results.content;
+	   				that.allPrice = results.content;
 	   			}
 	   		});
-
 		}
 	},
 	components:{

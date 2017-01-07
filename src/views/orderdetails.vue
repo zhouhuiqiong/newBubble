@@ -39,6 +39,7 @@
 	    		<h3 class="text-center">预约前必读</h3>
 	    		<div class="content-padded">
 	    			{{prodcutInfo.descBeforeOrder}}
+
 	    		</div>
 	    		<div class="ordercheck">
 	    			<span class="iconfont icon-checkbox  read-chekbox" @click="checkedFun($event)" :class="{'may': isMay,'icon-duoxuan':checked}"></span>
@@ -108,11 +109,17 @@ module.exports = {
 				}
 			});
 			that.isBase = false;
+			setTimeout(function(){//没有滚动条的操作
+				if($('.content-padded')[0].scrollHeight <= $('.content-padded')[0].clientHeight){
+					that.isMay = true;
+					that.news = '请勾选';
+					that.isBase = true;
+				};
+			},200)
 			$('.content-padded').on('scroll', function(){
 				var h = $(this).scrollTop()  + $(this)[0].clientHeight,
 					hContent = $(this)[0].scrollHeight;
 					if(hContent - h <= 10){
-						//that.isDisabled = false;
 						that.isMay = true;
 						that.news = '请勾选';
 						that.isBase = true;

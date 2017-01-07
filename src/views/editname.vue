@@ -9,7 +9,7 @@
 			<div class="edit-box">
 				<div class="input-style" v-show-placeholder>
 					<span class="place-tag">昵称</span>
-					<input type="text" value="{{userInfo.userName}}" v-model="userInfo.userName" id="realName">
+					<input type="text" value="{{userInfo.realName}}" v-model="userInfo.realName" id="realName">
 					<i class="iconfont icon-shanchu"></i>
 				</div>
 			</div>
