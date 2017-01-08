@@ -3,6 +3,8 @@ require('./css/common.css');//加载公共样式
 require('./css/sm.css');//加载公共样式
 require('./css/main.css');//加载公共样式
 require('./js/zepto.min.js')
+
+
 require('./js/sm.js')
 require('./js/util.js')
 var Vue = require('vue');

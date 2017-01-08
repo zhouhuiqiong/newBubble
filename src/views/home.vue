@@ -29,16 +29,13 @@
 			<!--list-->
 			<div class="select-box" >
 				<ul class="change-list hide item">
-					<li><span>新宿1</span></li>
-					<li><span>新宿1</span></li>
+					<li v-for="(key,val) in nearArr" @click="handle($event,'near',val)"><span>{{key}}</span></li>
 				</ul>
 				<ul class="change-list hide item">
-					<li><span>新宿1</span</li>
-					<li><span>新宿2</span</li>
+					<li v-for="item in ctagsArr" @click="handle($event,'ctags',item.id)"><span>{{item.name}}</span></li>
 				</ul>
 				<ul class="change-list hide item">
-					<li><span >新宿3</span></li>
-					<li><span>新宿3</span</li>
+					<li v-for="(key,val) in capacityArr" @click="handle($event,'capacity',val)"><span>{{key}}</span></li>
 				</ul>
 				<!---->
 				<div class="screen-list hide item">
@@ -106,7 +103,7 @@ module.exports = {
 			msg:'aboutMessage',
 			title:'home',
 			dataList: [],
-			loading: true,//取反
+			loading: false,//取反
 			isSelectShade: false,
 			countryName: '',
 			isIndex: false,
@@ -118,9 +115,15 @@ module.exports = {
 			evaluateTagsAry: [],
 			etagId: [],
 			ctagArr: [],
+			nearArr: [],
 			allPrice: [],
+			capacityArr: [],
+			ctagsArr: [],
 			priceXMin: '',
 			priceXMax: '',
+			lat: '',
+			lon: '',
+			ctagId: '',
 			baseImgSrc: ''
 		}
 	},
@@ -130,21 +133,6 @@ module.exports = {
 	    that.$nav = $('.seach-select-list li');
 	    that.$item = $('.select-box .item');
 	    //that.initCity();
-		//附近
-		that.$nearby = $('.change-list>li');
-		that.$nearby.on('click', function(){
-			var t = $(this);
-			$('.icon-duigou').remove();
-			t.append('<i class="iconfont icon-duigou"></i>');
-			that.eStyle.clickActive(t);
-			setTimeout(function(){
-				t.parent().addClass('hide');
-				that.isSelectShade = false;
-				that.$nav.removeClass('active');
-			},300);
-			//选项更改后变化，加载数据
-			that.currentPage = 1;		
-		});
 		//鼠标键盘事件，右下角
 		$('.search-input-box').on('submit', function(e){
 			that.searchGo()
@@ -157,6 +145,9 @@ module.exports = {
 		});
 		that.evaluateTags();
 		that.getAllPrice();
+		that.getNear();//附近
+		that.getCapacity()//只能排序
+		that.getCtags();//风俗
 	},
 	watch: {
 	    'currentPage': function (val, oldVal) {
@@ -189,7 +180,7 @@ module.exports = {
 				scope: that
 			});
 		},
-		handle: function(event,id){
+		handle: function(event,type,data){
             var that = this;
             $(event.target).parent('.change-list').find('.icon-duigou').remove();
             $(event.target).append('<i class="iconfont icon-duigou"></i>');
@@ -198,7 +189,20 @@ module.exports = {
                 that.isSelectShade = false;
                 that.$nav.removeClass('active');
             },300);
-
+            if(type == 'near'){
+            	var ln = data.split(';');
+            	that.lat = ln[0];
+            	that.lon = ln[1];
+            }else if(type == 'ctags'){
+            	that.ctagId = data;
+            }else if(type == 'capacity'){
+            	for(var key in data){
+            		that[key] = data[key];
+            	};
+            }
+            // switch(type){
+            // 	case 'near': 
+            // }
             that.currentPage = 1;
             that.searchShopList();
         },
@@ -270,7 +274,7 @@ module.exports = {
 		evaluateTags: function(){//筛选-评价
 			var that = this;
 			that.getServerData({
-	   			url: 'tag/ctags',
+	   			url: 'tag/etags',
 	   			success: function(results){
 	   				that.evaluateTagsAry = results.content;
 	   			}
@@ -310,6 +314,9 @@ module.exports = {
 	   				etagId: that.etagId,
 	   				priceXMin: that.priceXMin,
 	   				priceXMax: that.priceXMax,
+	   				lat: that.lat,
+	   				lon: that.lon,
+	   				ctagId: that.ctagId,
 	   				pageNo: that.currentPage,
 	   				pageSize: that.pageSize
 	   			},
@@ -326,6 +333,33 @@ module.exports = {
 	   			url: 'sys/get_price',
 	   			success: function(results){
 	   				that.allPrice = results.content;
+	   			}
+	   		});
+		},
+		getNear: function(){//获取附近
+			var that = this;
+			that.getServerData({
+	   			url: 'sys/near',
+	   			success: function(results){
+	   				that.nearArr = results.content;
+	   			}
+	   		});
+		},
+		getCapacity: function(){//获取智能排序
+			var that = this;
+			that.getServerData({
+	   			url: 'sys/capacity_sort',
+	   			success: function(results){
+	   				that.capacityArr = results.content;
+	   			}
+	   		});
+		},
+		getCtags: function(){//风俗
+			var that = this;
+			that.getServerData({
+	   			url: 'tag/ctags',
+	   			success: function(results){
+	   				that.ctagsArr = results.content;
 	   			}
 	   		});
 		}
