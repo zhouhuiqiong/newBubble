@@ -249,7 +249,7 @@ module.exports = {
 		initCity: function(){
 			var that = this;
 			var countryName = that.cookie.get('countryName');
-	    	that.countryName = countryName ? countryName : '日本';
+	    	that.countryName = countryName ? countryName : '东京都';
 		},
 		getCityData: function(){
 			var that = this;

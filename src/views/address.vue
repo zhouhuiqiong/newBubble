@@ -109,11 +109,11 @@ module.exports = {
 		},
 		updataPosition: function(position){
 			var that = this;
-			var position = {
-				coords: {}
-			};
-			position.coords.latitude = '30.2616125';
-			position.coords.longitude = '120.0318063';
+			// var position = {
+			// 	coords: {}
+			// };
+			// position.coords.latitude = '30.2616125';
+			// position.coords.longitude = '120.0318063';
 			$.ajax({
 				url:'http://maps.google.com/maps/api/geocode/json?latlng='+ position.coords.latitude+','+ position.coords.longitude+'&language=zh-CN&sensor=false',
 				type:'get',
