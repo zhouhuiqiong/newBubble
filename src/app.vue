@@ -236,8 +236,9 @@ module.exports = {
           this.isIndex = isIndex;
       },
       'userId': function(userInf){
-          this.userId = userInf;
-          this.getChatName(userInf);
+          var that = this;
+          that.userId = userInf;
+          if(that.cookie.get('userInf')) that.getChatName(JSON.parse(that.cookie.get('userInf')).id);
       }
     },
     methods: {
@@ -263,11 +264,11 @@ module.exports = {
         });
       }
     },
-    ready:function(){
+    ready:function(){      
       var that = this;
       if(!that.userId){
         that.userId = that.cookie.get('userId');
-        that.getChatName(that.userId);
+        if(that.cookie.get('userInf')) that.getChatName(JSON.parse(that.cookie.get('userInf')).id);
       };
       that.baseImg(); 
     }

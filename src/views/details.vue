@@ -122,7 +122,9 @@ module.exports = {
 		//滚动获取数据
 		that.scrollList({
 			le: '.media-list',
-			scrollObj: '.content'
+			scrollObj: '.content',
+            scope: that
+			
 		});
 		that.currentPage0 = 1; 
 		that.changeType(0);
@@ -144,7 +146,9 @@ module.exports = {
 			noData: false,//无数据标志
 			listType: 0,//1用户评论列表
 			imgL: '',
-			locationBaidu: []
+			locationBaidu: [],
+			loaded: true//加载完了才能加载下一次
+
 		}
 	},
 	watch: {

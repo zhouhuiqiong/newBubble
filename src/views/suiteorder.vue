@@ -83,7 +83,8 @@ module.exports = {
 		//加载数据
 		that.scrollList({
 			le: '.infinite-order-list',
-			scrollObj: '.content'
+			scrollObj: '.content',
+			scope: that
 		});
 		that.getOrderList();
 	},
@@ -94,6 +95,7 @@ module.exports = {
 			pageSize: 10,
 			currentPage: 1,
 			loading: true,
+			loaded: true,//加载完了才能加载下一次
 			orderType: 2//订单状态：2：支付,3:已完成，空：全部
 		}
 	},
@@ -112,6 +114,8 @@ module.exports = {
 	   				that.dataList = that.dataList.concat(results.content);
 	   				if(results.content.length < that.pageSize) that.noData = true;
 	   				that.loading = true;
+        			that.loaded = true;
+	   				
 	   			}
 	   		});
 		}

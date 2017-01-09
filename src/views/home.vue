@@ -124,7 +124,9 @@ module.exports = {
 			lat: '',
 			lon: '',
 			ctagId: '',
-			baseImgSrc: ''
+			baseImgSrc: '',
+			loaded: true//加载完了才能加载下一次
+
 		}
 	},
 	ready: function(){
@@ -141,7 +143,9 @@ module.exports = {
 		//滚动获取数据
 		that.scrollList({
 			le: '.media-list',
-			scrollObj: '.content'
+			scrollObj: '.content',
+            scope: that
+
 		});
 		that.evaluateTags();
 		that.getAllPrice();
@@ -268,6 +272,8 @@ module.exports = {
 	   				that.dataList = that.dataList.concat(results.content);
 	   				if(results.content.length < that.pageSize) that.noData = true;
 	   				that.loading = true;
+        			that.loaded = true;
+
 	   			}
 	   		});
 		},
@@ -324,6 +330,8 @@ module.exports = {
 	   				that.dataList = that.dataList.concat(results.content);
 	   				if(results.content.length < that.pageSize) that.noData = true;
 	   				that.loading = true;
+        			that.loaded = true;
+	   				
 	   			}
 	   		});
 		},

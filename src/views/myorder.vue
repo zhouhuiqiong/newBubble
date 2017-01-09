@@ -61,10 +61,7 @@ module.exports = {
         that.scrollList({
             le: '.content',
             scrollObj: '.content',
-            scope: that,
-            getDateFn: function(){
-            	that.getOrderList();
-            }
+            scope: that
         });
 	},
 	data:function(){

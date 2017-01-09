@@ -47,13 +47,15 @@ module.exports = {
 					url: 'login',
 					data: that.user,
 					success: function(result){
-						that.$dispatch('userId',result.content.userToken);
+						that.cookie.set('userInf', JSON.stringify(result.content));
 						that.cookie.set('userId', result.content.userToken);
+
+						that.$dispatch('userId',result.content.userToken);
 						$.toast('登录成功!');
 						if(that.$route.query.back == 1){//从预约过来的
 							that.goBack();
 						}else{
-							that.$route.go('/personal');
+							that.$router.go({path:'/personal'});
 						};
 					},
 					error: function(result){

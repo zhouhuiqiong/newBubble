@@ -44,7 +44,9 @@ module.exports = {
         //滚动获取数据
         that.scrollList({
             le: '.card-box',
-            scrollObj: '.content'
+            scrollObj: '.content',
+            scope: that
+
         });
 
         that.getTagsList();
@@ -59,7 +61,9 @@ module.exports = {
             currentPage: 1,
             tagId: '',//默认值
             tagsAry: [],
-            loading: true
+            loading: true,
+            loaded: true//加载完了才能加载下一次
+
         }
     },
     watch: {
@@ -116,6 +120,8 @@ module.exports = {
                     that.hueAry = results.content;
                     if(results.content.length < that.pageSize) that.noData = true;
                     that.loading = true;
+                    that.loaded = true;
+                    
                 }
             })
         },

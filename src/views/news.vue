@@ -7,8 +7,8 @@
 		<div class="content home-content" >
 			<div class="list-block infinite-list  media-list news-list">
 				<ul>
-					<li v-link="{ name: 'chat', query: { name: '1'}}">
-						<a href="javascript:void(0)" class="item-content">
+					<li >
+						<a href="/newBubble/src/chat/chat.html?name=111" class="item-content">
 						  <div class="item-media">
 						  	<img src="../images/suite/news.png" >
 						  </div>
@@ -50,7 +50,7 @@ module.exports = {
 	},
 	data:function(){
 		return {
-			
+			baseHtp: window.location.protocol  + window.location.host
 		}
 	},
 	methods: {

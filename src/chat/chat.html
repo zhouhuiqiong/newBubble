@@ -1,39 +1,52 @@
-<template>
-	<div class="container">
-		<header class="bar bar-nav title-bar">
-		  <a class="iconfont icon-iconleft pull-left" v-go-history></a>
-		  <h1 class="title">{{sendName}}</h1>
-		</header>
-		<div class="content home-content">
-			<!--消息区域-->
-			<div class="chat-list">
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
+		<title></title>
+		<link href="../css/sm.css" rel="stylesheet">
+		<link href="../css/main.css" rel="stylesheet">
+	</head>
+	<body id="chatApp">
+		<div class="container">
+			<header class="bar bar-nav title-bar">
+			  <a class="iconfont icon-iconleft pull-left" @click="goBack()"></a>
+			  <h1 class="title">{{sendName}}</h1>
+			</header>
+			<div class="content home-content">
+				<!--消息区域-->
+				<div class="chat-list">
 
+				</div>
+				<!--end 消息区域-->
 			</div>
-			<!--end 消息区域-->
+			<div class="chat-input-box">
+				<input type="text" name="" placeholder="输入内容" v-model="sendNews">
+				<button class="btn2 btn23 btn231" @click="sendNewsFn()">发送</button>
+			</div>
 		</div>
-		<div class="chat-input-box">
-			<input type="text" name="" placeholder="输入内容" v-model="sendNews">
-			<button class="btn2 btn23 btn231" @click="sendNewsFn()">发送</button>
-		</div>
-	</div>
-</template>
+	</body>
+</html>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/strophe-custom-1.3.2.js"></script>
+<script type="text/javascript" src="../js/littlec.im-1.3.2.js"></script>
+<script type="text/javascript" src="vue.min.js"></script>
+
 <script>
-// require('../js/strophe-custom-1.3.2.js');
-// require('../js/littlec.im-1.3.2.js');
-module.exports = {
+new Vue({
+	el: '#chatApp',
 	ready: function(){
-		// var that = this;
-		// that.init();
-		// that.q = that.$route.query;
-		// that.sendName = that.q.name;
-		// that.$newsBox = $('.chat-list');
-		// that.logo();
+		var that = this;
+		that.init();
+		that.sendName = that.GetQueryString('name');
+		$('.title').text(that.sendName)
+		that.$newsBox = $('.chat-list');
+		that.logo();
+
 	},
-	data:function(){
-		return {
-			sendNews: '',
-			limit: 10//获取几条历史信息
-		}
+	data: {
+		sendNews: '',
+		limit: 10//获取几条历史信息
 	},
 	methods: {
 		init: function(){
@@ -125,14 +138,15 @@ module.exports = {
 									message.content+
 							'</span></p></div></section>';
 			that.$newsBox.append(html);
-		}
-	},
-	route:{
-		activate:function(transition){
-			this.$root.$set('header',this.title);
-			transition.next();
+		},
+		GetQueryString: function(name){
+			var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if(r!=null)return  unescape(r[2]); return null;
+		},
+		goBack: function(){
+			history.go(-1);
 		}
 	}
-};
-
+});
 </script>
