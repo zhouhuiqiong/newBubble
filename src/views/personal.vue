@@ -57,7 +57,6 @@
 						<span></span>
 						<a href="tel:{{lastOrderInfo.scShopTelphone}}" class="btn2">联系客服</a>
 					</div>
-
 				</div>
 				<!--订单信息-->
 				<a class="yu-time" href="tel://18603921359">

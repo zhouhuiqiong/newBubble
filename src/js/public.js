@@ -210,7 +210,7 @@
 					token: scope.$root.userId
 				},
 				success: function(result){
-					scope.userInfo = result.content.entourage;
+					scope.userInfo = result.content;
 					if(typeof fn == 'function') fn();
 				}
 			});

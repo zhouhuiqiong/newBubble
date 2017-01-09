@@ -219,7 +219,8 @@ module.exports = {
         header          : '首页',
         routeList       : [],    //访问周期中所访问了那些路径,在route.js中设置
         userId: '',
-        baseImgSrc: ''
+        baseImgSrc: '',
+        appKey: '067321eu'//测试机
         
       };
     },

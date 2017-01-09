@@ -12,7 +12,7 @@
 					<span class="item-a">{{item.ocOrder.gmtAppointment | time}} <a class="iconfont icon-lajitong order-del-ic" @click="delItem($event,item.ocOrder.id)" v-if="item.ocOrder.status == 3"></a></span>
 				</h3>
 				<h3 class="order-inf-t" v-link="{ name: 'details', query: { shopid: item.ocOrder.scShopId}}">
-					<div><img src="http://www.renrenbuy.com/yungou/images/img_weixin.jpg"><span>{{item.ocOrder.scShopName}}</span></div>
+					<div><img  :src="$root.baseImgSrc + '/' + item.productPic"><span>{{item.ocOrder.scShopName}}</span></div>
 		  			<a class="iconfont icon-iconright"></a>
 				</h3>
 				<ul  class="list-block">

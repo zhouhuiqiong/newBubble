@@ -9,7 +9,7 @@
 				<ul>
 					<li class="itme-style min-itme-style">
 						<a v-link="{ name: 'orderdetails', query: { productId: orderInfo.ocOrder.scProductId}}" class="item-content ">
-							<div class="item-media"><img src=""></div>
+							<div class="item-media"><img :src="$root.baseImgSrc + '/' + orderInfo.productPic"></div>
 							<div class="item-inner sale-txt shop-txt">
 								<div class="item-title-row">
 									<div class="item-title">{{orderInfo.ocOrder.scProductName}}</div>

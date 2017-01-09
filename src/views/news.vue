@@ -7,7 +7,7 @@
 		<div class="content home-content" >
 			<div class="list-block infinite-list  media-list news-list">
 				<ul>
-					<li v-link="{ name: 'chat', query: { id: '1'}}">
+					<li v-link="{ name: 'chat', query: { name: '1'}}">
 						<a href="javascript:void(0)" class="item-content">
 						  <div class="item-media">
 						  	<img src="../images/suite/news.png" >
@@ -23,7 +23,7 @@
 						  </div>
 						</a>
 					</li>
-					<li v-link="{ name: 'chat', query: { id: '2'}}">
+					<li v-link="{ name: 'chat', query: { name: '2'}}">
 						<a href="javascript:void(0)" class="item-content">
 						  <div class="item-media">
 						  	<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" >
@@ -39,7 +39,6 @@
 						  </div>
 						</a>
 					</li>
-
 				</ul>
 			</div>
 		</div>
@@ -47,9 +46,6 @@
 </template>
 <script>
 module.exports = {
-	route: {
-
-	},
 	ready: function(){
 	},
 	data:function(){
