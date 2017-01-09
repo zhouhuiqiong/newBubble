@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
 		<header class="bar bar-nav title-bar title-bar3 ">
-		  <a class="save-btn" v-link="{name:'forget'}">注册</a>
+		  <a class="save-btn" v-link="{name:'sign'}">注册</a>
 		  <a class="iconfont icon-iconfontclosesmall pull-left" v-go-history></a>
 		  <h1 class="title">邮箱登录</h1>
 		</header>
@@ -50,7 +50,11 @@ module.exports = {
 						that.$dispatch('userId',result.content.userToken);
 						that.cookie.set('userId', result.content.userToken);
 						$.toast('登录成功!');
-						that.goBack();
+						if(that.$route.query.back == 1){//从预约过来的
+							that.goBack();
+						}else{
+							that.$route.go('/personal');
+						};
 					},
 					error: function(result){
 						$.toast(result.content);

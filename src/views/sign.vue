@@ -72,6 +72,13 @@ module.exports = {
 				data: that.user,
 				success: function(result){
 					$.toast('注册成功');
+					//小溪账号
+					that.chat.chatSign({
+						id: result.content,
+						type: 1,
+						loginName: that.user.email,
+						loginPwd: that.user.pwd
+					});
 					that.$router.go({path:'/login'});
 				},
 				error: function(result){

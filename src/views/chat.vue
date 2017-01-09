@@ -7,34 +7,7 @@
 		<div class="content home-content">
 			<!--消息区域-->
 			<div class="chat-list">
-<!-- 				<section class="msg-list">
-					<div class="uword">
-						<img class="offline" src="http://a.tbcdn.cn/mw/app/ww/h5/images/offline.png">
-						<p>
-							<span>
-							<i class="u-jian"></i>
 
-								<em>11-27 09:48:19</em>
-								<br>
-							少爷正在用餐，亲可自行拍下，有问题少爷会稍后给亲详细的回复，希望亲可以购物愉快~！
-							</span>
-						</p>
-					</div>
-				</section>
-				<section class="msg-list">
-					<div class="iword">
-						<p>
-							<span>
-							<i class="u-jian"></i>
-
-								<em>11-27 09:48:19</em>
-								<br>
-									希望亲可以购物愉快~！
-							</span>
-						</p>
-					</div>
-				</section> -->
-				
 			</div>
 			<!--end 消息区域-->
 		</div>
@@ -107,18 +80,10 @@ module.exports = {
 		},
 		logo: function(){
 			var that = this;
-			// var options = {
-			// 	username: 'test', //用户名字符串 
-			// 	password: '123456',//密码字符串 name:’testnick,//用户昵称字符串
-			// 	success: function(msg){
-			// 		console.log(msg)
-			// 	}//注册成功回调函数 error:function(e){console.log(e) }//注册失败回调函数
-			// }
-			// that.conn.registerUserWithoutPhoneCode(options);
-			//登录
+			if(!that.$root.chatAccount) return;
 			that.conn.open({
-				user :'test',
-				pwd : '123456' 
+				user : that.$root.chatAccount.loginName,
+				pwd : that.$root.chatAccount.loginPwd 
 			});
 		},
 		historyNews: function(){//获取历史消息

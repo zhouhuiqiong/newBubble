@@ -1,6 +1,6 @@
-if (typeof jQuery == 'undefined') {
+if (typeof Zepto == 'undefined') {
     alert("need jquery");
-} if(typeof Strophe == 'undefined'){
+} if(typeof Zepto == 'undefined'){
     alert("need Strophe");
 } else {
 

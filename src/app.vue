@@ -220,7 +220,8 @@ module.exports = {
         routeList       : [],    //访问周期中所访问了那些路径,在route.js中设置
         userId: '',
         baseImgSrc: '',
-        appKey: '067321eu'//测试机
+        appKey: '067321eu',//测试机
+        chatAccount: ''//聊天账号
         
       };
     },
@@ -236,6 +237,7 @@ module.exports = {
       },
       'userId': function(userInf){
           this.userId = userInf;
+          this.getChatName(userInf);
       }
     },
     methods: {
@@ -247,11 +249,26 @@ module.exports = {
             that.baseImgSrc = results.content.sysImgDomain;
           }
         });
+      },
+      getChatName: function(id){//获取聊天用户名
+        var that = this;
+        that.getServerData({
+          url: 'brook/get',
+          data: {
+            id: id
+          },
+          success: function(results){
+            that.chatAccount = results.content;
+          }
+        });
       }
     },
     ready:function(){
       var that = this;
-      if(!that.userId) that.userId = that.cookie.get('userId');
+      if(!that.userId){
+        that.userId = that.cookie.get('userId');
+        that.getChatName(that.userId);
+      };
       that.baseImg(); 
     }
 }

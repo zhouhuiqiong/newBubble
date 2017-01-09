@@ -56,20 +56,25 @@
 module.exports = {
 	ready: function(){
 		var that = this;
-		that.currentPage = 1;
+		that.getOrderList();
 		//滚动获取数据
         that.scrollList({
             le: '.content',
-            scrollObj: '.content'
+            scrollObj: '.content',
+            scope: that,
+            getDateFn: function(){
+            	that.getOrderList();
+            }
         });
 	},
 	data:function(){
 		return {
 			pageSize: 10,
 			noData: false,
-			currentPage: 0,
+			currentPage: 1,
 			orderInfo: [],
-			loading: true
+			loading: true,
+			loaded: true//加载完了才能加载下一次
 		}
 	},
 	watch: {
@@ -92,6 +97,7 @@ module.exports = {
 					that.orderInfo = that.orderInfo.concat(result.content);
 					if(result.content.length < that.pageSize) that.noData = true;
         			that.loading = true;
+        			that.loaded = true;
 				}
 			});
 		},

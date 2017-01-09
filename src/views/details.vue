@@ -213,6 +213,7 @@ module.exports = {
         			that.dataList0 = that.dataList0.concat(result.content);
         			if(result.content && result.content.length < that.pageSize) that.noData = true;
         			that.loading = true;
+        			that.loaded = true;
         		}
         	});
         },

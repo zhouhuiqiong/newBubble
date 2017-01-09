@@ -16,7 +16,7 @@
 			//跨域
 			$.ajax({  
 		        type: 'post',  
-		        url : 'http://118.178.188.7:8104/'+ data.url +'.action',  
+		        url : 'https://118.178.188.7:8443/'+ data.url +'.action',  
 		        data: data.data, 
 		        success: function(results){
 		        	if(results.state == 200){
@@ -32,7 +32,7 @@
 		};
 		//滚动条加载数据
 		that.scrollList = function(data){
-			var t = this;
+			var t = data.scope;
 			var params = $.extend({
 			},data);
 			$(params.scrollObj).scrollTop(0);
@@ -47,12 +47,16 @@
 				var totalHeight = parseFloat(el.height()) + parseFloat(el.scrollTop());
 				//tab 多个
 				var str = t.currentStr ? t.currentStr : '';
-				if(el[0].scrollHeight - totalHeight <= 3){
-					setTimeout(function(){
-						var scrollTop = el[0].scrollHeight - el.height() - 20;
-						t['currentPage' + str] ++;
-						el.scrollTop(scrollTop);
-					}, 1000);
+
+				if(el[0].scrollHeight - totalHeight <= 3 && t.loaded){
+					t.loaded = false;
+					t['currentPage' + str] ++;
+					//if(typeof data.getDateFn == 'function') data.getDateFn();
+					// setTimeout(function(){
+					// 	//var scrollTop = el[0].scrollHeight - el.height() - 20;
+						
+					// 	//el.scrollTop(scrollTop);
+					// }, 1000);
 				};
 		    });
 		};
@@ -186,15 +190,6 @@
 				obj.addClass('active').siblings().removeClass('active');
 			}
 		};
-		//提交订单预约，时间处理yyyy-MM-dd HH:mm:ss
-		// that.orderTime = function(str){
-		// 	var data = new Date(),
-		// 		y = data.getFullYear(),
-		// 		m = data.getMonth() + 1,
-		// 		d = data.getDate();
-		// 		console.log(str);
-		// 	return str + ':00';
-		// };
 		//获取选中多选框的值
 		that.checkList = function(obj){
 			var ary = [];
@@ -236,8 +231,28 @@
 		};
 		that.closeModel = function(){
 			$.closeModal($('.modal-in'));
-		}
-		// that.promiseFun = function(data){
+		};
+		//小溪聊天
+		that.chat = {
+			chatSign: function(data){//小溪登录
+				that.getServerData({
+					url: 'brook/save',
+					data: data,
+					success: function(){
+						
+					}
+				})
+			},
+			updateChat: function(data){//修改小溪用户名
+				that.getServerData({
+					url: 'brook/update',
+					data: data,
+					success: function(){
+					}
+				})
+			}
+		};
+		// that.promiseFun = function(data){//延迟处理
 		// 	return new Promise(function(resolve){
 		// 		that.getServerData({
 		// 			url: data.url,
@@ -248,6 +263,7 @@
 		// 		});
 		// 	});
 		// }
+		
 	}
 	module.exports = vuePublic
 })();
