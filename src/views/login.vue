@@ -47,7 +47,7 @@ module.exports = {
 					url: 'login',
 					data: that.user,
 					success: function(result){
-						that.cookie.set('userInf', JSON.stringify(result.content));
+						// that.cookie.set('userInf', JSON.stringify(result.content));
 						that.cookie.set('userId', result.content.userToken);
 
 						that.$dispatch('userId',result.content.userToken);

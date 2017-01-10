@@ -238,7 +238,7 @@ module.exports = {
       'userId': function(userInf){
           var that = this;
           that.userId = userInf;
-          if(that.cookie.get('userInf')) that.getChatName(JSON.parse(that.cookie.get('userInf')).id);
+          that.getChatName(that.userId);
       }
     },
     methods: {
@@ -256,7 +256,7 @@ module.exports = {
         that.getServerData({
           url: 'brook/get',
           data: {
-            id: id
+            token: id
           },
           success: function(results){
             that.chatAccount = results.content;
@@ -268,7 +268,7 @@ module.exports = {
       var that = this;
       if(!that.userId){
         that.userId = that.cookie.get('userId');
-        if(that.cookie.get('userInf')) that.getChatName(JSON.parse(that.cookie.get('userInf')).id);
+        that.getChatName(that.userId);
       };
       that.baseImg(); 
     }

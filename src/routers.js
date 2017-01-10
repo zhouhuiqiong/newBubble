@@ -111,6 +111,7 @@ module.exports = function(router){
 		'/chat': {//聊天
 			name: 'chat',
 			component: require('./views/chat.vue')
+			
 		},
 		'*': {
 	      component: require('./views/home.vue')
