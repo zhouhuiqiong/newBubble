@@ -48,8 +48,8 @@ module.exports = {
 					data: that.user,
 					success: function(result){
 						// that.cookie.set('userInf', JSON.stringify(result.content));
-						that.cookie.set('userId', result.content.userToken);
-
+						//that.cookie.set('userId', result.content.userToken);
+						that.cookie.set('userPass', that.user.pwd);
 						that.$dispatch('userId',result.content.userToken);
 						$.toast('登录成功!');
 						if(that.$route.query.back == 1){//从预约过来的

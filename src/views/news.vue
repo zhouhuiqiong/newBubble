@@ -7,8 +7,8 @@
 		<div class="content home-content" >
 			<div class="list-block infinite-list  media-list news-list">
 				<ul>
-					<li >
-						<a href="/newBubble/src/chat/chat.html?name=111" class="item-content">
+<!-- 					<li >
+						<a href="/newBubble/src/chat/chat.html?name=111&myName={{myName}}" class="item-content">
 						  <div class="item-media">
 						  	<img src="../images/suite/news.png" >
 						  </div>
@@ -22,9 +22,9 @@
 						    </div>
 						  </div>
 						</a>
-					</li>
-					<li v-link="{ name: 'chat', query: { name: '2'}}">
-						<a href="javascript:void(0)" class="item-content">
+					</li> -->
+					<li>
+						<a href="/paopaoyu/chat/chat.html?name=111&myName={{myName}}" class="item-content">
 						  <div class="item-media">
 						  	<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" >
 						  </div>
@@ -47,10 +47,13 @@
 <script>
 module.exports = {
 	ready: function(){
+		var that = this;
+		that.myName = that.$root.chatAccount;
 	},
 	data:function(){
 		return {
-			baseHtp: window.location.protocol  + window.location.host
+			myName: ''
+
 		}
 	},
 	methods: {

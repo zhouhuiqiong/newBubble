@@ -256,7 +256,8 @@ module.exports = {
         that.getServerData({
           url: 'brook/get',
           data: {
-            token: id
+            token: id,
+            type: 1
           },
           success: function(results){
             that.chatAccount = results.content;
