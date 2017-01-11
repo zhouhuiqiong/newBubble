@@ -1,6 +1,16 @@
 @import 'mixin';
+
+@font-face {
+ font-family: "iconfont";
+  src: url('/src/css/iconfont.eot?t=1484119686555'); 
+  src: url('/src/css/iconfont.eot?t=1484119686555#iefix') format('embedded-opentype'), 
+  url('/src/css/iconfont.woff?t=1484119686555') format('woff'), 
+  url('/src/css/iconfont.ttf?t=1484119686555') format('truetype'), 
+  url('/src/css/iconfont.svg?t=1484119686555#iconfont') format('svg');
+}
 body{
 	background: #fff;
+
 	position: static;
 	overflow-y: auto;
 	color:#888;

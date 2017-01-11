@@ -98,7 +98,6 @@ module.exports = {
 		getGpsAdr: function(){
 			var that = this;
 			if(navigator.geolocation){
-      			that.updataPosition();
       			navigator.geolocation.getCurrentPosition(that.updataPosition);
     		}else{
         		that.gpsAdrText = '对不起，浏览器不支持！';
@@ -106,7 +105,6 @@ module.exports = {
 		},
 		updataPosition: function(position){
 			var that = this;
-			console.log(position);
 			if(!position){
 				var position = {
 					coords: {}
