@@ -98,22 +98,15 @@ module.exports = {
 		getGpsAdr: function(){
 			var that = this;
 			if(navigator.geolocation){
-      			that.updataPosition();
-      			navigator.geolocation.getCurrentPosition(that.updataPosition);
+      			navigator.geolocation.getCurrentPosition(function(position){
+      				that.updataPosition(position)
+      			});
     		}else{
         		that.gpsAdrText = '对不起，浏览器不支持！';
     		};
 		},
 		updataPosition: function(position){
 			var that = this;
-			console.log(position);
-			if(!position){
-				var position = {
-					coords: {}
-				};
-				position.coords.latitude = '30.2616125';
-				position.coords.longitude = '120.0318063';
-			};
 			$.ajax({
 				url:'http://maps.google.com/maps/api/geocode/json?latlng='+ position.coords.latitude+','+ position.coords.longitude+'&language=zh-CN&sensor=false',
 				type:'get',
