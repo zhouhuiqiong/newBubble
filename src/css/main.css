@@ -241,6 +241,10 @@ em {
 .ml {
   margin-left: 0.2rem; }
 
+@font-face {
+  font-family: "iconfont";
+  src: url("/src/fonts/iconfont.eot?t=1484119686555");
+  src: url("/src/fonts/iconfont.eot?t=1484119686555#iefix") format("embedded-opentype"), url("/src/fonts/iconfont.woff?t=1484119686555") format("woff"), url("/src/fonts/iconfont.ttf?t=1484119686555") format("truetype"), url("/src/fonts/iconfont.svg?t=1484119686555#iconfont") format("svg"); }
 body {
   background: #fff;
   position: static;
