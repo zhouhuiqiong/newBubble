@@ -11,12 +11,12 @@
 			// 	url: 'http://192.168.3.156:9000/src/data/' + data.url + '.json',
 			// 	data: data.data
 			// }).then(function(results){
-			// 	data.scuess(results.data);
+			// 	data.scuess(results.data);http://118.178.188.7:8104
 			// });
 			//跨域
 			$.ajax({  
 		        type: 'post',  
-		        url : 'https://118.178.188.7:8443/'+ data.url +'.action',  
+		        url : 'http://118.178.188.7:8104/'+ data.url +'.action',  
 		        data: data.data, 
 		        success: function(results){
 		        	if(results.state == 200){

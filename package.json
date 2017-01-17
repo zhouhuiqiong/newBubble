@@ -26,6 +26,7 @@
     "vue-hot-reload-api": "^1.2.2",
     "vue-html-loader": "^1.1.0",
     "vue-loader": "^8.2.0",
+    "vue-resource": "^1.0.3",
     "vue-router": "^0.7.11",
     "vue-style-loader": "^1.0.0",
     "vue-validator": "^2.1.7",
@@ -42,7 +43,8 @@
     "cp": "cp -r index.html ./build/ d:/wamp/www/vue",
     "grow": "export GROW=2 && webpack-dev-server  --hot --host=192.168.199.109  --port 9000",
     "ip": "webpack-dev-server  --progress --colors --hot --host=192.168.199.109 --port 9000",
-    "ipo": "webpack-dev-server  --progress --colors --hot --host=192.168.3.156  --port 9000"
+    "ipo": "webpack-dev-server  --progress --colors --hot --host=192.168.3.156  --port 9000",
+    "ip1": "webpack-dev-server  --progress --colors --hot --host=192.168.199.199 --port 9000"
   },
   "author": "",
   "license": "ISC"
