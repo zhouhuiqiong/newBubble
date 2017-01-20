@@ -11,7 +11,7 @@
 					<h3>{{article.title}}</h3>
 					<div class="card-item-tiem">
 						<div>
-							<span class="shop-tag shop-tag2" v-for="item in article.tags">{{item}}</span>
+							<span class="shop-tag shop-tag2" v-for="item in article.tagsArr">{{item}}</span>
 						</div>
 						<i class="data">{{article.gmtCreateTime | time}}</i>
 					</div>

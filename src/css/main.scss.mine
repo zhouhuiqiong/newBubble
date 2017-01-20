@@ -1579,9 +1579,6 @@ $pa:0px 40px;
 .hue-content{
 	margin-top: 1rem;
 	line-height: 22px;
-	img{
-		width: 100% !important;
-	}
 }
 .hue-content-ph{
 	margin-top: 1rem;

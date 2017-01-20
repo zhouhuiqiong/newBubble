@@ -1934,8 +1934,6 @@ body {
 .hue-content {
   margin-top: 1rem;
   line-height: 22px; }
-  .hue-content img {
-    width: 100% !important; }
 
 .hue-content-ph {
   margin-top: 1rem; }

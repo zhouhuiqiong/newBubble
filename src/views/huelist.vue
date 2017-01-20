@@ -21,7 +21,7 @@
                     <img :src="$root.baseImgSrc + '/' + item.pic">
                     <h3>{{item.title}}</h3>
                     <p>
-                        <span class="shop-tag shop-tag2" v-for="tag in item.tags">
+                        <span class="shop-tag shop-tag2" v-for="tag in item.tagsArr">
                             {{tag}}
                         </span>
                         {{item.desc}}

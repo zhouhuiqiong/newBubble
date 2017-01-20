@@ -44,7 +44,7 @@
     "grow": "export GROW=2 && webpack-dev-server  --hot --host=192.168.199.109  --port 9000",
     "ip": "webpack-dev-server  --progress --colors --hot --host=192.168.199.109 --port 9000",
     "ipo": "webpack-dev-server  --progress --colors --hot --host=192.168.4.93  --port 9000",
-    "ip1": "webpack-dev-server  --progress --colors --hot --host=192.168.199.199 --port 9000"
+    "ip1": "webpack-dev-server  --progress --colors --hot --host=192.168.3.104 --port 9000"
   },
   "author": "",
   "license": "ISC"
