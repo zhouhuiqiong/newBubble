@@ -16,7 +16,7 @@
 			//跨域
 			$.ajax({  
 		        type: 'post',  
-		        url : 'http://47.92.54.8/'+ data.url +'.action',
+		        url : 'http://47.92.54.8:8580/'+ data.url +'.action',
 		        data: data.data, 
 		        success: function(results){
 		        	if(results.state == 200){
